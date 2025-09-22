@@ -1,0 +1,411 @@
+.add-schedules-container {
+  display: flex;
+  width: 100%;
+  max-width: 1500px;
+  height: 100vh;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin: 50px;
+}
+
+/* Sección izquierda - Formulario */
+.form-section {
+  flex: 0 0 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 60px 80px;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.step-indicator span {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.progress-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  border: 1px solid #ddd;
+}
+
+.dot.active {
+  background: #8B4513;
+  border-color: #8B4513;
+}
+
+.form-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.form-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 40px;
+  line-height: 1.4;
+}
+
+.schedules-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.schedule-item {
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.schedule-item:last-child {
+  border-bottom: none;
+}
+
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.day-name {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+}
+
+.time-slots {
+  margin-top: 15px;
+  padding-left: 0;
+}
+
+.time-slot {
+  margin-bottom: 15px;
+}
+
+.time-inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.time-label {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.time-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  background: white;
+  color: #333;
+}
+
+.time-input:focus {
+  outline: none;
+  border-color: #8B4513;
+}
+
+.time-separator {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+}
+
+.remove-slot {
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.remove-slot:hover {
+  color: #ff4444;
+  background: #fff5f5;
+}
+
+.add-slot-button {
+  background: #f7c59f;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.add-slot-button:hover {
+  background: #e6b089;
+  transform: translateY(-1px);
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 48px;
+  height: 28px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #f7c59f;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #f7c59f;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.slider.round {
+  border-radius: 28px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  background: #000;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.button-icon {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.next-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 60px;
+  padding: 16px 24px;
+  background: white;
+  border: 2px solid #000;
+  border-radius: 12px;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.next-button:active {
+  background: #f7c59f;
+  border-color: #000;
+}
+
+/* Sección derecha - Imagen promocional */
+.promotional-section {
+  flex: 0 0 40%;
+  position: relative;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.promotional-image {
+  width: 100%;
+  max-width: 700px;
+  height: 100%;
+  position: relative;
+  background-image: url('../assets/woman-image.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #ffffff;
+  border-radius: 0 20px 20px 0;
+  margin-right: 30px;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .add-schedules-container {
+    flex-direction: column;
+    height: auto;
+    margin: 10px;
+    border-radius: 15px;
+  }
+  
+  .form-section {
+    flex: none;
+    padding: 40px 30px;
+  }
+  
+  .promotional-section {
+    flex: none;
+    height: 300px;
+    border-radius: 0 0 15px 15px;
+  }
+  
+  .promotional-image {
+    border-radius: 0 0 15px 15px;
+    margin-right: 0;
+  }
+  
+  .form-title {
+    font-size: 28px;
+  }
+  
+  .schedule-item {
+    padding: 10px 0;
+  }
+  
+  .day-name {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-section {
+    padding: 30px 20px;
+  }
+  
+  .form-title {
+    font-size: 24px;
+  }
+  
+  .form-subtitle {
+    font-size: 14px;
+  }
+  
+  .back-button, .next-button {
+    height: 50px;
+  }
+  
+  .next-button {
+    font-size: 14px;
+  }
+  
+  .toggle-switch {
+    width: 40px;
+    height: 24px;
+  }
+  
+  .slider:before {
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(16px);
+  }
+}
