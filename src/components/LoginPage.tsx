@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
+import { useUser } from '../contexts/UserContext';
 import './LoginPage.css';
 
 interface LoginFormData {
@@ -10,6 +11,7 @@ interface LoginFormData {
 
 const LoginPage: React.FC = () => {
   const { navigateTo } = useNavigation();
+  const { login } = useUser();
   const [formData, setFormData] = useState<LoginFormData>({
     email: '',
     password: '',
@@ -29,7 +31,19 @@ const LoginPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    
+    // Simular login con datos de ejemplo
+    login({
+      salonName: 'Peluquería Gabriel',
+      email: formData.email || 'info@gabrielpeluquero.com',
+      businessName: 'Gabriel Peluquero S.L.',
+      address: 'Calle Principal 123, Madrid',
+      phone: '+34 600 123 456'
+    });
+    
     // Aquí iría la lógica de autenticación
+    // Por ahora, navegamos directamente al dashboard
+    navigateTo('dashboard');
   };
 
   return (
@@ -55,7 +69,7 @@ const LoginPage: React.FC = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Correo electrónico"
                 value={formData.email}
                 onChange={handleInputChange}
                 required
@@ -70,7 +84,7 @@ const LoginPage: React.FC = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Contraseña"
+                placeholder="Tu contraseña"
                 value={formData.password}
                 onChange={handleInputChange}
                 required

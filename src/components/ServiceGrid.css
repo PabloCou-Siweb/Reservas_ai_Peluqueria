@@ -1,0 +1,158 @@
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+  padding: 40px 32px;
+  max-width: none;
+  width: 100%;
+}
+
+.service-card {
+  background: white;
+  border: 1px solid #e9ecef;
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  min-height: 180px;
+  justify-content: center;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #8b4513;
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  background: #8b4513;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  border: 3px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.service-icon-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.service-card:hover .service-icon {
+  background: #a0522d;
+  transform: scale(1.1);
+}
+
+.service-card:hover .service-icon-img {
+  filter: brightness(0) invert(1);
+}
+
+.service-info {
+  text-align: center;
+}
+
+.service-name {
+  font-size: 17px;
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.service-specialists {
+  font-size: 14px;
+  color: #6c757d;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1400px) {
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    padding: 20px;
+  }
+  
+  .service-card {
+    padding: 20px 16px;
+    min-height: 160px;
+  }
+  
+  .service-icon {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .service-icon-img {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .service-name {
+    font-size: 15px;
+  }
+  
+  .service-specialists {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+  
+  .service-card {
+    padding: 16px 12px;
+    min-height: 140px;
+  }
+  
+  .service-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .service-icon-img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .service-name {
+    font-size: 13px;
+  }
+  
+  .service-specialists {
+    font-size: 11px;
+  }
+}

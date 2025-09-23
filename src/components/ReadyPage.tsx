@@ -10,8 +10,8 @@ const ReadyPage: React.FC = () => {
   };
 
   const handleLoginClick = () => {
-    // Navegar a la página de login
-    navigateTo('login');
+    // Navegar al dashboard
+    navigateTo('dashboard');
   };
 
   return (

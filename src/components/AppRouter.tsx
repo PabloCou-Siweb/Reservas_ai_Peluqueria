@@ -7,9 +7,13 @@ import CreateSalonPage from './CreateSalonPage';
 import AddSchedulesPage from './AddSchedulesPage';
 import SpecialtiesPage from './SpecialtiesPage';
 import ReadyPage from './ReadyPage';
+import DashboardPage from './DashboardPage';
+import CitasPage from './CitasPage';
+import NuevaCitaPage from './NuevaCitaPage';
+import AgendaPage from './AgendaPage';
 
 const AppRouter: React.FC = () => {
-  const { currentPage } = useNavigation();
+  const { currentPage, selectedSpecialty } = useNavigation();
 
   switch (currentPage) {
     case 'login':
@@ -26,8 +30,16 @@ const AppRouter: React.FC = () => {
       return <SpecialtiesPage />;
     case 'ready':
       return <ReadyPage />;
+    case 'dashboard':
+      return <DashboardPage />;
+    case 'citas':
+      return <CitasPage specialty={selectedSpecialty} />;
+    case 'nueva-cita':
+      return <NuevaCitaPage />;
+    case 'agenda':
+      return <AgendaPage />;
     default:
-      return <CreateAccountPage />;
+      return <LoginPage />;
   }
 };
 

@@ -19,8 +19,8 @@ const AddSchedulesPage: React.FC = () => {
   const [schedules, setSchedules] = useState<DaySchedule[]>([
     { day: 'Lunes', enabled: false, timeSlots: [] },
     { day: 'Martes', enabled: false, timeSlots: [] },
-    { day: 'Miércoles', enabled: true, timeSlots: [{ id: '1', startTime: '20:00', endTime: '20:00' }] },
-    { day: 'Jueves', enabled: true, timeSlots: [{ id: '1', startTime: '20:00', endTime: '20:00' }] },
+    { day: 'Miércoles', enabled: false, timeSlots: [] },
+    { day: 'Jueves', enabled: false, timeSlots: [] },
     { day: 'Viernes', enabled: false, timeSlots: [] },
     { day: 'Sábado', enabled: false, timeSlots: [] },
     { day: 'Domingo', enabled: false, timeSlots: [] },
@@ -104,24 +104,29 @@ const AddSchedulesPage: React.FC = () => {
       {/* Sección izquierda - Formulario */}
       <div className="form-section">
         <div className="form-container">
-          <div className="step-indicator">
-            <span>03/05</span>
-            <div className="progress-dots">
-              <div className="dot active"></div>
-              <div className="dot active"></div>
-              <div className="dot active"></div>
-              <div className="dot"></div>
-              <div className="dot"></div>
+          {/* Header fijo */}
+          <div className="form-header">
+            <div className="step-indicator">
+              <span>03/05</span>
+              <div className="progress-dots">
+                <div className="dot active"></div>
+                <div className="dot active"></div>
+                <div className="dot active"></div>
+                <div className="dot"></div>
+                <div className="dot"></div>
+              </div>
             </div>
+            
+            <h1 className="form-title">Añade tus horarios</h1>
+            <p className="form-subtitle">
+              Define los días y franjas horarias en los que tu establecimiento atenderá citas. Esto permitirá a la agenda y a la asistente virtual ofrecer disponibilidad precisa a tus clientes.
+            </p>
           </div>
           
-          <h1 className="form-title">Añade tus horarios</h1>
-          <p className="form-subtitle">
-            Define los días y franjas horarias en los que tu establecimiento atenderá citas. Esto permitirá a la agenda y a la asistente virtual ofrecer disponibilidad precisa a tus clientes.
-          </p>
-          
           <form onSubmit={handleSubmit} className="schedules-form">
-            <div className="schedule-list">
+            {/* Lista de días con scroll */}
+            <div className="schedule-list-container">
+              <div className="schedule-list">
               {schedules.map((schedule) => (
                 <div className="schedule-item" key={schedule.day}>
                   <div className="day-header">
@@ -141,6 +146,9 @@ const AddSchedulesPage: React.FC = () => {
                       {schedule.timeSlots.map((slot) => (
                         <div className="time-slot" key={slot.id}>
                           <div className="time-inputs">
+                            <div className="time-icon">
+                              <img src="/img/clock-icon.png" alt="Reloj" />
+                            </div>
                             <span className="time-label">Desde</span>
                             <input
                               type="time"
@@ -179,9 +187,12 @@ const AddSchedulesPage: React.FC = () => {
                   )}
                 </div>
               ))}
+              </div>
             </div>
 
-            <div className="button-group">
+            {/* Botones fijos */}
+            <div className="form-footer">
+              <div className="button-group">
               <button 
                 type="button" 
                 className="back-button"
@@ -197,6 +208,7 @@ const AddSchedulesPage: React.FC = () => {
               <button type="submit" className="next-button">
                 <span>Siguiente</span>
               </button>
+              </div>
             </div>
           </form>
         </div>

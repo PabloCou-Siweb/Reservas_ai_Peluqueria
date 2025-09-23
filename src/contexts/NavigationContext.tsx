@@ -7,11 +7,18 @@ export type PageType =
   | 'create-salon'
   | 'add-schedules'
   | 'specialties'
-  | 'ready';
+  | 'ready'
+  | 'dashboard'
+  | 'citas'
+  | 'nueva-cita'
+  | 'agenda';
 
 interface NavigationContextType {
   currentPage: PageType;
+  selectedSpecialty: string;
   navigateTo: (page: PageType) => void;
+  navigateToCitas: (specialty: string) => void;
+  navigateToNuevaCita: () => void;
   goBack: () => void;
   goNext: () => void;
 }
@@ -40,9 +47,19 @@ const pageOrder: PageType[] = [
 
 export const NavigationProvider: React.FC<NavigationProviderProps> = ({ children }) => {
   const [currentPage, setCurrentPage] = useState<PageType>('login');
+  const [selectedSpecialty, setSelectedSpecialty] = useState<string>('Corte');
 
   const navigateTo = (page: PageType) => {
     setCurrentPage(page);
+  };
+
+  const navigateToCitas = (specialty: string) => {
+    setSelectedSpecialty(specialty);
+    setCurrentPage('citas');
+  };
+
+  const navigateToNuevaCita = () => {
+    setCurrentPage('nueva-cita');
   };
 
   const goBack = () => {
@@ -58,11 +75,13 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = ({ children
     const currentIndex = pageOrder.indexOf(currentPage);
     if (currentIndex < pageOrder.length - 1) {
       setCurrentPage(pageOrder[currentIndex + 1]);
+    } else if (currentPage === 'ready') {
+      setCurrentPage('dashboard');
     }
   };
 
   return (
-    <NavigationContext.Provider value={{ currentPage, navigateTo, goBack, goNext }}>
+    <NavigationContext.Provider value={{ currentPage, selectedSpecialty, navigateTo, navigateToCitas, navigateToNuevaCita, goBack, goNext }}>
       {children}
     </NavigationContext.Provider>
   );

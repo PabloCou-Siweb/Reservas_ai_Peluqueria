@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
+import { useUser } from '../contexts/UserContext';
 import './CreateAccountPage.css';
 
 interface CreateAccountFormData {
@@ -12,6 +13,7 @@ interface CreateAccountFormData {
 
 const CreateAccountPage: React.FC = () => {
   const { goNext, navigateTo } = useNavigation();
+  const { updateUserData } = useUser();
   const [formData, setFormData] = useState<CreateAccountFormData>({
     fullName: '',
     email: '',
@@ -34,6 +36,13 @@ const CreateAccountPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    
+    // Guardar los datos del usuario
+    updateUserData({
+      email: formData.email,
+      salonName: formData.fullName
+    });
+    
     // Aquí iría la lógica para crear la cuenta
     goNext();
   };
@@ -73,17 +82,14 @@ const CreateAccountPage: React.FC = () => {
               <input
                 type="text"
                 name="fullName"
-                placeholder="Nombre y apellidos"
+                placeholder="Nombre completo"
                 value={formData.fullName}
                 onChange={handleInputChange}
                 required
                 className="form-input"
               />
               <div className="input-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
+                <img src="/img/user-icon.png" alt="Usuario" />
               </div>
             </div>
 
@@ -91,7 +97,7 @@ const CreateAccountPage: React.FC = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Correo electrónico"
                 value={formData.email}
                 onChange={handleInputChange}
                 required
@@ -106,7 +112,7 @@ const CreateAccountPage: React.FC = () => {
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
-                placeholder="Contraseña"
+                placeholder="Crear contraseña"
                 value={formData.password}
                 onChange={handleInputChange}
                 required
@@ -132,7 +138,7 @@ const CreateAccountPage: React.FC = () => {
               <input
                 type={showConfirmPassword ? "text" : "password"}
                 name="confirmPassword"
-                placeholder="Confirmar contraseña"
+                placeholder="Repetir contraseña"
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
                 required

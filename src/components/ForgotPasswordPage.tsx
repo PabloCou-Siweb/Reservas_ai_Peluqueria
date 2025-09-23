@@ -53,7 +53,7 @@ const ForgotPasswordPage: React.FC = () => {
               <input
                 type="email"
                 name="email"
-                placeholder="Email"
+                placeholder="Correo electrónico"
                 value={formData.email}
                 onChange={handleInputChange}
                 required

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
+import { useUser } from '../contexts/UserContext';
 import './CreateSalonPage.css';
 
 interface CreateSalonFormData {
@@ -11,6 +12,7 @@ interface CreateSalonFormData {
 
 const CreateSalonPage: React.FC = () => {
   const { goNext, goBack } = useNavigation();
+  const { updateUserData } = useUser();
   const [formData, setFormData] = useState<CreateSalonFormData>({
     salonName: '',
     businessName: '',
@@ -29,6 +31,15 @@ const CreateSalonPage: React.FC = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
+    
+    // Guardar los datos del salón
+    updateUserData({
+      salonName: formData.salonName,
+      businessName: formData.businessName,
+      address: formData.address,
+      phone: formData.phone
+    });
+    
     // Aquí iría la lógica para crear la peluquería
     goNext();
   };
@@ -63,7 +74,7 @@ const CreateSalonPage: React.FC = () => {
               <input
                 type="text"
                 name="salonName"
-                placeholder="Nombre del local"
+                placeholder="Nombre de la peluquería"
                 value={formData.salonName}
                 onChange={handleInputChange}
                 required
@@ -85,11 +96,7 @@ const CreateSalonPage: React.FC = () => {
                 className="form-input"
               />
               <div className="input-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                  <line x1="8" y1="21" x2="16" y2="21"/>
-                  <line x1="12" y1="17" x2="12" y2="21"/>
-                </svg>
+                <img src="/img/bag-icon.png" alt="Empresa" />
               </div>
             </div>
 
@@ -97,17 +104,14 @@ const CreateSalonPage: React.FC = () => {
               <input
                 type="text"
                 name="address"
-                placeholder="Dirección completa"
+                placeholder="Dirección del local"
                 value={formData.address}
                 onChange={handleInputChange}
                 required
                 className="form-input"
               />
               <div className="input-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
-                  <circle cx="12" cy="10" r="3"/>
-                </svg>
+                <img src="/img/location-icon.png" alt="Ubicación" />
               </div>
             </div>
 
@@ -115,7 +119,7 @@ const CreateSalonPage: React.FC = () => {
               <input
                 type="tel"
                 name="phone"
-                placeholder="Teléfono"
+                placeholder="Número de teléfono"
                 value={formData.phone}
                 onChange={handleInputChange}
                 required

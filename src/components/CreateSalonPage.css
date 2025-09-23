@@ -1,28 +1,27 @@
 .create-salon-container {
   display: flex;
-  width: 100%;
-  max-width: 1500px;
+  width: 100vw;
   height: 100vh;
   background: white;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
-  margin: 50px;
+  margin: 0;
 }
 
 /* Sección izquierda - Formulario */
 .form-section {
-  flex: 0 0 60%;
+  flex: 0 0 45%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   background: white;
-  padding: 60px 80px;
+  padding: 40px 20px 40px 60px;
 }
 
 .form-container {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
 }
 
 .step-indicator {
@@ -176,12 +175,12 @@
 
 /* Sección derecha - Imagen promocional */
 .promotional-section {
-  flex: 0 0 40%;
+  flex: 0 0 55%;
   position: relative;
   background: white;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .promotional-image {
