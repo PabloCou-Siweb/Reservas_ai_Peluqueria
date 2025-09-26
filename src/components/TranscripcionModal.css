@@ -1,0 +1,253 @@
+/* Transcripcion Modal */
+.transcripcion-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.transcripcion-modal {
+  background: white;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.transcripcion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 24px 24px 0 24px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 20px;
+}
+
+.transcripcion-title-section {
+  flex: 1;
+}
+
+.transcripcion-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.transcripcion-subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.transcripcion-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #6c757d;
+  transition: all 0.2s ease;
+  margin-left: 16px;
+}
+
+.transcripcion-close:hover {
+  background: #f8f9fa;
+  color: #2c3e50;
+}
+
+/* Content */
+.transcripcion-content {
+  flex: 1;
+  padding: 0 24px;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
+}
+
+/* Resumen Section */
+.resumen-section {
+  background: #fef3c7;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.resumen-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+}
+
+.resumen-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.resumen-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.resumen-label {
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.resumen-value {
+  color: #1a1a1a;
+  font-size: 14px;
+  text-align: right;
+  flex: 1;
+  margin-left: 16px;
+}
+
+/* Transcripción Section */
+.transcripcion-section {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.transcripcion-section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 12px 0;
+}
+
+.transcripcion-text {
+  max-height: 300px;
+  overflow-y: auto;
+  background: #f9fafb;
+  border-radius: 6px;
+  padding: 12px;
+}
+
+.transcripcion-content-text {
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #374151;
+  margin: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/* Footer */
+.transcripcion-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 24px 24px 24px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 20px;
+}
+
+.transcripcion-cancel {
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.transcripcion-cancel:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.transcripcion-accept {
+  background: #F2C288;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.transcripcion-accept:hover {
+  background: #E6B377;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .transcripcion-overlay {
+    padding: 10px;
+  }
+  
+  .transcripcion-modal {
+    max-height: 95vh;
+  }
+  
+  .transcripcion-header {
+    padding: 20px 20px 0 20px;
+  }
+  
+  .transcripcion-title {
+    font-size: 20px;
+  }
+  
+  .transcripcion-content {
+    padding: 0 20px;
+  }
+  
+  .transcripcion-footer {
+    padding: 16px 20px 20px 20px;
+  }
+  
+  .resumen-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .resumen-value {
+    text-align: left;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .transcripcion-title {
+    font-size: 18px;
+  }
+  
+  .transcripcion-subtitle {
+    font-size: 13px;
+  }
+  
+  .transcripcion-footer {
+    flex-direction: column;
+  }
+  
+  .transcripcion-cancel,
+  .transcripcion-accept {
+    width: 100%;
+  }
+}

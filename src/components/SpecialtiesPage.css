@@ -162,35 +162,41 @@
   margin-top: 20px;
 }
 
+.back-btn-new {
+  margin-bottom: 0;
+}
+
 .back-button {
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   width: 60px;
   height: 60px;
-  background: #000 !important;
+  background: #000000 !important;
   border: none !important;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0;
   color: white;
-  box-shadow: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 10;
 }
 
 .back-button:hover {
-  background: #333 !important;
+  background: #333333 !important;
   transform: none;
-  box-shadow: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 .back-button:active {
-  background: #000 !important;
-  transform: translateY(0);
+  background: #000000 !important;
+  transform: none;
 }
 
 .back-button:focus {
-  background: #000 !important;
+  background: #000000 !important;
   outline: none;
 }
 
@@ -199,11 +205,56 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.button-icon svg {
+  width: 24px;
+  height: 24px;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  fill: none;
 }
 
 .button-icon svg {
   color: white;
   stroke: white;
+}
+
+/* Botón de retroceso completamente nuevo */
+.back-btn-new {
+  width: 60px;
+  height: 60px;
+  background-color: #000000;
+  border: 2px solid #000000;
+  border-radius: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.back-btn-new:hover {
+  background-color: #333333;
+  border-color: #333333;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.back-btn-new:active {
+  background-color: #000000;
+  transform: scale(0.95);
+}
+
+.back-btn-new svg {
+  width: 24px;
+  height: 24px;
+  stroke: #ffffff;
+  stroke-width: 3;
+  fill: none;
 }
 
 .next-button {
@@ -345,3 +396,4 @@
     font-size: 14px;
   }
 }
+

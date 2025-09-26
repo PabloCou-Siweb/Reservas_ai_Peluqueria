@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
 import ReservarCitaModal from './ReservarCitaModal';
+import AppointmentContextMenu from './AppointmentContextMenu';
 import './CitasPage.css';
 
 interface CitasPageProps {
@@ -17,6 +18,17 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
   const [selectedDate, setSelectedDate] = useState(11);
   const [selectedSpecialist, setSelectedSpecialist] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [contextMenu, setContextMenu] = useState<{
+    isOpen: boolean;
+    position: { x: number; y: number };
+    patientName: string;
+    appointmentId: number;
+  }>({
+    isOpen: false,
+    position: { x: 0, y: 0 },
+    patientName: '',
+    appointmentId: 0
+  });
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -34,6 +46,96 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
     console.log('Datos de la cita:', data);
     setIsModalOpen(false);
     // Aquí puedes agregar la lógica para guardar la cita
+  };
+
+  // Funciones del menú contextual
+  const handleContextMenuOpen = (e: React.MouseEvent, patientName: string, appointmentId: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Calcular posición más inteligente
+    const rect = e.currentTarget.getBoundingClientRect();
+    const menuWidth = 240;
+    const menuHeight = 320; // Altura fija para el menú
+    
+    let x = rect.right + 5; // 5px a la derecha del botón
+    let y = rect.top;
+    
+    // Ajustar si se sale por la derecha
+    if (x + menuWidth > window.innerWidth) {
+      x = rect.left - menuWidth - 5; // 5px a la izquierda del botón
+    }
+    
+    // Ajustar si se sale por abajo - usar una lógica más consistente
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    
+    if (spaceBelow < menuHeight) {
+      // Si no hay espacio abajo, posicionar arriba
+      if (spaceAbove >= menuHeight) {
+        y = rect.top - menuHeight - 5;
+      } else {
+        // Si tampoco hay espacio arriba, centrar verticalmente
+        y = Math.max(10, (window.innerHeight - menuHeight) / 2);
+      }
+    }
+    
+    setContextMenu({
+      isOpen: true,
+      position: { x, y },
+      patientName,
+      appointmentId
+    });
+  };
+
+  const handleContextMenuClose = () => {
+    setContextMenu({
+      isOpen: false,
+      position: { x: 0, y: 0 },
+      patientName: '',
+      appointmentId: 0
+    });
+  };
+
+  const handleViewDetails = () => {
+    console.log('Ver detalles de:', contextMenu.patientName);
+    handleContextMenuClose();
+    navigateTo('appointment-details');
+  };
+
+  const handleEditInfo = () => {
+    console.log('Editar información de:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleReschedule = () => {
+    console.log('Reprogramar cita de:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleCallPatient = () => {
+    console.log('Llamar a:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleSendReminder = () => {
+    console.log('Enviar recordatorio a:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleMarkAttended = () => {
+    console.log('Marcar como atendida:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleMarkNoShow = () => {
+    console.log('Marcar como no asistió:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleCancelAppointment = () => {
+    console.log('Cancelar cita de:', contextMenu.patientName);
+    handleContextMenuClose();
   };
 
   const monthNames = [
@@ -440,7 +542,12 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
                         <span className={`status-badge ${cita.estado}`}>
                           {cita.estado === 'confirmada' ? 'CONFIRMADA' : 'PENDIENTE'}
                         </span>
-                        <button className="action-btn">Ver detalles</button>
+                        <button 
+                          className="action-btn three-dots-btn"
+                          onClick={(e) => handleContextMenuOpen(e, cita.cliente, cita.id)}
+                        >
+                          <img src="/img/3dots-icon.png" alt="Opciones" width="16" height="16" />
+                        </button>
                       </div>
                     </div>
                   ))}
@@ -467,6 +574,22 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
         date="2025/08/08"
         time="08:00"
         duration="30 minutos"
+      />
+
+      {/* Menú contextual */}
+      <AppointmentContextMenu
+        isOpen={contextMenu.isOpen}
+        position={contextMenu.position}
+        onClose={handleContextMenuClose}
+        patientName={contextMenu.patientName}
+        onViewDetails={handleViewDetails}
+        onEditInfo={handleEditInfo}
+        onReschedule={handleReschedule}
+        onCallPatient={handleCallPatient}
+        onSendReminder={handleSendReminder}
+        onMarkAttended={handleMarkAttended}
+        onMarkNoShow={handleMarkNoShow}
+        onCancelAppointment={handleCancelAppointment}
       />
     </div>
   );

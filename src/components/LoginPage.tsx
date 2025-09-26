@@ -52,8 +52,6 @@ const LoginPage: React.FC = () => {
       <div className="promotional-section">
         <div className="promotional-image">
           <div className="image-overlay">
-            <div className="stats-bubble top-right">
-            </div>
           </div>
         </div>
       </div>
@@ -61,49 +59,70 @@ const LoginPage: React.FC = () => {
       {/* Sección derecha - Formulario de login */}
       <div className="login-section">
         <div className="login-form-container">
-          <h1 className="login-title">Iniciar sesión</h1>
-          <p className="login-subtitle">Accede a tu sistema de reservas inteligente.</p>
+          <div className="login-header">
+            <h1 className="login-title">Iniciar sesión</h1>
+            <p className="login-subtitle">Accede a tu sistema de reservas inteligente.</p>
+          </div>
           
           <form onSubmit={handleSubmit} className="login-form">
-            <div className="input-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Correo electrónico"
-                value={formData.email}
-                onChange={handleInputChange}
-                required
-                className="form-input"
-              />
-              <div className="input-icon">
-                <img src="/img/email-icon.png"  />
+            <div className="form-field">
+              <label className="form-label">Correo electrónico</label>
+              <div className="input-container">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  required
+                  className="form-input"
+                />
+                <div className="input-icon">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="m6 9 6 6 6-6"/>
+                  </svg>
+                </div>
               </div>
             </div>
 
-            <div className="input-group">
-              <input
-                type={showPassword ? "text" : "password"}
-                name="password"
-                placeholder="Tu contraseña"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
-                className="form-input"
-              />
-              <button
-                type="button"
-                className="password-toggle"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                <img 
-                  src={showPassword ? "/img/eye-off-icon.png" : "/img/eye-icon.png"} 
-                  alt={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"} 
+            <div className="form-field">
+              <label className="form-label">Tu contraseña</label>
+              <div className="input-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  required
+                  className="form-input"
                 />
-              </button>
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    {showPassword ? (
+                      <>
+                        <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
+                        <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
+                        <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
+                        <line x1="2" y1="2" x2="22" y2="22"/>
+                      </>
+                    ) : (
+                      <>
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                        <circle cx="12" cy="12" r="3"/>
+                      </>
+                    )}
+                  </svg>
+                </button>
+              </div>
             </div>
 
             <div className="forgot-password">
-              <a href="#" className="forgot-link" onClick={(e) => { e.preventDefault(); navigateTo('forgot-password'); }}>¿Olvidaste tu contraseña?</a>
+              <a href="#" className="forgot-link" onClick={(e) => { e.preventDefault(); navigateTo('forgot-password'); }}>
+                ¿Olvidaste tu contraseña?
+              </a>
             </div>
 
             <div className="checkbox-group">
@@ -121,21 +140,21 @@ const LoginPage: React.FC = () => {
               </label>
             </div>
 
-            <div className="button-group">
-              <button type="submit" className="login-button">
-                <span>Iniciar sesión</span>
-              </button>
+            <div className="register-link">
+              <span>¿No tienes cuenta? </span>
+              <a href="#" className="register-text" onClick={(e) => { e.preventDefault(); navigateTo('create-account'); }}>
+                Regístrate
+              </a>
             </div>
+
+            <button type="submit" className="login-button">
+              Iniciar sesión
+            </button>
           </form>
+        </div>
 
-          <div className="register-link">
-            <span>¿No tienes cuenta? </span>
-            <a href="#" className="register-text" onClick={(e) => { e.preventDefault(); navigateTo('create-account'); }}>Registrate</a>
-          </div>
-
-          <div className="copyright">
-            <span>© 2025 Bokifty</span>
-          </div>
+        <div className="copyright">
+          <span>© 2025 Bokifty</span>
         </div>
       </div>
     </div>

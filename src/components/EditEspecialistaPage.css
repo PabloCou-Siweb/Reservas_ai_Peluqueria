@@ -1,0 +1,307 @@
+/* Edit Especialista Page */
+.edit-especialista-page {
+  display: flex;
+  min-height: 100vh;
+  background: white;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 280px;
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.sidebar-closed {
+  margin-left: 80px;
+}
+
+/* Header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: white;
+  border-bottom: 1px solid #e9ecef;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.breadcrumbs {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.breadcrumbs .separator {
+  margin: 0 8px;
+  color: #ccc;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: -8px;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  color: #666;
+  transition: all 0.2s ease;
+}
+
+.back-button:hover {
+  background: #f8f9fa;
+  color: #333;
+}
+
+.title-row h1 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0 0 0;
+  text-align: left;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.notification-btn,
+.settings-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  background: #f8f9fa;
+  color: #666;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.notification-btn:hover,
+.settings-btn:hover {
+  background: #F2C288;
+  color: #333;
+  box-shadow: 0 4px 8px rgba(242, 194, 136, 0.3);
+}
+
+/* Form Container */
+.form-container {
+  flex: 1;
+  margin: 8px 32px 16px 32px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Header */
+.form-header {
+  background: #FFE8BC;
+  padding: 12px 24px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.form-header-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.form-header-icon {
+  width: 32px;
+  height: 32px;
+  background: #6B4423;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  transition: background-color 0.2s ease;
+}
+
+.form-header-icon:hover {
+  background: #8C623E;
+}
+
+.form-header-content span {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Form Content */
+.form-content {
+  padding: 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-row {
+  display: grid;
+  gap: 12px;
+  align-items: end;
+}
+
+/* Primera fila: Nombre y Apellidos (2 columnas) */
+.form-row:first-of-type {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Segunda fila: 5 campos (5 columnas) */
+.form-row:nth-of-type(2) {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+/* Tercera fila: Dirección (1 columna) */
+.form-row:nth-of-type(3) {
+  grid-template-columns: 1fr;
+}
+
+/* Filas de información profesional: 3 columnas */
+.form-row:nth-of-type(4),
+.form-row:nth-of-type(5) {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-field label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  padding: 10px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  background: white;
+  transition: border-color 0.2s ease;
+  min-height: 40px;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+  outline: none;
+  border-color: #F2C288;
+  box-shadow: 0 0 0 2px rgba(242, 194, 136, 0.2);
+}
+
+.form-field textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Action Buttons */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+.btn-cancel,
+.btn-save {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+}
+
+.btn-cancel {
+  background: white;
+  border: 1px solid #ddd;
+  color: #666;
+}
+
+.btn-cancel:hover {
+  background: #f8f9fa;
+  border-color: #bbb;
+}
+
+.btn-save {
+  background: #F2C288;
+  border: 1px solid #F2C288;
+  color: #333;
+}
+
+.btn-save:hover {
+  background: #e6b377;
+  border-color: #e6b377;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(242, 194, 136, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+  
+  .form-container {
+    margin: 8px 16px 16px 16px;
+  }
+  
+  .form-content {
+    padding: 16px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .btn-cancel,
+  .btn-save {
+    width: 100%;
+  }
+}

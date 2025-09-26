@@ -70,7 +70,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </div>
           <span>Especialistas</span>
         </div>
-        <div className="nav-item">
+        <div 
+          className="nav-item"
+          onClick={() => navigateTo('clientes')}
+        >
           <div className="nav-icon">
             <img src="/img/users-icon.png" alt="Clientes" />
           </div>
@@ -106,20 +109,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
 
       <div className="sidebar-profile">
         <div className="profile-avatar">
-          <div className="avatar-icon">👤</div>
+          <img src="/img/user-icon.png" alt="Usuario" className="avatar-icon" />
         </div>
         <div className="profile-info">
           <div className="profile-name">{userData.salonName}</div>
           <div className="profile-email">
             <span>{userData.email}</span>
-            <div className="refresh-icon">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polyline points="23 4 23 10 17 10"/>
-                <polyline points="1 20 1 14 7 14"/>
-                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
-              </svg>
-            </div>
           </div>
+        </div>
+        <div className="profile-actions">
+          <button className="export-btn" onClick={() => navigateTo('perfil')}>
+            <img src="/img/export-icon.png" alt="Exportar" width="28" height="28" />
+          </button>
         </div>
       </div>
     </div>

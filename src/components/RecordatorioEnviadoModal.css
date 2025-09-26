@@ -1,0 +1,142 @@
+.recordatorio-enviado-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.recordatorio-enviado-content {
+  background: white;
+  border-radius: 12px;
+  padding: 14px 18px;
+  max-width: 380px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.recordatorio-enviado-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 20px;
+  text-align: left;
+  position: relative;
+  gap: 18px;
+}
+
+.success-icon {
+  width: 40px;
+  height: 40px;
+  background: #F2C288;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.recordatorio-enviado-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.recordatorio-enviado-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: #333333;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.recordatorio-enviado-subtitle {
+  font-size: 13px;
+  color: #666666;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.recordatorio-enviado-close {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 6px;
+  color: #6c757d;
+  transition: all 0.2s ease;
+}
+
+.recordatorio-enviado-close:hover {
+  background: #f8f9fa;
+  color: #2c3e50;
+}
+
+.recordatorio-enviado-close svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .recordatorio-enviado-content {
+    max-width: 340px;
+    margin: 20px;
+  }
+  
+  .recordatorio-enviado-header {
+    padding: 12px;
+    gap: 12px;
+  }
+  
+  .success-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .recordatorio-enviado-title {
+    font-size: 16px;
+  }
+  
+  .recordatorio-enviado-subtitle {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .recordatorio-enviado-content {
+    padding: 14px;
+    margin: 16px;
+    max-width: 300px;
+  }
+  
+  .recordatorio-enviado-header {
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .success-icon {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .recordatorio-enviado-title {
+    font-size: 15px;
+  }
+  
+  .recordatorio-enviado-subtitle {
+    font-size: 11px;
+  }
+}

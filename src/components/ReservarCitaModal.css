@@ -23,7 +23,9 @@
   width: 100%;
   min-height: 90vh;
   overflow-y: visible;
+  overflow-x: hidden;
   position: relative;
+  box-sizing: border-box;
 }
 
 /* Modal Header */
@@ -33,7 +35,7 @@
   justify-content: space-between;
   padding: 40px 40px 32px 40px;
   background: white;
-  border-radius: 16px 16px 0 0;
+  border-radius: 16px 16px 0 16px;
   margin-bottom: 0;
 }
 
@@ -159,20 +161,26 @@
   margin: 0 40px 32px 40px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  box-shadow: none;
+  overflow: visible;
+  width: calc(100% - 80px);
+  box-sizing: border-box;
 }
 
 .section-header {
   background: #FFE8BC;
-  padding: 16px 20px;
+  padding: 20px 24px;
   border-bottom: 1px solid #E6B800;
+  margin: 0 0 16px 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .header-left {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-direction: row;
 }
 
 .header-icon {
@@ -202,16 +210,31 @@
 }
 
 .section-body {
-  padding: 24px 20px;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.section-content {
+  padding: 0;
 }
 
 /* Appointment Details Section */
 .appointment-details-section {
   margin: 0 40px 32px 40px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* Appointment Details Section Clean - Sin fondo */
+.appointment-details-section-clean {
+  margin: 0 40px 32px 40px;
+  background: none;
+  border: none;
+  padding: 0;
+  width: calc(100% - 80px);
+  box-sizing: border-box;
 }
 
 /* Form Sections */
@@ -228,21 +251,25 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 0;
-  padding: 16px 20px;
-  background: #FFE8BC;
-  border-radius: 0;
-  border: none;
-  border-bottom: 1px solid #E6B800;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background: #FCEFD9;
+  border-radius: 8px;
   width: 100%;
 }
 
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333333;
+  margin: 0;
+}
+
 .section-icon {
-  width: 40px;
-  height: 40px;
-  background: #6B4423;
-  border: 2px solid #6B4423;
-  border-radius: 10px;
+  width: 32px;
+  height: 32px;
+  background: #8b4513;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -265,13 +292,13 @@
 
 /* Section Content */
 .section-content {
-  padding: 24px 20px;
+  padding: 0;
 }
 
 /* Search Container */
 .search-container {
   position: relative;
-  margin-bottom: 24px;
+  margin: 16px 0 24px 0;
   width: 33.33%;
   margin-left: 0;
   margin-right: auto;
@@ -308,31 +335,65 @@
 
 /* Form Grid */
 .form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   margin-top: 24px;
 }
 
-/* Para la sección de datos del cliente - 3 campos en primera fila, 2 en segunda */
-.form-section:first-of-type .form-grid {
+.form-row-three {
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
 }
 
-.form-section:first-of-type .form-group:nth-child(4),
-.form-section:first-of-type .form-group:nth-child(5) {
-  grid-column: span 1;
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Para la sección de datos del cliente */
+.form-section:first-of-type .form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 /* Para la sección de detalles de la cita */
 .form-section:last-of-type .form-grid {
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Para el formulario de detalles de la cita en filas */
+.appointment-details-section .form-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
+.appointment-details-section-clean .form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.appointment-details-section-clean .form-group {
+  width: 100%;
+}
+
+.appointment-details-section-clean .form-group textarea {
+  height: 40px;
+  resize: none;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 
 .form-group.full-width {

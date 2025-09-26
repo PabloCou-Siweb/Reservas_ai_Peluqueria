@@ -470,8 +470,9 @@
 .calendar-widget {
   background: white;
   border-radius: 12px;
+  border: 2px solid #9B59B6;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 24px;
+  padding: 20px;
   height: fit-content;
 }
 
@@ -488,12 +489,12 @@
   justify-content: center;
   width: 32px;
   height: 32px;
-  background: #f7c59f;
+  background: #FCEFD9;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
-  color: #8b4513;
+  color: #2c3e50;
 }
 
 .calendar-nav-btn:hover {
@@ -511,14 +512,16 @@
 .calendar-days-header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0;
+  gap: 2px;
   margin-bottom: 12px;
+  border-bottom: 2px dotted #9B59B6;
+  padding-bottom: 8px;
 }
 
 .day-header {
   text-align: center;
   font-size: 12px;
-  color: #6c757d;
+  color: #A0A0A0;
   font-weight: 500;
   padding: 8px 0;
   display: flex;
@@ -529,7 +532,7 @@
 .calendar-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0;
+  gap: 2px;
 }
 
 .calendar-day {
@@ -554,7 +557,7 @@
 }
 
 .calendar-day.selected {
-  background: #8b4513;
+  background: #8B5E3C;
   color: white;
 }
 
@@ -725,6 +728,24 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.three-dots-btn {
+  padding: 8px;
+  background: #f8f9fa;
+  color: #6c757d;
+  border: 1px solid #e1e5e9;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 32px;
+}
+
+.three-dots-btn:hover {
+  background: #e9ecef;
+  color: #495057;
 }
 
 .action-btn:hover {

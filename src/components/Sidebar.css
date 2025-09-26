@@ -275,45 +275,57 @@
 .sidebar-profile {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 20px;
-  border-top: 1px solid #e9ecef;
+  gap: 16px;
+  padding: 12px;
+  background: white;
+  margin: 12px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
 }
 
 .profile-avatar {
   width: 40px;
   height: 40px;
-  background: #6c757d;
-  border-radius: 50%;
+  background: white;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .avatar-icon {
-  color: white;
-  font-size: 18px;
+  width: 20px;
+  height: 20px;
+  filter: grayscale(100%) brightness(0.4);
+  object-fit: contain;
 }
 
 .profile-info {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
 }
 
 .profile-name {
   font-size: 14px;
   font-weight: 600;
   color: #212529;
-  margin: 0 0 4px 0;
+  margin: 0;
+  line-height: 1.1;
 }
 
 .profile-email {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 12px;
+  gap: 6px;
+  font-size: 11px;
   color: #6c757d;
+  margin: 0;
 }
 
 .refresh-icon {
@@ -325,6 +337,42 @@
 .refresh-icon:hover {
   color: #8b4513;
   transform: rotate(180deg);
+}
+
+.profile-actions {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  padding-top: 0px;
+}
+
+.export-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  min-width: 32px;
+}
+
+.export-btn:hover {
+  background: rgba(242, 194, 136, 0.1);
+  transform: scale(1.05);
+}
+
+.export-btn img {
+  filter: grayscale(100%) brightness(0.4);
+  transition: all 0.3s ease;
+}
+
+.export-btn:hover img {
+  filter: grayscale(100%) brightness(0.6);
 }
 
 .sidebar.closed .profile-info {

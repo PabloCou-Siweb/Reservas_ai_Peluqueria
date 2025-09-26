@@ -145,76 +145,82 @@ const ReservarCitaModal: React.FC<ReservarCitaModalProps> = ({
               </div>
 
               <div className="form-grid">
-                <div className="form-group">
-                  <label htmlFor="nombre">Nombre completo</label>
-                  <input
-                    type="text"
-                    id="nombre"
-                    name="nombre"
-                    placeholder="Ej: Juan Pérez Izquierdo"
-                    value={formData.nombre}
-                    onChange={handleInputChange}
-                    required
-                  />
+                {/* Primera fila: Nombre, Email y Teléfono */}
+                <div className="form-row-three">
+                  <div className="form-group">
+                    <label htmlFor="nombre">Nombre completo</label>
+                    <input
+                      type="text"
+                      id="nombre"
+                      name="nombre"
+                      placeholder="Ej: Juan Pérez Izquierdo"
+                      value={formData.nombre}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="email">Correo electrónico</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      placeholder="ejemplo@correo.com"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="telefono">Teléfono</label>
+                    <input
+                      type="tel"
+                      id="telefono"
+                      name="telefono"
+                      placeholder="+34 622 02 58 26"
+                      value={formData.telefono}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
                 </div>
-
-                <div className="form-group">
-                  <label htmlFor="telefono">Teléfono</label>
-                  <input
-                    type="tel"
-                    id="telefono"
-                    name="telefono"
-                    placeholder="+34 622 02 58 26"
-                    value={formData.telefono}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="email">Correo electrónico</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="ejemplo@correo.com"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="tipoDocumento">Tipo de documento</label>
-                  <select
-                    id="tipoDocumento"
-                    name="tipoDocumento"
-                    value={formData.tipoDocumento}
-                    onChange={handleInputChange}
-                  >
-                    <option value="DNI">DNI</option>
-                    <option value="NIE">NIE</option>
-                    <option value="Pasaporte">Pasaporte</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="numeroDocumento">N° de documento</label>
-                  <input
-                    type="text"
-                    id="numeroDocumento"
-                    name="numeroDocumento"
-                    value={formData.numeroDocumento}
-                    onChange={handleInputChange}
-                    required
-                  />
+                
+                {/* Segunda fila: Documento */}
+                <div className="form-row">
+                  <div className="form-group">
+                    <label htmlFor="tipoDocumento">Tipo de documento</label>
+                    <select
+                      id="tipoDocumento"
+                      name="tipoDocumento"
+                      value={formData.tipoDocumento}
+                      onChange={handleInputChange}
+                    >
+                      <option value="DNI">DNI</option>
+                      <option value="NIE">NIE</option>
+                      <option value="Pasaporte">Pasaporte</option>
+                    </select>
+                  </div>
+                  
+                  <div className="form-group">
+                    <label htmlFor="numeroDocumento">N° de documento</label>
+                    <input
+                      type="text"
+                      id="numeroDocumento"
+                      name="numeroDocumento"
+                      value={formData.numeroDocumento}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Detalles de la cita */}
-          <div className="appointment-details-section">
+          <div className="appointment-details-section-clean">
             <div className="section-header">
               <div className="header-left">
                 <div className="header-icon">
@@ -232,13 +238,14 @@ const ReservarCitaModal: React.FC<ReservarCitaModalProps> = ({
                     type="text"
                     id="motivo"
                     name="motivo"
+                    placeholder="Corte de cabello"
                     value={formData.motivo}
                     onChange={handleInputChange}
                     required
                   />
                 </div>
-
-                <div className="form-group span-2">
+                
+                <div className="form-group">
                   <label htmlFor="notas">Notas adicionales</label>
                   <textarea
                     id="notas"
@@ -246,7 +253,7 @@ const ReservarCitaModal: React.FC<ReservarCitaModalProps> = ({
                     placeholder="Información adicional que consideres relevante..."
                     value={formData.notas}
                     onChange={handleInputChange}
-                    rows={4}
+                    rows={1}
                   />
                 </div>
               </div>

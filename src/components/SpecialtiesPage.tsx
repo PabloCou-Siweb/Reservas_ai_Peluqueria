@@ -90,14 +90,12 @@ const SpecialtiesPage: React.FC = () => {
             <div className="button-group">
               <button 
                 type="button" 
-                className="back-button"
+                className="back-btn-new"
                 onClick={handleBackClick}
               >
-                <div className="button-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="15,18 9,12 15,6"/>
-                  </svg>
-                </div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                  <polyline points="15,18 9,12 15,6"/>
+                </svg>
               </button>
               
               <button type="submit" className="next-button">

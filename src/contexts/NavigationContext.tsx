@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-export type PageType = 
+export type PageType =
   | 'login'
   | 'forgot-password'
   | 'create-account'
@@ -11,7 +11,19 @@ export type PageType =
   | 'dashboard'
   | 'citas'
   | 'nueva-cita'
-  | 'agenda';
+  | 'agenda'
+  | 'appointment-details'
+  | 'clientes'
+  | 'add-client'
+  | 'client-details'
+  | 'edit-client'
+  | 'llamadas'
+  | 'especialistas'
+  | 'add-especialista'
+  | 'especialista-details'
+  | 'edit-especialista'
+  | 'configuracion'
+  | 'perfil';
 
 interface NavigationContextType {
   currentPage: PageType;

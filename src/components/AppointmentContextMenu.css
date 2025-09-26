@@ -1,0 +1,179 @@
+/* Overlay para cerrar el menú */
+.context-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background: transparent;
+}
+
+/* Menú contextual */
+.context-menu {
+  background: white;
+  border: 1px solid #e1e5e9;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  width: 240px;
+  max-width: 240px;
+  overflow: hidden;
+  z-index: 1000;
+}
+
+/* Header del paciente */
+.context-menu-header {
+  padding: 12px 16px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e1e5e9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.patient-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.patient-info svg {
+  color: #6c757d;
+}
+
+.context-menu-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.context-menu-close:hover {
+  background: #e9ecef;
+}
+
+.context-menu-close img {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.context-menu-close:hover img {
+  opacity: 1;
+}
+
+/* Icono de llamar paciente en negro */
+.context-menu-item img[src="/img/phone_call-icon.png"] {
+  filter: brightness(0);
+}
+
+/* Cancelar cita - texto en negro */
+.cancel-item {
+  color: #000000 !important;
+}
+
+/* Secciones del menú */
+.context-menu-section {
+  padding: 8px 0;
+}
+
+.context-menu-section:not(:last-child) {
+  border-bottom: 1px solid #f1f3f4;
+}
+
+/* Items del menú */
+.context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  color: #495057;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.context-menu-item:hover {
+  background: #f8f9fa;
+}
+
+.context-menu-item svg {
+  color: #6c757d;
+  flex-shrink: 0;
+}
+
+/* Items de estado */
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot.brown {
+  background-color: #8b4513;
+}
+
+.status-dot.red {
+  background-color: #dc3545;
+}
+
+/* Item de cancelación */
+.cancel-item {
+  color: #dc3545;
+}
+
+.cancel-item:hover {
+  background: #fef2f2;
+  color: #dc3545;
+}
+
+.cancel-item svg {
+  color: #dc3545;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .context-menu {
+    min-width: 200px;
+  }
+  
+  .context-menu-item {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .context-menu {
+    min-width: 180px;
+  }
+  
+  .context-menu-item {
+    padding: 14px 16px;
+    font-size: 16px;
+  }
+}

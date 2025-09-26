@@ -1,331 +1,303 @@
-/* Modal Overlay */
+/* Overlay */
 .cita-confirmada-overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  z-index: 3000;
+  z-index: 1000;
   padding: 20px;
-  overflow-y: auto;
+  box-sizing: border-box;
 }
 
-/* Modal Content */
-.cita-confirmada-content {
+/* Modal */
+.cita-confirmada-modal {
   background: white;
   border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   width: 100%;
+  max-width: 600px;
   max-height: 90vh;
-  overflow-y: visible;
-  position: relative;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
-/* Modal Header */
+/* Header */
 .cita-confirmada-header {
+  padding: 32px 40px 24px 40px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 20px 20px 16px 20px;
-  text-align: left;
+  gap: 16px;
   position: relative;
 }
 
-.success-icon {
-  width: 40px;
-  height: 40px;
+.cita-confirmada-icon {
+  width: 48px;
+  height: 48px;
   background: #F2C288;
+  border: 2px solid #FFE8BC;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.cita-confirmada-icon svg {
+  color: #8C623E;
+  width: 24px;
+  height: 24px;
+}
+
+.cita-confirmada-title-section {
+  flex: 1;
+  text-align: left;
 }
 
 .cita-confirmada-title {
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
-  color: #333333;
-  margin: 0 0 6px 0;
+  color: #1f2937;
+  margin: 0 0 8px 0;
 }
 
 .cita-confirmada-subtitle {
-  font-size: 14px;
-  color: #666666;
+  font-size: 15px;
+  color: #6b7280;
   margin: 0;
   line-height: 1.5;
 }
 
-.cita-confirmada-close {
+.cita-confirmada-close-btn {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 20px;
+  right: 20px;
   background: none;
   border: none;
+  font-size: 24px;
+  color: #9ca3af;
   cursor: pointer;
   padding: 8px;
-  border-radius: 8px;
-  color: #6c757d;
-  transition: all 0.2s ease;
+  line-height: 1;
+  transition: color 0.2s ease;
 }
 
-.cita-confirmada-close:hover {
-  background: #f8f9fa;
-  color: #2c3e50;
+.cita-confirmada-close-btn:hover {
+  color: #4b5563;
 }
 
-/* Número de confirmación */
-.confirmacion-number {
-  background: #FFE8BC;
-  border-radius: 12px;
-  padding: 12px 16px;
-  margin: 0 20px 16px 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border: 1px solid #FFE8BC;
+/* Content */
+.cita-confirmada-content {
+  padding: 0 40px 24px 40px;
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(90vh - 200px);
 }
 
-.confirmacion-dot {
-  width: 6px;
-  height: 6px;
-  background: #666666;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.confirmacion-label {
-  font-size: 12px;
-  color: #666666;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.confirmacion-value {
-  font-size: 18px;
-  color: #666666;
-  font-weight: 700;
-  margin-left: auto;
-}
-
-/* Detalles de la cita */
-.cita-details {
+/* Confirmation Number */
+.cita-confirmada-confirmation {
   background: #FFE8BC;
   border-radius: 12px;
   padding: 20px;
-  margin: 0 24px 12px 24px;
-  border: 1px solid #FFE8BC;
+  margin-bottom: 20px;
 }
 
-.cita-details-title {
+.confirmation-title {
   font-size: 16px;
-  font-weight: 700;
-  color: #666666;
+  font-weight: 600;
+  color: #92400e;
+  margin: 0 0 12px 0;
+}
+
+.confirmation-number {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.confirmation-bullet {
+  color: #6b7280;
+  font-size: 16px;
+}
+
+.confirmation-code {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* Details */
+.cita-confirmada-details {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.details-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #8C623E;
   margin: 0 0 16px 0;
 }
 
-.cita-details-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
-}
-
-.cita-detail-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-}
-
-.cita-dot {
-  width: 6px;
-  height: 6px;
-  background: #666666;
-  border-radius: 50%;
-  flex-shrink: 0;
-  margin-top: 6px;
-}
-
-.cita-detail-content {
+.details-list {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-}
-
-.cita-detail-label {
-  font-size: 11px;
-  color: #666666;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.cita-detail-value {
-  font-size: 13px;
-  color: #666666;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-.cita-duration {
-  font-weight: 400;
-}
-
-/* Modal Actions */
-.cita-confirmada-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 16px 20px 12px 20px;
-  margin-top: auto;
-}
-
-.actions-row {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-}
-
-.btn-sms,
-.btn-download {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: 1px solid #e9ecef;
-  background: white;
-  color: #6c757d;
-  min-width: 100px;
-  justify-content: center;
-}
-
-.btn-sms:hover,
-.btn-download:hover {
-  background: #f8f9fa;
-  border-color: #dee2e6;
-  color: #2c3e50;
-}
-
-.btn-icon {
-  width: 14px;
-  height: 14px;
-  object-fit: contain;
-}
-
-.btn-view-agenda {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   gap: 8px;
-  padding: 10px 24px;
-  border-radius: 8px;
+  align-items: center;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
   font-size: 14px;
-  font-weight: 600;
+  color: #374151;
+  justify-content: space-between;
+  width: 100%;
+  text-align: left;
+  gap: 8px;
+  position: relative;
+}
+
+.detail-bullet {
+  color: #8C623E;
+  font-size: 12px;
+  margin-right: 8px;
+}
+
+.detail-label {
+  font-weight: 400;
+  color: #374151;
+  flex: 1;
+  margin-right: 16px;
+}
+
+.detail-value {
+  font-weight: 700 !important;
+  color: #1a1a1a;
+  text-align: right;
+  flex: 0 0 auto;
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.detail-duration {
+  font-size: 13px;
+  font-weight: 400 !important;
+  color: #6b7280;
+  text-align: right;
+}
+
+/* Buttons */
+.cita-confirmada-buttons {
+  padding: 24px 40px 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: white;
+}
+
+.cita-confirmada-top-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.cita-confirmada-sms,
+.cita-confirmada-download {
+  flex: 1;
+  padding: 12px 20px;
+  background: white;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.cita-confirmada-sms:hover,
+.cita-confirmada-download:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.cita-confirmada-agenda {
+  padding: 14px 24px;
   background: #F2C288;
-  color: white;
-  width: 60%;
-  margin: 0 auto;
+  border: 1px solid #F2C288;
+  border-radius: 8px;
+  color: #1f2937;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  align-self: center;
 }
 
-.btn-view-agenda:hover {
-  background: #E6B800;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(242, 194, 136, 0.3);
+.cita-confirmada-agenda:hover {
+  background: #E6B377;
+  border-color: #E6B377;
 }
 
-.btn-view-agenda:active {
-  transform: translateY(0);
-}
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-  .cita-confirmada-overlay {
-    padding: 10px;
+  .cita-confirmada-modal {
+    max-width: 90%;
   }
-  
-  .cita-confirmada-content {
-    max-height: 95vh;
+
+  .cita-confirmada-header,
+  .cita-confirmada-content,
+  .cita-confirmada-buttons {
+    padding: 20px 24px;
   }
-  
-  .cita-confirmada-header {
-    padding: 24px 20px 20px 20px;
-  }
-  
-  .success-icon {
-    width: 56px;
-    height: 56px;
-  }
-  
+
   .cita-confirmada-title {
     font-size: 20px;
   }
-  
-  .confirmacion-number {
-    margin: 0 20px 20px 20px;
-    padding: 14px 16px;
+
+  .cita-confirmada-subtitle {
+    font-size: 14px;
   }
-  
-  .cita-details {
-    margin: 0 20px 12px 20px;
-    padding: 16px;
+
+  .confirmation-title,
+  .details-title {
+    font-size: 15px;
   }
-  
-  .cita-details-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+
+  .detail-item,
+  .confirmation-title,
+  .details-title {
+    font-size: 13px;
   }
-  
-  .cita-confirmada-actions {
-    padding: 16px 20px 24px 20px;
-  }
-  
-  .actions-row {
+
+  .cita-confirmada-top-buttons {
     flex-direction: column;
     gap: 8px;
   }
-  
-  .btn-sms,
-  .btn-download {
-    width: 100%;
-  }
-  
-  .btn-view-agenda {
-    width: 80%;
-  }
-}
 
-@media (max-width: 480px) {
-  .cita-confirmada-header {
-    padding: 20px 16px 16px 16px;
-  }
-  
-  .confirmacion-number {
-    margin: 0 16px 16px 16px;
-    padding: 12px 14px;
-  }
-  
-  .cita-details {
-    margin: 0 16px 10px 16px;
-    padding: 14px;
-  }
-  
-  .cita-confirmada-actions {
-    padding: 12px 16px 20px 16px;
+  .cita-confirmada-sms,
+  .cita-confirmada-download,
+  .cita-confirmada-agenda {
+    width: 100%;
   }
 }

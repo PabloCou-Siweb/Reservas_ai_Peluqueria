@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
+import ReservarCitaModal from './ReservarCitaModal';
+import AppointmentContextMenu from './AppointmentContextMenu';
+import EditAppointmentModal from './EditAppointmentModal';
+import ReprogramarCitaModal from './ReprogramarCitaModal';
+import RecordatorioEnviadoModal from './RecordatorioEnviadoModal';
 import './AgendaPage.css';
 
 const AgendaPage: React.FC = () => {
@@ -10,6 +15,24 @@ const AgendaPage: React.FC = () => {
   const [currentMonth, setCurrentMonth] = useState(0); // Enero
   const [currentYear, setCurrentYear] = useState(2025);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isReprogramarModalOpen, setIsReprogramarModalOpen] = useState(false);
+  const [isRecordatorioModalOpen, setIsRecordatorioModalOpen] = useState(false);
+  const [selectedAppointment, setSelectedAppointment] = useState<any>(null);
+  const [selectAllAppointments, setSelectAllAppointments] = useState(false);
+  const [selectedAppointments, setSelectedAppointments] = useState<number[]>([]);
+  const [contextMenu, setContextMenu] = useState<{
+    isOpen: boolean;
+    position: { x: number; y: number };
+    patientName: string;
+    appointmentId: number;
+  }>({
+    isOpen: false,
+    position: { x: 0, y: 0 },
+    patientName: '',
+    appointmentId: 0
+  });
 
   const monthNames = [
     'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -65,6 +88,184 @@ const AgendaPage: React.FC = () => {
     navigateTo('dashboard');
   };
 
+  const handleAddAppointmentClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalConfirm = (data: any) => {
+    console.log('Datos de la cita:', data);
+    setIsModalOpen(false);
+    // Aquí puedes agregar la lógica para guardar la cita
+  };
+
+  const handleEditModalClose = () => {
+    setIsEditModalOpen(false);
+    setSelectedAppointment(null);
+  };
+
+  const handleEditModalConfirm = (data: any) => {
+    console.log('Datos editados de la cita:', data);
+    // Aquí iría la lógica para actualizar la cita
+    setIsEditModalOpen(false);
+    setSelectedAppointment(null);
+  };
+
+  const handleReprogramarModalClose = () => {
+    setIsReprogramarModalOpen(false);
+  };
+
+  const handleReprogramarModalConfirm = (data: any) => {
+    console.log('Cita reprogramada:', data);
+    setIsReprogramarModalOpen(false);
+  };
+
+  const handleSendReminder = () => {
+    console.log('Enviando recordatorio a:', contextMenu.patientName);
+    handleContextMenuClose();
+    setIsRecordatorioModalOpen(true);
+  };
+
+  const handleRecordatorioModalClose = () => {
+    setIsRecordatorioModalOpen(false);
+  };
+
+  // Funciones del menú contextual
+  const handleContextMenuOpen = (e: React.MouseEvent, patientName: string, appointmentId: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // Calcular posición más inteligente
+    const rect = e.currentTarget.getBoundingClientRect();
+    const menuWidth = 240;
+    const menuHeight = 320; // Altura fija para el menú
+    
+    let x = rect.right + 5; // 5px a la derecha del botón
+    let y = rect.top;
+    
+    // Ajustar si se sale por la derecha
+    if (x + menuWidth > window.innerWidth) {
+      x = rect.left - menuWidth - 5; // 5px a la izquierda del botón
+    }
+    
+    // Ajustar si se sale por abajo - usar una lógica más consistente
+    const spaceBelow = window.innerHeight - rect.bottom;
+    const spaceAbove = rect.top;
+    
+    if (spaceBelow < menuHeight) {
+      // Si no hay espacio abajo, posicionar arriba
+      if (spaceAbove >= menuHeight) {
+        y = rect.top - menuHeight - 5;
+      } else {
+        // Si tampoco hay espacio arriba, centrar verticalmente
+        y = Math.max(10, (window.innerHeight - menuHeight) / 2);
+      }
+    }
+    
+    setContextMenu({
+      isOpen: true,
+      position: { x, y },
+      patientName,
+      appointmentId
+    });
+  };
+
+  const handleContextMenuClose = () => {
+    setContextMenu({
+      isOpen: false,
+      position: { x: 0, y: 0 },
+      patientName: '',
+      appointmentId: 0
+    });
+  };
+
+  const handleViewDetails = () => {
+    console.log('Ver detalles de:', contextMenu.patientName);
+    handleContextMenuClose();
+    navigateTo('appointment-details');
+  };
+
+  const handleEditInfo = () => {
+    // Buscar los datos de la cita seleccionada
+    const appointment = appointments.find(apt => apt.id === contextMenu.appointmentId);
+    if (appointment) {
+      setSelectedAppointment({
+        specialist: appointment.specialist,
+        date: `${currentYear}/${String(currentMonth + 1).padStart(2, '0')}/${String(selectedDate).padStart(2, '0')}`,
+        time: appointment.time,
+        duration: '30 minutos',
+        client: appointment.patient,
+        phone: appointment.phone,
+        email: 'ejemplo@correo.com',
+        documentType: 'DNI',
+        documentNumber: '359784685Q',
+        reason: appointment.type,
+        notes: ''
+      });
+      setIsEditModalOpen(true);
+    }
+    handleContextMenuClose();
+  };
+
+  const handleReschedule = () => {
+    console.log('Reprogramar cita de:', contextMenu.patientName);
+    setIsReprogramarModalOpen(true);
+    handleContextMenuClose();
+  };
+
+  const handleCallPatient = () => {
+    console.log('Llamar a:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+
+  const handleMarkAttended = () => {
+    console.log('Marcar como atendida:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleMarkNoShow = () => {
+    console.log('Marcar como no asistió:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleCancelAppointment = () => {
+    console.log('Cancelar cita de:', contextMenu.patientName);
+    handleContextMenuClose();
+  };
+
+  const handleSelectAllAppointments = () => {
+    const newSelectAll = !selectAllAppointments;
+    setSelectAllAppointments(newSelectAll);
+    
+    if (newSelectAll) {
+      // Seleccionar todas las citas
+      const allAppointmentIds = appointments.map(appointment => appointment.id);
+      setSelectedAppointments(allAppointmentIds);
+    } else {
+      // Deseleccionar todas las citas
+      setSelectedAppointments([]);
+    }
+  };
+
+  const handleSelectAppointment = (appointmentId: number) => {
+    setSelectedAppointments(prev => {
+      const newSelected = prev.includes(appointmentId) 
+        ? prev.filter(id => id !== appointmentId)
+        : [...prev, appointmentId];
+      
+      // Actualizar el estado de "seleccionar todo" basado en si todas las citas están seleccionadas
+      const allAppointmentIds = appointments.map(appointment => appointment.id);
+      const allSelected = allAppointmentIds.every(id => newSelected.includes(id));
+      setSelectAllAppointments(allSelected);
+      
+      return newSelected;
+    });
+  };
+
   // Datos de ejemplo para las citas
   const appointments = [
     {
@@ -77,7 +278,7 @@ const AgendaPage: React.FC = () => {
       time: '09:00',
       duration: '30 min',
       status: 'Confirmada',
-      selected: true
+      selected: false
     },
     {
       id: 2,
@@ -89,7 +290,7 @@ const AgendaPage: React.FC = () => {
       time: '09:00',
       duration: '30 min',
       status: 'Confirmada',
-      selected: true
+      selected: false
     },
     {
       id: 3,
@@ -177,10 +378,31 @@ const AgendaPage: React.FC = () => {
     }
   ];
 
-  const confirmedAppointments = appointments.filter(apt => apt.status === 'Confirmada');
-  const totalAppointments = appointments.length;
-  const availableSlots = 4;
-  const nextAvailableTime = '09:00';
+  // Filtrar citas del día seleccionado
+  const getAppointmentsForSelectedDate = () => {
+    // Por ahora usamos todas las citas como ejemplo, pero aquí se filtrarían por fecha
+    return appointments;
+  };
+
+  const appointmentsForSelectedDate = getAppointmentsForSelectedDate();
+  const confirmedAppointments = appointmentsForSelectedDate.filter(apt => apt.status === 'Confirmada');
+  const attendedAppointments = appointmentsForSelectedDate.filter(apt => apt.status === 'Atendida');
+  const cancelledAppointments = appointmentsForSelectedDate.filter(apt => apt.status === 'Cancelada');
+  
+  // Calcular citas disponibles (asumiendo 8 horas de trabajo con slots de 30 min = 16 slots)
+  const totalSlots = 16; // 8 horas * 2 slots por hora
+  const usedSlots = appointmentsForSelectedDate.length;
+  const availableSlots = Math.max(0, totalSlots - usedSlots);
+  
+  // Calcular próxima cita disponible
+  const getNextAvailableTime = () => {
+    const workingHours = ['09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30'];
+    const usedTimes = appointmentsForSelectedDate.map(apt => apt.time);
+    const availableTimes = workingHours.filter(time => !usedTimes.includes(time));
+    return availableTimes.length > 0 ? availableTimes[0] : 'No disponible';
+  };
+  
+  const nextAvailableTime = getNextAvailableTime();
 
   const getStatusClass = (status: string) => {
     switch (status) {
@@ -216,11 +438,6 @@ const AgendaPage: React.FC = () => {
         {/* Header */}
         <div className="agenda-header">
           <div className="header-left">
-            <button className="back-button" onClick={handleBackClick}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <polyline points="15,18 9,12 15,6"/>
-              </svg>
-            </button>
             <h1>Agenda</h1>
           </div>
           <div className="header-right">
@@ -304,11 +521,19 @@ const AgendaPage: React.FC = () => {
                   <span>Citas confirmadas: <strong>{confirmedAppointments.length}</strong></span>
                 </div>
                 <div className="stat-item">
+                  <div className="stat-dot green"></div>
+                  <span>Citas atendidas: <strong>{attendedAppointments.length}</strong></span>
+                </div>
+                <div className="stat-item">
+                  <div className="stat-dot red"></div>
+                  <span>Citas canceladas: <strong>{cancelledAppointments.length}</strong></span>
+                </div>
+                <div className="stat-item">
                   <div className="stat-dot orange"></div>
                   <span>Citas disponibles: <strong>{availableSlots}</strong></span>
                 </div>
                 <div className="stat-item">
-                  <div className="stat-dot green"></div>
+                  <div className="stat-dot blue"></div>
                   <span>Próxima cita disponible: <strong>{nextAvailableTime}</strong></span>
                 </div>
               </div>
@@ -329,7 +554,7 @@ const AgendaPage: React.FC = () => {
                 <div className="search-container">
                   <input
                     type="text"
-                    placeholder="Buscar paciente..."
+                    placeholder="Buscar cliente..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     className="search-input"
@@ -342,11 +567,12 @@ const AgendaPage: React.FC = () => {
                 <button className="filter-btn">
                   <img src="/img/filter-icon.png" alt="Filtros" />
                 </button>
-                <button className="add-appointment-btn">
+                <button className="add-appointment-btn" onClick={handleAddAppointmentClick}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="12" y1="5" x2="12" y2="19"/>
                     <line x1="5" y1="12" x2="19" y2="12"/>
                   </svg>
+                  <span>Añadir cita</span>
                 </button>
               </div>
             </div>
@@ -354,10 +580,14 @@ const AgendaPage: React.FC = () => {
             <div className="appointments-table">
               <div className="table-header">
                 <div className="table-cell checkbox">
-                  <input type="checkbox" />
+                  <input 
+                    type="checkbox" 
+                    checked={selectAllAppointments}
+                    onChange={handleSelectAllAppointments}
+                  />
                 </div>
                 <div className="table-cell patient">
-                  Paciente
+                  Cliente
                   <div className="sort-arrows">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="18,15 12,9 6,15"/>
@@ -414,12 +644,15 @@ const AgendaPage: React.FC = () => {
                 <div className="table-cell actions"></div>
               </div>
 
-
               <div className="appointments-list">
                 {appointments.map((appointment) => (
-                  <div key={appointment.id} className={`appointment-row ${appointment.selected ? 'selected' : ''}`}>
+                  <div key={appointment.id} className={`appointment-row ${selectedAppointments.includes(appointment.id) ? 'selected' : ''}`}>
                     <div className="table-cell checkbox">
-                      <input type="checkbox" defaultChecked={appointment.selected} />
+                      <input 
+                        type="checkbox" 
+                        checked={selectedAppointments.includes(appointment.id)}
+                        onChange={() => handleSelectAppointment(appointment.id)}
+                      />
                     </div>
                     <div className="table-cell patient">
                       <div className="patient-info">
@@ -448,12 +681,11 @@ const AgendaPage: React.FC = () => {
                       </span>
                     </div>
                     <div className="table-cell actions">
-                      <button className="actions-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="12" r="1"/>
-                          <circle cx="19" cy="12" r="1"/>
-                          <circle cx="5" cy="12" r="1"/>
-                        </svg>
+                      <button 
+                        className="actions-btn"
+                        onClick={(e) => handleContextMenuOpen(e, appointment.patient, appointment.id)}
+                      >
+                        <img src="/img/3dots-icon.png" alt="Opciones" width="16" height="16" />
                       </button>
                     </div>
                   </div>
@@ -479,6 +711,56 @@ const AgendaPage: React.FC = () => {
           <span>© 2025 Bokifly</span>
         </div>
       </div>
+
+      {/* Modal para reservar cita */}
+      <ReservarCitaModal
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        onConfirm={handleModalConfirm}
+        specialist={{
+          name: 'Laura Gómez',
+          role: 'Peluquera'
+        }}
+        date={`${selectedDate}/${String(currentMonth + 1).padStart(2, '0')}/${currentYear}`}
+        time={nextAvailableTime}
+        duration="30 min"
+      />
+
+      {/* Modal para editar cita */}
+      <EditAppointmentModal
+        isOpen={isEditModalOpen}
+        onClose={handleEditModalClose}
+        onConfirm={handleEditModalConfirm}
+        appointmentData={selectedAppointment}
+      />
+
+      {/* Menú contextual */}
+      <AppointmentContextMenu
+        isOpen={contextMenu.isOpen}
+        position={contextMenu.position}
+        onClose={handleContextMenuClose}
+        patientName={contextMenu.patientName}
+        onViewDetails={handleViewDetails}
+        onEditInfo={handleEditInfo}
+        onReschedule={handleReschedule}
+        onCallPatient={handleCallPatient}
+        onSendReminder={handleSendReminder}
+        onMarkAttended={handleMarkAttended}
+        onMarkNoShow={handleMarkNoShow}
+        onCancelAppointment={handleCancelAppointment}
+      />
+
+      <ReprogramarCitaModal
+        isOpen={isReprogramarModalOpen}
+        onClose={handleReprogramarModalClose}
+        onConfirm={handleReprogramarModalConfirm}
+        appointmentData={selectedAppointment}
+      />
+
+      <RecordatorioEnviadoModal
+        isOpen={isRecordatorioModalOpen}
+        onClose={handleRecordatorioModalClose}
+      />
     </div>
   );
 };
