@@ -22,8 +22,12 @@ export type PageType =
   | 'add-especialista'
   | 'especialista-details'
   | 'edit-especialista'
+  | 'tratamientos'
+  | 'tratamiento-details'
   | 'configuracion'
-  | 'perfil';
+  | 'perfil'
+  | 'comprar-minutos'
+  | 'logout';
 
 interface NavigationContextType {
   currentPage: PageType;

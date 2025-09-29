@@ -355,7 +355,7 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
                 <img src="/img/notification-icon.png" alt="Notificaciones" />
                 <div className="notification-dot"></div>
               </div>
-              <div className="settings-icon">
+              <div className="settings-icon" onClick={() => navigateTo('configuracion')}>
                 <img src="/img/settings-icon.png" alt="Configuración" />
               </div>
             </div>

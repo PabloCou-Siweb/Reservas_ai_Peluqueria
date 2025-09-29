@@ -21,7 +21,11 @@ import EspecialistasPage from './EspecialistasPage';
 import AddEspecialistaPage from './AddEspecialistaPage';
 import EspecialistaDetailsPage from './EspecialistaDetailsPage';
 import EditEspecialistaPage from './EditEspecialistaPage';
+import TratamientosPage from './TratamientosPage';
+import TratamientoDetailsPage from './TratamientoDetailsPage';
 import ConfiguracionPage from './ConfiguracionPage';
+import PerfilPage from './PerfilPage';
+import ComprarMinutosPage from './ComprarMinutosPage';
 
 const AppRouter: React.FC = () => {
   const { currentPage, selectedSpecialty } = useNavigation();
@@ -61,18 +65,24 @@ const AppRouter: React.FC = () => {
       return <EditClientPage />;
     case 'llamadas':
       return <LlamadasPage />;
-      case 'especialistas':
-        return <EspecialistasPage />;
-      case 'add-especialista':
-        return <AddEspecialistaPage />;
-        case 'especialista-details':
-          return <EspecialistaDetailsPage />;
-        case 'edit-especialista':
-          return <EditEspecialistaPage />;
-        case 'configuracion':
-          return <ConfiguracionPage />;
-        case 'perfil':
-          return <div>Página de perfil - En desarrollo</div>;
+    case 'especialistas':
+      return <EspecialistasPage />;
+    case 'add-especialista':
+      return <AddEspecialistaPage />;
+    case 'especialista-details':
+      return <EspecialistaDetailsPage />;
+    case 'edit-especialista':
+      return <EditEspecialistaPage />;
+    case 'tratamientos':
+      return <TratamientosPage />;
+    case 'tratamiento-details':
+      return <TratamientoDetailsPage />;
+    case 'configuracion':
+      return <ConfiguracionPage />;
+    case 'perfil':
+      return <PerfilPage />;
+    case 'comprar-minutos':
+      return <ComprarMinutosPage />;
         default:
           return <LoginPage />;
   }

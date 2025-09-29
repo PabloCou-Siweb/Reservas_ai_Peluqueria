@@ -229,32 +229,7 @@ const EspecialistasPage: React.FC = () => {
           <div className="header-left">
             <h1>Especialistas</h1>
           </div>
-          <div className="header-center">
-            <div className="search-container">
-              <div className="search-input-container">
-                <input
-                  type="text"
-                  placeholder="Buscar médico..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="search-input"
-                />
-                <div className="search-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="M21 21l-4.35-4.35"/>
-                  </svg>
-                </div>
-              </div>
-            </div>
-            <button className="filter-btn">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46"/>
-              </svg>
-              Filtros
-            </button>
-          </div>
-          <div className="header-actions">
+          <div className="header-right">
             <button className="notification-btn">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
@@ -270,8 +245,23 @@ const EspecialistasPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Add Specialist Button */}
-        <div className="add-section">
+        {/* Search and Add Section */}
+        <div className="search-add-section">
+          <div className="search-container">
+            <input
+              type="text"
+              placeholder="Buscar especialista..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="search-input"
+            />
+            <div className="search-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21l-4.35-4.35"/>
+              </svg>
+            </div>
+          </div>
           <button className="add-especialista-btn" onClick={handleAddEspecialista}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="12" y1="5" x2="12" y2="19"/>

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useUser } from '../contexts/UserContext';
 import { useNavigation } from '../contexts/NavigationContext';
+import LogoutModal from './LogoutModal';
 import './Sidebar.css';
 
 interface SidebarProps {
@@ -11,6 +12,23 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
   const { userData } = useUser();
   const { navigateTo, currentPage } = useNavigation();
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+  const handleLogoutClick = () => {
+    setShowLogoutModal(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    // Aquí implementarías la lógica de cerrar sesión
+    // Por ejemplo: limpiar tokens, redirigir al login, etc.
+    console.log('Cerrando sesión...');
+    setShowLogoutModal(false);
+    navigateTo('login');
+  };
+
+  const handleLogoutCancel = () => {
+    setShowLogoutModal(false);
+  };
 
   return (
     <div className={`sidebar ${isOpen ? 'open' : 'closed'}`}>
@@ -58,13 +76,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </div>
           <span>Agenda</span>
         </div>
-        <div className="nav-item">
+        <div 
+          className="nav-item"
+          onClick={() => navigateTo('tratamientos')}
+        >
           <div className="nav-icon">
             <img src="/img/presentation-icon.png" alt="Tratamientos" />
           </div>
           <span>Tratamientos</span>
         </div>
-        <div className="nav-item">
+        <div 
+          className="nav-item"
+          onClick={() => navigateTo('especialistas')}
+        >
           <div className="nav-icon">
             <img src="/img/user-icon2.png" alt="Especialistas" />
           </div>
@@ -79,7 +103,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </div>
           <span>Clientes</span>
         </div>
-        <div className="nav-item">
+        <div 
+          className="nav-item"
+          onClick={() => navigateTo('llamadas')}
+        >
           <div className="nav-icon">
             <img src="/img/phone_call-icon.png" alt="Llamadas" />
           </div>
@@ -98,7 +125,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
             </div>
             <span><b>300</b> minutos restantes</span>
           </div>
-          <button className="buy-minutes-btn">
+          <button className="buy-minutes-btn" onClick={() => navigateTo('comprar-minutos')}>
             <div className="plus-icon">
               <img src="/img/add-icon.png" alt="Añadir" />
             </div>
@@ -108,7 +135,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
       </div>
 
       <div className="sidebar-profile">
-        <div className="profile-avatar">
+        <div className="profile-avatar" onClick={() => navigateTo('perfil')}>
           <img src="/img/user-icon.png" alt="Usuario" className="avatar-icon" />
         </div>
         <div className="profile-info">
@@ -118,11 +145,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onToggle }) => {
           </div>
         </div>
         <div className="profile-actions">
-          <button className="export-btn" onClick={() => navigateTo('perfil')}>
+          <button className="export-btn" onClick={handleLogoutClick}>
             <img src="/img/export-icon.png" alt="Exportar" width="28" height="28" />
           </button>
         </div>
       </div>
+      
+      <LogoutModal 
+        isOpen={showLogoutModal}
+        onClose={handleLogoutCancel}
+        onConfirm={handleLogoutConfirm}
+      />
     </div>
   );
 };

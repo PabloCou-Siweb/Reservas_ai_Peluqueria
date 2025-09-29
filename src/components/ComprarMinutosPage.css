@@ -1,0 +1,470 @@
+/* Comprar Minutos Page - Recreated */
+.comprar-minutos-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.comprar-minutos-container .main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 32px 32px 32px;
+  gap: 0px;
+  background-color: #ffffff;
+  overflow-y: auto;
+}
+
+.comprar-minutos-container .page-header {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 0;
+  border: none;
+  box-shadow: none;
+}
+
+.comprar-minutos-container .header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: none;
+  box-shadow: none;
+}
+
+.comprar-minutos-container .breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.comprar-minutos-container .separator {
+  color: #999;
+}
+
+.comprar-minutos-container .header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comprar-minutos-container .header-title-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.comprar-minutos-container .back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comprar-minutos-container .back-btn:hover {
+  background: #f9fafb;
+}
+
+.comprar-minutos-container .back-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #374151;
+}
+
+.comprar-minutos-container .header-title-section h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.comprar-minutos-container .notification-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comprar-minutos-container .notification-btn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.comprar-minutos-container .notification-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #374151;
+}
+
+.comprar-minutos-container .notification-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.comprar-minutos-container .settings-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.comprar-minutos-container .settings-btn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+}
+
+.comprar-minutos-container .settings-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #374151;
+}
+
+/* Current Minutes Card */
+.comprar-minutos-container .current-minutes-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 0;
+}
+
+.comprar-minutos-container .current-minutes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.comprar-minutos-container .current-minutes-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.comprar-minutos-container .info-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #f3f4f6;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.comprar-minutos-container .info-icon svg {
+  width: 16px;
+  height: 16px;
+  stroke: #6b7280;
+}
+
+.comprar-minutos-container .current-minutes-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comprar-minutos-container .minutes-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.comprar-minutos-container .minutes-number {
+  font-size: 32px;
+  font-weight: 700;
+  color: #8C623E;
+}
+
+.comprar-minutos-container .minutes-text {
+  font-size: 16px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.comprar-minutos-container .progress-section {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.comprar-minutos-container .progress-bar {
+  flex: 1 !important;
+  height: 8px !important;
+  background: #F5F5DC !important;
+  border-radius: 4px !important;
+  overflow: hidden !important;
+  position: relative !important;
+  border: none !important;
+  display: block !important;
+}
+
+.comprar-minutos-container .progress-fill {
+  height: 100% !important;
+  background: #8C623E !important;
+  border-radius: 4px !important;
+  transition: width 0.3s ease !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  min-width: 2px !important;
+  width: 96% !important;
+  display: block !important;
+}
+
+.comprar-minutos-container .progress-text {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.comprar-minutos-container .progress-text span {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+/* Packs Section */
+.comprar-minutos-container .packs-section {
+  margin-top: 24px;
+}
+
+.comprar-minutos-container .packs-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+
+.comprar-minutos-container .pack-card {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 500px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.comprar-minutos-container .pack-card:hover {
+  border-color: #d1d5db;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.comprar-minutos-container .pack-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comprar-minutos-container .pack-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.comprar-minutos-container .pack-price {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.comprar-minutos-container .price {
+  font-size: 24px;
+  font-weight: 700;
+  color: #8C623E;
+}
+
+.comprar-minutos-container .minutes {
+  font-size: 14px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.comprar-minutos-container .pack-description {
+  margin: 8px 0;
+}
+
+.comprar-minutos-container .pack-description p {
+  font-size: 14px;
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.comprar-minutos-container .pack-features {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.comprar-minutos-container .feature-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.comprar-minutos-container .feature-item svg {
+  width: 16px;
+  height: 16px;
+  stroke: #10b981;
+  flex-shrink: 0;
+}
+
+.comprar-minutos-container .feature-item span {
+  line-height: 1.4;
+}
+
+.comprar-minutos-container .comprar-btn {
+  width: 100%;
+  padding: 12px 20px;
+  background: #8C623E;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.comprar-minutos-container .comprar-btn:hover {
+  background: #7a5433;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(140, 98, 62, 0.3);
+}
+
+/* Footer */
+.comprar-minutos-container .footer {
+  margin-top: 40px;
+  padding: 20px 0;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+}
+
+.comprar-minutos-container .footer p {
+  font-size: 14px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .comprar-minutos-container .packs-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .comprar-minutos-container .main-content {
+    padding: 12px 20px 24px 20px;
+  }
+  
+  .comprar-minutos-container .header-title-section h1 {
+    font-size: 20px;
+  }
+  
+  .comprar-minutos-container .current-minutes-card {
+    padding: 20px;
+  }
+  
+  .comprar-minutos-container .minutes-number {
+    font-size: 28px;
+  }
+  
+  .comprar-minutos-container .packs-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .comprar-minutos-container .pack-card {
+    min-height: 400px;
+    padding: 16px;
+  }
+  
+  .comprar-minutos-container .price {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .comprar-minutos-container .main-content {
+    padding: 8px 16px 20px 16px;
+  }
+  
+  .comprar-minutos-container .header-title-section h1 {
+    font-size: 18px;
+  }
+  
+  .comprar-minutos-container .current-minutes-card {
+    padding: 16px;
+  }
+  
+  .comprar-minutos-container .minutes-number {
+    font-size: 24px;
+  }
+  
+  .comprar-minutos-container .pack-card {
+    min-height: 350px;
+    padding: 12px;
+  }
+  
+  .comprar-minutos-container .pack-name {
+    font-size: 16px;
+  }
+  
+  .comprar-minutos-container .price {
+    font-size: 18px;
+  }
+  
+  .comprar-minutos-container .comprar-btn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+}

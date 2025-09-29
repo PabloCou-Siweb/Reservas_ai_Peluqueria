@@ -12,7 +12,7 @@ interface ServiceCategory {
 }
 
 const DashboardPage: React.FC = () => {
-  const { navigateToCitas } = useNavigation();
+  const { navigateToCitas, navigateTo } = useNavigation();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -56,7 +56,7 @@ const DashboardPage: React.FC = () => {
                       <img src="/img/notification-icon.png" alt="Notificaciones" />
                       <div className="notification-dot"></div>
                     </div>
-                    <div className="settings-icon">
+                    <div className="settings-icon" onClick={() => navigateTo('configuracion')}>
                       <img src="/img/settings-icon.png" alt="Configuración" />
                     </div>
                   </div>

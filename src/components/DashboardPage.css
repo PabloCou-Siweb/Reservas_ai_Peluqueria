@@ -1,13 +1,11 @@
-/* Dashboard Container */
 .dashboard-container {
   display: flex;
   min-height: 100vh;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
   width: 100vw;
 }
 
-/* Main Content */
 .main-content {
   flex: 1;
   margin-left: 280px;
@@ -18,6 +16,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  background-color: #ffffff;
 }
 
 .sidebar.closed + .main-content {
@@ -25,11 +24,16 @@
   width: calc(100vw - 70px);
 }
 
-/* Main Content Area */
 .main-content-area {
   flex: 1;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
+}
+
+/* Specific white background for service grid area */
+.main-content-area > div:not(.main-header):not(.main-footer) {
+  background-color: #ffffff;
 }
 
 /* Main Header */
