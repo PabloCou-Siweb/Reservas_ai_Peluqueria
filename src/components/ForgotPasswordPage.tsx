@@ -67,18 +67,16 @@ const ForgotPasswordPage: React.FC = () => {
             <div className="button-group">
               <button 
                 type="button" 
-                className="back-button"
+                className="forgot-password-back-button"
                 onClick={handleBackClick}
               >
-                <div className="button-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="15,18 9,12 15,6"/>
-                  </svg>
+                <div className="forgot-password-back-button-icon">
+                  <img src="/img/arrow-icon.png" alt="Arrow" width="20" height="20" style={{transform: 'scaleX(-1)'}} />
                 </div>
               </button>
               
               <button type="submit" className="reset-button">
-                <span>Restablecer contraseña</span>
+                Restablecer contraseña
               </button>
             </div>
           </form>
