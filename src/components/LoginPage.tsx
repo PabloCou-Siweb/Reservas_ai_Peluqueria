@@ -52,11 +52,6 @@ const LoginPage: React.FC = () => {
       <div className="promotional-section">
         <div className="promotional-image">
           <div className="image-overlay">
-            <button className="scroll-button">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-            </button>
           </div>
         </div>
       </div>
@@ -117,6 +112,7 @@ const LoginPage: React.FC = () => {
                 </a>
               </div>
             </div>
+            
 
             <div className="checkbox-group">
               <label className="checkbox-label">
