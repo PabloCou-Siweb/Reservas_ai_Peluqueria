@@ -165,7 +165,7 @@
 .comprar-minutos-container .current-minutes-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 8px;
   margin-bottom: 16px;
 }
 
@@ -187,10 +187,9 @@
   cursor: pointer;
 }
 
-.comprar-minutos-container .info-icon svg {
+.comprar-minutos-container .info-icon img {
   width: 16px;
   height: 16px;
-  stroke: #6b7280;
 }
 
 .comprar-minutos-container .current-minutes-content {

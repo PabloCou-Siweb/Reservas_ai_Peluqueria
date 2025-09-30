@@ -165,6 +165,7 @@ interface EditarTratamientoModalProps {
             {/* Action buttons */}
             <div className="modal-actions">
               <button type="button" className="btn-cancel" onClick={onClose}>
+                <img src="/img/trash-icon.png" alt="Eliminar" width="16" height="16" />
                 Eliminar
               </button>
               <button type="submit" className="btn-confirm">

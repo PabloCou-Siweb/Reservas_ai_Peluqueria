@@ -118,13 +118,18 @@
   text-align: center;
   flex: 1;
   padding-right: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .divider {
   width: 1px;
   background: #e0e0e0;
-  margin: 0 12px;
-  align-self: stretch;
+  margin: 20px 12px;
+  align-self: center;
+  height: 80%;
 }
 
 .profile-picture {

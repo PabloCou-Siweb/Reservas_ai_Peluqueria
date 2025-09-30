@@ -328,19 +328,22 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
       <div className="main-content">
         <div className="main-header">
           <div className="header-left">
-            <button 
-              className="back-button"
-              onClick={() => navigateTo('dashboard')}
-            >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <polyline points="15,18 9,12 15,6"/>
-              </svg>
-            </button>
-                <div className="breadcrumb">
-                  <span>Citas</span>
-                  <span>/</span>
-                  <span>{specialty}</span>
-                </div>
+            <div className="header-title-section">
+              <button 
+                className="back-button"
+                onClick={() => navigateTo('dashboard')}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <polyline points="15,18 9,12 15,6"/>
+                </svg>
+              </button>
+              <h1 className="main-title">Citas</h1>
+            </div>
+            <div className="breadcrumb">
+              <span>Citas</span>
+              <span>/</span>
+              <span>{specialty}</span>
+            </div>
           </div>
           <div className="header-right">
             <div className="header-actions">
@@ -357,18 +360,6 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
               </div>
               <div className="settings-icon" onClick={() => navigateTo('configuracion')}>
                 <img src="/img/settings-icon.png" alt="Configuración" />
-              </div>
-            </div>
-            <div className="header-search">
-              <input
-                type="text"
-                placeholder="Buscar por nombre"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="header-search-input"
-              />
-              <div className="header-search-icon">
-                <img src="/img/search-icon.png" alt="Buscar" />
               </div>
             </div>
           </div>

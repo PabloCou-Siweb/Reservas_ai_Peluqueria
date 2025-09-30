@@ -26,6 +26,8 @@
 .header-left {
   display: flex;
   align-items: center;
+  flex: 1;
+  justify-content: flex-start;
 }
 
 .page-title {

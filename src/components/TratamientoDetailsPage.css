@@ -125,7 +125,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  padding: 24px;
+  padding: 16px;
   gap: 24px;
   justify-content: center;
   align-items: center;
@@ -150,7 +150,7 @@
 .treatment-icon img {
   width: 50px;
   height: 50px;
-  filter: brightness(0) saturate(100%) invert(100%);
+  filter: none;
 }
 
 .treatment-info-section {
@@ -206,32 +206,50 @@
 
 .edit-btn, .delete-btn {
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+  justify-content: center;
 }
 
 .edit-btn {
-  background: #f3f4f6;
-  color: #374151;
-  border: 1px solid #d1d5db;
+  background: #F2C288;
+  color: #1a1a1a;
+  border: 1px solid #E6B800;
 }
 
 .edit-btn:hover {
-  background: #e5e7eb;
+  background: #E6B800;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .delete-btn {
-  background: #fef2f2;
-  color: #dc2626;
-  border: 1px solid #fecaca;
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
 }
 
 .delete-btn:hover {
-  background: #fee2e2;
+  background: #f8f9fa;
+  border-color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.delete-btn img,
+.edit-btn img {
+  display: block;
+  width: 16px;
+  height: 16px;
+  filter: none;
 }
 
 /* Vertical Divider */
@@ -380,36 +398,47 @@
   gap: 12px;
   margin-top: 16px;
   padding-top: 16px;
-  border-top: 1px solid #e5e7eb;
+  justify-content: center;
 }
 
 .remove-btn, .add-btn {
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 100px;
+  justify-content: center;
 }
 
 .remove-btn {
-  background: #fef2f2;
-  color: #dc2626;
-  border: 1px solid #fecaca;
+  background: white;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
 }
 
 .remove-btn:hover {
-  background: #fee2e2;
+  background: #f8f9fa;
+  border-color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .add-btn {
-  background: #8C623E;
-  color: white;
+  background: #F2C288;
+  color: #1a1a1a;
+  border: 1px solid #E6B800;
 }
 
 .add-btn:hover {
-  background: #6B4423;
+  background: #E6B800;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Appointments Section */

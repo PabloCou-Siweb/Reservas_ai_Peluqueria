@@ -50,248 +50,215 @@ const ReservarCitaModal: React.FC<ReservarCitaModalProps> = ({
     setIsConfirmModalOpen(true);
   };
 
-  const handleConfirmModalClose = () => {
+  const handleConfirm = () => {
+    onConfirm(formData);
     setIsConfirmModalOpen(false);
+    onClose();
   };
 
-  const handleConfirmModalConfirm = () => {
+  const handleCloseConfirm = () => {
     setIsConfirmModalOpen(false);
-    onConfirm(formData);
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        {/* Header */}
-        <div className="modal-header">
-          <div className="modal-title-section">
-            <h2 className="modal-title">Reservar cita</h2>
-            <p className="modal-subtitle">Complete el formulario con los datos del cliente para reservar la cita.</p>
+    <>
+      <div className="reservar-modal-overlay" onClick={onClose}>
+        <div className="reservar-modal-content" onClick={(e) => e.stopPropagation()}>
+          {/* Header */}
+          <div className="reservar-modal-header">
+            <div className="reservar-header-content">
+              <h2 className="reservar-modal-title">Reservar cita</h2>
+              <p className="reservar-modal-subtitle">
+                Complete el formulario con los datos del cliente para reservar la cita.
+              </p>
+            </div>
+            <button className="reservar-close-btn" onClick={onClose}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
           </div>
-          <button className="modal-close" onClick={onClose}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
-        </div>
 
-        {/* Resumen de la cita */}
-        <div className="appointment-summary">
-          <h3 className="summary-title">Resumen de la cita</h3>
-          <div className="summary-grid">
-            <div className="summary-column">
-              <div className="summary-content">
-                <div className="summary-label-row">
-                  <div className="summary-dot"></div>
-                  <span className="summary-label">Especialista:</span>
-                </div>
-                <span className="summary-value">{specialist.name} ({specialist.role})</span>
+          {/* Resumen de la cita */}
+          <div className="reservar-summary-section">
+            <h3 className="reservar-summary-title">Resumen de la cita</h3>
+            <div className="reservar-summary-content">
+              <div className="reservar-summary-item">
+                <span className="reservar-summary-label">Especialista:</span>
+                <span className="reservar-summary-value">{specialist.name}, {specialist.role}</span>
               </div>
-            </div>
-            <div className="summary-column">
-              <div className="summary-content">
-                <div className="summary-label-row">
-                  <div className="summary-dot"></div>
-                  <span className="summary-label">Fecha y hora:</span>
-                </div>
-                <span className="summary-value">{date} - {time} (Duración: {duration})</span>
+              <div className="reservar-summary-item">
+                <span className="reservar-summary-label">Fecha y hora:</span>
+                <span className="reservar-summary-value">{date} - {time}, Duración: {duration}</span>
               </div>
-            </div>
-            <div className="summary-column">
-              <div className="summary-content">
-                <div className="summary-label-row">
-                  <div className="summary-dot"></div>
-                  <span className="summary-label">Cliente:</span>
-                </div>
-                <span className="summary-value">Elena Ruiz González (+34 585 58 52)</span>
+              <div className="reservar-summary-item">
+                <span className="reservar-summary-label">Cliente:</span>
+                <span className="reservar-summary-value">Elena Ruiz González, +34 585 58 52</span>
               </div>
             </div>
           </div>
-        </div>
 
-        <form onSubmit={handleSubmit}>
           {/* Datos del cliente */}
-          <div className="client-data-section">
-            <div className="section-header">
-              <div className="header-left">
-                <div className="header-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </div>
-                <h3 className="header-title">Datos del cliente</h3>
+          <div className="reservar-client-section">
+            <div className="reservar-client-header">
+              <div className="reservar-client-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
               </div>
+              <span className="reservar-client-title">Datos del cliente</span>
             </div>
-
-            <div className="section-body">
-              <div className="search-container">
+            <div className="reservar-client-content">
+              <div className="reservar-form-group">
+                <label className="reservar-form-label">Buscar cliente</label>
                 <input
                   type="text"
+                  className="reservar-form-input"
                   placeholder="Buscar por nombre, teléfono, DNI o email..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="search-input"
                 />
-                <div className="search-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                  </svg>
+              </div>
+              <div className="reservar-form-row">
+                <div className="reservar-form-group">
+                  <label className="reservar-form-label">Nombre completo</label>
+                  <input
+                    type="text"
+                    name="nombre"
+                    className="reservar-form-input"
+                    placeholder="Ej: Juan Pérez Izquierdo"
+                    value={formData.nombre}
+                    onChange={handleInputChange}
+                  />
+                </div>
+                <div className="reservar-form-group">
+                  <label className="reservar-form-label">Teléfono</label>
+                  <input
+                    type="tel"
+                    name="telefono"
+                    className="reservar-form-input"
+                    placeholder="+34 622 02 58 26"
+                    value={formData.telefono}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
-
-              <div className="form-grid">
-                {/* Primera fila: Nombre, Email y Teléfono */}
-                <div className="form-row-three">
-                  <div className="form-group">
-                    <label htmlFor="nombre">Nombre completo</label>
-                    <input
-                      type="text"
-                      id="nombre"
-                      name="nombre"
-                      placeholder="Ej: Juan Pérez Izquierdo"
-                      value={formData.nombre}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="email">Correo electrónico</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      placeholder="ejemplo@correo.com"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="telefono">Teléfono</label>
-                    <input
-                      type="tel"
-                      id="telefono"
-                      name="telefono"
-                      placeholder="+34 622 02 58 26"
-                      value={formData.telefono}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
+              <div className="reservar-form-row">
+                <div className="reservar-form-group">
+                  <label className="reservar-form-label">Correo electrónico</label>
+                  <input
+                    type="email"
+                    name="email"
+                    className="reservar-form-input"
+                    placeholder="ejemplo@correo.com"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
                 </div>
-                
-                {/* Segunda fila: Documento */}
-                <div className="form-row">
-                  <div className="form-group">
-                    <label htmlFor="tipoDocumento">Tipo de documento</label>
-                    <select
-                      id="tipoDocumento"
-                      name="tipoDocumento"
-                      value={formData.tipoDocumento}
-                      onChange={handleInputChange}
-                    >
-                      <option value="DNI">DNI</option>
-                      <option value="NIE">NIE</option>
-                      <option value="Pasaporte">Pasaporte</option>
-                    </select>
-                  </div>
-                  
-                  <div className="form-group">
-                    <label htmlFor="numeroDocumento">N° de documento</label>
-                    <input
-                      type="text"
-                      id="numeroDocumento"
-                      name="numeroDocumento"
-                      value={formData.numeroDocumento}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
+                <div className="reservar-form-group">
+                  <label className="reservar-form-label">Tipo de documento</label>
+                  <select
+                    name="tipoDocumento"
+                    className="reservar-form-input"
+                    value={formData.tipoDocumento}
+                    onChange={handleInputChange}
+                  >
+                    <option value="DNI">DNI</option>
+                    <option value="NIE">NIE</option>
+                    <option value="Pasaporte">Pasaporte</option>
+                  </select>
                 </div>
+              </div>
+              <div className="reservar-form-group">
+                <label className="reservar-form-label">N° de documento</label>
+                <input
+                  type="text"
+                  name="numeroDocumento"
+                  className="reservar-form-input"
+                  placeholder="359784685Q"
+                  value={formData.numeroDocumento}
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
           </div>
 
           {/* Detalles de la cita */}
-          <div className="appointment-details-section-clean">
-            <div className="section-header">
-              <div className="header-left">
-                <div className="header-icon">
-                  <img src="/img/scissor-icon.png" alt="Tijeras" width="20" height="20" />
-                </div>
-                <h3 className="header-title">Detalles de la cita</h3>
+          <div className="reservar-details-section">
+            <div className="reservar-details-header">
+              <div className="reservar-details-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <circle cx="6" cy="6" r="3"/>
+                  <circle cx="6" cy="18" r="3"/>
+                  <line x1="20" y1="4" x2="8.12" y2="15.88"/>
+                  <line x1="14.47" y1="14.48" x2="20" y2="20"/>
+                  <line x1="8.12" y1="8.12" x2="12" y2="12"/>
+                </svg>
               </div>
+              <span className="reservar-details-title">Detalles de la cita</span>
             </div>
-
-            <div className="section-body">
-              <div className="form-grid">
-                <div className="form-group">
-                  <label htmlFor="motivo">Motivo de la cita</label>
-                  <input
-                    type="text"
-                    id="motivo"
-                    name="motivo"
-                    placeholder="Corte de cabello"
-                    value={formData.motivo}
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
-                
-                <div className="form-group">
-                  <label htmlFor="notas">Notas adicionales</label>
-                  <textarea
-                    id="notas"
-                    name="notas"
-                    placeholder="Información adicional que consideres relevante..."
-                    value={formData.notas}
-                    onChange={handleInputChange}
-                    rows={1}
-                  />
-                </div>
+            <div className="reservar-details-content">
+              <div className="reservar-form-group">
+                <label className="reservar-form-label">Motivo de la cita</label>
+                <input
+                  type="text"
+                  name="motivo"
+                  className="reservar-form-input"
+                  placeholder="Corte"
+                  value={formData.motivo}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="reservar-form-group">
+                <label className="reservar-form-label">Notas adicionales</label>
+                <textarea
+                  name="notas"
+                  className="reservar-form-textarea"
+                  placeholder="Información adicional que consideres relevante..."
+                  value={formData.notas}
+                  onChange={handleInputChange}
+                  rows={3}
+                />
               </div>
             </div>
           </div>
 
-          {/* Action buttons */}
-          <div className="modal-actions">
-            <button type="button" className="btn-cancel" onClick={onClose}>
+          {/* Footer */}
+          <div className="reservar-modal-actions">
+            <button type="button" className="reservar-btn-cancel" onClick={onClose}>
               Cancelar
             </button>
-            <button type="submit" className="btn-confirm">
+            <button type="button" className="reservar-btn-confirm" onClick={handleSubmit}>
               Confirmar
             </button>
           </div>
-        </form>
+        </div>
+      </div>
 
-        {/* Modal de confirmación */}
+      {isConfirmModalOpen && (
         <ConfirmarCitaModal
           isOpen={isConfirmModalOpen}
-          onClose={handleConfirmModalClose}
-          onConfirm={handleConfirmModalConfirm}
-          onCloseMainModal={onClose}
+          onClose={handleCloseConfirm}
+          onConfirm={handleConfirm}
           appointmentData={{
-            cliente: {
-              nombre: formData.nombre || 'Elena Ruiz González',
-              telefono: formData.telefono || '+34 620 25 64'
-            },
-            especialidad: 'Corte',
             especialista: specialist.name,
+            especialidad: specialist.role,
             fecha: date,
             hora: time,
             duracion: duration,
-            motivo: formData.motivo || 'Corte Mantenimiento y corte de cabello'
+            motivo: formData.motivo,
+            cliente: {
+              nombre: formData.nombre,
+              telefono: formData.telefono
+            }
           }}
         />
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 

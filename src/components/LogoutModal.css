@@ -43,7 +43,7 @@
 .logout-icon img {
   width: 24px;
   height: 24px;
-  filter: sepia(1) saturate(2) hue-rotate(20deg) brightness(0.8);
+  filter: none;
   color: #E06900;
 }
 

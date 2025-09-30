@@ -52,6 +52,11 @@ const LoginPage: React.FC = () => {
       <div className="promotional-section">
         <div className="promotional-image">
           <div className="image-overlay">
+            <button className="scroll-button">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -66,32 +71,30 @@ const LoginPage: React.FC = () => {
           
           <form onSubmit={handleSubmit} className="login-form">
             <div className="form-field">
-              <label className="form-label">Correo electrónico</label>
               <div className="input-container">
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
+                  placeholder="Email"
                   required
                   className="form-input"
                 />
                 <div className="input-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="m6 9 6 6 6-6"/>
-                  </svg>
+                  <img src="/img/email-icon.png" alt="Email" width="16" height="16" />
                 </div>
               </div>
             </div>
 
             <div className="form-field">
-              <label className="form-label">Tu contraseña</label>
               <div className="input-container">
                 <input
                   type={showPassword ? "text" : "password"}
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
+                  placeholder="Contraseña"
                   required
                   className="form-input"
                 />
@@ -100,29 +103,19 @@ const LoginPage: React.FC = () => {
                   className="password-toggle"
                   onClick={() => setShowPassword(!showPassword)}
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    {showPassword ? (
-                      <>
-                        <path d="M9.88 9.88a3 3 0 1 0 4.24 4.24"/>
-                        <path d="M10.73 5.08A10.43 10.43 0 0 1 12 5c7 0 10 7 10 7a13.16 13.16 0 0 1-1.67 2.68"/>
-                        <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61"/>
-                        <line x1="2" y1="2" x2="22" y2="22"/>
-                      </>
-                    ) : (
-                      <>
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                        <circle cx="12" cy="12" r="3"/>
-                      </>
-                    )}
-                  </svg>
+                  <img 
+                    src={showPassword ? "/img/eye-off-icon.png" : "/img/eye-icon.png"} 
+                    alt={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"} 
+                    width="16" 
+                    height="16" 
+                  />
                 </button>
               </div>
-            </div>
-
-            <div className="forgot-password">
-              <a href="#" className="forgot-link" onClick={(e) => { e.preventDefault(); navigateTo('forgot-password'); }}>
-                ¿Olvidaste tu contraseña?
-              </a>
+              <div className="forgot-password">
+                <a href="#" className="forgot-link" onClick={(e) => { e.preventDefault(); navigateTo('forgot-password'); }}>
+                  ¿Olvidaste tu contraseña?
+                </a>
+              </div>
             </div>
 
             <div className="checkbox-group">
@@ -140,21 +133,26 @@ const LoginPage: React.FC = () => {
               </label>
             </div>
 
+            <button type="submit" className="login-page-button">
+              <div className="login-page-button-icon">
+                <img src="/img/arrow-icon.png" alt="Arrow" width="20" height="20" />
+              </div>
+              <div className="login-page-button-text">
+                Iniciar sesión
+              </div>
+            </button>
+
             <div className="register-link">
               <span>¿No tienes cuenta? </span>
               <a href="#" className="register-text" onClick={(e) => { e.preventDefault(); navigateTo('create-account'); }}>
                 Regístrate
               </a>
             </div>
-
-            <button type="submit" className="login-button">
-              Iniciar sesión
-            </button>
           </form>
         </div>
 
         <div className="copyright">
-          <span>© 2025 Bokifty</span>
+          <span>© 2025 Bokifly</span>
         </div>
       </div>
     </div>

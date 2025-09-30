@@ -76,7 +76,7 @@
 
 /* Icono de llamar paciente en negro */
 .context-menu-item img[src="/img/phone_call-icon.png"] {
-  filter: brightness(0);
+  filter: none;
 }
 
 /* Cancelar cita - texto en negro */

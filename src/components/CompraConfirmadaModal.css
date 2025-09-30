@@ -65,7 +65,7 @@
   width: 20px;
   height: 20px;
   object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(20%) sepia(100%) saturate(2000%) hue-rotate(20deg) brightness(0.8) contrast(1.2);
+  filter: none;
 }
 
 .text {

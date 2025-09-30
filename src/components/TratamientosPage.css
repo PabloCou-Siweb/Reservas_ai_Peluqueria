@@ -1,8 +1,7 @@
 /* Tratamientos Page */
 .tratamientos-container {
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: #ffffff;
   margin: 0;
   padding: 0;
@@ -30,6 +29,13 @@
   margin-bottom: 32px;
   position: relative;
   z-index: 3;
+}
+
+.tratamientos-container .header-left {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-start;
 }
 
 .tratamientos-container .header-left h1 {
@@ -296,8 +302,8 @@
 .tratamientos-container .add-treatment-btn {
   width: 48px;
   height: 48px;
-  background: #111827;
-  border: none;
+  background: white;
+  border: 1px solid #e5e7eb;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -308,7 +314,8 @@
 }
 
 .tratamientos-container .add-treatment-btn:hover {
-  background: #374151;
+  background: #f9fafb;
+  border-color: #d1d5db;
   transform: scale(1.1);
   z-index: 6;
 }

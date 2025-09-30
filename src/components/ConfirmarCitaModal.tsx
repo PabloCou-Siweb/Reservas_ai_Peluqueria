@@ -63,8 +63,8 @@ const ConfirmarCitaModal: React.FC<ConfirmarCitaModalProps> = ({
     if (onCloseMainModal) {
       onCloseMainModal();
     }
-    // Navegar a la agenda
-    navigateTo('agenda');
+    // Navegar a las citas
+    navigateTo('citas');
   };
 
   if (!isOpen) return null;

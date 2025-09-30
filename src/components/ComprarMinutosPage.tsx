@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import { useUser } from '../contexts/UserContext';
 import Sidebar from './Sidebar';
+import ConfirmarCompraMinutosModal from './ConfirmarCompraMinutosModal';
 import CompraConfirmadaModal from './CompraConfirmadaModal';
 import './ComprarMinutosPage.css';
 
 const ComprarMinutosPage: React.FC = () => {
   const { navigateTo } = useNavigation();
   const { userData } = useUser();
-  const [showModal, setShowModal] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [selectedPack, setSelectedPack] = useState<{
     name: string;
     minutes: string;
@@ -25,11 +27,21 @@ const ComprarMinutosPage: React.FC = () => {
       minutes: pack.minutes,
       price: pack.price
     });
-    setShowModal(true);
+    setShowConfirmModal(true);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
+  const handleCloseConfirmModal = () => {
+    setShowConfirmModal(false);
+    setSelectedPack(null);
+  };
+
+  const handleConfirmPurchase = () => {
+    setShowConfirmModal(false);
+    setShowSuccessModal(true);
+  };
+
+  const handleCloseSuccessModal = () => {
+    setShowSuccessModal(false);
     setSelectedPack(null);
   };
 
@@ -133,11 +145,7 @@ const ComprarMinutosPage: React.FC = () => {
           <div className="current-minutes-header">
             <h3>Minutos actuales</h3>
             <div className="info-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 16v-4"/>
-                <path d="M12 8h.01"/>
-              </svg>
+              <img src="/img/alert-icon.png" alt="Alert" width="16" height="16" />
             </div>
           </div>
           <div className="current-minutes-content">
@@ -198,12 +206,24 @@ const ComprarMinutosPage: React.FC = () => {
         </div>
       </div>
 
-      {/* Modal */}
-      <CompraConfirmadaModal
-        isOpen={showModal}
-        onClose={handleCloseModal}
-        pack={selectedPack}
-      />
+      {/* Modals */}
+      {selectedPack && (
+        <ConfirmarCompraMinutosModal
+          isOpen={showConfirmModal}
+          onClose={handleCloseConfirmModal}
+          onConfirm={handleConfirmPurchase}
+          selectedPack={selectedPack}
+          currentMinutes={currentMinutes}
+        />
+      )}
+      
+      {selectedPack && (
+        <CompraConfirmadaModal
+          isOpen={showSuccessModal}
+          onClose={handleCloseSuccessModal}
+          pack={selectedPack}
+        />
+      )}
     </div>
   );
 };

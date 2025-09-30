@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
 import EditarTratamientoModal from './EditarTratamientoModal';
+import AddEspecialistaModal from './AddEspecialistaModal';
+import NotificationModal from './NotificationModal';
 import './TratamientoDetailsPage.css';
 
 const TratamientoDetailsPage: React.FC = () => {
   const { navigateTo } = useNavigation();
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showAddEspecialistaModal, setShowAddEspecialistaModal] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const [especialistas, setEspecialistas] = useState([
     { id: 1, nombre: 'Pol Palomo Cortés', email: 'polpalomo@gmail.com', telefono: '+34 606 20 45 56', especialidad: 'Peluquero', asignado: true },
     { id: 2, nombre: 'Alberto Jiménez Rodríguez', email: 'alberto.jimenez@example.com', telefono: '+34 659 25 63 65', especialidad: 'Peluquero', asignado: false },
@@ -30,6 +34,21 @@ const TratamientoDetailsPage: React.FC = () => {
 
   const handleCloseModal = () => {
     setShowEditModal(false);
+  };
+
+  const handleAddEspecialistaClick = () => {
+    setShowAddEspecialistaModal(true);
+  };
+
+  const handleCloseAddEspecialistaModal = () => {
+    setShowAddEspecialistaModal(false);
+  };
+
+  const handleSaveEspecialistas = (nuevosEspecialistas: any[]) => {
+    console.log('Especialistas añadidos:', nuevosEspecialistas);
+    // Aquí se podría implementar la lógica para añadir los especialistas
+    setShowAddEspecialistaModal(false);
+    setShowNotification(true);
   };
 
   const handleSaveTratamiento = (data: any) => {
@@ -116,8 +135,14 @@ const TratamientoDetailsPage: React.FC = () => {
                   <span className="duration-value">25 min</span>
                 </div>
                     <div className="treatment-actions">
-                      <button className="edit-btn" onClick={handleEditClick}>Editar</button>
-                      <button className="delete-btn">Eliminar</button>
+                      <button className="edit-btn" onClick={handleEditClick}>
+                        <img src="/img/rounded_pen-icon.png" alt="Editar" width="16" height="16" />
+                        Editar
+                      </button>
+                      <button className="remove-btn">
+                        <img src="/img/trash-icon.png" alt="Eliminar" width="16" height="16" />
+                        Eliminar
+                      </button>
                     </div>
               </div>
             </div>
@@ -172,8 +197,11 @@ const TratamientoDetailsPage: React.FC = () => {
               ))}
             </div>
             <div className="specialists-actions">
-              <button className="remove-btn">Eliminar</button>
-              <button className="add-btn">Añadir</button>
+              <button className="remove-btn">
+                <img src="/img/trash-icon.png" alt="Eliminar" width="16" height="16" />
+                Eliminar
+              </button>
+              <button className="add-btn" onClick={handleAddEspecialistaClick}>Añadir</button>
             </div>
           </div>
         </div>
@@ -265,6 +293,22 @@ const TratamientoDetailsPage: React.FC = () => {
         isOpen={showEditModal}
         onClose={handleCloseModal}
         onSave={handleSaveTratamiento}
+      />
+
+      {/* Añadir Especialista Modal */}
+      <AddEspecialistaModal
+        isOpen={showAddEspecialistaModal}
+        onClose={handleCloseAddEspecialistaModal}
+        onSave={handleSaveEspecialistas}
+      />
+
+      {/* Notification Modal */}
+      <NotificationModal
+        isOpen={showNotification}
+        onClose={() => setShowNotification(false)}
+        type="success"
+        title="Especialista agregado con éxito"
+        message="¡Listo! El especialista ya puede recibir citas en la especialidad asignada."
       />
     </div>
   );

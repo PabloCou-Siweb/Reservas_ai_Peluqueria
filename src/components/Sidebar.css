@@ -220,7 +220,7 @@
   width: 16px;
   height: 16px;
   object-fit: contain;
-  filter: brightness(0);
+  filter: none;
 }
 
 .buy-minutes-btn {
@@ -259,7 +259,7 @@
   width: 16px;
   height: 16px;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .sidebar.closed .sidebar-widget {
@@ -300,7 +300,7 @@
 .avatar-icon {
   width: 20px;
   height: 20px;
-  filter: grayscale(100%) brightness(0.4);
+  filter: none;
   object-fit: contain;
 }
 
@@ -368,12 +368,12 @@
 }
 
 .export-btn img {
-  filter: grayscale(100%) brightness(0.4);
+  filter: none;
   transition: all 0.3s ease;
 }
 
 .export-btn:hover img {
-  filter: grayscale(100%) brightness(0.6);
+  filter: none;
 }
 
 .sidebar.closed .profile-info {
