@@ -67,7 +67,7 @@ const ReadyPage: React.FC = () => {
               className="login-btn"
               onClick={handleLoginClick}
             >
-              Iniciar sesión
+              Comenzar
             </button>
           </div>
         </div>
