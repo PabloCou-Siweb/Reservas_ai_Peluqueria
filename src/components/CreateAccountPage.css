@@ -5,25 +5,27 @@
 
 .create-account-page {
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 100vh;
   background: white;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Sección del formulario */
 .form-section {
-  flex: 0 0 45%;
+  flex: 0 0 35%;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40px 60px;
+  padding: 40px 60px 40px 40px;
   background: white;
 }
 
 .form-wrapper {
   width: 100%;
-  max-width: 450px;
+  max-width: 550px;
 }
 
 /* Indicador de progreso */
@@ -88,20 +90,30 @@
 .create-account-input {
   width: 100%;
   padding: 16px 50px 16px 0;
-  border: none !important;
-  border-bottom: 1px solid #e1e5e9 !important;
-  background: transparent;
+  border: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 1px solid #d1d5db !important;
+  border-radius: 0 !important;
+  background: transparent !important;
   font-size: 16px;
   color: #333;
-  transition: border-color 0.3s ease;
-  min-height: 50px;
   box-shadow: none !important;
-  outline: none !important;
+  outline: 0 !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  transition: border-bottom-color 0.2s ease;
+  min-height: 50px;
 }
 
 .create-account-input:focus {
-  outline: none !important;
-  border: none !important;
+  outline: 0 !important;
+  border: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
   border-bottom: 1px solid #8B4513 !important;
   box-shadow: none !important;
 }
@@ -112,7 +124,7 @@
 
 .field-icon {
   position: absolute;
-  margin-right: 20px;
+  margin-right: 6px;
   top: 50%;
   transform: translateY(-50%);
   pointer-events: none;
@@ -324,23 +336,23 @@
 
 /* Sección de imagen */
 .image-section {
-  flex: 0 0 55%;
+  flex: 0 0 65%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   background: white;
+  padding: 20px 40px 20px 30px;
 }
 
 .promo-image {
   width: 100%;
-  max-width: 700px;
   height: 100%;
   background-image: url('../assets/peluqueria-image.svg');
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  border-radius: 0 20px 20px 0;
-  margin-right: 30px;
+  border-radius: 20px;
+  margin: 0;
 }
 
 /* Responsive */

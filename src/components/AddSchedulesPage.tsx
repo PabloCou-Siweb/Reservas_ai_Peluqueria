@@ -100,85 +100,72 @@ const AddSchedulesPage: React.FC = () => {
   };
 
   return (
-    <div className="add-schedules-container">
-      {/* Sección izquierda - Formulario */}
+    <div className="add-schedules-page">
+      {/* Sección del formulario */}
       <div className="form-section">
-        <div className="form-container">
-          {/* Header fijo */}
-          <div className="form-header">
-            <div className="step-indicator">
-              <span>03/05</span>
-              <div className="progress-dots">
-                <div className="dot active"></div>
-                <div className="dot active"></div>
-                <div className="dot active"></div>
-                <div className="dot"></div>
-                <div className="dot"></div>
-              </div>
+        <div className="form-wrapper">
+          {/* Indicador de progreso */}
+          <div className="progress-indicator">
+            <span className="step-text">03/05</span>
+            <div className="dots">
+              <div className="dot active"></div>
+              <div className="dot active"></div>
+              <div className="dot active"></div>
+              <div className="dot"></div>
+              <div className="dot"></div>
             </div>
-            
-            <h1 className="form-title">Añade tus horarios</h1>
-            <p className="form-subtitle">
-              Define los días y franjas horarias en los que tu establecimiento atenderá citas. Esto permitirá a la agenda y a la asistente virtual ofrecer disponibilidad precisa a tus clientes.
-            </p>
           </div>
           
+          <h1 className="page-title">Añade tus horarios</h1>
+          <p className="page-subtitle">
+            Define los días y franjas horarias en los que tu establecimiento atenderá citas. Esto permitirá a la agenda y a la asistente virtual ofrecer disponibilidad precisa a tus clientes.
+          </p>
+          
           <form onSubmit={handleSubmit} className="schedules-form">
-            {/* Lista de días con scroll */}
-            <div className="schedule-list-container">
-              <div className="schedule-list">
+            <div className="days-container">
               {schedules.map((schedule) => (
-                <div className="schedule-item" key={schedule.day}>
+                <div className="schedule-day" key={schedule.day}>
                   <div className="day-header">
                     <span className="day-name">{schedule.day}</span>
-                    <label className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        checked={schedule.enabled}
-                        onChange={() => handleToggleChange(schedule.day)}
-                      />
-                      <span className="slider round"></span>
-                    </label>
+                    <button
+                      type="button"
+                      className={`day-toggle ${schedule.enabled ? 'active' : ''}`}
+                      onClick={() => handleToggleChange(schedule.day)}
+                    >
+                      <div className="toggle-slider"></div>
+                    </button>
                   </div>
                   
                   {schedule.enabled && (
                     <div className="time-slots">
                       {schedule.timeSlots.map((slot) => (
                         <div className="time-slot" key={slot.id}>
-                          <div className="time-inputs">
-                            <div className="time-icon">
-                              <img src="/img/clock-icon.png" alt="Reloj" />
-                            </div>
-                            <span className="time-label">Desde</span>
-                            <input
-                              type="time"
-                              value={slot.startTime}
-                              onChange={(e) => updateTimeSlot(schedule.day, slot.id, 'startTime', e.target.value)}
-                              className="time-input"
-                            />
-                            <span className="time-separator">a</span>
-                            <input
-                              type="time"
-                              value={slot.endTime}
-                              onChange={(e) => updateTimeSlot(schedule.day, slot.id, 'endTime', e.target.value)}
-                              className="time-input"
-                            />
-                            <button
-                              type="button"
-                              className="remove-slot"
-                              onClick={() => removeTimeSlot(schedule.day, slot.id)}
-                            >
-                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                <line x1="18" y1="6" x2="6" y2="18"/>
-                                <line x1="6" y1="6" x2="18" y2="18"/>
-                              </svg>
-                            </button>
-                          </div>
+                          <span className="time-label">Desde</span>
+                          <input
+                            type="time"
+                            value={slot.startTime}
+                            onChange={(e) => updateTimeSlot(schedule.day, slot.id, 'startTime', e.target.value)}
+                            className="time-input"
+                          />
+                          <span className="time-separator">a</span>
+                          <input
+                            type="time"
+                            value={slot.endTime}
+                            onChange={(e) => updateTimeSlot(schedule.day, slot.id, 'endTime', e.target.value)}
+                            className="time-input"
+                          />
+                          <button
+                            type="button"
+                            className="remove-slot-btn"
+                            onClick={() => removeTimeSlot(schedule.day, slot.id)}
+                          >
+                            ×
+                          </button>
                         </div>
                       ))}
                       <button
                         type="button"
-                        className="add-slot-button"
+                        className="add-slot-btn"
                         onClick={() => addTimeSlot(schedule.day)}
                       >
                         Añadir
@@ -187,39 +174,30 @@ const AddSchedulesPage: React.FC = () => {
                   )}
                 </div>
               ))}
-              </div>
             </div>
 
-            {/* Botones fijos */}
-            <div className="form-footer">
-              <div className="button-group">
+            <div className="action-buttons">
               <button 
                 type="button" 
-                className="back-button"
+                className="back-btn"
                 onClick={handleBackClick}
               >
-                <div className="button-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="15,18 9,12 15,6"/>
-                  </svg>
+                <div className="back-btn-icon">
+                  <img src="/img/arrow-icon.png" alt="Volver" style={{transform: 'scaleX(-1)'}} />
                 </div>
               </button>
               
-              <button type="submit" className="next-button">
-                <span>Siguiente</span>
+              <button type="submit" className="next-btn">
+                Siguiente
               </button>
-              </div>
             </div>
           </form>
         </div>
       </div>
 
-      {/* Sección derecha - Imagen promocional */}
-      <div className="promotional-section">
+      {/* Sección de imagen promocional */}
+      <div className="image-section">
         <div className="promotional-image">
-          <div className="image-overlay">
-            {/* Sin elementos adicionales - todo está en la imagen */}
-          </div>
         </div>
       </div>
     </div>

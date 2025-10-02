@@ -1,27 +1,43 @@
 import React from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
+import { useUser } from '../contexts/UserContext';
 import './ReadyPage.css';
 
 const ReadyPage: React.FC = () => {
   const { goBack, navigateTo } = useNavigation();
-  
+  const { login, userData } = useUser();
+
   const handleBackClick = () => {
     goBack();
   };
 
   const handleLoginClick = () => {
-    // Navegar al dashboard
+    // Completar el proceso de registro e iniciar sesión automáticamente
+    // Usar los datos del usuario que se han ido recopilando durante el proceso de registro
+    login({
+      salonName: userData.salonName || 'Mi Peluquería',
+      email: userData.email || 'usuario@ejemplo.com',
+      businessName: userData.businessName || 'Mi Negocio',
+      address: userData.address || 'Dirección del salón',
+      phone: userData.phone || '+34 600 000 000'
+    });
+    
+    // Navegar al dashboard como usuario autenticado
     navigateTo('dashboard');
   };
 
   return (
-    <div className="ready-container">
-      {/* Sección izquierda - Formulario */}
+    <div className="ready-page">
+      {/* Sección del formulario */}
       <div className="form-section">
-        <div className="form-container">
-          <div className="step-indicator">
-            <span>05/05</span>
-            <div className="progress-dots">
+        <div className="form-wrapper">
+          {/* Paso 7 */}
+          <div className="step-label">Paso 7</div>
+          
+          {/* Indicador de progreso */}
+          <div className="progress-indicator">
+            <span className="step-text">05/05</span>
+            <div className="dots">
               <div className="dot active"></div>
               <div className="dot active"></div>
               <div className="dot active"></div>
@@ -30,41 +46,36 @@ const ReadyPage: React.FC = () => {
             </div>
           </div>
           
-          <h1 className="form-title">Tu peluquería ya está preparada.</h1>
-          <p className="form-subtitle">
+          <h1 className="page-title">Tu peluquería ya está preparada.</h1>
+          <p className="page-subtitle">
             Empieza a agendar y gestionar citas con la ayuda de tu asistente virtual.
           </p>
           
-          <div className="button-group">
+          <div className="action-buttons">
             <button 
               type="button" 
-              className="back-button"
+              className="back-btn"
               onClick={handleBackClick}
             >
-              <div className="button-icon">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <polyline points="15,18 9,12 15,6"/>
-                </svg>
+              <div className="back-btn-icon">
+                <img src="/img/arrow-icon.png" alt="Volver" style={{transform: 'scaleX(-1)'}} />
               </div>
             </button>
             
             <button 
               type="button" 
-              className="login-button"
+              className="login-btn"
               onClick={handleLoginClick}
             >
-              <span>Iniciar sesión</span>
+              Iniciar sesión
             </button>
           </div>
         </div>
       </div>
 
-      {/* Sección derecha - Imagen promocional */}
-      <div className="promotional-section">
+      {/* Sección de imagen promocional */}
+      <div className="image-section">
         <div className="promotional-image">
-          <div className="image-overlay">
-            {/* Sin elementos adicionales - todo está en la imagen */}
-          </div>
         </div>
       </div>
     </div>

@@ -2,48 +2,43 @@ import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import './SpecialtiesPage.css';
 
-interface Specialty {
-  id: string;
-  name: string;
-  selected: boolean;
-}
-
 const SpecialtiesPage: React.FC = () => {
   const { goNext, goBack } = useNavigation();
-  const [specialties, setSpecialties] = useState<Specialty[]>([
-    { id: '1', name: 'Peluquería', selected: false },
-    { id: '2', name: 'Barbería', selected: false },
-    { id: '3', name: 'Uñas', selected: false },
-    { id: '4', name: 'Manicura', selected: false },
-    { id: '5', name: 'Pedicura', selected: false },
-    { id: '6', name: 'Tratamientos faciales', selected: false },
-    { id: '7', name: 'Corte', selected: false },
-    { id: '8', name: 'Mantenimiento', selected: false },
-    { id: '9', name: 'Novias', selected: false },
-    { id: '10', name: 'Coloración', selected: false },
-    { id: '11', name: 'Peinados', selected: false },
-    { id: '12', name: 'Cejas', selected: false },
-    { id: '13', name: 'Pestañas', selected: false },
-    { id: '14', name: 'Niños', selected: false },
-    { id: '15', name: 'Depilación', selected: false },
-    { id: '16', name: 'Tratamientos capilares', selected: false },
-  ]);
+  
+  // Estado para especialidades seleccionadas
+  const [selectedSpecialties, setSelectedSpecialties] = useState<Set<string>>(new Set());
+  const [customSpecialties, setCustomSpecialties] = useState<string[]>([]);
+  const [showOtherInput, setShowOtherInput] = useState(false);
+  const [otherValue, setOtherValue] = useState('');
 
-  const handleSpecialtyToggle = (specialtyId: string) => {
-    setSpecialties(prevSpecialties =>
-      prevSpecialties.map(specialty =>
-        specialty.id === specialtyId
-          ? { ...specialty, selected: !specialty.selected }
-          : specialty
-      )
-    );
+  const handleSpecialtyToggle = (specialtyName: string) => {
+    setSelectedSpecialties(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(specialtyName)) {
+        newSet.delete(specialtyName);
+      } else {
+        newSet.add(specialtyName);
+      }
+      return newSet;
+    });
+  };
+
+  const handleAddOther = () => {
+    setShowOtherInput(true);
+  };
+
+  const handleOtherSubmit = () => {
+    if (otherValue.trim()) {
+      setCustomSpecialties(prev => [...prev, otherValue.trim()]);
+      setOtherValue('');
+      setShowOtherInput(false);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const selectedSpecialties = specialties.filter(s => s.selected);
-    console.log('Selected specialties:', selectedSpecialties);
-    // Aquí iría la lógica para guardar las especialidades
+    console.log('Selected specialties:', Array.from(selectedSpecialties));
+    console.log('Custom specialties:', customSpecialties);
     goNext();
   };
 
@@ -52,13 +47,14 @@ const SpecialtiesPage: React.FC = () => {
   };
 
   return (
-    <div className="specialties-container">
-      {/* Sección izquierda - Formulario */}
+    <div className="specialties-page">
+      {/* Sección del formulario */}
       <div className="form-section">
-        <div className="form-container">
-          <div className="step-indicator">
-            <span>04/05</span>
-            <div className="progress-dots">
+        <div className="form-wrapper">
+          {/* Indicador de progreso */}
+          <div className="progress-indicator">
+            <span className="step-text">04/05</span>
+            <div className="dots">
               <div className="dot active"></div>
               <div className="dot active"></div>
               <div className="dot active"></div>
@@ -67,51 +63,248 @@ const SpecialtiesPage: React.FC = () => {
             </div>
           </div>
           
-          <h1 className="form-title">¿Qué especialidades tienes?</h1>
-          <p className="form-subtitle">
+          <h1 className="page-title">¿Qué especialidades tienes?</h1>
+          <p className="page-subtitle">
             Selecciona las especialidades que atiende tu establecimiento.
           </p>
           
           <form onSubmit={handleSubmit} className="specialties-form">
-            <div className="specialties-grid">
-              {specialties.map((specialty) => (
-                <label key={specialty.id} className="specialty-checkbox">
-                  <input
-                    type="checkbox"
-                    checked={specialty.selected}
-                    onChange={() => handleSpecialtyToggle(specialty.id)}
-                    className="checkbox-input"
-                  />
-                  <span className="checkbox-label">{specialty.name}</span>
-                </label>
+            <div className="checkboxes-container">
+              {/* Fila 1: Peluquería, Barbería, Uñas, Manicura */}
+              <div className="checkbox-row">
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Peluquería') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Peluquería')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Peluquería') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Peluquería</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Barbería') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Barbería')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Barbería') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Barbería</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Uñas') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Uñas')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Uñas') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Uñas</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Manicura') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Manicura')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Manicura') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Manicura</span>
+                </div>
+              </div>
+
+              {/* Fila 2: Pedicura, Tratamientos faciales, Corte */}
+              <div className="checkbox-row">
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Pedicura') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Pedicura')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Pedicura') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Pedicura</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Tratamientos faciales') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Tratamientos faciales')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Tratamientos faciales') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Tratamientos faciales</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Corte') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Corte')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Corte') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Corte</span>
+                </div>
+                <div className="empty-space"></div>
+              </div>
+
+              {/* Fila 3: Mantenimiento, Novias, Coloración */}
+              <div className="checkbox-row">
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Mantenimiento') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Mantenimiento')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Mantenimiento') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Mantenimiento</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Novias') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Novias')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Novias') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Novias</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Coloración') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Coloración')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Coloración') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Coloración</span>
+                </div>
+                <div className="empty-space"></div>
+              </div>
+
+              {/* Fila 4: Peinados, Cejas, Pestañas, Niños */}
+              <div className="checkbox-row">
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Peinados') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Peinados')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Peinados') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Peinados</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Cejas') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Cejas')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Cejas') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Cejas</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Pestañas') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Pestañas')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Pestañas') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Pestañas</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Niños') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Niños')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Niños') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Niños</span>
+                </div>
+              </div>
+
+              {/* Fila 5: Depilación, Peinados, Tratamientos capilares */}
+              <div className="checkbox-row">
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Depilación') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Depilación')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Depilación') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Depilación</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Peinados2') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Peinados2')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Peinados2') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Peinados</span>
+                </div>
+                <div 
+                  className={`checkbox-item ${selectedSpecialties.has('Tratamientos capilares') ? 'selected' : ''}`}
+                  onClick={() => handleSpecialtyToggle('Tratamientos capilares')}
+                >
+                  <div className={`checkbox ${selectedSpecialties.has('Tratamientos capilares') ? 'checked' : ''}`}></div>
+                  <span className="checkbox-label">Tratamientos capilares</span>
+                </div>
+                <div className="empty-space"></div>
+              </div>
+
+              {/* Fila 6: Otro, + Añadir otro */}
+              <div className="checkbox-row">
+                <div className="checkbox-item">
+                  <div className="checkbox"></div>
+                  <span className="checkbox-label">Otro</span>
+                </div>
+                <div className="add-other-item" onClick={handleAddOther}>
+                  <a href="#" className="add-other-link" onClick={(e) => e.preventDefault()}>
+                    + Añadir otro
+                  </a>
+                </div>
+                <div className="empty-space"></div>
+                <div className="empty-space"></div>
+              </div>
+
+              {/* Especialidades personalizadas */}
+              {customSpecialties.map((custom, index) => (
+                <div key={`custom-${index}`} className="checkbox-row">
+                  <div className="checkbox-item selected">
+                    <div className="checkbox checked"></div>
+                    <span className="checkbox-label">{custom}</span>
+                  </div>
+                  <div className="empty-space"></div>
+                  <div className="empty-space"></div>
+                  <div className="empty-space"></div>
+                </div>
               ))}
+
+              {/* Input para nueva especialidad */}
+              {showOtherInput && (
+                <div className="checkbox-row">
+                  <div className="checkbox-item" style={{ flex: 2 }}>
+                    <input
+                      type="text"
+                      value={otherValue}
+                      onChange={(e) => setOtherValue(e.target.value)}
+                      placeholder="Escribe la especialidad..."
+                      style={{
+                        padding: '8px 12px',
+                        border: '1px solid #d1d5db',
+                        borderRadius: '6px',
+                        fontSize: '14px',
+                        width: '100%'
+                      }}
+                      autoFocus
+                    />
+                  </div>
+                  <div className="checkbox-item">
+                    <button
+                      type="button"
+                      onClick={handleOtherSubmit}
+                      style={{
+                        padding: '8px 16px',
+                        background: '#8C623E',
+                        border: 'none',
+                        borderRadius: '6px',
+                        color: 'white',
+                        fontSize: '14px',
+                        cursor: 'pointer',
+                        width: '100%'
+                      }}
+                    >
+                      Añadir
+                    </button>
+                  </div>
+                  <div className="empty-space"></div>
+                  <div className="empty-space"></div>
+                </div>
+              )}
             </div>
 
-            <div className="button-group">
+            <div className="action-buttons">
               <button 
                 type="button" 
-                className="back-btn-new"
+                className="back-btn"
                 onClick={handleBackClick}
               >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
-                  <polyline points="15,18 9,12 15,6"/>
-                </svg>
+                <div className="back-btn-icon">
+                  <img src="/img/arrow-icon.png" alt="Volver" style={{transform: 'scaleX(-1)'}} />
+                </div>
               </button>
               
-              <button type="submit" className="next-button">
-                <span>Siguiente</span>
+              <button type="submit" className="next-btn">
+                Siguiente
               </button>
             </div>
           </form>
         </div>
       </div>
 
-      {/* Sección derecha - Imagen promocional */}
-      <div className="promotional-section">
+      {/* Sección de imagen promocional */}
+      <div className="image-section">
         <div className="promotional-image">
-          <div className="image-overlay">
-            {/* Sin elementos adicionales - todo está en la imagen */}
-          </div>
         </div>
       </div>
     </div>

@@ -74,7 +74,7 @@ const CreateSalonPage: React.FC = () => {
                 value={formData.salonName}
                 onChange={handleInputChange}
                 required
-                className="form-field"
+                className="salon-input"
               />
               <div className="field-icon">
                 <img src="/img/home-icon.png" alt="Casa" />
@@ -89,10 +89,10 @@ const CreateSalonPage: React.FC = () => {
                 value={formData.businessName}
                 onChange={handleInputChange}
                 required
-                className="form-field"
+                className="salon-input"
               />
               <div className="field-icon">
-                <img src="/img/building-icon.png" alt="Edificio" />
+                <img src="/img/bag-icon.png" alt="Mochila" />
               </div>
             </div>
 
@@ -104,7 +104,7 @@ const CreateSalonPage: React.FC = () => {
                 value={formData.address}
                 onChange={handleInputChange}
                 required
-                className="form-field"
+                className="salon-input"
               />
               <div className="field-icon">
                 <img src="/img/location-icon.png" alt="Ubicación" />
@@ -119,7 +119,7 @@ const CreateSalonPage: React.FC = () => {
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
-                className="form-field"
+                className="salon-input"
               />
               <div className="field-icon">
                 <img src="/img/phone-icon.png" alt="Teléfono" />
