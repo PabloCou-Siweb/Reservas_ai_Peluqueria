@@ -87,7 +87,7 @@ const CreateAccountPage: React.FC = () => {
                 value={formData.fullName}
                 onChange={handleInputChange}
                 required
-                className="form-field"
+                className="create-account-input"
               />
               <div className="field-icon">
                 <img src="/img/user-icon.png" alt="Usuario" />
@@ -103,7 +103,7 @@ const CreateAccountPage: React.FC = () => {
                 value={formData.email}
                 onChange={handleInputChange}
                 required
-                className="form-field"
+                className="create-account-input"
               />
               <div className="field-icon">
                 <img src="/img/email-icon.png" alt="Email" />
@@ -119,7 +119,7 @@ const CreateAccountPage: React.FC = () => {
                 value={formData.password}
                 onChange={handleInputChange}
                 required
-                className="form-field"
+                className="create-account-input"
                 autoComplete="new-password"
               />
               <button
@@ -147,7 +147,7 @@ const CreateAccountPage: React.FC = () => {
                 value={formData.confirmPassword}
                 onChange={handleInputChange}
                 required
-                className="form-field"
+                className="create-account-input"
               />
               <button
                 type="button"

@@ -101,8 +101,8 @@ const LoginPage: React.FC = () => {
                   <img 
                     src={showPassword ? "/img/eye-off-icon.png" : "/img/eye-icon.png"} 
                     alt={showPassword ? "Ocultar contraseña" : "Mostrar contraseña"} 
-                    width="16" 
-                    height="16" 
+                    width="20" 
+                    height="20" 
                   />
                 </button>
               </div>

@@ -32,7 +32,6 @@ const CreateSalonPage: React.FC = () => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     
-    // Guardar los datos del salón
     updateUserData({
       salonName: formData.salonName,
       businessName: formData.businessName,
@@ -40,7 +39,6 @@ const CreateSalonPage: React.FC = () => {
       phone: formData.phone
     });
     
-    // Aquí iría la lógica para crear la peluquería
     goNext();
   };
 
@@ -49,13 +47,14 @@ const CreateSalonPage: React.FC = () => {
   };
 
   return (
-    <div className="create-salon-container">
-      {/* Sección izquierda - Formulario */}
+    <div className="create-salon-page">
+      {/* Sección del formulario */}
       <div className="form-section">
-        <div className="form-container">
-          <div className="step-indicator">
-            <span>02/05</span>
-            <div className="progress-dots">
+        <div className="form-wrapper">
+          {/* Indicador de progreso */}
+          <div className="progress-indicator">
+            <span className="step-text">02/05</span>
+            <div className="dots">
               <div className="dot active"></div>
               <div className="dot active"></div>
               <div className="dot"></div>
@@ -64,28 +63,25 @@ const CreateSalonPage: React.FC = () => {
             </div>
           </div>
           
-          <h1 className="form-title">Crea tu peluquería</h1>
-          <p className="form-subtitle">
-            Datos de tu establecimiento
-          </p>
+          <h1 className="page-title">Datos de tu establecimiento</h1>
           
-          <form onSubmit={handleSubmit} className="create-salon-form">
-            <div className="input-group">
+          <form onSubmit={handleSubmit} className="salon-form">
+            <div className="field-group">
               <input
                 type="text"
                 name="salonName"
-                placeholder="Nombre de la peluquería"
+                placeholder="Nombre del local"
                 value={formData.salonName}
                 onChange={handleInputChange}
                 required
-                className="form-input"
+                className="form-field"
               />
-              <div className="input-icon">
-                <img src="/img/user-icon.png" alt="Usuario" />
+              <div className="field-icon">
+                <img src="/img/home-icon.png" alt="Casa" />
               </div>
             </div>
 
-            <div className="input-group">
+            <div className="field-group">
               <input
                 type="text"
                 name="businessName"
@@ -93,71 +89,65 @@ const CreateSalonPage: React.FC = () => {
                 value={formData.businessName}
                 onChange={handleInputChange}
                 required
-                className="form-input"
+                className="form-field"
               />
-              <div className="input-icon">
-                <img src="/img/bag-icon.png" alt="Empresa" />
+              <div className="field-icon">
+                <img src="/img/building-icon.png" alt="Edificio" />
               </div>
             </div>
 
-            <div className="input-group">
+            <div className="field-group">
               <input
                 type="text"
                 name="address"
-                placeholder="Dirección del local"
+                placeholder="Dirección completa"
                 value={formData.address}
                 onChange={handleInputChange}
                 required
-                className="form-input"
+                className="form-field"
               />
-              <div className="input-icon">
+              <div className="field-icon">
                 <img src="/img/location-icon.png" alt="Ubicación" />
               </div>
             </div>
 
-            <div className="input-group">
+            <div className="field-group">
               <input
                 type="tel"
                 name="phone"
-                placeholder="Número de teléfono"
+                placeholder="Teléfono"
                 value={formData.phone}
                 onChange={handleInputChange}
                 required
-                className="form-input"
+                className="form-field"
               />
-              <div className="input-icon">
+              <div className="field-icon">
                 <img src="/img/phone-icon.png" alt="Teléfono" />
               </div>
             </div>
 
-            <div className="button-group">
+            <div className="action-buttons">
               <button 
                 type="button" 
-                className="back-button"
+                className="back-btn"
                 onClick={handleBackClick}
               >
-                <div className="button-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <polyline points="15,18 9,12 15,6"/>
-                  </svg>
+                <div className="back-btn-icon">
+                  <img src="/img/arrow-icon.png" alt="Volver" style={{transform: 'scaleX(-1)'}} />
                 </div>
               </button>
               
-              <button type="submit" className="next-button">
-                <span>Siguiente</span>
+              <button type="submit" className="next-btn">
+                Siguiente
               </button>
             </div>
           </form>
         </div>
       </div>
 
-      {/* Sección derecha - Imagen promocional */}
-      <div className="promotional-section">
-        <div className="promotional-image">
-          <div className="image-overlay">
-            
-          </div>
-        </div>
+      {/* Sección de imagen promocional */}
+      <div className="image-section">
+        <div className="promo-image"></div>
       </div>
     </div>
   );
