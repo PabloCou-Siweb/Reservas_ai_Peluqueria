@@ -132,14 +132,14 @@
   color: #1f2937;
 }
 
-/* Details */
+/* Details - Recreado desde cero para plantilla */
 .cita-confirmada-details {
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .details-title {
@@ -149,50 +149,60 @@
   margin: 0 0 16px 0;
 }
 
-.details-list {
+.details-table {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  align-items: center;
+  min-width: 100%;
 }
 
-.detail-item {
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 24px;
+  white-space: nowrap;
+}
+
+.detail-left {
   display: flex;
   align-items: center;
-  font-size: 14px;
-  color: #374151;
-  justify-content: space-between;
-  width: 100%;
-  text-align: left;
   gap: 8px;
-  position: relative;
+  flex: 1;
+}
+
+.detail-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 8px;
+  flex-wrap: nowrap;
 }
 
 .detail-bullet {
   color: #8C623E;
   font-size: 12px;
-  margin-right: 8px;
+  width: 8px;
+  flex-shrink: 0;
 }
 
 .detail-label {
+  font-size: 14px;
   font-weight: 400;
   color: #374151;
-  flex: 1;
-  margin-right: 16px;
 }
 
 .detail-value {
-  font-weight: 700 !important;
+  font-size: 14px;
+  font-weight: 700;
   color: #1a1a1a;
   text-align: right;
-  flex: 0 0 auto;
-  margin-left: auto;
-  white-space: nowrap;
 }
 
 .detail-duration {
   font-size: 13px;
-  font-weight: 400 !important;
+  font-weight: 400;
   color: #6b7280;
   text-align: right;
 }
@@ -284,6 +294,21 @@
     font-size: 15px;
   }
 
+  .detail-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .detail-right {
+    justify-content: flex-start;
+  }
+  
+  .detail-value,
+  .detail-duration {
+    text-align: left;
+  }
+  
   .detail-item,
   .confirmation-title,
   .details-title {

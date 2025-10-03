@@ -47,7 +47,7 @@ const ConfirmarReservaModal: React.FC<ConfirmarReservaModalProps> = ({
     <div className="modal-overlay">
       <div className="modal-content">
         <div className="modal-header">
-          <h2>Confirmar Reserva</h2>
+          <h2>¿Confirmar nueva cita?</h2>
           <button className="close-button" onClick={onClose}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="18" y1="6" x2="6" y2="18"/>
@@ -57,36 +57,69 @@ const ConfirmarReservaModal: React.FC<ConfirmarReservaModalProps> = ({
         </div>
 
         <div className="modal-body">
-          <div className="confirmation-info">
-            <h3>¿Confirmar la reserva para {clientName}?</h3>
-            {appointmentData && (
-              <div className="appointment-details">
-                <div className="detail-row">
-                  <span className="label">Especialidad:</span>
-                  <span className="value">{appointmentData.specialty}</span>
+          <p className="confirmation-text">
+            Por favor revisa cuidadosamente la información antes de confirmar la reserva de la cita.
+          </p>
+          
+          {appointmentData && (
+            <div className="resumen-container">
+              <h4 className="resumen-titulo">Resumen de la cita</h4>
+              <div className="resumen-grid">
+                <div className="resumen-columna">
+                  <div className="resumen-item">
+                    <span className="punto"></span>
+                    <span className="tipo-dato">Cliente:</span>
+                  </div>
+                  <div className="resumen-item">
+                    <span className="punto"></span>
+                    <span className="tipo-dato">Teléfono:</span>
+                  </div>
+                  <div className="resumen-item">
+                    <span className="punto"></span>
+                    <span className="tipo-dato">Especialidad:</span>
+                  </div>
+                  <div className="resumen-item">
+                    <span className="punto"></span>
+                    <span className="tipo-dato">Especialista:</span>
+                  </div>
+                  <div className="resumen-item">
+                    <span className="punto"></span>
+                    <span className="tipo-dato">Fecha y hora:</span>
+                  </div>
+                  <div className="resumen-item">
+                    <span className="punto"></span>
+                    <span className="tipo-dato">Duración:</span>
+                  </div>
+                  <div className="resumen-item">
+                    <span className="punto"></span>
+                    <span className="tipo-dato">Motivo de cita:</span>
+                  </div>
                 </div>
-                <div className="detail-row">
-                  <span className="label">Especialista:</span>
-                  <span className="value">{appointmentData.specialist}</span>
-                </div>
-                <div className="detail-row">
-                  <span className="label">Fecha:</span>
-                  <span className="value">{appointmentData.date}</span>
-                </div>
-                <div className="detail-row">
-                  <span className="label">Hora:</span>
-                  <span className="value">{appointmentData.time}</span>
-                </div>
-                <div className="detail-row">
-                  <span className="label">Duración:</span>
-                  <span className="value">{appointmentData.duration}</span>
-                </div>
-                <div className="detail-row">
-                  <span className="label">Motivo:</span>
-                  <span className="value">{appointmentData.reason}</span>
+                <div className="resumen-columna">
+                  <div className="valor-item">{appointmentData.client}</div>
+                  <div className="valor-item">{appointmentData.phone}</div>
+                  <div className="valor-item">{appointmentData.specialty}</div>
+                  <div className="valor-item">{appointmentData.specialist}</div>
+                  <div className="valor-item">{appointmentData.date} - {appointmentData.time}</div>
+                  <div className="valor-item">{appointmentData.duration}</div>
+                  <div className="valor-item">{appointmentData.reason}</div>
                 </div>
               </div>
-            )}
+            </div>
+          )}
+          
+          <div className="important-notice">
+            <div className="notice-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M12 9v4"/>
+                <path d="M12 17h.01"/>
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+            </div>
+            <div className="notice-text">
+              <h4>Importante</h4>
+              <p>Una vez confirmada la cita, se enviará una notificación al paciente y se bloqueará el horario seleccionado.</p>
+            </div>
           </div>
         </div>
 

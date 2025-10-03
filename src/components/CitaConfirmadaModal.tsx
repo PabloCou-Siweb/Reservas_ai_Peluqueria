@@ -85,51 +85,88 @@ const CitaConfirmadaModal: React.FC<CitaConfirmadaModalProps> = ({
           {/* Detalles de la cita */}
           <div className="cita-confirmada-details">
             <h3 className="details-title">Detalles de la cita</h3>
-            <div className="details-list">
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">Cliente: </span>
-                <span className="detail-value">{appointmentData.client}</span>
+            <div className="details-table">
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">Cliente:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.client}</span>
+                </div>
               </div>
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">N° de cliente: </span>
-                <span className="detail-value">{appointmentData.clientNumber}</span>
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">N° de cliente:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.clientNumber}</span>
+                </div>
               </div>
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">DNI: </span>
-                <span className="detail-value">{appointmentData.dni}</span>
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">DNI:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.dni}</span>
+                </div>
               </div>
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">Teléfono: </span>
-                <span className="detail-value">{appointmentData.phone}</span>
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">Teléfono:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.phone}</span>
+                </div>
               </div>
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">Email: </span>
-                <span className="detail-value">{appointmentData.email}</span>
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">Email:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.email}</span>
+                </div>
               </div>
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">Especialidad: </span>
-                <span className="detail-value">{appointmentData.specialty}</span>
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">Especialidad:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.specialty}</span>
+                </div>
               </div>
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">Especialista: </span>
-                <span className="detail-value">{appointmentData.specialist}</span>
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">Especialista:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.specialist}</span>
+                </div>
               </div>
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">Fecha y hora: </span>
-                <span className="detail-value">{appointmentData.date} - {appointmentData.time} <span className="detail-duration">Duración: {appointmentData.duration}</span></span>
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">Fecha y hora:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.date} - {appointmentData.time}</span>
+                  <span className="detail-duration">Duración: {appointmentData.duration}</span>
+                </div>
               </div>
-              <div className="detail-item">
-                <span className="detail-bullet">•</span>
-                <span className="detail-label">Motivo de cita: </span>
-                <span className="detail-value">{appointmentData.reason}</span>
+              <div className="detail-row">
+                <div className="detail-left">
+                  <span className="detail-bullet">•</span>
+                  <span className="detail-label">Motivo de consulta:</span>
+                </div>
+                <div className="detail-right">
+                  <span className="detail-value">{appointmentData.reason}</span>
+                </div>
               </div>
             </div>
           </div>
