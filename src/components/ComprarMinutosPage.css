@@ -63,27 +63,40 @@
   width: 100%;
 }
 
-.comprar-minutos-container .back-btn {
+.comprar-minutos-container .page-back-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  background: white;
-  border: none;
-  border-radius: 8px;
+  width: auto;
+  height: auto;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: #000000 !important;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: none;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
-.comprar-minutos-container .back-btn:hover {
-  background: #f9fafb;
+.comprar-minutos-container .page-back-btn:hover {
+  background: transparent !important;
+  color: #000000 !important;
+  box-shadow: none !important;
 }
 
-.comprar-minutos-container .back-btn svg {
-  width: 20px;
-  height: 20px;
-  stroke: #374151;
+.comprar-minutos-container .page-back-btn:focus {
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.comprar-minutos-container .page-back-btn svg {
+  stroke: #000000 !important;
+  fill: none !important;
+  width: 28px !important;
+  height: 28px !important;
 }
 
 .comprar-minutos-container .header-title-section h1 {

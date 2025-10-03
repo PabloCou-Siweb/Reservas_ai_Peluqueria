@@ -38,6 +38,18 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
     setIsModalOpen(true);
   };
 
+  const handleNewAppointmentClick = (time: string) => {
+    // Navigate to Nueva Cita page
+    // TODO: Pass selected time, date, and specialist data to the new appointment page
+    console.log('Creating new appointment for:', {
+      specialty: specialty,
+      specialist: selectedSpecialist,
+      date: `${currentYear}-${String(currentMonth + 1).padStart(2, '0')}-${String(selectedDate).padStart(2, '0')}`,
+      time: time
+    });
+    navigateToNuevaCita();
+  };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
@@ -326,223 +338,255 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
 
       {/* Main Content */}
       <div className="main-content">
-        <div className="main-header">
-          <div className="header-left">
-            <div className="header-title-section">
-              <button 
-                className="back-button"
-                onClick={() => navigateTo('dashboard')}
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <polyline points="15,18 9,12 15,6"/>
-                </svg>
-              </button>
-              <h1 className="main-title">Citas</h1>
-            </div>
-            <div className="breadcrumb">
-              <span>Citas</span>
-              <span>/</span>
-              <span>{specialty}</span>
-            </div>
-          </div>
-          <div className="header-right">
-            <div className="header-actions">
-              <button className="nueva-cita-btn" onClick={navigateToNuevaCita}>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <line x1="12" y1="5" x2="12" y2="19"/>
-                  <line x1="5" y1="12" x2="19" y2="12"/>
-                </svg>
-                Nueva cita
-              </button>
-              <div className="notification-icon">
-                <img src="/img/notification-icon.png" alt="Notificaciones" />
-                <div className="notification-dot"></div>
+        <header className="citas-header">
+          <div className="header-content">
+            <div className="header-top-row">
+              <div className="breadcrumb-nav">
+                <span className="breadcrumb-item">Citas</span>
+                <span className="breadcrumb-separator">/</span>
+                <span className="breadcrumb-current">{specialty}</span>
               </div>
-              <div className="settings-icon" onClick={() => navigateTo('configuracion')}>
-                <img src="/img/settings-icon.png" alt="Configuración" />
+              
+              <div className="header-right-section">
+                <button className="icon-button notification-btn">
+                  <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
+                  <span className="notification-badge"></span>
+                </button>
+                
+                <button className="icon-button settings-btn" onClick={() => navigateTo('configuracion')}>
+                  <img src="/img/settings-icon.png" alt="Configuración" width="20" height="20" />
+                </button>
               </div>
             </div>
+            
+            <div className="title-section">
+                <button 
+                  className="page-back-btn"
+                  onClick={() => navigateTo('dashboard')}
+                  aria-label="Volver al dashboard"
+                >
+                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5">
+                    <polyline points="15,18 9,12 15,6"/>
+                  </svg>
+                </button>
+              <span className="page-title">Citas</span>
+            </div>
           </div>
-        </div>
+        </header>
 
         {/* Próxima cita disponible */}
         <div className="next-appointment-section">
-          <div className="next-appointment-card">
-                <div className="appointment-info">
-                  <h3>Próxima cita disponible</h3>
-                  <p>Cita de {specialty.toLowerCase()}</p>
-              <div className="specialist-info">
-                <div className="specialist-avatar">
-                  <div className="avatar-placeholder">LM</div>
+          <h2 className="section-title">Próxima cita disponible</h2>
+          <div className="appointment-content">
+            <div className="specialist-info">
+              <div className="specialist-main-info">
+                <div className="user-placeholder">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
                 </div>
                 <div className="specialist-details">
-                  <span className="specialist-name">Laura Martinez</span>
-                  <span className="specialist-role">Peluquera</span>
-                  <span className="specialist-consulta">Consulta 105</span>
+                  <div className="specialist-name">Laura Martinez</div>
+                  <div className="specialist-role">Peluquera</div>
+                  <div className="specialist-office">Consulta 105</div>
                 </div>
               </div>
-              <div className="appointment-fields">
-                <div className="field-group">
-                  <label>Fecha</label>
-                  <input type="text" value="25/02/2025" readOnly />
+              
+              <div className="appointment-inputs">
+                <div className="input-group">
+                  <label className="input-label">Fecha</label>
+                  <input type="text" className="appointment-input" value="25/02/2025" readOnly />
                 </div>
-                <div className="field-group">
-                  <label>Hora</label>
-                  <input type="text" value="09:00" readOnly />
+                <div className="input-group">
+                  <label className="input-label">Hora</label>
+                  <input type="text" className="appointment-input" value="09:00" readOnly />
                 </div>
               </div>
             </div>
-            <button className="reserve-button" onClick={handleReservarClick}>Reservar ahora</button>
+            
+            <button className="reserve-button" onClick={handleReservarClick}>
+              Reservar ahora
+            </button>
           </div>
         </div>
 
-        <div className="citas-content">
-          <div className="citas-layout">
-            {/* Column 1 - Specialists */}
-            <div className="specialists-column">
-              <div className="specialists-section">
-                <h2 className="specialists-title">Selecciona un especialista</h2>
-                <div className="specialists-search">
-                  <input
-                    type="text"
-                    placeholder="Buscar especialista..."
-                    value={specialistSearch}
-                    onChange={(e) => setSpecialistSearch(e.target.value)}
-                    className="specialist-search-input"
-                  />
-                  <div className="search-icon">
-                    <img src="/img/search-icon.png" alt="Buscar" />
+        {/* Search Specialist Section */}
+        <div className="search-specialist-section">
+          <div className="search-input-container">
+            <input
+              type="text"
+              placeholder="Buscar especialista..."
+              value={specialistSearch}
+              onChange={(e) => setSpecialistSearch(e.target.value)}
+              className="search-specialist-input"
+            />
+            <div className="search-icon">
+              <img src="/img/search-icon.png" alt="Buscar" width="16" height="16" />
+            </div>
+          </div>
+        </div>
+
+        <div className="main-content-layout">
+          {/* Left Column - Specialists List */}
+          <div className="specialists-section">
+            <div className="specialists-list">
+              {filteredEspecialistas.map((especialista) => (
+                <div 
+                  key={especialista.id}
+                  className={`specialist-card ${selectedSpecialist === especialista.id.toString() ? 'selected' : ''}`}
+                  onClick={() => setSelectedSpecialist(especialista.id.toString())}
+                >
+                  <div className="specialist-avatar">
+                    <div className="avatar-placeholder">
+                      {especialista.nombre.split(' ').map(n => n[0]).join('')}
+                    </div>
+                  </div>
+                  <div className="specialist-details">
+                    <div className="specialist-name">{especialista.nombre}</div>
+                    <div className="specialist-role">{especialista.rol}</div>
+                    <div className="specialist-office">{especialista.consulta}</div>
                   </div>
                 </div>
-                <div className="specialists-list">
-                  {filteredEspecialistas.map((especialista) => (
-                    <div 
-                      key={especialista.id}
-                      className={`specialist-card ${selectedSpecialist === especialista.id.toString() ? 'selected' : ''}`}
-                      onClick={() => setSelectedSpecialist(especialista.id.toString())}
-                    >
-                      <div className="specialist-avatar">
-                        <div className="avatar-placeholder">
-                          {especialista.nombre.split(' ').map(n => n[0]).join('')}
-                        </div>
-                      </div>
-                      <div className="specialist-info">
-                        <span className="specialist-name">{especialista.nombre}</span>
-                        <span className="specialist-role">{especialista.rol}</span>
-                        <span className="specialist-consulta">{especialista.consulta}</span>
-                      </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Column - Calendar and Schedule */}
+          <div className="calendar-schedule-section">
+            <div className="calendar-and-summary">
+              {/* Combined Calendar and Summary Widget */}
+              <div className="calendar-widget">
+                <div className="calendar-header">
+                  <button 
+                    className="calendar-nav-btn"
+                    onClick={() => navigateMonth('prev')}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="15,18 9,12 15,6"/>
+                    </svg>
+                  </button>
+                  <h3 className="calendar-title">{monthNames[currentMonth]}, {currentYear}</h3>
+                  <button 
+                    className="calendar-nav-btn"
+                    onClick={() => navigateMonth('next')}
+                  >
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9,18 15,12 9,6"/>
+                    </svg>
+                  </button>
+                </div>
+
+                <div className="calendar-days-header">
+                  {dayNames.map((day, index) => (
+                    <div key={index} className="day-header">
+                      {day}
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
 
-            {/* Column 2 - Calendar */}
-            <div className="calendar-column">
-              <div className="calendar-section">
-                <div className="calendar-widget">
-                  <div className="calendar-header">
-                    <button 
-                      className="calendar-nav-btn"
-                      onClick={() => navigateMonth('prev')}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="15,18 9,12 15,6"/>
-                      </svg>
-                    </button>
-                    <h2 className="calendar-title">
-                      {monthNames[currentMonth]}, {currentYear}
-                    </h2>
-                    <button 
-                      className="calendar-nav-btn"
-                      onClick={() => navigateMonth('next')}
-                    >
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <polyline points="9,18 15,12 9,6"/>
-                      </svg>
-                    </button>
-                  </div>
-
-                  <div className="calendar-days-header">
-                    {dayNames.map((day, index) => (
-                      <div key={index} className="day-header">
+                <div className="calendar-grid">
+                  {days.map((day, index) => {
+                    const startingDayOfWeek = (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7;
+                    const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+                    const isCurrentMonth = index >= startingDayOfWeek && index < startingDayOfWeek + daysInMonth;
+                    const isSelected = day === selectedDate && isCurrentMonth;
+                    
+                    return (
+                      <button
+                        key={index}
+                        className={`calendar-day ${isSelected ? 'selected' : ''} ${!isCurrentMonth ? 'other-month' : ''}`}
+                        onClick={() => day && isCurrentMonth && setSelectedDate(day)}
+                        disabled={!day || !isCurrentMonth}
+                      >
                         {day}
-                      </div>
-                    ))}
-                  </div>
+                      </button>
+                    );
+                  })}
+                </div>
 
-                  <div className="calendar-grid">
-                    {days.map((day, index) => {
-                      const startingDayOfWeek = (new Date(currentYear, currentMonth, 1).getDay() + 6) % 7;
-                      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
-                      const isCurrentMonth = index >= startingDayOfWeek && index < startingDayOfWeek + daysInMonth;
-                      const isSelected = day === selectedDate && isCurrentMonth;
-                      
-                      return (
-                        <button
-                          key={index}
-                          className={`calendar-day ${isSelected ? 'selected' : ''} ${!isCurrentMonth ? 'other-month' : ''}`}
-                          onClick={() => day && isCurrentMonth && setSelectedDate(day)}
-                          disabled={!day || !isCurrentMonth}
-                        >
-                          {day}
-                        </button>
-                      );
-                    })}
+                {/* Day Summary integrated in the same widget */}
+                <div className="day-summary-integrated">
+                  <h3 className="summary-title">Resumen de día</h3>
+                  <div className="summary-stats">
+                    <div className="stat-item">
+                      <span className="stat-label">Citas confirmadas</span>
+                      <span className="stat-value">5</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Citas disponibles</span>
+                      <span className="stat-value">4</span>
+                    </div>
+                    <div className="stat-item">
+                      <span className="stat-label">Próxima cita disponible</span>
+                      <span className="stat-value">09:00</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Column 3 - Appointments */}
-            <div className="appointments-column">
-              <div className="appointments-section">
-                <div className="appointments-header">
-                  <h2 className="appointments-title">Próximas citas</h2>
-                  <div className="appointments-filters">
-                    <button className="filter-btn active">Todas</button>
-                    <button className="filter-btn">Confirmadas</button>
-                    <button className="filter-btn">Pendientes</button>
-                  </div>
-                </div>
-
-                <div className="appointments-list">
-                  {filteredCitas.map((cita) => (
-                    <div key={cita.id} className="appointment-card">
-                      <div className="appointment-info">
-                        <div className="appointment-client">
-                          <h3 className="client-name">{cita.cliente}</h3>
-                          <span className="appointment-service">{cita.servicio}</span>
-                        </div>
-                        <div className="appointment-details">
-                          <div className="appointment-specialist">
-                            <span className="detail-label">Especialista:</span>
-                            <span className="detail-value">{cita.especialista}</span>
-                          </div>
-                          <div className="appointment-date">
-                            <span className="detail-label">Fecha:</span>
-                            <span className="detail-value">{cita.fecha}</span>
-                          </div>
-                          <div className="appointment-time">
-                            <span className="detail-label">Hora:</span>
-                            <span className="detail-value">{cita.hora}</span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="appointment-actions">
-                        <span className={`status-badge ${cita.estado}`}>
-                          {cita.estado === 'confirmada' ? 'CONFIRMADA' : 'PENDIENTE'}
-                        </span>
-                        <button 
-                          className="action-btn three-dots-btn"
-                          onClick={(e) => handleContextMenuOpen(e, cita.cliente, cita.id)}
+            {/* Daily Schedule */}
+            <div className="daily-schedule">
+              <div className="schedule-header">
+                <h3 className="schedule-date">{String(selectedDate).padStart(2, '0')} {monthNames[currentMonth]} {currentYear}</h3>
+              </div>
+              <div className="schedule-timeline">
+                {Array.from({ length: 16 }, (_, i) => {
+                  const hour = i + 8; // Start from 8:00 to 23:30
+                  const time = `${hour.toString().padStart(2, '0')}:00`;
+                  const halfHourTime = `${hour.toString().padStart(2, '0')}:30`;
+                  
+                  // Check if there are appointments at these times
+                  const appointmentAtFullHour = filteredCitas.find(cita => cita.hora === time);
+                  const appointmentAtHalfHour = filteredCitas.find(cita => cita.hora === halfHourTime);
+                  
+                  return (
+                    <React.Fragment key={hour}>
+                      {/* Full hour slot */}
+                      <div className="time-slot">
+                        <div className="time-label">{time}</div>
+                        <div 
+                          className={`appointment-slot ${!appointmentAtFullHour ? 'empty-slot' : ''}`}
+                          onClick={() => !appointmentAtFullHour && handleNewAppointmentClick(time)}
                         >
-                          <img src="/img/3dots-icon.png" alt="Opciones" width="16" height="16" />
-                        </button>
+                          {appointmentAtFullHour ? (
+                            <div className="appointment-block">
+                              <div className="appointment-title">Cita {appointmentAtFullHour.servicio}</div>
+                              <div className="appointment-client">{appointmentAtFullHour.cliente}</div>
+                              <div className="appointment-specialist">{appointmentAtFullHour.especialista}</div>
+                            </div>
+                          ) : (
+                            <div className="empty-slot-content">
+                              <span className="add-appointment-text">+ Agregar cita</span>
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
+                      
+                      {/* Half hour slot */}
+                      <div className="time-slot">
+                        <div className="time-label">{halfHourTime}</div>
+                        <div 
+                          className={`appointment-slot ${!appointmentAtHalfHour ? 'empty-slot' : ''}`}
+                          onClick={() => !appointmentAtHalfHour && handleNewAppointmentClick(halfHourTime)}
+                        >
+                          {appointmentAtHalfHour ? (
+                            <div className="appointment-block">
+                              <div className="appointment-title">Cita {appointmentAtHalfHour.servicio}</div>
+                              <div className="appointment-client">{appointmentAtHalfHour.cliente}</div>
+                              <div className="appointment-specialist">{appointmentAtHalfHour.especialista}</div>
+                            </div>
+                          ) : (
+                            <div className="empty-slot-content">
+                              <span className="add-appointment-text">+ Agregar cita</span>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </React.Fragment>
+                  );
+                })}
               </div>
             </div>
           </div>

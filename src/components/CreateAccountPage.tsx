@@ -181,10 +181,10 @@ const CreateAccountPage: React.FC = () => {
             <div className="action-buttons">
               <button 
                 type="button" 
-                className="back-btn"
+                className="creation-back-btn"
                 onClick={handleBackClick}
               >
-                <div className="back-btn-icon">
+                <div className="creation-back-btn-icon">
                   <img src="/img/arrow-icon.png" alt="Volver" style={{transform: 'scaleX(-1)'}} />
                 </div>
               </button>

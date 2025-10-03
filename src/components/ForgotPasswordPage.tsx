@@ -67,10 +67,10 @@ const ForgotPasswordPage: React.FC = () => {
             <div className="button-group">
               <button 
                 type="button" 
-                className="forgot-password-back-button"
+                className="creation-back-btn"
                 onClick={handleBackClick}
               >
-                <div className="forgot-password-back-button-icon">
+                <div className="creation-back-btn-icon">
                   <img src="/img/arrow-icon.png" alt="Arrow" width="20" height="20" style={{transform: 'scaleX(-1)'}} />
                 </div>
               </button>

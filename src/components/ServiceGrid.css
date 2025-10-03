@@ -65,7 +65,7 @@
 }
 
 .service-name {
-  font-size: 17px;
+  font-size: 20px;
   font-weight: 600;
   color: #212529;
   margin: 0 0 8px 0;
@@ -119,7 +119,7 @@
   }
   
   .service-name {
-    font-size: 15px;
+    font-size: 18px;
   }
   
   .service-specialists {
@@ -150,7 +150,7 @@
   }
   
   .service-name {
-    font-size: 13px;
+    font-size: 16px;
   }
   
   .service-specialists {

@@ -131,9 +131,9 @@ const ComprarMinutosPage: React.FC = () => {
             </div>
           </div>
           <div className="header-title-section">
-            <button className="back-btn" onClick={() => navigateTo('dashboard')}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M15 18l-6-6 6-6"/>
+            <button className="page-back-btn" onClick={() => navigateTo('dashboard')}>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5">
+                <polyline points="15,18 9,12 15,6"/>
               </svg>
             </button>
             <h1>Comprar más minutos</h1>
