@@ -367,6 +367,7 @@
 .summary-column {
   display: flex;
   flex-direction: column;
+
 }
 
 .summary-item {
@@ -586,8 +587,7 @@
   .btn-confirm {
     width: 100%;
   }
-}
-@media (max-width: 480px) {
+}@media (max-width: 480px) {
   .main-content {
     padding: 2px 4px;
   }
