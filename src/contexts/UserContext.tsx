@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface UserData {
   salonName: string;
@@ -10,6 +10,7 @@ interface UserData {
 
 interface UserContextType {
   userData: UserData;
+  isAuthenticated: boolean;
   updateUserData: (data: Partial<UserData>) => void;
   login: (data: UserData) => void;
   logout: () => void;
@@ -30,26 +31,34 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     phone: ''
   });
 
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
   const updateUserData = (data: Partial<UserData>) => {
-    setUserData(prev => ({ ...prev, ...data }));
+    setUserData(prev => {
+      const newData = { ...prev, ...data };
+      return newData;
+    });
   };
 
   const login = (data: UserData) => {
     setUserData(data);
+    setIsAuthenticated(true);
   };
 
   const logout = () => {
-    setUserData({
+    const defaultData = {
       salonName: 'Mi Peluquería',
       email: 'usuario@ejemplo.com',
       businessName: '',
       address: '',
       phone: ''
-    });
+    };
+    setUserData(defaultData);
+    setIsAuthenticated(false);
   };
 
   return (
-    <UserContext.Provider value={{ userData, updateUserData, login, logout }}>
+    <UserContext.Provider value={{ userData, isAuthenticated, updateUserData, login, logout }}>
       {children}
     </UserContext.Provider>
   );

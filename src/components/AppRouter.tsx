@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
+import { useUser } from '../contexts/UserContext';
 import LoginPage from './LoginPage';
 import ForgotPasswordPage from './ForgotPasswordPage';
 import CreateAccountPage from './CreateAccountPage';
@@ -29,6 +30,12 @@ import ComprarMinutosPage from './ComprarMinutosPage';
 
 const AppRouter: React.FC = () => {
   const { currentPage, selectedSpecialty } = useNavigation();
+  const { isAuthenticated } = useUser();
+
+  // Si no está autenticado, siempre mostrar login
+  if (!isAuthenticated && currentPage !== 'login' && currentPage !== 'forgot-password' && currentPage !== 'create-account') {
+    return <LoginPage />;
+  }
 
   switch (currentPage) {
     case 'login':

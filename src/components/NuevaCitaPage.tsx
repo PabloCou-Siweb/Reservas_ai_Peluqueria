@@ -12,15 +12,15 @@ const NuevaCitaPage: React.FC = () => {
   const [isCitaAgendadaOpen, setIsCitaAgendadaOpen] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
-    telefono: '+34 622 02 58 26',
-    email: 'juan@gmail.com',
-    tipoDocumento: 'DNI',
-    numeroDocumento: '3597846850',
-    medico: 'Dr. Martinez de la Rosa',
-    fecha: '09-10-2025',
-    hora: '08:30',
-    duracion: '30 minutos',
-    motivo: 'Corte de cabello',
+    telefono: '',
+    email: '',
+    tipoDocumento: '',
+    numeroDocumento: '',
+    estilista: '',
+    fecha: '',
+    hora: '',
+    duracion: '',
+    motivo: '',
     notas: ''
   });
 
@@ -52,7 +52,7 @@ const NuevaCitaPage: React.FC = () => {
     setIsCitaAgendadaOpen(true);
   };
 
-  const handleCitaAgendadaClose = () => {
+const handleCitaAgendadaClose = () => {
     setIsCitaAgendadaOpen(false);
     navigateTo('citas');
   };
@@ -96,14 +96,15 @@ const NuevaCitaPage: React.FC = () => {
               <span className="page-title">Nueva cita</span>
             </div>
             
-            <p className="page-description">Complete el formulario para agendar una nueva cita médica. Seleccione el médico, fecha y hora disponible.</p>
+            <p className="page-description">Complete el formulario para agendar una nueva cita. Seleccione el estilista, fecha y hora disponible.</p>
           </div>
         </header>
 
         {/* Formulario */}
         <form className="nueva-cita-form" onSubmit={handleSubmit}>
-          {/* Datos del cliente */}
-          <div className="form-section">
+          
+          {/* Sección 1: Datos del cliente */}
+          <div className="form-section client-data-section">
             <div className="section-header">
               <div className="header-icon">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -123,75 +124,68 @@ const NuevaCitaPage: React.FC = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <div className="search-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="M21 21l-4.35-4.35"/>
-                  </svg>
-                </div>
               </div>
-
+              
               <div className="form-grid">
                 <div className="form-group">
-                  <label htmlFor="nombre">Nombre completo</label>
+                  <label>Nombre completo</label>
                   <input
                     type="text"
-                    id="nombre"
                     name="nombre"
-                    placeholder="Ej: Juan Pérez Izquierdo"
                     value={formData.nombre}
                     onChange={handleInputChange}
+                    placeholder="Juan Pérez Izquierdo"
                     required
                   />
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="telefono">Teléfono</label>
+                  <label>Teléfono</label>
                   <input
                     type="tel"
-                    id="telefono"
                     name="telefono"
                     value={formData.telefono}
                     onChange={handleInputChange}
+                    placeholder="+34 622 02 58 26"
                     required
                   />
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="email">Correo electrónico</label>
+                  <label>Correo electrónico</label>
                   <input
                     type="email"
-                    id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
+                    placeholder="juan@gmail.com"
                     required
                   />
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="tipoDocumento">Tipo de documento</label>
+                  <label>Tipo de documento</label>
                   <select
-                    id="tipoDocumento"
                     name="tipoDocumento"
                     value={formData.tipoDocumento}
                     onChange={handleInputChange}
                     required
                   >
+                    <option value="">Seleccionar tipo</option>
                     <option value="DNI">DNI</option>
                     <option value="NIE">NIE</option>
                     <option value="Pasaporte">Pasaporte</option>
                   </select>
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="numeroDocumento">Nº de documento</label>
+                  <label>N° de documento</label>
                   <input
                     type="text"
-                    id="numeroDocumento"
                     name="numeroDocumento"
                     value={formData.numeroDocumento}
                     onChange={handleInputChange}
+                    placeholder="359784685Q"
                     required
                   />
                 </div>
@@ -199,11 +193,16 @@ const NuevaCitaPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Detalles de la cita */}
-          <div className="form-section">
+          {/* Sección 2: Detalles de la cita */}
+          <div className="form-section appointment-details-section">
             <div className="section-header">
               <div className="header-icon">
-                <img src="/img/scissor-icon.png" alt="Tijeras" width="16" height="16" />
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
               </div>
               <h3>Detalles de la cita</h3>
             </div>
@@ -211,26 +210,26 @@ const NuevaCitaPage: React.FC = () => {
             <div className="section-content">
               <div className="form-grid">
                 <div className="form-group">
-                  <label htmlFor="medico">Médico</label>
+                  <label>Estilista</label>
                   <input
                     type="text"
-                    id="medico"
-                    name="medico"
-                    value={formData.medico}
+                    name="estilista"
+                    value={formData.estilista}
                     onChange={handleInputChange}
+                    placeholder="María García"
                     required
                   />
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="fecha">Fecha</label>
+                  <label>Fecha</label>
                   <div className="input-with-icon">
                     <input
                       type="text"
-                      id="fecha"
                       name="fecha"
                       value={formData.fecha}
                       onChange={handleInputChange}
+                      placeholder="09-10-2025"
                       required
                     />
                     <div className="input-icon">
@@ -243,16 +242,16 @@ const NuevaCitaPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="hora">Hora</label>
+                  <label>Hora</label>
                   <div className="input-with-icon">
                     <input
                       type="text"
-                      id="hora"
                       name="hora"
                       value={formData.hora}
                       onChange={handleInputChange}
+                      placeholder="08:30"
                       required
                     />
                     <div className="input-icon">
@@ -263,53 +262,50 @@ const NuevaCitaPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="duracion">Duración</label>
+                  <label>Duración</label>
                   <select
-                    id="duracion"
                     name="duracion"
                     value={formData.duracion}
                     onChange={handleInputChange}
                     required
                   >
+                    <option value="">Seleccionar duración</option>
                     <option value="30 minutos">30 minutos</option>
                     <option value="45 minutos">45 minutos</option>
                     <option value="60 minutos">60 minutos</option>
                     <option value="90 minutos">90 minutos</option>
+                    <option value="120 minutos">120 minutos</option>
                   </select>
                 </div>
-
+                
                 <div className="form-group">
-                  <label htmlFor="motivo">Motivo de la cita</label>
+                  <label>Motivo de la cita</label>
                   <input
                     type="text"
-                    id="motivo"
                     name="motivo"
                     value={formData.motivo}
                     onChange={handleInputChange}
+                    placeholder="Corte de cabello"
                     required
                   />
                 </div>
               </div>
               
-              {/* Notas adicionales */}
               <div className="section-subtitle-container">
-                <h4 className="section-subtitle">Notas adicionales</h4>
-                <div className="form-group full-width">
+                <div className="section-subtitle">Notas adicionales</div>
+                <div className="form-group">
                   <textarea
-                    id="notas"
                     name="notas"
                     value={formData.notas}
                     onChange={handleInputChange}
-                    rows={4}
                     placeholder="Información adicional que consideres relevante..."
                   />
                 </div>
               </div>
             </div>
           </div>
-
 
           {/* Resumen de la cita */}
           <div className="appointment-summary">
@@ -318,27 +314,28 @@ const NuevaCitaPage: React.FC = () => {
               <div className="summary-column">
                 <div className="summary-item">
                   <div className="summary-label-row">
-                    <span className="summary-dot specialist-dot"></span>
-                    <span className="summary-label">Especialista</span>
+                    <div className="summary-dot specialist-dot"></div>
+                    <span className="summary-label">Estilista</span>
                   </div>
-                  <div className="summary-value">José Martínez Soria</div>
-                  <div className="summary-duration">Peluquera</div>
+                  <div className="summary-value">Ana Gómez, Peluquera</div>
                 </div>
               </div>
+              
               <div className="summary-column">
                 <div className="summary-item">
                   <div className="summary-label-row">
-                    <span className="summary-dot date-time-dot"></span>
+                    <div className="summary-dot date-time-dot"></div>
                     <span className="summary-label">Fecha y hora</span>
                   </div>
                   <div className="summary-value">2025/08/08 - 08:00</div>
                   <div className="summary-duration">Duración: 30 minutos</div>
                 </div>
               </div>
+              
               <div className="summary-column">
                 <div className="summary-item">
                   <div className="summary-label-row">
-                    <span className="summary-dot client-dot"></span>
+                    <div className="summary-dot client-dot"></div>
                     <span className="summary-label">Cliente</span>
                   </div>
                   <div className="summary-value">Elena Ruiz González</div>
@@ -348,43 +345,49 @@ const NuevaCitaPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Action Buttons */}
+          {/* Botones de acción */}
           <div className="form-actions">
-            <button type="button" className="btn-cancel" onClick={handleCancel}>
+            <button 
+              type="button" 
+              className="btn-cancel" 
+              onClick={handleCancel}
+            >
               Cancelar
             </button>
-            <button type="submit" className="btn-confirm">
+            <button 
+              type="submit" 
+              className="btn-confirm"
+            >
               Confirmar
             </button>
           </div>
         </form>
 
-        {/* Copyright sin footer */}
+        {/* Copyright */}
         <div className="copyright-container">
           <span>© 2025 Bokifly</span>
         </div>
       </div>
 
-      {/* Modal de Confirmación */}
+      {/* Modales */}
       <ConfirmarCitaModal
         isOpen={isConfirmModalOpen}
         onClose={handleConfirmModalClose}
         onConfirm={handleConfirmModalConfirm}
         appointmentData={{
           cliente: {
-            nombre: formData.nombre || 'Elena Ruiz González',
-            telefono: formData.telefono || '+34 620 25 64'
+            nombre: formData.nombre,
+            telefono: formData.telefono
           },
-          especialidad: 'Corte',
-          especialista: formData.medico || 'Laura Fernández',
-          fecha: formData.fecha || '2025/08/09',
-          hora: formData.hora || '09:30',
-          duracion: formData.duracion || '45 minutos',
-          motivo: formData.motivo || 'Corte Mantenimiento y corte de cabello'
+          especialidad: 'Peluquería',
+          especialista: formData.estilista,
+          fecha: formData.fecha,
+          hora: formData.hora,
+          duracion: formData.duracion,
+          motivo: formData.motivo
         }}
       />
 
-      {/* Modal de Cita Agendada */}
       <CitaAgendadaModal
         isOpen={isCitaAgendadaOpen}
         onClose={handleCitaAgendadaClose}

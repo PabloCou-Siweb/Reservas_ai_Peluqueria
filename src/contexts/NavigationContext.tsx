@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 export type PageType =
   | 'login'
@@ -67,6 +67,7 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = ({ children
 
   const navigateTo = (page: PageType) => {
     setCurrentPage(page);
+    // No guardar en localStorage para evitar problemas de persistencia
   };
 
   const navigateToCitas = (specialty: string) => {

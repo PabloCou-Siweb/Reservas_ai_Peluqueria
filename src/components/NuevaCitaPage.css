@@ -1,16 +1,25 @@
 /* Nueva Cita Page - Compacto */
+html, body {
+  background: white !important;
+}
+
 .nueva-cita-container {
   display: flex;
   min-height: 100vh;
-  background: white;
+  background: white !important;
+}
+
+/* Fondo blanco para todos los elementos excepto los que necesitan color específico */
+.nueva-cita-container > *:not(.section-header):not(.header-icon):not(.appointment-summary):not(.summary-dot) {
+  background: white !important;
 }
 
 .main-content {
   flex: 1;
   width: calc(100vw - 280px);
   margin-left: 280px;
-  padding: 16px 24px 40px 24px;
-  background: white;
+  padding: 0;
+  background: white !important;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -27,7 +36,7 @@
 
 /* Header Styles - Siguiendo plantilla de CitasPage */
 .nueva-cita-header {
-  background: #ffffff;
+  background: white !important;
   border-bottom: none;
   padding: 0;
 }
@@ -39,6 +48,7 @@
   padding: 24px 32px;
   max-width: 100%;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .header-top-row {
@@ -163,16 +173,36 @@
 .nueva-cita-form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
   box-sizing: border-box;
   max-width: 100%;
+  padding: 0 32px 40px 32px;
 }
 
 /* Form Section - Recreado desde cero */
 .form-section {
   margin-bottom: 24px;
   margin-top: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+}
+
+.client-data-section {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.appointment-details-section {
+  margin-bottom: 60px;
+  margin-top: 24px;
+  z-index: 2;
+  width: 100%;
+  box-sizing: border-box;
+  clear: both;
+  position: relative;
 }
 
 .section-header {
@@ -182,10 +212,13 @@
   border-radius: 12px;
   margin-bottom: 0;
   width: 100%;
+  max-width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
   min-height: 70px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .header-icon {
@@ -210,19 +243,33 @@
 
 /* Section Content - Sin bordes, ajustado a plantilla */
 .section-content {
-  background: white;
+  background: white !important;
   border-radius: 0 0 12px 12px;
   padding: 20px;
   margin-bottom: 0;
   box-sizing: border-box;
   width: 100%;
+  max-width: 100%;
   display: block;
   text-align: left;
+  overflow: hidden;
+}
+
+.client-data-section .section-content {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
+  justify-content: flex-start;
 }
 
 .section-subtitle-container {
-  margin-top: 20px;
-  padding-top: 20px;
+  margin-top: -20px;
+  padding-top: 2px;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 .section-subtitle {
@@ -232,58 +279,82 @@
   margin: 0 0 12px 0;
 }
 
-/* Search Container - Movido a la izquierda */
+/* Search Container - Alineado a la izquierda */
 .search-container {
   position: relative;
   margin-bottom: 20px;
-  width: 100%;
-  max-width: 400px;
+  width: 350px;
+  max-width: 350px;
   text-align: left;
-  margin-left: 0;
-  margin-right: auto;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+  display: block;
+  align-self: flex-start;
+  float: left;
 }
 
 .search-input {
   width: 100%;
-  padding: 12px 16px 12px 40px;
+  padding: 12px 40px 12px 16px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 14px;
   background: #f9fafb;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
   color: #374151;
   outline: none;
   transition: all 0.2s ease;
   min-height: 44px;
+  box-sizing: border-box;
 }
 
 .search-input:focus {
   border-color: #6B4423;
-  background: white;
+  background-color: white;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E");
   box-shadow: 0 0 0 3px rgba(107, 68, 35, 0.1);
 }
 
-.search-icon {
-  position: absolute;
-  left: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #9ca3af;
-  pointer-events: none;
-}
-
 /* Form Grid - Ajustado a plantilla */
-.nueva-cita-page .form-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  gap: 20px;
+.form-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
+  gap: 20px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  padding-bottom: 20px;
 }
 
-.nueva-cita-page .client-data-section .form-grid {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+/* Ajustar solo el div de detalles de la cita */
+.appointment-details-section {
+  width: calc(100% - 40px) !important;
+  max-width: calc(100% - 40px) !important;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+  box-sizing: border-box !important;
 }
 
-.nueva-cita-page .appointment-details-section .form-grid {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+.appointment-details-section .section-header {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.appointment-details-section .section-content {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.appointment-details-section .form-grid {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 /* Form Groups compactos */
@@ -309,6 +380,9 @@
   background: white;
   transition: all 0.3s ease;
   min-height: 48px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -322,6 +396,9 @@
 .form-group textarea {
   resize: vertical;
   min-height: 80px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Input with Icon compacto */
@@ -348,7 +425,26 @@
   border: 1px solid #FFE8BC;
   border-radius: 12px;
   padding: 20px 24px;
-  margin: 16px 0;
+  margin: 24px 0;
+  margin-top: 32px;
+  width: calc(100% - 64px);
+  margin-left: 32px;
+  margin-right: 32px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 3;
+}
+
+.appointment-summary .summary-grid {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
+  gap: 24px !important;
+}
+
+.appointment-summary .summary-column {
+  grid-column: span 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .appointment-summary h3 {
@@ -359,15 +455,15 @@
 }
 
 .summary-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr !important;
   gap: 24px;
 }
 
 .summary-column {
   display: flex;
   flex-direction: column;
-
+  grid-column: span 1 !important;
 }
 
 .summary-item {
@@ -437,7 +533,9 @@
   justify-content: flex-end;
   align-items: center;
   margin-top: 30px;
-  padding: 0;
+  padding: 0 32px 0 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .copyright-container span {
@@ -526,11 +624,7 @@
   }
   
   .summary-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-  
-  .summary-column:last-child {
-    grid-column: span 2;
+    grid-template-columns: 1fr 1fr 1fr !important;
   }
 }
 
@@ -538,7 +632,32 @@
   .main-content {
     width: 100vw;
     margin-left: 0;
-    padding: 4px 8px;
+    padding: 0;
+  }
+  
+  .header-content {
+    padding: 16px 16px 12px 16px;
+  }
+  
+  .nueva-cita-form {
+    padding: 0 16px 20px 16px;
+  }
+  
+  .appointment-details-section {
+    width: calc(100% - 32px) !important;
+    margin-left: 16px !important;
+    margin-right: 16px !important;
+  }
+  
+  .appointment-summary {
+    width: calc(100% - 32px);
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: 24px;
+  }
+  
+  .copyright-container {
+    padding: 0 16px 0 0;
   }
   
   .page-header {
@@ -577,6 +696,10 @@
   
   .search-container {
     width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: auto;
+    align-self: flex-start;
   }
   
   .form-actions {
@@ -588,8 +711,29 @@
     width: 100%;
   }
 }@media (max-width: 480px) {
-  .main-content {
-    padding: 2px 4px;
+  .header-content {
+    padding: 12px 12px 8px 12px;
+  }
+  
+  .nueva-cita-form {
+    padding: 0 12px 16px 12px;
+  }
+  
+  .appointment-details-section {
+    width: calc(100% - 24px) !important;
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+  }
+  
+  .appointment-summary {
+    width: calc(100% - 24px);
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 20px;
+  }
+  
+  .copyright-container {
+    padding: 0 12px 0 0;
   }
   
   .title-section h1 {

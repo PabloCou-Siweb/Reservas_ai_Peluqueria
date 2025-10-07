@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './ConfirmarCitaModal.css';
 import CitaConfirmadaModal from './CitaConfirmadaModal';
+import RecordatorioEnviadoModal from './RecordatorioEnviadoModal';
 import { useNavigation } from '../contexts/NavigationContext';
 
 interface ConfirmarCitaModalProps {
@@ -30,6 +31,7 @@ const ConfirmarCitaModal: React.FC<ConfirmarCitaModalProps> = ({
   appointmentData
 }) => {
   const [isCitaConfirmadaOpen, setIsCitaConfirmadaOpen] = useState(false);
+  const [isRecordatorioEnviadoOpen, setIsRecordatorioEnviadoOpen] = useState(false);
   const { navigateTo } = useNavigation();
 
   const handleConfirm = () => {
@@ -46,7 +48,11 @@ const ConfirmarCitaModal: React.FC<ConfirmarCitaModalProps> = ({
   };
 
   const handleSendSMS = () => {
-    console.log('Enviar SMS');
+    setIsRecordatorioEnviadoOpen(true);
+  };
+
+  const handleRecordatorioEnviadoClose = () => {
+    setIsRecordatorioEnviadoOpen(false);
   };
 
   const handleDownload = () => {
@@ -179,6 +185,12 @@ const ConfirmarCitaModal: React.FC<ConfirmarCitaModalProps> = ({
           duration: appointmentData.duracion,
           reason: appointmentData.motivo
         }}
+      />
+
+      {/* Recordatorio Enviado Modal */}
+      <RecordatorioEnviadoModal
+        isOpen={isRecordatorioEnviadoOpen}
+        onClose={handleRecordatorioEnviadoClose}
       />
     </div>
   );

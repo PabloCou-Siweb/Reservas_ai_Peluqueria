@@ -5,9 +5,23 @@
   background-color: #ffffff;
   margin: 0;
   padding: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   position: relative;
   z-index: 1;
+}
+
+/* Aplicar font-family solo a elementos específicos de la página de tratamientos */
+.tratamientos-container .main-content,
+.tratamientos-container .page-header,
+.tratamientos-container .tratamientos-grid,
+.tratamientos-container .tratamiento-card,
+.tratamientos-container .card-content,
+.tratamientos-container .tratamiento-name,
+.tratamientos-container .especialistas-count,
+.tratamientos-container .info-label,
+.tratamientos-container .info-value,
+.tratamientos-container .add-description,
+.tratamientos-container .add-label {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .tratamientos-container .main-content {
