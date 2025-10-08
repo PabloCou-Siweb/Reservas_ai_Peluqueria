@@ -207,21 +207,35 @@
   border-radius: 8px;
   margin-bottom: 8px;
   min-height: 44px;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-.clock-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 16px;
-  height: 16px;
+.sidebar-widget .clock-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 16px !important;
+  height: 16px !important;
+  flex-shrink: 0 !important;
+  overflow: hidden !important;
+  box-sizing: border-box !important;
+  position: relative !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: auto !important;
 }
 
-.clock-icon img {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-  filter: none;
+.sidebar-widget .clock-icon img {
+  width: 14px !important;
+  height: 14px !important;
+  object-fit: contain !important;
+  filter: none !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  display: block !important;
 }
 
 .buy-minutes-btn {

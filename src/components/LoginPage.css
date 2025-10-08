@@ -106,20 +106,17 @@
   background: transparent !important;
 }
 
-.form-input {
+.login-section .form-input {
   width: 100%;
   padding: 20px 48px 20px 20px;
-  border: 0 !important;
-  border-top: 0 !important;
-  border-left: 0 !important;
-  border-right: 0 !important;
+  border: none !important;
   border-bottom: 1px solid #d1d5db !important;
   border-radius: 0 !important;
   background: transparent !important;
-  font-size: 18px;
+  font-size: 16px;
   color: #1a1a1a;
   box-shadow: none !important;
-  outline: 0 !important;
+  outline: none !important;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
@@ -127,12 +124,9 @@
   min-height: 56px;
 }
 
-.form-input:focus {
-  outline: 0 !important;
-  border: 0 !important;
-  border-top: 0 !important;
-  border-left: 0 !important;
-  border-right: 0 !important;
+.login-section .form-input:focus {
+  outline: none !important;
+  border: none !important;
   border-bottom: 1px solid #8c623e !important;
   box-shadow: none !important;
 }
@@ -339,7 +333,7 @@
     font-size: 14px;
   }
   
-  .form-input {
+  .login-section .form-input {
     padding: 16px 40px 16px 16px;
     font-size: 16px;
     min-height: 48px;

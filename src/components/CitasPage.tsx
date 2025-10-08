@@ -337,7 +337,7 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
       <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
 
       {/* Main Content */}
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         <header className="citas-header">
           <div className="header-content">
             <div className="header-top-row">

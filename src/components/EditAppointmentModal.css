@@ -1,314 +1,417 @@
-/* Edit Appointment Modal */
-.edit-appointment-overlay {
+.backdrop {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1000;
-  padding: 20px;
 }
 
-.edit-appointment-modal {
+.window {
   background: white;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 1000px;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 800px;
   max-height: 90vh;
   overflow-y: auto;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 24px 24px 0;
-  margin-bottom: 20px;
-}
-
-.modal-header h2 {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2c3e50;
-  margin: 0;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: #f8f9fa;
-  border: 1px solid #e1e5e9;
-  border-radius: 6px;
-  color: #6c757d;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s;
 }
 
 .close-button:hover {
-  background: #e9ecef;
-  color: #495057;
+  background: #e5e7eb;
 }
 
-.modal-description {
-  padding: 0 24px;
-  color: #6c757d;
-  font-size: 14px;
-  margin: 0 0 24px 0;
+.close-button svg {
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+}
+
+.title-area {
+  padding: 30px 30px 0 30px;
+}
+
+.title-area h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.title-area p {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
   line-height: 1.5;
 }
 
-/* Secciones */
-.appointment-summary,
-.client-data,
-.appointment-details {
-  margin-bottom: 24px;
-  padding: 0 24px;
+.orange-section {
+  margin: 24px 30px;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.orange-section:first-of-type {
+  background: #FFE8BC;
+}
+
+.orange-section:first-of-type .section-header {
+  background: transparent;
+}
+
+.orange-section:first-of-type .section-header span {
+  color: #8C623E;
+}
+
+.orange-section:first-of-type .header-icon {
+  background: #8C623E;
+}
+
+.orange-section:first-of-type .block-title {
+  color: #8C623E;
+}
+
+.orange-section:first-of-type .block-main {
+  color: #8C623E;
+}
+
+.orange-section:first-of-type .block-sub {
+  color: #8C623E;
+}
+
+.orange-section:first-of-type .dot {
+  background: #8C623E;
 }
 
 .section-header {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-bottom: 16px;
+  background: #FFE8BC;
+  padding: 12px 16px;
+  border-radius: 8px;
 }
 
-.section-icon {
+.header-icon {
+  width: 32px;
+  height: 32px;
+  background: #8C623E;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  background: #8b4513;
-  border-radius: 6px;
+}
+
+.header-icon svg {
+  width: 16px;
+  height: 16px;
   color: white;
 }
 
-.section-header h3 {
-  font-size: 18px;
+.header-icon img {
+  width: 16px;
+  height: 16px;
+}
+
+.section-header span {
+  font-size: 16px;
   font-weight: 600;
-  color: #2c3e50;
-  margin: 0;
+  color: #8C623E;
 }
 
-/* Resumen de la cita */
-.appointment-summary {
-  background: #FFE8BC;
-  border: 1px solid #f7c59f;
-  border-radius: 10px;
-  padding: 12px 16px;
-  margin: 0 24px 16px;
-}
-
-.appointment-summary h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #2c3e50;
-  margin: 0 0 8px 0;
-}
-
-.summary-grid {
+.info-blocks {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.info-block {
+  display: flex;
+  align-items: flex-start;
   gap: 12px;
 }
 
-.summary-column {
-  display: flex;
-  flex-direction: column;
+.dot {
+  width: 8px;
+  height: 8px;
+  background: #f2c288;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
 }
 
-.summary-item {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+.block-content {
+  flex: 1;
+}
+
+.block-title {
   font-size: 14px;
-  color: #2c3e50;
-  line-height: 1.3;
-}
-
-.summary-item .label {
   font-weight: 500;
-  color: #6c757d;
-  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 4px;
 }
 
-.summary-item .value {
-  font-weight: 700;
-  color: #2c3e50;
+.block-main {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 2px;
+}
+
+.block-sub {
   font-size: 14px;
+  color: #9ca3af;
 }
 
-.summary-item .secondary-info {
-  font-size: 12px;
-  color: #6c757d;
-  margin: 0;
-  line-height: 1.2;
-}
-
-/* Barra de búsqueda */
-.search-bar {
+.search-area {
   position: relative;
   margin-bottom: 20px;
 }
 
-.search-input {
+.search-field {
   width: 100%;
-  padding: 8px 40px 8px 16px;
-  border: 1px solid #e1e5e9;
+  padding: 12px 16px;
+  padding-right: 48px;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 14px;
-  color: #2c3e50;
-  background: #f8f9fa;
-  height: 36px;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: #8b4513;
+  font-size: 16px;
   background: white;
+  transition: border-color 0.2s;
 }
 
-.search-bar svg {
+.search-field:focus {
+  outline: none;
+  border-color: #f2c288;
+  box-shadow: 0 0 0 3px rgba(242, 194, 136, 0.1);
+}
+
+.search-svg {
   position: absolute;
-  right: 12px;
+  right: 16px;
   top: 50%;
   transform: translateY(-50%);
-  color: #6c757d;
+  color: #9ca3af;
 }
 
-/* Formulario */
-.form-grid {
+.fields-area {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 16px;
+  gap: 20px;
 }
 
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.form-row-three {
+.field-row {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
+  gap: 20px;
 }
 
-.form-group {
+.field-row:last-child {
+  grid-template-columns: 1fr 1fr;
+}
+
+.field-item {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 8px;
 }
 
-.form-group label {
+.field-item label {
   font-size: 14px;
   font-weight: 500;
-  color: #2c3e50;
+  color: #374151;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
-  padding: 8px 12px;
-  border: 1px solid #e1e5e9;
+.field-item input,
+.field-item textarea {
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
-  font-size: 14px;
-  color: #2c3e50;
+  font-size: 16px;
   background: white;
-  transition: all 0.2s ease;
-  height: 36px;
-  width: 100%;
+  transition: border-color 0.2s;
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.field-item input:focus,
+.field-item textarea:focus {
   outline: none;
-  border-color: #8b4513;
-  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+  border-color: #f2c288;
+  box-shadow: 0 0 0 3px rgba(242, 194, 136, 0.1);
 }
 
-.form-group textarea {
-  resize: none;
-  min-height: 40px;
-  height: 40px;
+.field-item textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown select {
   width: 100%;
-}
-
-/* Botones de acción */
-.modal-actions {
-  display: flex;
-  gap: 12px;
-  justify-content: flex-end;
-  padding: 24px;
-  margin-top: 16px;
-}
-
-.cancel-button {
-  padding: 12px 24px;
+  padding: 12px 16px;
+  padding-right: 48px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
   background: white;
-  border: 2px solid #000;
-  border-radius: 8px;
-  color: #000;
-  font-size: 14px;
-  font-weight: 600;
+  appearance: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s;
 }
 
-.cancel-button:hover {
-  background: #f8f9fa;
+.dropdown select:focus {
+  outline: none;
+  border-color: #f2c288;
+  box-shadow: 0 0 0 3px rgba(242, 194, 136, 0.1);
 }
 
-.confirm-button {
+.dropdown .arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+.details-area {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button-area {
+  padding: 30px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.button-area button {
   padding: 12px 24px;
-  background: #8b4513;
-  border: none;
   border-radius: 8px;
-  color: white;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
+  border: none;
 }
 
-.confirm-button:hover {
-  background: #6d3410;
+.button-area .cancel {
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
 }
 
-/* Responsive */
+.button-area .cancel:hover {
+  background: #f9fafb;
+}
+
+.button-area .confirm {
+  background: #f2c288;
+  color: white;
+}
+
+.button-area .confirm:hover {
+  background: #e0a96b;
+}
+
 @media (max-width: 768px) {
-  .edit-appointment-modal {
-    margin: 10px;
-    max-height: 95vh;
+  .window {
+    width: 95%;
+    margin: 20px;
   }
-  
-  .form-row,
-  .form-row-three {
+
+  .title-area {
+    padding: 20px 20px 0 20px;
+  }
+
+  .title-area h1 {
+    font-size: 20px;
+  }
+
+  .orange-section {
+    margin: 16px 20px;
+    padding: 16px;
+  }
+
+  .info-blocks {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .field-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .field-row:last-child {
     grid-template-columns: 1fr;
   }
-  
-  .summary-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  
-  .modal-actions {
+
+  .button-area {
+    padding: 20px;
     flex-direction: column;
   }
-  
-  .cancel-button,
-  .confirm-button {
+
+  .button-area button {
     width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-area {
+    padding: 16px 16px 0 16px;
+  }
+
+  .title-area h1 {
+    font-size: 18px;
+  }
+
+  .title-area p {
+    font-size: 14px;
+  }
+
+  .orange-section {
+    margin: 12px 16px;
+    padding: 12px;
+  }
+
+  .info-blocks {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .close-button {
+    top: 16px;
+    right: 16px;
+    padding: 6px;
+  }
+
+  .button-area {
+    padding: 16px;
   }
 }

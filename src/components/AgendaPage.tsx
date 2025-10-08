@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
+import EditAppointmentModal from './EditAppointmentModal';
+import RecordatorioEnviadoModal from './RecordatorioEnviadoModal';
+import ReprogramarCitaModal from './ReprogramarCitaModal';
+import AppointmentDetailsPage from './AppointmentDetailsPage';
 import './AgendaPage.css';
 
 const AgendaPage: React.FC = () => {
@@ -11,6 +15,27 @@ const AgendaPage: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(new Date().getDate());
   const [activeDropdown, setActiveDropdown] = useState<number | null>(null);
   const [selectedAppointments, setSelectedAppointments] = useState<number[]>([]);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  
+  // Modal states
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showRecordatorioModal, setShowRecordatorioModal] = useState(false);
+  const [showReprogramarModal, setShowReprogramarModal] = useState(false);
+  const [selectedAppointmentId, setSelectedAppointmentId] = useState<number | null>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -52,6 +77,42 @@ const AgendaPage: React.FC = () => {
 
   const handleMenuAction = (action: string, appointmentId: number) => {
     console.log(`${action} clicked for appointment ${appointmentId}`);
+    
+    switch (action) {
+      case 'view-details':
+        console.log('Ver detalles completos');
+        navigateTo('appointment-details');
+        break;
+      case 'edit':
+        console.log('Editar información');
+        setSelectedAppointmentId(appointmentId);
+        setShowEditModal(true);
+        break;
+      case 'reschedule':
+        console.log('Reprogramar cita');
+        setSelectedAppointmentId(appointmentId);
+        setShowReprogramarModal(true);
+        break;
+      case 'call':
+        console.log('Llamar paciente');
+        break;
+      case 'reminder':
+        console.log('Enviar recordatorio');
+        setShowRecordatorioModal(true);
+        break;
+      case 'attended':
+        console.log('Marcar como atendida');
+        break;
+      case 'no-show':
+        console.log('Marcar como no asistió');
+        break;
+      case 'cancel':
+        console.log('Cancelar cita');
+        break;
+      default:
+        console.log('Acción no reconocida:', action);
+    }
+    
     setActiveDropdown(null);
   };
 
@@ -214,9 +275,6 @@ const AgendaPage: React.FC = () => {
         <header className="agenda-header">
           <div className="header-content">
             <div className="header-top-row">
-              <div className="breadcrumb-nav">
-                <span className="breadcrumb-text">Agenda</span>
-              </div>
               
               <div className="header-actions">
                 <button className="notification-btn">
@@ -224,9 +282,6 @@ const AgendaPage: React.FC = () => {
                 </button>
                 <button className="settings-btn">
                   <img src="/img/settings-icon.png" alt="Configuración" width="20" height="20" />
-                </button>
-                <button className="help-btn">
-                  <img src="/img/info-icon.png" alt="Ayuda" width="20" height="20" />
                 </button>
               </div>
             </div>
@@ -451,23 +506,90 @@ const AgendaPage: React.FC = () => {
                         className="three-dots-btn"
                         onClick={() => handleDropdownToggle(appointment.id)}
                       >
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <circle cx="12" cy="12" r="1"/>
-                          <circle cx="12" cy="5" r="1"/>
-                          <circle cx="12" cy="19" r="1"/>
-                        </svg>
+                        <img src="/img/3dots-icon.png" alt="Opciones" width="16" height="16" />
                       </button>
                       {activeDropdown === appointment.id && (
-                        <div className="dropdown-menu">
-                          <button onClick={() => handleMenuAction('edit', appointment.id)}>
-                            Editar cita
-                          </button>
-                          <button onClick={() => handleMenuAction('cancel', appointment.id)}>
-                            Cancelar cita
-                          </button>
-                          <button onClick={() => handleMenuAction('reschedule', appointment.id)}>
-                            Reprogramar
-                          </button>
+                        <div className="dropdown-menu" ref={dropdownRef}>
+                          {/* Header with patient name */}
+                          <div className="dropdown-header">
+                            <div className="patient-icon">
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C623E" strokeWidth="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                <circle cx="12" cy="7" r="4"/>
+                              </svg>
+                            </div>
+                            <span className="patient-name">{appointment.paciente}</span>
+                          </div>
+                          
+                          {/* Group 1: Details & Editing */}
+                          <div className="dropdown-group">
+                            <button className="dropdown-item" onClick={() => handleMenuAction('view-details', appointment.id)}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                <circle cx="12" cy="12" r="3"/>
+                              </svg>
+                              Ver detalles completos
+                            </button>
+                            <button className="dropdown-item" onClick={() => handleMenuAction('edit', appointment.id)}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+                              </svg>
+                              Editar información
+                            </button>
+                          </div>
+                          
+                          {/* Group 2: Appointment Management */}
+                          <div className="dropdown-group">
+                            <button className="dropdown-item" onClick={() => handleMenuAction('reschedule', appointment.id)}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                                <line x1="16" y1="2" x2="16" y2="6"/>
+                                <line x1="8" y1="2" x2="8" y2="6"/>
+                                <line x1="3" y1="10" x2="21" y2="10"/>
+                              </svg>
+                              Reprogramar cita
+                            </button>
+                          </div>
+                          
+                          {/* Group 3: Patient Contact */}
+                          <div className="dropdown-group">
+                            <button className="dropdown-item" onClick={() => handleMenuAction('call', appointment.id)}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                              </svg>
+                              Llamar paciente
+                            </button>
+                            <button className="dropdown-item" onClick={() => handleMenuAction('reminder', appointment.id)}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                              </svg>
+                              Enviar recordatorio
+                            </button>
+                          </div>
+                          
+                          {/* Group 4: Status Updates */}
+                          <div className="dropdown-group">
+                            <button className="dropdown-item" onClick={() => handleMenuAction('attended', appointment.id)}>
+                              <div className="status-dot attended"></div>
+                              Atendida
+                            </button>
+                            <button className="dropdown-item" onClick={() => handleMenuAction('no-show', appointment.id)}>
+                              <div className="status-dot no-show"></div>
+                              No asistió
+                            </button>
+                          </div>
+                          
+                          {/* Group 5: Cancellation */}
+                          <div className="dropdown-group">
+                            <button className="dropdown-item" onClick={() => handleMenuAction('cancel', appointment.id)}>
+                              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                              </svg>
+                              Cancelar cita
+                            </button>
+                          </div>
                         </div>
                       )}
                     </div>
@@ -496,6 +618,57 @@ const AgendaPage: React.FC = () => {
           © 2025 Bokifly
         </div>
       </main>
+
+      {/* Modals */}
+      {showEditModal && selectedAppointmentId && (
+        <EditAppointmentModal
+          isOpen={showEditModal}
+          onClose={() => setShowEditModal(false)}
+          onConfirm={(updatedData: any) => {
+            console.log('Cita actualizada:', updatedData);
+            setShowEditModal(false);
+            // Aquí puedes agregar lógica para actualizar la cita en el estado
+          }}
+          appointmentData={(() => {
+            const appointment = appointmentsData.find(app => app.id === selectedAppointmentId);
+            if (!appointment) return undefined;
+            
+            return {
+              specialist: appointment.especialista,
+              date: '2025-01-02', // Valor por defecto - podrías obtenerlo de la fecha seleccionada
+              time: appointment.hora,
+              duration: appointment.duracion,
+              client: appointment.paciente,
+              phone: appointment.telefono,
+              email: appointment.email,
+              documentType: 'DNI', // Valor por defecto
+              documentNumber: '', // Valor por defecto
+              reason: appointment.tipoConsulta,
+              notes: '' // Valor por defecto
+            };
+          })()}
+        />
+      )}
+
+      {showRecordatorioModal && (
+        <RecordatorioEnviadoModal
+          isOpen={showRecordatorioModal}
+          onClose={() => setShowRecordatorioModal(false)}
+        />
+      )}
+
+      {showReprogramarModal && selectedAppointmentId && (
+        <ReprogramarCitaModal
+          isOpen={showReprogramarModal}
+          onClose={() => setShowReprogramarModal(false)}
+          onConfirm={(data: any) => {
+            console.log('Cita reprogramada:', data);
+            setShowReprogramarModal(false);
+            // Aquí puedes agregar lógica para actualizar la fecha/hora de la cita
+          }}
+          appointmentData={appointmentsData.find(app => app.id === selectedAppointmentId)}
+        />
+      )}
     </div>
   );
 };

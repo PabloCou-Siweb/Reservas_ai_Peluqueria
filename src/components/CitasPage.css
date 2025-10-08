@@ -13,9 +13,11 @@
   padding: 0;
   background: #ffffff;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
 
-.sidebar.closed + .main-content {
+.main-content.sidebar-closed {
   width: calc(100vw - 70px);
   margin-left: 70px;
 }

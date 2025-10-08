@@ -226,7 +226,7 @@ const LlamadasPage: React.FC = () => {
     <div className="llamadas-page">
       <Sidebar isOpen={sidebarOpen} onToggle={handleSidebarToggle} />
       
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header integrado sin bordes */}
         <div className="page-header">
           <h1>Llamadas</h1>

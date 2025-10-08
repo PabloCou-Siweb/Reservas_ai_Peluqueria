@@ -293,7 +293,6 @@
 /* Header del div - Recreado desde cero siguiendo la plantilla */
 .div-header {
   background: white;
-  border-bottom: 1px solid #e5e7eb;
   padding: 24px;
 }
 
@@ -772,21 +771,58 @@
 /* Dropdown menu */
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);
   right: 0;
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  min-width: 150px;
-  margin-top: 4px;
+  z-index: 1000;
+  min-width: 220px;
+  padding: 0;
+  overflow: hidden;
 }
 
-.dropdown-menu button {
-  display: block;
+/* Dropdown header with patient info */
+.dropdown-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  background: white;
+}
+
+.patient-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+}
+
+.patient-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+/* Dropdown groups */
+.dropdown-group {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.dropdown-group:last-child {
+  border-bottom: none;
+}
+
+/* Dropdown items */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   width: 100%;
-  padding: 8px 12px;
+  padding: 10px 16px;
   border: none;
   background: none;
   text-align: left;
@@ -796,16 +832,31 @@
   transition: background-color 0.2s ease;
 }
 
-.dropdown-menu button:hover {
+.dropdown-item:hover {
   background-color: #f9fafb;
 }
 
-.dropdown-menu button:first-child {
-  border-radius: 8px 8px 0 0;
+.dropdown-item svg {
+  width: 16px;
+  height: 16px;
+  color: #6b7280;
+  flex-shrink: 0;
 }
 
-.dropdown-menu button:last-child {
-  border-radius: 0 0 8px 8px;
+/* Status dots for attended/no-show */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot.attended {
+  background-color: #F2C288;
+}
+
+.status-dot.no-show {
+  background-color: #ef4444;
 }
 
 /* Pagination - Recreated to match template */

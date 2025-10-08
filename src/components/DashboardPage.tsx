@@ -46,7 +46,7 @@ const DashboardPage: React.FC = () => {
       <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
 
           {/* Main Content */}
-          <div className="main-content">
+          <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
             <div className="main-content-area">
               <div className="main-header">
                 <h1 className="main-title">Citas</h1>
