@@ -323,36 +323,47 @@ const AgendaPage: React.FC = () => {
 
           {/* Right Section - Appointments Table */}
           <div className="appointments-section">
-            {/* Date Header */}
-            <div className="date-header">
-              <h2 className="date-title">02 Enero 2025</h2>
-            </div>
-
-            {/* Action Bar */}
-            <div className="action-bar">
-              <div className="search-container">
-                <input
-                  type="text"
-                  className="search-input"
-                  placeholder="Buscar paciente..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
+            {/* Header Section - Recreated from zero following template exactly */}
+            <div className="div-header">
+              <div className="date-title-section">
+                <h2 className="date-title">02 Enero 2025</h2>
               </div>
               
-              <div className="action-buttons">
-                <button className="filter-btn">
-                  <img src="/img/filter-icon.png" alt="Filtro" width="16" height="16" />
-                </button>
-                <button className="add-btn" onClick={handleAddAppointment}>
-                  <img src="/img/add-icon.png" alt="Agregar" width="16" height="16" />
-                </button>
+              <div className="header-actions-row">
+                <div className="confirmed-info-left">
+                  <div className="orange-check-icon"></div>
+                  <span className="confirmed-count">Citas confirmadas (6)</span>
+                </div>
+                
+                <div className="search-and-buttons-right">
+                  <div className="search-box">
+                    <input
+                      type="text"
+                      className="search-field"
+                      placeholder="Buscar paciente..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
+                  
+                  <div className="action-buttons-group">
+                    <button className="filter-button">
+                      <img src="/img/filter-icon.png" alt="Filtro" width="16" height="16" />
+                    </button>
+                    <button className="add-appointment-button" onClick={handleAddAppointment}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F2C288" strokeWidth="3">
+                        <line x1="12" y1="5" x2="12" y2="19"/>
+                        <line x1="5" y1="12" x2="19" y2="12"/>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Appointments Table */}
-            <div className="appointments-table">
-              <div className="table-header">
+            {/* Table Header - Recreated from zero following template exactly */}
+            <div className="table-container">
+              <div className="table-header-row">
                 <div className="col-checkbox">
                   <input
                     type="checkbox"
@@ -360,54 +371,91 @@ const AgendaPage: React.FC = () => {
                     onChange={handleSelectAll}
                   />
                 </div>
-                <div className="col-patient">Paciente</div>
-                <div className="col-type">Tipo de consulta</div>
-                <div className="col-specialist">Especialista</div>
-                <div className="col-time">Hora</div>
-                <div className="col-status">Estado</div>
-                <div className="col-menu"></div>
+                <div className="col-patient">
+                  <span className="column-title">Paciente</span>
+                  <div className="sort-arrows">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="18,15 12,9 6,15"/>
+                    </svg>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="col-consultation-type">
+                  <span className="column-title">Tipo de consulta</span>
+                  <div className="sort-arrows">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="18,15 12,9 6,15"/>
+                    </svg>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="col-specialist">
+                  <span className="column-title">Especialista</span>
+                  <div className="sort-arrows">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="18,15 12,9 6,15"/>
+                    </svg>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="6,9 12,15 18,9"/>
+                    </svg>
+                  </div>
+                </div>
+                <div className="col-time">
+                  <span className="column-title">Hora</span>
+                </div>
+                <div className="col-status">
+                  <span className="column-title">Estado</span>
+                </div>
+                <div className="col-actions"></div>
               </div>
 
-              <div className="table-body">
+              <div className="table-rows">
                 {appointmentsData.map((appointment) => (
-                  <div key={appointment.id} className="table-row">
-                    <div className="col-checkbox">
+                  <div 
+                    key={appointment.id} 
+                    className={`appointment-row ${selectedAppointments.includes(appointment.id) ? 'selected' : ''}`}
+                  >
+                    <div className="cell-checkbox">
                       <input
                         type="checkbox"
                         checked={selectedAppointments.includes(appointment.id)}
                         onChange={() => handleAppointmentSelect(appointment.id)}
                       />
                     </div>
-                    <div className="col-patient">
-                      <div className="patient-info">
-                        <div className="patient-name">{appointment.paciente}</div>
-                        <div className="patient-contact">
-                          {appointment.email}, {appointment.telefono}
-                        </div>
-                      </div>
+                    <div className="cell-patient">
+                      <div className="patient-name">{appointment.paciente}</div>
+                      <div className="patient-email">{appointment.email}</div>
+                      <div className="patient-phone">{appointment.telefono}</div>
                     </div>
-                    <div className="col-type">
-                      <span className="type-badge">{appointment.tipoConsulta}</span>
+                    <div className="cell-type">
+                      <span>{appointment.tipoConsulta}</span>
                     </div>
-                    <div className="col-specialist">{appointment.especialista}</div>
-                    <div className="col-time">
-                      {appointment.hora} ({appointment.duracion})
+                    <div className="cell-specialist">
+                      <span>{appointment.especialista}</span>
                     </div>
-                    <div className="col-status">
-                      <div className="status-item">
-                        <div 
-                          className="status-dot" 
-                          style={{ backgroundColor: getStatusColor(appointment.estado) }}
-                        ></div>
+                    <div className="cell-time">
+                      <span>{appointment.hora} ({appointment.duracion})</span>
+                    </div>
+                    <div className="cell-status">
+                      <div className={`status-badge ${appointment.estado.toLowerCase()}`}>
+                        <div className={`status-dot ${appointment.estado.toLowerCase()}`}></div>
                         <span>{appointment.estado}</span>
                       </div>
                     </div>
-                    <div className="col-menu">
+                    <div className="cell-actions">
                       <button 
-                        className="menu-btn"
+                        className="three-dots-btn"
                         onClick={() => handleDropdownToggle(appointment.id)}
                       >
-                        <img src="/img/3dots-icon.png" alt="Menu" width="16" height="16" />
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <circle cx="12" cy="12" r="1"/>
+                          <circle cx="12" cy="5" r="1"/>
+                          <circle cx="12" cy="19" r="1"/>
+                        </svg>
                       </button>
                       {activeDropdown === appointment.id && (
                         <div className="dropdown-menu">
@@ -428,9 +476,17 @@ const AgendaPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Pagination */}
-            <div className="pagination">
-              <span className="page-numbers">01 02 03 ... 04 05 06</span>
+            {/* Pagination - Recreated to match template */}
+            <div className="pagination-container">
+              <div className="pagination-numbers">
+                <span className="page-number">01</span>
+                <span className="page-number active">02</span>
+                <span className="page-number">03</span>
+                <span className="page-ellipsis">...</span>
+                <span className="page-number">04</span>
+                <span className="page-number">05</span>
+                <span className="page-number">06</span>
+              </div>
             </div>
           </div>
         </div>

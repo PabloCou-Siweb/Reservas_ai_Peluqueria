@@ -32,8 +32,15 @@ const AppRouter: React.FC = () => {
   const { currentPage, selectedSpecialty } = useNavigation();
   const { isAuthenticated } = useUser();
 
-  // Si no está autenticado, siempre mostrar login
-  if (!isAuthenticated && currentPage !== 'login' && currentPage !== 'forgot-password' && currentPage !== 'create-account') {
+  // Si no está autenticado, siempre mostrar login (excepto en el flujo de registro)
+  if (!isAuthenticated && 
+      currentPage !== 'login' && 
+      currentPage !== 'forgot-password' && 
+      currentPage !== 'create-account' &&
+      currentPage !== 'create-salon' &&
+      currentPage !== 'add-schedules' &&
+      currentPage !== 'specialties' &&
+      currentPage !== 'ready') {
     return <LoginPage />;
   }
 
