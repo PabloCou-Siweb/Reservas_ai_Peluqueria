@@ -23,9 +23,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 24px 32px;
+  padding: 12px 32px;
   background: white;
-  border-bottom: 1px solid #e1e5e9;
+  border-bottom: none;
 }
 
 .header-left {
@@ -113,13 +113,14 @@
   background: white;
   border: 1px solid #e1e5e9;
   border-radius: 12px;
-  padding: 20px;
+  padding: 40px;
   margin: 16px 32px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: 20px;
+  gap: 28px;
   align-items: center;
+  min-height: 160px;
 }
 
 /* Columna 1: Cliente */
@@ -355,7 +356,7 @@
 
 .treatments-section,
 .notes-section {
-  background: #fff3e0;
+  background: #FFE8BC;
   border: 1px solid #ffe0b2;
   border-radius: 12px;
   padding: 20px;

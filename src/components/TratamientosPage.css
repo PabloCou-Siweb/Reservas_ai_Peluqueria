@@ -45,14 +45,7 @@
   z-index: 3;
 }
 
-.tratamientos-container .header-left {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  justify-content: flex-start;
-}
-
-.tratamientos-container .header-left h1 {
+.tratamientos-container .page-header h1 {
   font-size: 32px;
   font-weight: 700;
   color: #111827;
@@ -133,6 +126,33 @@
   stroke: #374151;
 }
 
+.tratamientos-container .help-btn {
+  width: 40px;
+  height: 40px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 4;
+}
+
+.tratamientos-container .help-btn:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: scale(1.05);
+  z-index: 6;
+}
+
+.tratamientos-container .help-btn svg {
+  width: 20px;
+  height: 20px;
+  stroke: #374151;
+}
+
 /* Tratamientos Grid */
 .tratamientos-container .tratamientos-grid {
   display: grid;
@@ -147,11 +167,14 @@
   background: white;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 16px;
+  padding: 16px 16px 20px 16px;
   transition: all 0.3s ease;
   position: relative;
   cursor: pointer;
   z-index: 3;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
 }
 
 .tratamientos-container .tratamiento-card:hover {
@@ -161,83 +184,94 @@
   z-index: 4;
 }
 
-.tratamientos-container .card-header {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 12px;
-  position: relative;
-  z-index: 4;
-}
 
 .tratamientos-container .settings-icon {
-  width: 32px;
-  height: 32px;
-  background: none;
-  border: none;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 5;
-}
-
-.tratamientos-container .settings-icon:hover {
-  background: #f3f4f6;
-  transform: scale(1.1);
-  z-index: 6;
-}
-
-.tratamientos-container .settings-icon svg {
+  position: absolute;
+  top: 16px;
+  right: 16px;
   width: 16px;
   height: 16px;
-  stroke: #6b7280;
+  background: transparent;
+  border: none;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.tratamientos-container .settings-icon img {
+  width: 16px;
+  height: 16px;
+  display: block;
+  background: transparent;
+  border: none;
+  outline: none;
 }
 
 .tratamientos-container .card-content {
   text-align: center;
   position: relative;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  padding-top: 8px;
 }
 
 .tratamientos-container .tratamiento-icon {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background: #8C623E;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 8px auto;
   position: relative;
   z-index: 2;
 }
 
 .tratamientos-container .tratamiento-icon img {
-  width: 56px;
-  height: 56px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
 
 .tratamientos-container .tratamiento-name {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 700;
   color: #111827;
-  margin: 0 0 12px 0;
+  margin: 0 0 8px 0;
+}
+
+.tratamientos-container .especialistas-count {
+  font-size: 14px;
+  font-weight: 500;
+  color: #8C623E;
+  margin: 0 0 8px 0;
 }
 
 .tratamientos-container .tratamiento-info {
   display: flex;
   flex-direction: column;
   gap: 6px;
+  width: 80%;
+  margin: 8px auto 0 auto;
+  padding-top: 8px;
 }
 
-.tratamientos-container .info-item {
+.tratamientos-container .separator {
+  display: none;
+}
+
+.tratamientos-container .info-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  border-bottom: 1px solid #e1e5e9;
+  padding-bottom: 8px;
 }
 
 .tratamientos-container .info-label {
@@ -368,7 +402,7 @@
     padding: 20px;
   }
   
-  .tratamientos-container .header-left h1 {
+  .tratamientos-container .page-header h1 {
     font-size: 24px;
   }
   

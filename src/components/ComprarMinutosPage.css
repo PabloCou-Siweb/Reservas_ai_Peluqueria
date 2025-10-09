@@ -8,6 +8,11 @@
   padding: 0;
 }
 
+.comprar-minutos-container .main-content,
+.comprar-minutos-container .main-content * {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
 .comprar-minutos-container .main-content {
   flex: 1;
   display: flex;

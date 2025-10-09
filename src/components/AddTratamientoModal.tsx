@@ -9,46 +9,54 @@ interface AddTratamientoModalProps {
 
 const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClose, onAdd }) => {
   const [formData, setFormData] = useState({
-    nombre: 'Peluquería',
+    nombre: 'Peluqueria',
     descripcion: '',
     duracion: '25',
-    tarifa: '',
-    activa: true
+    tarifa: '65€/Sesión',
+    activa: true,
   });
+  const [especialistasSeleccionados, setEspecialistasSeleccionados] = useState<string[]>([]);
+  const [buscarEspecialista, setBuscarEspecialista] = useState('');
+  const [todosSeleccionados, setTodosSeleccionados] = useState(false);
 
-  const [especialistas, setEspecialistas] = useState([
-    { id: 1, nombre: 'Pol Palomo Cortés', email: 'polpalomo@gmail.com', telefono: '+34 606 20 45 56', especialidad: 'Peluquero', seleccionado: true },
-    { id: 2, nombre: 'Roberto Jiménez Robles', email: 'roblesjimenez@example.com', telefono: '+34 659 25 63 65', especialidad: 'Peluquero', seleccionado: false }
-  ]);
-
-  const [busqueda, setBusqueda] = useState('');
+  const especialistas = [
+    { id: 'pol-palomo', nombre: 'Pol Palomo Cortés', email: 'polpalomo@gmail', telefono: '+34 606 20 45 56', especialidad: 'Peluquero' },
+    { id: 'roberto-jimenez', nombre: 'Roberto Jiménez Robles', email: 'roblesjimenez@example.com', telefono: '+34 659 25 63 65', especialidad: 'Peluquero' },
+  ];
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value, type } = e.target;
-    const checked = type === 'checkbox' ? (e.target as HTMLInputElement).checked : value;
-    console.log('Toggle change:', name, checked);
-    setFormData(prev => ({
-      ...prev,
-      [name]: checked
-    }));
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleEspecialistaToggle = (id: number) => {
-    setEspecialistas(prev => 
-      prev.map(esp => 
-        esp.id === id ? { ...esp, seleccionado: !esp.seleccionado } : esp
-      )
+  const handleToggleActiva = () => {
+    setFormData(prev => ({ ...prev, activa: !prev.activa }));
+  };
+
+  const handleEspecialistaToggle = (id: string) => {
+    setEspecialistasSeleccionados(prev =>
+      prev.includes(id) ? prev.filter(espId => espId !== id) : [...prev, id]
     );
+  };
+
+  const handleSelectAll = () => {
+    if (todosSeleccionados) {
+      setEspecialistasSeleccionados([]);
+      setTodosSeleccionados(false);
+    } else {
+      const todosIds = especialistas.map(esp => esp.id);
+      setEspecialistasSeleccionados(todosIds);
+      setTodosSeleccionados(true);
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const especialistasSeleccionados = especialistas.filter(esp => esp.seleccionado);
-    onAdd({
+    const tratamiento = {
       ...formData,
-      especialistas: especialistasSeleccionados
-    });
-    onClose();
+      especialistas: especialistasSeleccionados,
+    };
+    onAdd(tratamiento);
   };
 
   if (!isOpen) return null;
@@ -56,38 +64,30 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        {/* Header */}
         <div className="modal-header">
-          <div className="header-content">
-            <h2 className="modal-title">Añadir tratamiento</h2>
-            <p className="modal-description">
-              Crea un tratamiento para tu local indicando su nombre, duración estándar de las citas y los especialistas que la atenderán. Podrás añadir servicios y personalizarla más adelante.
-            </p>
-          </div>
+          <h2>Añadir tratamiento</h2>
           <button className="close-btn" onClick={onClose}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="6" x2="6" y2="18"/>
-              <line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
+            <img src="/img/close-icon.png" alt="Cerrar" />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="modal-form">
-          {/* Datos básicos */}
+        <div className="modal-description">
+          <p>Crea un tratamiento para tu local indicando su nombre, duración estándar de las citas y los especialistas que la atenderán. Podrás añadir servicios y personalizarla más adelante.</p>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          {/* Sección 1: Datos básicos */}
           <div className="form-section">
             <div className="section-header">
               <div className="section-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
+                <img src="/img/user-icon.png" alt="Usuario" />
               </div>
-              <h3>Datos básicos</h3>
+              <h3 className="section-title">Datos básicos</h3>
             </div>
 
-            <div className="section-content">
+            <div className="form-row">
               <div className="form-group">
-                <label htmlFor="nombre">Nombre del tratamiento (campo obligatorio)</label>
+                <label htmlFor="nombre">Nombre del tratamiento <span className="required">(campo obligatorio)</span></label>
                 <input
                   type="text"
                   id="nombre"
@@ -97,7 +97,9 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
                   required
                 />
               </div>
+            </div>
 
+            <div className="form-row">
               <div className="form-group">
                 <label htmlFor="descripcion">Nota o descripción breve (opcional)</label>
                 <textarea
@@ -105,124 +107,136 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
                   name="descripcion"
                   value={formData.descripcion}
                   onChange={handleInputChange}
-                  placeholder="Ej: Atención especializada en el cuidado del cabello"
-                  rows={2}
+                  placeholder='Ej: "Atención especializada en el cuidado del cabello"'
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="duracion">Duración estándar de cita</label>
+                <select
+                  id="duracion"
+                  name="duracion"
+                  value={formData.duracion}
+                  onChange={handleInputChange}
+                >
+                  <option value="15">15 min</option>
+                  <option value="25">25 min</option>
+                  <option value="30">30 min</option>
+                  <option value="45">45 min</option>
+                  <option value="60">60 min</option>
+                  <option value="90">90 min</option>
+                  <option value="120">120 min</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="tarifa">Tarifa (opcional)</label>
+                <input
+                  type="text"
+                  id="tarifa"
+                  name="tarifa"
+                  value={formData.tarifa}
+                  onChange={handleInputChange}
+                  placeholder="Ej. 65€/Sesión"
                 />
               </div>
 
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="duracion">Duración estándar de cita</label>
-                  <select
-                    id="duracion"
-                    name="duracion"
-                    value={formData.duracion}
-                    onChange={handleInputChange}
-                  >
-                    <option value="15">15 min</option>
-                    <option value="25">25 min</option>
-                    <option value="30">30 min</option>
-                    <option value="45">45 min</option>
-                    <option value="60">60 min</option>
-                    <option value="90">90 min</option>
-                    <option value="120">120 min</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="tarifa">Tarifa (opcional)</label>
+              <div className="form-group toggle-group">
+                <label>Activa</label>
+                <div className="toggle-switch">
                   <input
-                    type="text"
-                    id="tarifa"
-                    name="tarifa"
-                    value={formData.tarifa}
-                    onChange={handleInputChange}
-                    placeholder="Ej. 65€/Sesión"
+                    type="checkbox"
+                    id="activa"
+                    checked={formData.activa}
+                    onChange={handleToggleActiva}
                   />
-                </div>
-
-                <div className="form-group">
-                  <div className="toggle-group">
-                    <div className="toggle-switch">
-                      <input
-                        type="checkbox"
-                        id="activa"
-                        name="activa"
-                        checked={formData.activa}
-                        onChange={handleInputChange}
-                      />
-                      <span className="toggle-slider"></span>
-                    </div>
-                    <label htmlFor="activa">Activa</label>
-                  </div>
+                  <label htmlFor="activa" className="toggle-label"></label>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Asignar especialistas */}
+          {/* Sección 2: Asignar especialistas */}
           <div className="form-section">
             <div className="section-header">
               <div className="section-icon">
-                <img src="/img/scissor-icon.png" alt="Tijeras" width="16" height="16" />
+                <img src="/img/users-icon.png" alt="Especialistas" />
               </div>
-              <h3>Asignar especialistas</h3>
+              <h3 className="section-title">Asignar especialistas</h3>
             </div>
 
-            <div className="section-content">
-              <div className="search-container">
+            <div className="search-group">
+              <div className="search-input">
                 <input
                   type="text"
                   placeholder="Buscar especialista..."
-                  value={busqueda}
-                  onChange={(e) => setBusqueda(e.target.value)}
-                  className="search-input"
+                  value={buscarEspecialista}
+                  onChange={(e) => setBuscarEspecialista(e.target.value)}
                 />
-                <div className="search-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="M21 21l-4.35-4.35"/>
-                  </svg>
+                <img src="/img/search-icon.png" alt="Buscar" />
+              </div>
+            </div>
+
+            <div className="especialistas-table">
+              <div className="table-header">
+                <div className="checkbox-cell">
+                  <div className="checkbox-container">
+                    <input
+                      type="checkbox"
+                      id="select-all"
+                      checked={todosSeleccionados}
+                      onChange={handleSelectAll}
+                    />
+                    <label htmlFor="select-all"></label>
+                  </div>
                 </div>
+                <div className="header-nombre">
+                  <span>Nombre</span>
+                  <img src="/img/sort-icon.png" alt="Sort" className="sort-icon" />
+                </div>
+                <div>Especialidad</div>
               </div>
 
-              <div className="especialistas-table">
-                <div className="table-header">
-                  <div className="header-cell">Nombre</div>
-                  <div className="header-cell">Especialidad</div>
-                </div>
-                <div className="especialistas-list">
-                  {especialistas.map((especialista) => (
-                    <div key={especialista.id} className="especialista-item">
-                      <div className="especialista-checkbox">
+              {especialistas
+                .filter(esp => esp.nombre.toLowerCase().includes(buscarEspecialista.toLowerCase()))
+                .map((especialista) => (
+                  <div key={especialista.id} className={`table-row ${especialistasSeleccionados.includes(especialista.id) ? 'selected' : ''}`}>
+                    <div className="checkbox-cell">
+                      <div className="checkbox-container">
                         <input
                           type="checkbox"
-                          id={`esp-${especialista.id}`}
-                          checked={especialista.seleccionado}
+                          id={especialista.id}
+                          checked={especialistasSeleccionados.includes(especialista.id)}
                           onChange={() => handleEspecialistaToggle(especialista.id)}
                         />
-                        <label htmlFor={`esp-${especialista.id}`}></label>
+                        <label htmlFor={especialista.id}></label>
                       </div>
-                      <div className="especialista-info">
-                        <div className="especialista-name">{especialista.nombre}</div>
-                        <div className="especialista-details">
-                          <span>{especialista.email}</span>
-                          <span>{especialista.telefono}</span>
-                        </div>
-                      </div>
-                      <div className="especialista-specialty">{especialista.especialidad}</div>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    <div className="especialista-info">
+                      <div className="especialista-name">{especialista.nombre}</div>
+                      <div className="especialista-contact">
+                        {especialista.email}
+                      </div>
+                      <div className="especialista-contact">
+                        {especialista.telefono}
+                      </div>
+                    </div>
+                    <div className="especialista-specialty">
+                      {especialista.especialidad}
+                    </div>
+                  </div>
+                ))}
             </div>
           </div>
 
+          {/* Botones */}
           <div className="modal-actions">
             <button type="button" className="btn-cancel" onClick={onClose}>
               Cancelar
             </button>
-            <button type="submit" className="btn-confirm">
+            <button type="submit" className="btn-add">
               Añadir
             </button>
           </div>

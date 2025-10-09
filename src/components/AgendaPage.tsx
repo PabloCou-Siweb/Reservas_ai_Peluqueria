@@ -275,7 +275,7 @@ const AgendaPage: React.FC = () => {
         <header className="agenda-header">
           <div className="header-content">
             <div className="header-top-row">
-              
+              <h1 className="page-title">Agenda</h1>
               <div className="header-actions">
                 <button className="notification-btn">
                   <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
@@ -285,8 +285,6 @@ const AgendaPage: React.FC = () => {
                 </button>
               </div>
             </div>
-            
-            <h1 className="page-title">Agenda</h1>
           </div>
         </header>
 

@@ -60,7 +60,7 @@
   display: block !important;
 }
 
-.header-right {
+.dashboard-container .header-right {
   display: flex !important;
   flex-direction: column !important;
   align-items: flex-end !important;
@@ -70,7 +70,7 @@
   opacity: 1 !important;
 }
 
-.header-actions {
+.dashboard-container .header-actions {
   display: flex !important;
   align-items: center !important;
   gap: 16px !important;

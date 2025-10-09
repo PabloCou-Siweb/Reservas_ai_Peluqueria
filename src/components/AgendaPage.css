@@ -60,40 +60,41 @@
   color: #374151;
 }
 
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
+.agenda-container .header-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  flex-direction: row !important;
 }
 
-.notification-btn,
-.settings-btn,
-.help-btn {
-  width: 40px;
-  height: 40px;
-  border: none;
-  border-radius: 50%;
-  background: #f8f9fa;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
+.agenda-container .notification-btn,
+.agenda-container .settings-btn,
+.agenda-container .help-btn {
+  width: 40px !important;
+  height: 40px !important;
+  border: none !important;
+  border-radius: 50% !important;
+  background: #f8f9fa !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
 }
 
-.notification-btn:hover,
-.settings-btn:hover,
-.help-btn:hover {
-  background: #e9ecef;
-  transform: scale(1.05);
+.agenda-container .notification-btn:hover,
+.agenda-container .settings-btn:hover,
+.agenda-container .help-btn:hover {
+  background: #e9ecef !important;
+  transform: scale(1.05) !important;
 }
 
-.page-title {
-  font-size: 32px;
-  font-weight: 700;
-  color: #111827;
-  margin: 0;
-  line-height: 1.2;
+.agenda-container .page-title {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  color: #111827 !important;
+  margin: 0 !important;
+  line-height: 1.2 !important;
 }
 
 /* Main Content Layout */
