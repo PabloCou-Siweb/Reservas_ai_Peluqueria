@@ -1,4 +1,3 @@
-/* Agenda Page - Recreated from scratch with more spacing between table elements */
 
 .agenda-container {
   display: flex;
@@ -7,7 +6,6 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
-/* Main Content */
 .main-content {
   flex: 1;
   width: calc(100vw - 280px);
@@ -24,7 +22,6 @@
   margin-left: 70px;
 }
 
-/* Header Styles */
 .agenda-header {
   background: #ffffff;
   border-bottom: none;
@@ -97,7 +94,6 @@
   line-height: 1.2 !important;
 }
 
-/* Main Content Layout */
 .agenda-content {
   display: flex;
   flex: 1;
@@ -106,7 +102,6 @@
   background: #ffffff;
 }
 
-/* Left Section - Calendar */
 .calendar-section {
   width: 320px;
   flex-shrink: 0;
@@ -114,7 +109,6 @@
   flex-direction: column;
 }
 
-/* Calendar Widget */
 .calendar-widget {
   background: white;
   border-radius: 12px;
@@ -215,7 +209,6 @@
   background: transparent;
 }
 
-/* Day Summary Integrated */
 .day-summary-integrated {
   margin-top: 20px;
   padding-top: 16px;
@@ -278,7 +271,6 @@
   color: #374151;
 }
 
-/* Right Section - Appointments */
 .appointments-section {
   flex: 1;
   background: #ffffff;
@@ -291,7 +283,6 @@
   border: 1px solid #e5e7eb;
 }
 
-/* Header del div - Recreado desde cero siguiendo la plantilla */
 .div-header {
   background: white;
   padding: 24px;
@@ -419,7 +410,6 @@
   background: #333333;
 }
 
-/* Header de la tabla - Recreado desde cero siguiendo la plantilla */
 .table-container {
   flex: 1;
   background: white;
@@ -511,7 +501,6 @@
   border-bottom: none;
 }
 
-/* Header cells - Compact and aligned */
 .header-checkbox {
   display: flex;
   align-items: center;
@@ -539,7 +528,6 @@
   justify-content: center;
 }
 
-/* Header text styling */
 .header-patient span,
 .header-type span,
 .header-specialist span,
@@ -551,7 +539,6 @@
   white-space: nowrap;
 }
 
-/* Sort arrows positioning */
 .sort-arrows {
   display: flex;
   flex-direction: column;
@@ -565,7 +552,6 @@
   color: #9ca3af;
 }
 
-/* Checkbox */
 .header-checkbox input,
 .cell-checkbox input {
   width: 16px;
@@ -574,7 +560,6 @@
   accent-color: #F2C288;
 }
 
-/* Custom checkbox styling */
 .header-checkbox input[type="checkbox"]:checked,
 .cell-checkbox input[type="checkbox"]:checked {
   background-color: #F2C288 !important;
@@ -586,7 +571,6 @@
   color: white !important;
 }
 
-/* Additional checkbox styling for cross-browser compatibility */
 .header-checkbox input[type="checkbox"],
 .cell-checkbox input[type="checkbox"] {
   appearance: none;
@@ -616,7 +600,6 @@
   font-weight: bold;
 }
 
-/* Patient cell */
 .cell-patient {
   display: flex;
   flex-direction: column;
@@ -635,7 +618,6 @@
   color: #6b7280;
 }
 
-/* Type cell */
 .cell-type {
   display: flex;
   align-items: center;
@@ -647,7 +629,6 @@
   color: #374151;
 }
 
-/* Specialist cell */
 .cell-specialist {
   display: flex;
   align-items: center;
@@ -659,7 +640,6 @@
   font-weight: 400;
 }
 
-/* Time cell */
 .cell-time {
   display: flex;
   align-items: center;
@@ -671,7 +651,6 @@
   font-weight: 400;
 }
 
-/* Status cell */
 .cell-status {
   display: flex;
   align-items: center;
@@ -730,7 +709,6 @@
   font-weight: 500;
 }
 
-/* Ensure correct colors for status text */
 .status-badge.confirmada span {
   color: #8C623E !important;
 }
@@ -743,7 +721,6 @@
   color: #6b7280 !important;
 }
 
-/* Actions cell */
 .cell-actions {
   position: relative;
   display: flex;
@@ -769,7 +746,6 @@
   color: #374151;
 }
 
-/* Dropdown menu */
 .dropdown-menu {
   position: absolute;
   top: calc(100% + 8px);
@@ -784,7 +760,6 @@
   overflow: hidden;
 }
 
-/* Dropdown header with patient info */
 .dropdown-header {
   display: flex;
   align-items: center;
@@ -808,7 +783,6 @@
   color: #374151;
 }
 
-/* Dropdown groups */
 .dropdown-group {
   border-bottom: 1px solid #f3f4f6;
 }
@@ -817,7 +791,6 @@
   border-bottom: none;
 }
 
-/* Dropdown items */
 .dropdown-item {
   display: flex;
   align-items: center;
@@ -844,7 +817,6 @@
   flex-shrink: 0;
 }
 
-/* Status dots for attended/no-show */
 .status-dot {
   width: 8px;
   height: 8px;
@@ -860,7 +832,6 @@
   background-color: #ef4444;
 }
 
-/* Pagination - Recreated to match template */
 .pagination-container {
   padding: 16px 24px;
   display: flex;
@@ -904,7 +875,6 @@
   font-weight: 500;
 }
 
-/* Copyright */
 .copyright {
   padding: 24px 32px;
   text-align: right;
@@ -913,7 +883,6 @@
   margin-top: auto;
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .agenda-content {
     flex-direction: column;

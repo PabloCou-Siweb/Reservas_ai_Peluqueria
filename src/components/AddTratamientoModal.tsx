@@ -162,70 +162,48 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
           <div className="form-section">
             <div className="section-header">
               <div className="section-icon">
-                <img src="/img/users-icon.png" alt="Especialistas" />
+                <img src="/img/scissor-icon.png" alt="Especialistas" />
               </div>
               <h3 className="section-title">Asignar especialistas</h3>
             </div>
 
-            <div className="search-group">
-              <div className="search-input">
-                <input
-                  type="text"
-                  placeholder="Buscar especialista..."
-                  value={buscarEspecialista}
-                  onChange={(e) => setBuscarEspecialista(e.target.value)}
-                />
-                <img src="/img/search-icon.png" alt="Buscar" />
-              </div>
+            <div className="search-bar">
+              <input
+                type="text"
+                placeholder="Buscar médico..."
+                value={buscarEspecialista}
+                onChange={(e) => setBuscarEspecialista(e.target.value)}
+              />
+              <img src="/img/search-icon.png" alt="Buscar" />
             </div>
 
-            <div className="especialistas-table">
-              <div className="table-header">
-                <div className="checkbox-cell">
-                  <div className="checkbox-container">
-                    <input
-                      type="checkbox"
-                      id="select-all"
-                      checked={todosSeleccionados}
-                      onChange={handleSelectAll}
-                    />
-                    <label htmlFor="select-all"></label>
-                  </div>
+            <div className="specialists-list">
+              <div className="list-header">
+                <div className="header-checkbox">
+                  <input type="checkbox" id="select-all" checked={todosSeleccionados} onChange={handleSelectAll} />
+                  <label htmlFor="select-all"></label>
                 </div>
-                <div className="header-nombre">
+                <div className="header-name">
                   <span>Nombre</span>
-                  <img src="/img/sort-icon.png" alt="Sort" className="sort-icon" />
+                  <img src="/img/sort-icon.png" alt="Sort" />
                 </div>
-                <div>Especialidad</div>
+                <div className="header-specialty">Especialidad</div>
               </div>
 
               {especialistas
                 .filter(esp => esp.nombre.toLowerCase().includes(buscarEspecialista.toLowerCase()))
                 .map((especialista) => (
-                  <div key={especialista.id} className={`table-row ${especialistasSeleccionados.includes(especialista.id) ? 'selected' : ''}`}>
-                    <div className="checkbox-cell">
-                      <div className="checkbox-container">
-                        <input
-                          type="checkbox"
-                          id={especialista.id}
-                          checked={especialistasSeleccionados.includes(especialista.id)}
-                          onChange={() => handleEspecialistaToggle(especialista.id)}
-                        />
-                        <label htmlFor={especialista.id}></label>
-                      </div>
+                  <div key={especialista.id} className={`specialist-item ${especialistasSeleccionados.includes(especialista.id) ? 'selected' : ''}`}>
+                    <div className="item-checkbox">
+                      <input type="checkbox" id={especialista.id} checked={especialistasSeleccionados.includes(especialista.id)} onChange={() => handleEspecialistaToggle(especialista.id)} />
+                      <label htmlFor={especialista.id}></label>
                     </div>
-                    <div className="especialista-info">
-                      <div className="especialista-name">{especialista.nombre}</div>
-                      <div className="especialista-contact">
-                        {especialista.email}
-                      </div>
-                      <div className="especialista-contact">
-                        {especialista.telefono}
-                      </div>
+                    <div className="item-info">
+                      <div className="name">{especialista.nombre}</div>
+                      <div className="email">{especialista.email}</div>
+                      <div className="phone">{especialista.telefono}</div>
                     </div>
-                    <div className="especialista-specialty">
-                      {especialista.especialidad}
-                    </div>
+                    <div className="item-specialty">{especialista.especialidad}</div>
                   </div>
                 ))}
             </div>
@@ -247,3 +225,4 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
 };
 
 export default AddTratamientoModal;
+

@@ -14,7 +14,6 @@ const ReprogramarCitaModal: React.FC<ReprogramarCitaModalProps> = ({
   onConfirm,
   appointmentData
 }) => {
-  // Estados independientes del modal para evitar interferencias
   const [modalSelectedDate, setModalSelectedDate] = useState(new Date());
   const [modalCurrentMonth, setModalCurrentMonth] = useState(new Date().getMonth());
   const [modalCurrentYear, setModalCurrentYear] = useState(new Date().getFullYear());

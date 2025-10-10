@@ -9,6 +9,7 @@ import './ComprarMinutosPage.css';
 const ComprarMinutosPage: React.FC = () => {
   const { navigateTo } = useNavigation();
   const { userData } = useUser();
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [selectedPack, setSelectedPack] = useState<{
@@ -16,6 +17,10 @@ const ComprarMinutosPage: React.FC = () => {
     minutes: string;
     price: string;
   } | null>(null);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  };
 
   const currentMinutes = 480;
   const totalMinutes = 500;
@@ -103,9 +108,9 @@ const ComprarMinutosPage: React.FC = () => {
 
   return (
     <div className="comprar-minutos-container">
-      <Sidebar isOpen={true} onToggle={() => {}} />
+      <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
 
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
         <div className="page-header">
           <div className="header-top">

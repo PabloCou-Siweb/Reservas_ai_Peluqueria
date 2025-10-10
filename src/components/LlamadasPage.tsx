@@ -64,25 +64,21 @@ const LlamadasPage: React.FC = () => {
     navigateTo('configuracion');
   };
 
-  // Función para convertir duración (ej: "1:23") a segundos
   const durationToSeconds = (duration: string): number => {
     const parts = duration.split(':');
     return parseInt(parts[0]) * 60 + parseInt(parts[1]);
   };
 
-  // Función para convertir segundos a formato MM:SS
   const secondsToDuration = (seconds: number): string => {
     const mins = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
-  // Función para manejar play/pause del audio
   const handleAudioPlay = (callId: number, duration: string) => {
     const totalSeconds = durationToSeconds(duration);
     
     if (playingCalls.has(callId)) {
-      // Pausar
       setPlayingCalls(prev => {
         const newSet = new Set(prev);
         newSet.delete(callId);
@@ -94,21 +90,17 @@ const LlamadasPage: React.FC = () => {
         delete intervalRefs.current[callId];
       }
     } else {
-      // Reproducir
       setPlayingCalls(prev => new Set(prev).add(callId));
       
-      // Iniciar progreso desde 0 si no existe
       if (!audioProgress[callId]) {
         setAudioProgress(prev => ({ ...prev, [callId]: 0 }));
       }
       
-      // Crear intervalo para actualizar progreso (cada 100ms para movimiento fluido)
       intervalRefs.current[callId] = setInterval(() => {
         setAudioProgress(prev => {
           const currentProgress = prev[callId] || 0;
           const newProgress = currentProgress + 0.1; // Incremento de 0.1 segundos
           
-          // Si llegamos al final, pausar
           if (newProgress >= totalSeconds) {
             setPlayingCalls(prevPlaying => {
               const newSet = new Set(prevPlaying);
@@ -130,7 +122,6 @@ const LlamadasPage: React.FC = () => {
     }
   };
 
-  // Limpiar intervalos al desmontar
   useEffect(() => {
     return () => {
       Object.values(intervalRefs.current).forEach(interval => {

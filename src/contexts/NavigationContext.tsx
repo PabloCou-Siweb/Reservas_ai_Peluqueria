@@ -67,24 +67,32 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = ({ children
 
   const navigateTo = (page: PageType) => {
     setCurrentPage(page);
+    // Scroll al top cuando se cambia de página
+    window.scrollTo(0, 0);
     // No guardar en localStorage para evitar problemas de persistencia
   };
 
   const navigateToCitas = (specialty: string) => {
     setSelectedSpecialty(specialty);
     setCurrentPage('citas');
+    // Scroll al top cuando se navega a citas
+    window.scrollTo(0, 0);
   };
 
   const navigateToNuevaCita = () => {
     setCurrentPage('nueva-cita');
+    // Scroll al top cuando se navega a nueva cita
+    window.scrollTo(0, 0);
   };
 
   const goBack = () => {
     const currentIndex = pageOrder.indexOf(currentPage);
     if (currentIndex > 0) {
       setCurrentPage(pageOrder[currentIndex - 1]);
+      window.scrollTo(0, 0);
     } else if (currentPage === 'forgot-password') {
       setCurrentPage('login');
+      window.scrollTo(0, 0);
     }
   };
 
@@ -92,8 +100,10 @@ export const NavigationProvider: React.FC<NavigationProviderProps> = ({ children
     const currentIndex = pageOrder.indexOf(currentPage);
     if (currentIndex < pageOrder.length - 1) {
       setCurrentPage(pageOrder[currentIndex + 1]);
+      window.scrollTo(0, 0);
     } else if (currentPage === 'ready') {
       setCurrentPage('dashboard');
+      window.scrollTo(0, 0);
     }
   };
 

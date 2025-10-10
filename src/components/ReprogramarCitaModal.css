@@ -1,4 +1,3 @@
-/* Reprogramar Cita Modal - Reverted to previous working version */
 
 .reprogramar-cita-overlay {
   position: fixed;
@@ -96,7 +95,6 @@
   justify-content: center;
 }
 
-/* Calendario recreado desde cero según plantilla */
 .calendar-container {
   background: white;
   border-radius: 12px;
@@ -198,21 +196,18 @@
   visibility: hidden;
 }
 
-/* Formulario reorganizado según plantilla */
 .form-section {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* Primera fila: 3 campos ajustados a plantilla */
 .form-row-three {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 12px;
 }
 
-/* Filas individuales con mismo ancho que los 3 de arriba juntos */
 .form-row-single {
   display: grid;
   grid-template-columns: 1fr;
@@ -238,7 +233,6 @@
   align-items: center;
 }
 
-/* Inputs con borde completo como en plantilla */
 .form-input {
   width: 100%;
   height: 40px;
@@ -272,7 +266,6 @@
   justify-content: center;
 }
 
-/* Input de hora con icono de reloj */
 .clock-icon {
   position: absolute;
   left: 10px;
@@ -288,7 +281,6 @@
   padding-right: 36px !important;
 }
 
-/* Inputs simples (sin iconos) - mismo ancho que los 3 de arriba */
 .simple-input {
   width: 100%;
   padding: 8px 12px !important;
@@ -333,7 +325,6 @@
   box-shadow: 0 0 0 1px #9ca3af !important;
 }
 
-/* Formulario dentro de los márgenes del popup */
 .form-section {
   display: flex;
   flex-direction: column;
@@ -349,7 +340,6 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Primera fila: 3 campos con diferentes anchos */
 .form-row-first {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr;
@@ -357,7 +347,6 @@
   width: 100%;
 }
 
-/* Segunda y tercera fila: ancho completo */
 .form-row-second,
 .form-row-third {
   width: 100%;
@@ -383,7 +372,6 @@
   width: 100%;
 }
 
-/* Inputs base */
 .field-container input,
 .field-container textarea {
   width: 100%;
@@ -408,7 +396,6 @@
   box-shadow: 0 0 0 1px #9ca3af;
 }
 
-/* Iconos */
 .arrow-icon {
   position: absolute;
   right: 8px;
@@ -423,20 +410,17 @@
   z-index: 1;
 }
 
-/* Input de hora con doble padding */
 .time-input {
   padding-left: 32px !important;
   padding-right: 32px !important;
 }
 
-/* Textarea */
 .field-container textarea {
   height: 70px;
   padding: 10px;
   resize: vertical;
 }
 
-/* Footer */
 .reprogramar-cita-footer {
   display: flex;
   justify-content: flex-end;
@@ -478,7 +462,6 @@
   background: #8C623E;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .reprogramar-cita-content {
     width: 95%;

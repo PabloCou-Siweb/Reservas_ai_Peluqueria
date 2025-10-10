@@ -48,7 +48,7 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({ categories, onServiceClick })
               className="service-icon-img"
             />
           </div>
-          <div className="service-info">
+          <div className="service-content">
             <h3 className="service-name">{category.name}</h3>
             <p className="service-specialists">{category.specialists} especialistas</p>
           </div>

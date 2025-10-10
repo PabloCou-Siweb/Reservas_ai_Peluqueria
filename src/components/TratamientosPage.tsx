@@ -14,7 +14,6 @@ const TratamientosPage: React.FC = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
-  // Datos de tratamientos siguiendo la plantilla
   const tratamientos = [
     {
       id: 1,
@@ -121,13 +120,12 @@ const TratamientosPage: React.FC = () => {
   const handleAddTratamientoSubmit = (tratamiento: any) => {
     console.log('Nuevo tratamiento agregado:', tratamiento);
     setShowAddModal(false);
-    // Aquí podrías actualizar la lista de tratamientos o hacer otras acciones
   };
 
   return (
     <div className="tratamientos-container">
       <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
         <div className="page-header">
           <h1>Tratamientos</h1>

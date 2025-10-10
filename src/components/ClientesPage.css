@@ -7,10 +7,17 @@
 
 .main-content {
   flex: 1;
+  width: calc(100vw - 280px);
   margin-left: 280px;
   padding: 0;
   background-color: #f8f9fa;
   min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+.main-content.sidebar-closed {
+  width: calc(100vw - 70px);
+  margin-left: 70px;
 }
 
 /* Header */

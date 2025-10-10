@@ -60,7 +60,7 @@ const handleCitaAgendadaClose = () => {
   return (
     <div className="nueva-cita-container nueva-cita-page">
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
         <header className="nueva-cita-header">
           <div className="header-content">

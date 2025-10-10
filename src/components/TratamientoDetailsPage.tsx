@@ -1,315 +1,279 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
-import EditarTratamientoModal from './EditarTratamientoModal';
-import AddEspecialistaModal from './AddEspecialistaModal';
-import NotificationModal from './NotificationModal';
 import './TratamientoDetailsPage.css';
 
 const TratamientoDetailsPage: React.FC = () => {
   const { navigateTo } = useNavigation();
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showAddEspecialistaModal, setShowAddEspecialistaModal] = useState(false);
-  const [showNotification, setShowNotification] = useState(false);
-  const [especialistas, setEspecialistas] = useState([
-    { id: 1, nombre: 'Pol Palomo Cortés', email: 'polpalomo@gmail.com', telefono: '+34 606 20 45 56', especialidad: 'Peluquero', asignado: true },
-    { id: 2, nombre: 'Alberto Jiménez Rodríguez', email: 'alberto.jimenez@example.com', telefono: '+34 659 25 63 65', especialidad: 'Peluquero', asignado: false },
-    { id: 3, nombre: 'Raúl Iznate Cabras', email: 'raul.iznate@example.com', telefono: '+34 612 34 56 78', especialidad: 'Peluquero', asignado: true },
-    { id: 4, nombre: 'Roberto Bloste Cañí', email: 'roberto.bloste@example.com', telefono: '+34 623 45 67 89', especialidad: 'Peluquero', asignado: false },
-    { id: 5, nombre: 'Martín Guijarro López', email: 'martin.guijarro@example.com', telefono: '+34 634 56 78 90', especialidad: 'Peluquero', asignado: true }
-  ]);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
-  const [citas, setCitas] = useState([
-    { id: 1, cliente: 'Pablo Simón López', telefono: '+34 654 25 20 45', email: 'pablosimon_lopez@gmail.com', fecha: '15/08/2025 - 09:00', estado: 'Confirmada', seleccionada: true },
-    { id: 2, cliente: 'Javi Correa Gómez', telefono: '+34 620 12 34 89', email: 'maria.gonzalez@yahoo.com', fecha: '16/08/2025 - 10:30', estado: 'Confirmada', seleccionada: true },
-    { id: 3, cliente: 'Ana María Jiménez', telefono: '+34 610 12 34 56', email: 'olivia.martinez@live.com', fecha: '20/08/2025 - 15:45', estado: 'Pendiente', seleccionada: false },
-    { id: 4, cliente: 'Pepito Jiménez Sancho', telefono: '+34 615 67 89 01', email: 'michael.johnson@protonmail.com', fecha: '20/08/2025 - 15:45', estado: 'Confirmada', seleccionada: false }
-  ]);
-
-  const [busquedaCliente, setBusquedaCliente] = useState('');
-
-  const handleEditClick = () => {
-    setShowEditModal(true);
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
-
-  const handleCloseModal = () => {
-    setShowEditModal(false);
-  };
-
-  const handleAddEspecialistaClick = () => {
-    setShowAddEspecialistaModal(true);
-  };
-
-  const handleCloseAddEspecialistaModal = () => {
-    setShowAddEspecialistaModal(false);
-  };
-
-  const handleSaveEspecialistas = (nuevosEspecialistas: any[]) => {
-    console.log('Especialistas añadidos:', nuevosEspecialistas);
-    // Aquí se podría implementar la lógica para añadir los especialistas
-    setShowAddEspecialistaModal(false);
-    setShowNotification(true);
-  };
-
-  const handleSaveTratamiento = (data: any) => {
-    console.log('Tratamiento actualizado:', data);
-    // Aquí se podría implementar la lógica para guardar los cambios
-    setShowEditModal(false);
-  };
-
-  const handleEspecialistaToggle = (id: number) => {
-    setEspecialistas(prev =>
-      prev.map(esp =>
-        esp.id === id ? { ...esp, asignado: !esp.asignado } : esp
-      )
-    );
-  };
-
-  const handleCitaToggle = (id: number) => {
-    setCitas(prev =>
-      prev.map(cita =>
-        cita.id === id ? { ...cita, seleccionada: !cita.seleccionada } : cita
-      )
-    );
-  };
-
-  const horarios = [
-    { dia: 'Lunes', horario: '09:00 - 18:00' },
-    { dia: 'Martes', horario: '09:00 - 18:00' },
-    { dia: 'Miércoles', horario: '09:00 - 18:00' },
-    { dia: 'Jueves', horario: '09:00 - 18:00' },
-    { dia: 'Viernes', horario: '09:00 - 18:00' },
-    { dia: 'Sábado', horario: 'No disponible' },
-    { dia: 'Domingo', horario: 'No disponible' }
-  ];
 
   return (
-    <div className="tratamiento-details-container">
-      <Sidebar isOpen={true} onToggle={() => {}} />
-
-      <div className="main-content">
+    <div className="page-container tratamiento-details-page">
+      <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
+      
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
-        <div className="page-header">
-          <button className="back-btn" onClick={() => navigateTo('tratamientos')}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M15 18l-6-6 6-6"/>
-            </svg>
-          </button>
-          <div className="header-content">
-            <h1 className="page-title">Peluquería</h1>
-            <p className="page-subtitle">Servicios de belleza y cuidado capilar especializados, incluyendo cortes, peinados, coloración y tratamientos para el cabello.</p>
+        <header className="header-section">
+          <div className="header-left">
+            <h1>Peluquería</h1>
+            <p>Especialidad médica orientada a la atención integral del paciente, abarcando la prevención, diagnóstico y tratamiento de las enfermedades más frecuentes.</p>
           </div>
-          <div className="header-actions">
-            <div className="notification-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-              </svg>
-              <div className="notification-dot"></div>
-            </div>
-            <div className="settings-btn" onClick={() => navigateTo('configuracion')}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
-            </div>
+          <div className="header-right">
+            <button className="icon-button" onClick={() => navigateTo('llamadas')}>
+              <img src="/img/bell-icon.png" alt="Notificaciones" />
+            </button>
+            <button className="icon-button" onClick={() => navigateTo('configuracion')}>
+              <img src="/img/settings-icon.png" alt="Configuración" />
+            </button>
           </div>
-        </div>
+        </header>
 
-        {/* Top Section */}
-        <div className="top-section">
-          {/* Treatment Details & Schedules */}
-          <div className="treatment-split-card">
-            <div className="treatment-left-section">
-              <div className="treatment-icon-container">
-                <div className="treatment-icon">
+        {/* Content */}
+        <div className="content-section">
+          {/* Top Cards Row */}
+          <div className="cards-row">
+            {/* Treatment Card */}
+            <div className="treatment-card">
+              <img src="/img/pen-icon.png" alt="Editar" className="edit-treatment-icon" />
+              <div className="treatment-left">
+                <div className="service-icon">
                   <img src="/img/scissor-icon.png" alt="Peluquería" />
                 </div>
+                <div className="status-badge">Activa</div>
+                <div className="duration-info">
+                  <div className="duration-value">25 min</div>
+                  <div className="duration-label">Duración estándar</div>
+                </div>
+                <div className="action-buttons">
+                  <button className="btn-edit">
+                    <img src="/img/rounded_pen-icon.png" alt="Editar" />
+                    Editar
+                  </button>
+                  <button className="btn-delete">
+                    <img src="/img/trash-icon.png" alt="Eliminar" />
+                    Eliminar
+                  </button>
+                </div>
               </div>
-              <div className="treatment-info-section">
-                <div className="treatment-status">
-                  <span className="status-label">Activa</span>
+              
+              <div className="treatment-right">
+                <div className="schedule-header">
+                  <h3>Horarios</h3>
                 </div>
-                <div className="treatment-duration">
-                  <span className="duration-label">Duración estándar</span>
-                  <span className="duration-value">25 min</span>
+                <div className="schedule-items">
+                  <div className="schedule-row">
+                    <span className="day">Lunes</span>
+                    <span className="time">09:00 - 18:00</span>
+                  </div>
+                  <div className="schedule-row">
+                    <span className="day">Martes</span>
+                    <span className="time">09:00 - 18:00</span>
+                  </div>
+                  <div className="schedule-row">
+                    <span className="day">Miércoles</span>
+                    <span className="time">09:00 - 18:00</span>
+                  </div>
+                  <div className="schedule-row">
+                    <span className="day">Jueves</span>
+                    <span className="time">09:00 - 18:00</span>
+                  </div>
+                  <div className="schedule-row">
+                    <span className="day">Viernes</span>
+                    <span className="time">09:00 - 18:00</span>
+                  </div>
+                  <div className="schedule-row">
+                    <span className="day">Sábado</span>
+                    <span className="time">No disponible</span>
+                  </div>
+                  <div className="schedule-row">
+                    <span className="day">Domingo</span>
+                    <span className="time">No disponible</span>
+                  </div>
                 </div>
-                    <div className="treatment-actions">
-                      <button className="edit-btn" onClick={handleEditClick}>
-                        <img src="/img/rounded_pen-icon.png" alt="Editar" width="16" height="16" />
-                        Editar
-                      </button>
-                      <button className="remove-btn">
-                        <img src="/img/trash-icon.png" alt="Eliminar" width="16" height="16" />
-                        Eliminar
-                      </button>
-                    </div>
               </div>
             </div>
-            
-            <div className="vertical-divider"></div>
-            
-            <div className="treatment-right-section">
-              <div className="schedules-header">
-                <h3>Horarios</h3>
-                <button className="edit-schedule-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
-                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
-                  </svg>
-                </button>
+
+            {/* Specialists Card */}
+            <div className="specialists-card">
+              <h2>Especialistas asignados</h2>
+              <div className="specialist-item">
+                <input type="checkbox" id="spec1" />
+                <label htmlFor="spec1" className="specialist-name">Pol Palomo Cortés</label>
+                <a href="#" className="view-link">Ver ficha</a>
               </div>
-              <div className="schedules-list">
-                {horarios.map((horario, index) => (
-                  <div key={index} className="schedule-item">
-                    <span className="schedule-day">{horario.dia}</span>
-                    <span className="schedule-time">{horario.horario}</span>
-                  </div>
-                ))}
+              <div className="specialist-item">
+                <input type="checkbox" id="spec2" />
+                <label htmlFor="spec2" className="specialist-name">Alberto Jiménez Rodríguez</label>
+                <a href="#" className="view-link">Ver ficha</a>
+              </div>
+              <div className="specialist-item">
+                <input type="checkbox" id="spec3" />
+                <label htmlFor="spec3" className="specialist-name">Raúl Iznate Cabras</label>
+                <a href="#" className="view-link">Ver ficha</a>
+              </div>
+              <div className="specialist-item">
+                <input type="checkbox" id="spec4" />
+                <label htmlFor="spec4" className="specialist-name">Roberto Bloste Cañí</label>
+                <a href="#" className="view-link">Ver ficha</a>
+              </div>
+              <div className="specialist-item">
+                <input type="checkbox" id="spec5" />
+                <label htmlFor="spec5" className="specialist-name">Martín Guijarro López</label>
+                <a href="#" className="view-link">Ver ficha</a>
+              </div>
+              <div className="specialists-actions">
+                <button className="btn-remove">Eliminar</button>
+                <button className="btn-add">Añadir</button>
               </div>
             </div>
           </div>
 
-          {/* Specialists */}
-          <div className="specialists-card">
-            <div className="specialists-header">
-              <h3>Especialistas asignados</h3>
+          {/* Appointments Card */}
+          <div className="appointments-card">
+            <div className="appointments-header">
+              <h2>Citas programadas</h2>
             </div>
-            <div className="specialists-list">
-              {especialistas.map((especialista) => (
-                <div key={especialista.id} className="specialist-item">
-                  <div className="specialist-checkbox">
-                    <input
-                      type="checkbox"
-                      id={`esp-${especialista.id}`}
-                      checked={especialista.asignado}
-                      onChange={() => handleEspecialistaToggle(especialista.id)}
-                    />
-                    <label htmlFor={`esp-${especialista.id}`}></label>
-                  </div>
-                  <div className="specialist-info">
-                    <div className="specialist-name">{especialista.nombre}</div>
-                  </div>
-                  <div className="specialist-actions">
-                    <button className="view-profile-btn">Ver ficha</button>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="specialists-actions">
-              <button className="remove-btn">
-                <img src="/img/trash-icon.png" alt="Eliminar" width="16" height="16" />
-                Eliminar
-              </button>
-              <button className="add-btn" onClick={handleAddEspecialistaClick}>Añadir</button>
-            </div>
-          </div>
-        </div>
-
-        {/* Appointments Section */}
-        <div className="appointments-section">
-          <div className="appointments-header">
-            <h2>Citas programadas</h2>
+            
             <div className="search-container">
-              <input
-                type="text"
-                placeholder="Buscar cliente..."
-                value={busquedaCliente}
-                onChange={(e) => setBusquedaCliente(e.target.value)}
-                className="search-input"
-              />
-              <div className="search-icon">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="11" cy="11" r="8"/>
-                  <path d="M21 21l-4.35-4.35"/>
-                </svg>
-              </div>
+              <input type="text" placeholder="Buscar paciente..." className="search-input" />
+              <img src="/img/search-icon.png" alt="Buscar" className="search-icon" />
             </div>
-          </div>
 
-          <div className="appointments-table">
-            <div className="table-header">
-              <div className="header-cell checkbox-col"></div>
-              <div className="header-cell">Cliente</div>
-              <div className="header-cell">Teléfono</div>
-              <div className="header-cell">Email</div>
-              <div className="header-cell">Próxima cita</div>
-              <div className="header-cell">Estado</div>
-              <div className="header-cell actions-col"></div>
-            </div>
-            <div className="table-body">
-              {citas.map((cita) => (
-                <div key={cita.id} className={`table-row ${cita.seleccionada ? 'selected' : ''}`}>
-                  <div className="table-cell checkbox-col">
-                    <input
-                      type="checkbox"
-                      checked={cita.seleccionada}
-                      onChange={() => handleCitaToggle(cita.id)}
-                    />
+            <div className="appointments-table">
+              <div className="table-container">
+                <div className="table-header">
+                  <div className="header-checkbox">
+                    <input type="checkbox" id="select-all" />
+                    <label htmlFor="select-all"></label>
                   </div>
-                  <div className="table-cell">{cita.cliente}</div>
-                  <div className="table-cell">{cita.telefono}</div>
-                  <div className="table-cell">{cita.email}</div>
-                  <div className="table-cell">{cita.fecha}</div>
-                  <div className="table-cell">
-                    <div className={`status-badge ${cita.estado.toLowerCase()}`}>
-                      <div className={`status-dot ${cita.estado.toLowerCase()}`}></div>
-                      {cita.estado}
+                  <div className="header-patient">
+                    <span>Paciente</span>
+                    <img src="/img/sort-icon.png" alt="Sort" />
+                  </div>
+                  <div className="header-phone">Teléfono</div>
+                  <div className="header-email">Email</div>
+                  <div className="header-appointment">Próxima cita</div>
+                  <div className="header-status">Estado</div>
+                  <div className="header-actions"></div>
+                </div>
+
+                  <div className="table-row highlighted">
+                    <div className="col-checkbox">
+                      <input type="checkbox" id="apt1" />
+                      <label htmlFor="apt1"></label>
                     </div>
+                  <div className="col-patient">
+                    <div className="patient-name">Pablo Simón López</div>
+                    <div className="patient-number">555-4567</div>
                   </div>
-                  <div className="table-cell actions-col">
-                    <button className="menu-btn">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <circle cx="12" cy="12" r="1"/>
-                        <circle cx="12" cy="5" r="1"/>
-                        <circle cx="12" cy="19" r="1"/>
-                      </svg>
+                  <div className="col-phone">+34 654 25 20 45</div>
+                  <div className="col-email">pablosimón_lopez@gmail.com</div>
+                  <div className="col-appointment">15/08/2025 - 09:00</div>
+                  <div className="col-status confirmed">
+                    <span className="status-dot"></span>
+                    Confirmada
+                  </div>
+                  <div className="col-actions">
+                    <button className="options-btn">
+                      <img src="/img/3dots-icon.png" alt="Opciones" />
                     </button>
                   </div>
                 </div>
-              ))}
-            </div>
-          </div>
 
-          <div className="pagination">
-            <span>01</span>
-            <span>02</span>
-            <span>03</span>
-            <span>...</span>
-            <span>04</span>
-            <span>05</span>
-            <span>06</span>
+                  <div className="table-row highlighted">
+                    <div className="col-checkbox">
+                      <input type="checkbox" id="apt2" />
+                      <label htmlFor="apt2"></label>
+                    </div>
+                  <div className="col-patient">
+                    <div className="patient-name">Javi Correa Gómez</div>
+                    <div className="patient-number">555-4567</div>
+                  </div>
+                  <div className="col-phone">+34 620 12 34 89</div>
+                  <div className="col-email">maria.gonzalez@yahoo.com</div>
+                  <div className="col-appointment">16/08/2025 - 10:30</div>
+                  <div className="col-status confirmed">
+                    <span className="status-dot"></span>
+                    Confirmada
+                  </div>
+                  <div className="col-actions">
+                    <button className="options-btn">
+                      <img src="/img/3dots-icon.png" alt="Opciones" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="table-row">
+                  <div className="col-checkbox">
+                    <input type="checkbox" id="apt3" />
+                    <label htmlFor="apt3"></label>
+                  </div>
+                  <div className="col-patient">
+                    <div className="patient-name">Ana María Jiménez</div>
+                    <div className="patient-number">555-4567</div>
+                  </div>
+                  <div className="col-phone">+34 610 12 34 56</div>
+                  <div className="col-email">olivia.martinez@live.com</div>
+                  <div className="col-appointment">20/08/2025 - 15:45</div>
+                  <div className="col-status pending">
+                    <span className="status-dot"></span>
+                    Pendiente
+                  </div>
+                  <div className="col-actions">
+                    <button className="options-btn">
+                      <img src="/img/3dots-icon.png" alt="Opciones" />
+                    </button>
+                  </div>
+                </div>
+
+                <div className="table-row">
+                  <div className="col-checkbox">
+                    <input type="checkbox" id="apt4" />
+                    <label htmlFor="apt4"></label>
+                  </div>
+                  <div className="col-patient">
+                    <div className="patient-name">Pepito Jiménez Sancho</div>
+                    <div className="patient-number">555-7890</div>
+                  </div>
+                  <div className="col-phone">+34 615 67 89 01</div>
+                  <div className="col-email">michael.johnson@protonmail.com</div>
+                  <div className="col-appointment">20/08/2025 - 15:45</div>
+                  <div className="col-status confirmed">
+                    <span className="status-dot"></span>
+                    Confirmada
+                  </div>
+                  <div className="col-actions">
+                    <button className="options-btn">
+                      <img src="/img/3dots-icon.png" alt="Opciones" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="pagination-container">
+              <div className="pagination">
+                <span className="page active">01</span>
+                <span className="page">02</span>
+                <span className="page">03</span>
+                <span className="dots">...</span>
+                <span className="page">04</span>
+                <span className="page">05</span>
+                <span className="page">06</span>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Footer */}
-        <div className="footer">
-          <p>© 2025 Bokifly</p>
-        </div>
+        <footer className="footer-section">
+          <span>© 2025 Bokifly</span>
+        </footer>
       </div>
-
-      {/* Editar Tratamiento Modal */}
-      <EditarTratamientoModal
-        isOpen={showEditModal}
-        onClose={handleCloseModal}
-        onSave={handleSaveTratamiento}
-      />
-
-      {/* Añadir Especialista Modal */}
-      <AddEspecialistaModal
-        isOpen={showAddEspecialistaModal}
-        onClose={handleCloseAddEspecialistaModal}
-        onSave={handleSaveEspecialistas}
-      />
-
-      {/* Notification Modal */}
-      <NotificationModal
-        isOpen={showNotification}
-        onClose={() => setShowNotification(false)}
-        type="success"
-        title="Especialista agregado con éxito"
-        message="¡Listo! El especialista ya puede recibir citas en la especialidad asignada."
-      />
     </div>
   );
 };

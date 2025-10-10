@@ -13,7 +13,7 @@
   background: white;
 }
 
-.configuracion-page:has(.sidebar.closed) .main-content {
+.main-content.sidebar-closed {
   width: calc(100vw - 70px);
   margin-left: 70px;
 }

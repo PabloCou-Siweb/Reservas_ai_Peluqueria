@@ -103,7 +103,7 @@ const AddEspecialistaPage: React.FC = () => {
     <div className="add-especialista-page">
       <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
       
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
         <div className="page-header">
           <div className="header-left">
@@ -253,12 +253,7 @@ const AddEspecialistaPage: React.FC = () => {
                         value={formData.fechaNacimiento}
                         onChange={handleInputChange}
                       />
-                      <svg className="calendar-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                        <line x1="16" y1="2" x2="16" y2="6"/>
-                        <line x1="8" y1="2" x2="8" y2="6"/>
-                        <line x1="3" y1="10" x2="21" y2="10"/>
-                      </svg>
+                      <img src="/img/calendar-icon.png" alt="Calendar" className="calendar-icon" />
                     </div>
                   </div>
                 </div>
@@ -354,12 +349,15 @@ const AddEspecialistaPage: React.FC = () => {
                       </div>
                       <div className="professional-field">
                         <label>Año de realización</label>
-                        <input
-                          type="date"
-                          name="añoRealizacion"
-                          value={formData.añoRealizacion || '2025-10-09'}
-                          onChange={handleInputChange}
-                        />
+                        <div className="date-input-container">
+                          <input
+                            type="date"
+                            name="añoRealizacion"
+                            value={formData.añoRealizacion || '2025-10-09'}
+                            onChange={handleInputChange}
+                          />
+                          <img src="/img/calendar-icon.png" alt="Calendar" className="calendar-icon" />
+                        </div>
                       </div>
                     </div>
                   </div>

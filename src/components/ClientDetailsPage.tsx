@@ -201,7 +201,7 @@ const ClientDetailsPage: React.FC = () => {
     <div className="client-details-page">
       <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
       
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
         <div className="page-header">
           <div className="header-left">

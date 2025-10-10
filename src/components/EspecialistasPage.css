@@ -18,14 +18,16 @@
 
 .main-content {
   flex: 1;
+  width: calc(100vw - 280px);
   margin-left: 280px;
   padding: 0;
   background-color: #f8f9fa;
-  transition: margin-left 0.3s ease;
+  transition: all 0.3s ease;
 }
 
-.especialistas-page:has(.sidebar.closed) .main-content {
-  margin-left: 80px;
+.main-content.sidebar-closed {
+  width: calc(100vw - 70px);
+  margin-left: 70px;
 }
 
 /* Header */

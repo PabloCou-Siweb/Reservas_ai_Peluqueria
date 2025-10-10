@@ -39,8 +39,6 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
   };
 
   const handleNewAppointmentClick = (time: string) => {
-    // Navigate to Nueva Cita page
-    // TODO: Pass selected time, date, and specialist data to the new appointment page
     console.log('Creating new appointment for:', {
       specialty: specialty,
       specialist: selectedSpecialist,
@@ -57,15 +55,12 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
   const handleModalConfirm = (data: any) => {
     console.log('Datos de la cita:', data);
     setIsModalOpen(false);
-    // Aquí puedes agregar la lógica para guardar la cita
   };
 
-  // Funciones del menú contextual
   const handleContextMenuOpen = (e: React.MouseEvent, patientName: string, appointmentId: number) => {
     e.preventDefault();
     e.stopPropagation();
     
-    // Calcular posición más inteligente
     const rect = e.currentTarget.getBoundingClientRect();
     const menuWidth = 240;
     const menuHeight = 320; // Altura fija para el menú
@@ -73,21 +68,17 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
     let x = rect.right + 5; // 5px a la derecha del botón
     let y = rect.top;
     
-    // Ajustar si se sale por la derecha
     if (x + menuWidth > window.innerWidth) {
       x = rect.left - menuWidth - 5; // 5px a la izquierda del botón
     }
     
-    // Ajustar si se sale por abajo - usar una lógica más consistente
     const spaceBelow = window.innerHeight - rect.bottom;
     const spaceAbove = rect.top;
     
     if (spaceBelow < menuHeight) {
-      // Si no hay espacio abajo, posicionar arriba
       if (spaceAbove >= menuHeight) {
         y = rect.top - menuHeight - 5;
       } else {
-        // Si tampoco hay espacio arriba, centrar verticalmente
         y = Math.max(10, (window.innerHeight - menuHeight) / 2);
       }
     }
@@ -167,22 +158,17 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
 
     const days = [];
     
-    // Add empty cells for days before the first day of the month
     for (let i = 0; i < startingDayOfWeek; i++) {
       days.push(null);
     }
     
-    // Add days of the current month
     for (let day = 1; day <= daysInMonth; day++) {
       days.push(day);
     }
     
-    // Calculate how many cells we need to fill to complete the grid
-    // We want exactly 6 rows (42 cells total)
     const totalCells = 42;
     const remainingCells = totalCells - days.length;
     
-    // Add days from next month to fill remaining cells
     for (let day = 1; day <= remainingCells; day++) {
       days.push(day);
     }
@@ -206,7 +192,6 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
-  // Datos de especialistas
   const especialistas = [
     {
       id: 1,
@@ -280,7 +265,6 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
     }
   ];
 
-  // Datos de ejemplo para las citas
   const citas = [
     {
       id: 1,
@@ -537,7 +521,6 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
                   const time = `${hour.toString().padStart(2, '0')}:00`;
                   const halfHourTime = `${hour.toString().padStart(2, '0')}:30`;
                   
-                  // Check if there are appointments at these times
                   const appointmentAtFullHour = filteredCitas.find(cita => cita.hora === time);
                   const appointmentAtHalfHour = filteredCitas.find(cita => cita.hora === halfHourTime);
                   

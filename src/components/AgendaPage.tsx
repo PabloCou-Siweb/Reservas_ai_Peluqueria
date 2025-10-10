@@ -17,13 +17,11 @@ const AgendaPage: React.FC = () => {
   const [selectedAppointments, setSelectedAppointments] = useState<number[]>([]);
   const dropdownRef = useRef<HTMLDivElement>(null);
   
-  // Modal states
   const [showEditModal, setShowEditModal] = useState(false);
   const [showRecordatorioModal, setShowRecordatorioModal] = useState(false);
   const [showReprogramarModal, setShowReprogramarModal] = useState(false);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState<number | null>(null);
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
@@ -133,12 +131,10 @@ const AgendaPage: React.FC = () => {
 
     const days = [];
     
-    // Add empty cells for days before the first day of the month
     for (let i = 0; i < startingDayOfWeek; i++) {
       days.push(null);
     }
     
-    // Add days of the current month
     for (let day = 1; day <= daysInMonth; day++) {
       days.push(day);
     }
@@ -150,7 +146,6 @@ const AgendaPage: React.FC = () => {
   const currentMonth = currentDate.getMonth();
   const currentYear = currentDate.getFullYear();
 
-  // Datos de ejemplo para las citas
   const appointmentsData = [
     {
       id: 1,
@@ -625,7 +620,6 @@ const AgendaPage: React.FC = () => {
           onConfirm={(updatedData: any) => {
             console.log('Cita actualizada:', updatedData);
             setShowEditModal(false);
-            // Aquí puedes agregar lógica para actualizar la cita en el estado
           }}
           appointmentData={(() => {
             const appointment = appointmentsData.find(app => app.id === selectedAppointmentId);
@@ -662,7 +656,6 @@ const AgendaPage: React.FC = () => {
           onConfirm={(data: any) => {
             console.log('Cita reprogramada:', data);
             setShowReprogramarModal(false);
-            // Aquí puedes agregar lógica para actualizar la fecha/hora de la cita
           }}
           appointmentData={appointmentsData.find(app => app.id === selectedAppointmentId)}
         />

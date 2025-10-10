@@ -1,4 +1,3 @@
-/* Edit Client Page */
 .edit-client-page {
   display: flex;
   min-height: 100vh;
@@ -24,7 +23,6 @@
   box-sizing: border-box;
 }
 
-/* Header */
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -80,7 +78,6 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
-/* Title Section */
 .title-section {
   display: flex;
   flex-direction: column;
@@ -153,7 +150,6 @@
   margin: 0;
 }
 
-/* Form Container */
 .edit-form-container {
   background: white;
   border-radius: 0;
@@ -166,7 +162,6 @@
   border: none;
 }
 
-/* Section Header */
 .section-header {
   background: #FFE8BC;
   border: none;
@@ -205,7 +200,6 @@
   margin: 0;
 }
 
-/* Form Content */
 .form-content {
   display: flex;
   flex-direction: column;
@@ -256,7 +250,6 @@
   color: #9ca3af;
 }
 
-/* Action Buttons */
 .form-actions {
   display: flex;
   justify-content: flex-end;
@@ -301,7 +294,6 @@
   border-color: #E6B377;
 }
 
-/* Responsive Design */
 @media (max-width: 1200px) {
   .form-row {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));

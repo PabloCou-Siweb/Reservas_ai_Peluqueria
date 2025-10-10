@@ -223,7 +223,7 @@ const EspecialistasPage: React.FC = () => {
     <div className="especialistas-page">
       <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
       
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
         <div className="page-header">
           <div className="header-left">

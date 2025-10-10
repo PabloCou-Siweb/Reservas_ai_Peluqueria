@@ -61,15 +61,11 @@ const ConfirmarCitaModal: React.FC<ConfirmarCitaModalProps> = ({
 
   const handleViewAgenda = () => {
     console.log('Ver agenda');
-    // Cerrar el modal de cita confirmada
     setIsCitaConfirmadaOpen(false);
-    // Cerrar el modal de confirmación
     onClose();
-    // Cerrar el modal principal si existe
     if (onCloseMainModal) {
       onCloseMainModal();
     }
-    // Navegar a la página de agenda
     navigateTo('agenda');
   };
 

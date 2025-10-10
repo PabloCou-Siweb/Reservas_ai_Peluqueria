@@ -30,7 +30,6 @@ const ConfirmarReservaModal: React.FC<ConfirmarReservaModalProps> = ({
   const handleConfirm = async () => {
     setIsLoading(true);
     try {
-      // Simular procesamiento
       await new Promise(resolve => setTimeout(resolve, 1000));
       onConfirm();
       onClose();

@@ -49,7 +49,7 @@ const ConfiguracionPage: React.FC = () => {
     <div className="configuracion-page">
       <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
 
-      <div className="main-content">
+      <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
         <div className="config-header">
           <div className="config-header-left">
