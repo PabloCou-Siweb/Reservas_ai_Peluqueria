@@ -1,26 +1,28 @@
 .especialista-details-page {
-  display: flex;
+  display: flex !important;
   min-height: 100vh;
   background: white;
 }
 
-.main-content {
+.especialista-details-page .main-content {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  display: flex !important;
+  flex-direction: column !important;
   margin-left: 280px;
   transition: margin-left 0.3s ease;
+  overflow-y: auto;
+  height: 100vh;
 }
 
-.main-content.sidebar-closed {
+.especialista-details-page .main-content.sidebar-closed {
   margin-left: 80px;
 }
 
 /* Header */
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.especialista-details-page .page-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
   padding: 16px 32px;
   background: white;
   border-bottom: 1px solid #e9ecef;
@@ -29,29 +31,31 @@
   z-index: 100;
 }
 
-.header-left {
-  display: flex;
-  flex-direction: column;
+.especialista-details-page .header-left {
+  display: flex !important;
+  flex-direction: column !important;
   gap: 8px;
+  align-items: flex-start !important;
+  text-align: left !important;
 }
 
-.breadcrumbs {
+.especialista-details-page .breadcrumbs {
   font-size: 14px;
   color: #666;
 }
 
-.breadcrumbs .separator {
+.especialista-details-page .breadcrumbs .separator {
   margin: 0 8px;
   color: #ccc;
 }
 
-.title-row {
-  display: flex;
-  align-items: center;
+.especialista-details-page .title-row {
+  display: flex !important;
+  align-items: center !important;
   gap: 12px;
 }
 
-.back-button {
+.especialista-details-page .back-button {
   background: none;
   border: none;
   cursor: pointer;
@@ -61,25 +65,26 @@
   transition: all 0.2s ease;
 }
 
-.back-button:hover {
+.especialista-details-page .back-button:hover {
   background: #f8f9fa;
   color: #333;
 }
 
-.title-row h1 {
+.especialista-details-page .title-row h1 {
   font-size: 24px;
   font-weight: 600;
   color: #333;
   margin: 0;
+  text-align: left !important;
 }
 
-.header-actions {
-  display: flex;
+.especialista-details-page .header-actions {
+  display: flex !important;
   gap: 12px;
 }
 
-.notification-btn,
-.settings-btn {
+.especialista-details-page .notification-btn,
+.especialista-details-page .settings-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -87,14 +92,14 @@
   background: #f8f9fa;
   color: #666;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   transition: all 0.2s ease;
 }
 
-.notification-btn:hover,
-.settings-btn:hover {
+.especialista-details-page .notification-btn:hover,
+.especialista-details-page .settings-btn:hover {
   background: #F2C288;
   color: #333;
   box-shadow: 0 2px 8px rgba(242, 194, 136, 0.3);
@@ -374,6 +379,9 @@
   border-radius: 12px;
   padding: 24px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .appointments-header {
@@ -435,90 +443,176 @@
 }
 
 .appointments-table {
-  overflow-x: auto;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: white;
+  overflow: hidden;
   margin-bottom: 24px;
-}
-
-.appointments-table table {
   width: 100%;
-  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
 }
 
-.appointments-table th {
+.especialista-details-page .appointments-table .table-header {
+  display: grid;
+  grid-template-columns: 48px 1fr 160px 200px 160px 120px 48px;
+  padding: 16px 20px;
   background: #f8f9fa;
-  padding: 12px;
-  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  gap: 16px;
+  align-items: center;
   font-weight: 600;
   color: #333;
   font-size: 14px;
-  border-bottom: 1px solid #e9ecef;
+  text-align: left;
+  width: 100%;
 }
 
-.appointments-table th.sortable {
-  cursor: pointer;
-  display: flex;
+.especialista-details-page .appointments-table .table-body {
+  background: white;
+}
+
+.especialista-details-page .appointments-table .data-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 160px 200px 160px 120px 48px;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background-color 0.2s ease;
+  gap: 16px;
   align-items: center;
-  gap: 4px;
-}
-
-.appointments-table td {
-  padding: 12px;
-  border-bottom: 1px solid #f8f9fa;
   font-size: 14px;
   color: #333;
+  width: 100%;
 }
 
-.appointments-table tr.selected,
-.appointments-table tr:has(input[type="checkbox"]:checked) {
-  background: #FFF7E6;
+.especialista-details-page .appointments-table .data-row.selected {
+  background-color: #FFE8BC;
 }
 
-/* Fallback para navegadores que no soportan :has() */
-.appointments-table tr input[type="checkbox"]:checked {
-  background: #FFF7E6;
+.especialista-details-page .appointments-table .data-row:hover {
+  background-color: #f8f9fa;
 }
 
-.appointments-table tr:has(input[type="checkbox"]:checked) td {
-  background: #FFF7E6;
+.especialista-details-page .appointments-table .data-row:last-child {
+  border-bottom: none;
 }
 
-.appointments-table tr:hover {
-  background: #f8f9fa;
+.especialista-details-page .checkbox-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.checkbox-col {
-  width: 40px;
-  text-align: center;
-}
-
-.checkbox-col input[type="checkbox"] {
-  cursor: pointer;
-}
-
-.patient-name {
+.especialista-details-page .client-col {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-weight: 500;
 }
 
-.status {
+.especialista-details-page .phone-col {
+  color: #666;
+  text-align: left;
+}
+
+.especialista-details-page .email-col {
+  color: #666;
+  text-align: left;
+}
+
+.especialista-details-page .appointment-col {
+  color: #666;
+  text-align: left;
+}
+
+.especialista-details-page .status-col {
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.especialista-details-page .actions-col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.especialista-details-page .sort-icon {
+  width: 12px;
+  height: 12px;
+  opacity: 0.6;
+}
+
+.especialista-details-page .actions-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.especialista-details-page .actions-btn:hover {
+  background: #f3f4f6;
+}
+
+.especialista-details-page .checkbox-col input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  appearance: none;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  background: white;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.especialista-details-page .checkbox-col input[type="checkbox"]:checked {
+  background: #F2C288;
+  border-color: #F2C288;
+}
+
+.especialista-details-page .checkbox-col input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 3px;
+  top: 0px;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.especialista-details-page .checkbox-col input[type="checkbox"]:hover {
+  border-color: #8C623E;
+}
+
+.especialista-details-page .patient-name {
+  font-weight: 500;
+}
+
+.especialista-details-page .status {
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;
   font-weight: 500;
 }
 
-.status.confirmada {
-  background: #d4edda;
-  color: #155724;
+.especialista-details-page .status.confirmada {
+  background: #FFF7E6;
+  color: #8C623E;
 }
 
-.status.pendiente {
-  background: #fff3cd;
-  color: #856404;
+.especialista-details-page .status.pendiente {
+  background: #8C623E;
+  color: #ffffff;
 }
 
-.status.cancelada {
-  background: #f8d7da;
-  color: #721c24;
+.especialista-details-page .status.cancelada {
+  background: #7676801F;
+  color: #666666;
 }
 
 .actions-col {

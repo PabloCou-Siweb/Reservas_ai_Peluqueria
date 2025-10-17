@@ -6,222 +6,246 @@ import './EditClientPage.css';
 const EditClientPage: React.FC = () => {
   const { navigateTo } = useNavigation();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-
-  // Datos del cliente (simulados)
-  const [clientData, setClientData] = useState({
+  
+  const [formData, setFormData] = useState({
     genero: 'Masculino',
-    nombre: 'Pablo',
-    apellidos: 'Simón López',
-    telefono: '+34 625 58 0 15',
-    email: 'pablo.simón@gmail.com',
+    nombre: '',
+    apellidos: '',
+    telefono: '+34 622 02 58 26',
+    email: 'juan.pérez.izquierdo@gmail.com',
     tipoDocumento: 'DNI',
     numeroDocumento: '3597846850',
-    fechaNacimiento: '15-03-1990',
-    direccion: 'Calle 45 #23-67, Bogotá',
+    fechaNacimiento: '09-10-2025',
+    direccion: '',
     ciudad: 'Vigo',
-    codigoPostal: '36475'
+    codigoPostal: 'Vigo'
   });
 
-  const handleInputChange = (field: string, value: string) => {
-    setClientData(prev => ({
-      ...prev,
-      [field]: value
-    }));
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
   };
 
-  const handleSave = () => {
-    // Aquí se guardarían los datos del cliente
-    console.log('Guardando datos:', clientData);
-    navigateTo('client-details');
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
   };
 
   const handleCancel = () => {
     navigateTo('client-details');
   };
 
+  const handleSave = () => {
+    console.log('Guardando datos:', formData);
+    navigateTo('client-details');
+  };
+
   return (
     <div className="edit-client-page">
-      <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen(!sidebarOpen)} />
-      
+      <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
+
       <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
-        <div className="page-header">
-          <div className="breadcrumbs">
-            <span>Clientes</span>
-            <span className="separator">/</span>
-            <span>Pablo Simón</span>
-            <span className="separator">/</span>
-            <span className="current">Editar perfil</span>
+        <div className="edit-client-page-header">
+          <div className="edit-client-breadcrumb-nav">
+            <span className="edit-client-breadcrumb-item">Clientes</span>
+            <span className="edit-client-breadcrumb-separator">/</span>
+            <span className="edit-client-breadcrumb-item">Pablo Simón</span>
+            <span className="edit-client-breadcrumb-separator">/</span>
+            <span className="edit-client-breadcrumb-current">Editar perfil</span>
           </div>
-          <div className="header-actions">
-            <button className="notification-btn">
+          
+          <div className="edit-client-title-row">
+            <button className="edit-client-back-arrow" onClick={() => navigateTo('client-details')}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-              </svg>
-            </button>
-            <button className="settings-btn" onClick={() => navigateTo('configuracion')}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Title Section */}
-        <div className="title-section">
-          <div className="title-row">
-            <button className="back-button" onClick={() => navigateTo('client-details')}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <polyline points="15,18 9,12 15,6"/>
               </svg>
             </button>
-            <h1>Pablo Simón</h1>
+            <h1 className="edit-client-main-title">Pablo Simón</h1>
           </div>
-          <p className="subtitle">Complete la información del paciente.</p>
+          
+          <div className="edit-client-instruction-text">
+            Complete la información del paciente.
+          </div>
         </div>
 
-        {/* Form */}
-        <div className="edit-form-container">
-
-          <form className="edit-client-form">
-            {/* Section Header */}
-            <div className="section-header">
-              <div className="header-left">
-                <div className="header-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                  </svg>
-                </div>
-                <h3>Datos personales</h3>
+        {/* Content Area */}
+        <div className="edit-client-content-area">
+          {/* Personal Data Section */}
+          <div className="edit-client-data-card">
+            <div className="edit-client-card-header">
+              <div className="edit-client-header-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
               </div>
+              <h2 className="edit-client-card-title">Datos personales</h2>
             </div>
-
-            {/* Form Content */}
-            <div className="form-content">
-              {/* Primera fila: Género, Nombre, Apellidos */}
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Género</label>
+            
+            <div className="edit-client-form-content">
+              {/* Row 1: Género, Nombre, Apellidos */}
+              <div className="edit-client-form-row">
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Género</label>
                   <select 
-                    value={clientData.genero} 
-                    onChange={(e) => handleInputChange('genero', e.target.value)}
+                    name="genero" 
+                    value={formData.genero} 
+                    onChange={handleInputChange}
+                    className="edit-client-select-field"
                   >
                     <option value="Masculino">Masculino</option>
                     <option value="Femenino">Femenino</option>
                     <option value="Otro">Otro</option>
                   </select>
                 </div>
-                <div className="form-field">
-                  <label>Nombre</label>
-                  <input 
-                    type="text" 
+                
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Nombre</label>
+                  <input
+                    type="text"
+                    name="nombre"
+                    value={formData.nombre}
+                    onChange={handleInputChange}
                     placeholder="Ej: Juan"
-                    value={clientData.nombre}
-                    onChange={(e) => handleInputChange('nombre', e.target.value)}
+                    className="edit-client-input-field"
                   />
                 </div>
-                <div className="form-field">
-                  <label>Apellidos</label>
-                  <input 
-                    type="text" 
+                
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Apellidos</label>
+                  <input
+                    type="text"
+                    name="apellidos"
+                    value={formData.apellidos}
+                    onChange={handleInputChange}
                     placeholder="Ej: Pérez Izquierdo"
-                    value={clientData.apellidos}
-                    onChange={(e) => handleInputChange('apellidos', e.target.value)}
+                    className="edit-client-input-field"
                   />
                 </div>
               </div>
 
-              {/* Segunda fila: Teléfono, Email, Documento, Fecha */}
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Teléfono</label>
-                  <input 
-                    type="tel" 
-                    value={clientData.telefono}
-                    onChange={(e) => handleInputChange('telefono', e.target.value)}
-                    placeholder="+34 612 345 678"
+              {/* Row 2: Teléfono, Correo, Tipo documento, Nº documento, Fecha nacimiento */}
+              <div className="edit-client-form-row">
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Teléfono</label>
+                  <input
+                    type="tel"
+                    name="telefono"
+                    value={formData.telefono}
+                    onChange={handleInputChange}
+                    className="edit-client-input-field"
                   />
                 </div>
-                <div className="form-field">
-                  <label>Correo electrónico</label>
-                  <input 
-                    type="email" 
-                    value={clientData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
+                
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Correo electrónico</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    className="edit-client-input-field"
                   />
                 </div>
-                <div className="form-field">
-                  <label>Tipo de documento</label>
+                
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Tipo de documento</label>
                   <select 
-                    value={clientData.tipoDocumento} 
-                    onChange={(e) => handleInputChange('tipoDocumento', e.target.value)}
+                    name="tipoDocumento" 
+                    value={formData.tipoDocumento} 
+                    onChange={handleInputChange}
+                    className="edit-client-select-field"
                   >
                     <option value="DNI">DNI</option>
+                    <option value="NIE">NIE</option>
                     <option value="Pasaporte">Pasaporte</option>
-                    <option value="Cédula">Cédula</option>
                   </select>
                 </div>
-                <div className="form-field">
-                  <label>N° de documento</label>
-                  <input 
-                    type="text" 
-                    value={clientData.numeroDocumento}
-                    onChange={(e) => handleInputChange('numeroDocumento', e.target.value)}
+                
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">N° de documento</label>
+                  <input
+                    type="text"
+                    name="numeroDocumento"
+                    value={formData.numeroDocumento}
+                    onChange={handleInputChange}
+                    className="edit-client-input-field"
                   />
                 </div>
-                <div className="form-field">
-                  <label>Fecha de nacimiento</label>
-                  <input 
-                    type="date" 
-                    value={clientData.fechaNacimiento}
-                    onChange={(e) => handleInputChange('fechaNacimiento', e.target.value)}
-                  />
+                
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Fecha de nacimiento</label>
+                  <div className="edit-client-date-wrapper">
+                    <input
+                      type="text"
+                      name="fechaNacimiento"
+                      value={formData.fechaNacimiento}
+                      onChange={handleInputChange}
+                      className="edit-client-input-field edit-client-date-input"
+                    />
+                    <div className="edit-client-calendar-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              {/* Tercera fila: Dirección, Ciudad, Código Postal */}
-              <div className="form-row">
-                <div className="form-field">
-                  <label>Dirección</label>
-                  <input 
-                    type="text" 
+              {/* Row 3: Dirección, Ciudad, Código Postal */}
+              <div className="edit-client-form-row">
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Dirección</label>
+                  <input
+                    type="text"
+                    name="direccion"
+                    value={formData.direccion}
+                    onChange={handleInputChange}
                     placeholder="Dirección completa..."
-                    value={clientData.direccion}
-                    onChange={(e) => handleInputChange('direccion', e.target.value)}
+                    className="edit-client-input-field"
                   />
                 </div>
-                <div className="form-field">
-                  <label>Ciudad</label>
-                  <input 
-                    type="text" 
-                    value={clientData.ciudad}
-                    onChange={(e) => handleInputChange('ciudad', e.target.value)}
+                
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Ciudad</label>
+                  <input
+                    type="text"
+                    name="ciudad"
+                    value={formData.ciudad}
+                    onChange={handleInputChange}
+                    className="edit-client-input-field"
                   />
                 </div>
-                <div className="form-field">
-                  <label>Código Postal</label>
-                  <input 
-                    type="text" 
-                    value={clientData.codigoPostal}
-                    onChange={(e) => handleInputChange('codigoPostal', e.target.value)}
+                
+                <div className="edit-client-field-group">
+                  <label className="edit-client-field-label">Código Postal</label>
+                  <input
+                    type="text"
+                    name="codigoPostal"
+                    value={formData.codigoPostal}
+                    onChange={handleInputChange}
+                    className="edit-client-input-field"
                   />
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
-            {/* Action Buttons */}
-            <div className="form-actions">
-              <button type="button" className="btn-cancel" onClick={handleCancel}>
-                Cancelar
-              </button>
-              <button type="button" className="btn-save" onClick={handleSave}>
-                Guardar
-              </button>
-            </div>
-          </form>
+        {/* Action Buttons */}
+        <div className="edit-client-action-buttons">
+          <button className="edit-client-cancel-button" onClick={handleCancel}>
+            Cancelar
+          </button>
+          <button className="edit-client-save-button" onClick={handleSave}>
+            Guardar
+          </button>
         </div>
       </div>
     </div>

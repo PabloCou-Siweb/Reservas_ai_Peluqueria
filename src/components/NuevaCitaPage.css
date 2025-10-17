@@ -1,6 +1,13 @@
-/* Nueva Cita Page - Compacto */
-html, body {
+/* Nueva Cita Page - Estilos encapsulados */
+.nueva-cita-container {
+  display: flex;
+  min-height: 100vh;
   background: white !important;
+}
+
+/* Encapsulación de estilos para evitar interferencias */
+.nueva-cita-container * {
+  box-sizing: border-box;
 }
 
 .nueva-cita-container {
@@ -206,9 +213,9 @@ html, body {
 
 .section-header {
   background: #FFE8BC;
-  border: 1px solid #FFE8BC;
+  border: none;
   padding: 20px 24px;
-  border-radius: 12px;
+  border-radius: 8px 8px 0 0;
   margin-bottom: 0;
   width: 100%;
   max-width: 100%;
@@ -224,7 +231,7 @@ html, body {
   width: 32px;
   height: 32px;
   background: #6B4423;
-  border: 1px solid #6B4423;
+  border: none;
   border-radius: 8px;
   display: flex;
   align-items: center;
@@ -241,9 +248,10 @@ html, body {
 }
 
 /* Section Content - Sin bordes, ajustado a plantilla */
-.section-content {
+.nueva-cita-container .section-content {
   background: white !important;
-  border-radius: 0 0 12px 12px;
+  border: none !important;
+  border-radius: 0 0 8px 8px;
   padding: 20px;
   margin-bottom: 0;
   box-sizing: border-box;
@@ -279,7 +287,7 @@ html, body {
 }
 
 /* Search Container - Alineado a la izquierda */
-.search-container {
+.nueva-cita-container .search-container {
   position: relative;
   margin-bottom: 20px;
   width: 350px;
@@ -290,31 +298,53 @@ html, body {
   display: block;
   align-self: flex-start;
   float: left;
+  border: none !important;
+  background: transparent !important;
 }
 
-.search-input {
+.nueva-cita-container .search-input {
   width: 100%;
   padding: 12px 40px 12px 16px;
-  border: 1px solid #d1d5db;
+  border: 2px solid #d1d5db !important;
   border-radius: 8px;
   font-size: 14px;
-  background: #f9fafb;
+  background: white !important;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px 16px;
   color: #374151;
-  outline: none;
+  outline: none !important;
   transition: all 0.2s ease;
   min-height: 44px;
   box-sizing: border-box;
+  box-shadow: none !important;
+  position: relative;
+  z-index: 1;
 }
 
-.search-input:focus {
-  border-color: #6B4423;
-  background-color: white;
+/* Regla adicional para asegurar que el borde se mantenga */
+.nueva-cita-container .search-container input[type="text"] {
+  border: 2px solid #d1d5db !important;
+}
+
+/* Asegurar que ningún elemento padre tenga borde, excepto el input de búsqueda */
+.nueva-cita-container .search-container *:not(.search-input) {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.nueva-cita-container .search-input:focus {
+  outline: none !important;
+  border: 2px solid #8C623E !important;
+  background-color: white !important;
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E");
-  box-shadow: 0 0 0 3px rgba(107, 68, 35, 0.1);
+  box-shadow: 0 0 0 3px rgba(140, 98, 62, 0.1) !important;
+}
+
+/* Regla adicional para el estado focus */
+.nueva-cita-container .search-container input[type="text"]:focus {
+  border: 2px solid #8C623E !important;
 }
 
 /* Form Grid - Ajustado a plantilla */
@@ -421,7 +451,7 @@ html, body {
 /* Appointment Summary compacto */
 .appointment-summary {
   background: #FFE8BC;
-  border: 1px solid #FFE8BC;
+  border: none;
   border-radius: 12px;
   padding: 20px 24px;
   margin: 24px 0;
@@ -545,7 +575,7 @@ html, body {
 
 .btn-cancel {
   padding: 12px 24px;
-  border: 1px solid white;
+  border: none;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;

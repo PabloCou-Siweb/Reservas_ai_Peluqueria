@@ -6,6 +6,7 @@ import RecordatorioEnviadoModal from './RecordatorioEnviadoModal';
 import ReprogramarCitaModal from './ReprogramarCitaModal';
 import AppointmentDetailsPage from './AppointmentDetailsPage';
 import './AgendaPage.css';
+import './HeaderButtons.css';
 
 const AgendaPage: React.FC = () => {
   const { navigateTo, navigateToNuevaCita } = useNavigation();
@@ -275,7 +276,7 @@ const AgendaPage: React.FC = () => {
                 <button className="notification-btn">
                   <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
                 </button>
-                <button className="settings-btn">
+                <button className="settings-btn" onClick={() => navigateTo('configuracion')}>
                   <img src="/img/settings-icon.png" alt="Configuración" width="20" height="20" />
                 </button>
               </div>
@@ -345,24 +346,15 @@ const AgendaPage: React.FC = () => {
                 <div className="summary-stats">
                   <div className="stat-item">
                     <span className="stat-label">Citas confirmadas</span>
-                    <div className="stat-value-row">
-                      <div className="stat-dot confirmed"></div>
-                      <span className="stat-value">5</span>
-                    </div>
+                    <span className="stat-value">5</span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-label">Citas disponibles</span>
-                    <div className="stat-value-row">
-                      <div className="stat-dot available"></div>
-                      <span className="stat-value">4</span>
-                    </div>
+                    <span className="stat-value">4</span>
                   </div>
                   <div className="stat-item">
                     <span className="stat-label">Próxima cita disponible</span>
-                    <div className="stat-value-row">
-                      <div className="stat-dot next"></div>
-                      <span className="stat-value">09:00</span>
-                    </div>
+                    <span className="stat-value">09:00</span>
                   </div>
                 </div>
               </div>
@@ -421,33 +413,33 @@ const AgendaPage: React.FC = () => {
                 </div>
                 <div className="col-patient">
                   <span className="column-title">Paciente</span>
-                  <div className="sort-arrows">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <div className="sort-icons">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="18,15 12,9 6,15"/>
                     </svg>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="6,9 12,15 18,9"/>
                     </svg>
                   </div>
                 </div>
                 <div className="col-consultation-type">
                   <span className="column-title">Tipo de consulta</span>
-                  <div className="sort-arrows">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <div className="sort-icons">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="18,15 12,9 6,15"/>
                     </svg>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="6,9 12,15 18,9"/>
                     </svg>
                   </div>
                 </div>
                 <div className="col-specialist">
                   <span className="column-title">Especialista</span>
-                  <div className="sort-arrows">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <div className="sort-icons">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="18,15 12,9 6,15"/>
                     </svg>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <polyline points="6,9 12,15 18,9"/>
                     </svg>
                   </div>
@@ -490,7 +482,6 @@ const AgendaPage: React.FC = () => {
                     </div>
                     <div className="cell-status">
                       <div className={`status-badge ${appointment.estado.toLowerCase()}`}>
-                        <div className={`status-dot ${appointment.estado.toLowerCase()}`}></div>
                         <span>{appointment.estado}</span>
                       </div>
                     </div>

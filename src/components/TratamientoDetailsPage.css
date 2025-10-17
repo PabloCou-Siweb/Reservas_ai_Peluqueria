@@ -1,765 +1,723 @@
-/* Page Container */
-.page-container {
+/* TratamientoDetailsPage - Estilos propios encapsulados */
+.tratamiento-details-page {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  min-height: 100vh;
-  background-color: #f9fafb;
-  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  background: #f8fafc;
 }
 
-/* Main Content (Content + Header + Footer) */
-.main-content {
+.tratamiento-details-page .main-content {
   flex: 1;
-  width: calc(100vw - 280px);
-  margin-left: 280px;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s ease;
+  height: 100vh;
+  overflow-y: auto;
+  transition: margin-left 0.3s ease;
+  position: relative;
 }
 
-.main-content.sidebar-closed {
-  width: calc(100vw - 70px);
-  margin-left: 70px;
+.tratamiento-details-page .main-content.sidebar-closed {
+  margin-left: 0;
 }
 
 /* Header Section */
-.header-section {
+.tratamiento-header-section {
+  background: white;
+  padding: 32px 40px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 32px;
-  background-color: #ffffff;
-  border-bottom: none;
+  gap: 24px;
 }
 
-.header-left {
-  flex: 1;
-}
-
-.header-left h1 {
+.tratamiento-header-left h1 {
   font-size: 32px;
   font-weight: 700;
-  color: #111827;
+  color: #1f2937;
   margin: 0 0 8px 0;
   line-height: 1.2;
 }
 
-.header-left p {
-  font-size: 14px;
+.tratamiento-header-left p {
+  font-size: 16px;
   color: #6b7280;
   margin: 0;
   line-height: 1.5;
-  max-width: 800px;
+  max-width: 600px;
 }
 
-.header-right {
+.tratamiento-header-right {
   display: flex;
   gap: 12px;
-  margin-left: 24px;
-}
-
-.icon-button {
-  background: white;
-  border: 1px solid #e1e5e9;
-  border-radius: 8px;
-  padding: 10px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.icon-button:hover {
-  background-color: #f3f4f6;
-}
-
-.icon-button img {
-  width: 20px;
-  height: 20px;
 }
 
 /* Content Section */
-.content-section {
+.tratamiento-content-section {
   flex: 1;
-  padding: 32px;
+  padding: 32px 40px;
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
 /* Cards Row */
-.cards-row {
+.tratamiento-cards-row {
   display: grid;
   grid-template-columns: 2fr 1fr;
-  gap: 24px;
+  gap: 32px;
+  align-items: start;
 }
 
-/* Treatment Card */
-.treatment-card {
+/* Treatment Double Card */
+.tratamiento-double-card {
   background: white;
   border-radius: 12px;
+  border: 1px solid #e5e7eb;
   padding: 32px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
-  gap: 32px;
-  align-items: center;
+  gap: 0;
+  min-height: 400px;
   position: relative;
-  min-height: 300px;
 }
 
-.edit-treatment-icon {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-  transition: opacity 0.2s ease;
-  opacity: 0.7;
-  filter: brightness(0);
-}
-
-.edit-treatment-icon:hover {
-  opacity: 1;
-}
-
-.treatment-card::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  top: 32px;
-  bottom: 32px;
-  width: 1px;
-  background-color: #e5e7eb;
-  transform: translateX(-50%);
-}
-
-.treatment-left {
+/* Left Section - Service Info */
+.tratamiento-left-section {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  min-width: 240px;
+  justify-content: center;
   text-align: center;
+  gap: 20px;
+  padding-right: 32px;
+  position: relative;
 }
 
-.service-icon {
-  width: 100px;
-  height: 100px;
+.tratamiento-left-section::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #e5e7eb;
+}
+
+.tratamiento-icon-container {
+  width: 80px;
+  height: 80px;
   background: #8C623E;
-  border-radius: 16px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: 8px;
 }
 
-.service-icon img {
-  width: 50px;
-  height: 50px;
+.tratamiento-icon-container img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
   filter: brightness(0) invert(1);
 }
 
-.status-badge {
+.tratamiento-status {
   background: #F2C288;
-  color: #8C623E;
+  color: #6B4423;
   padding: 6px 16px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.duration-info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
+.tratamiento-duration {
+  text-align: center;
 }
 
-.duration-value {
+.duration-time {
   font-size: 32px;
   font-weight: 700;
-  color: #111827;
+  color: #1f2937;
+  margin: 0;
   line-height: 1;
 }
 
-.duration-label {
+.duration-text {
   font-size: 14px;
   color: #6b7280;
-  font-weight: 500;
+  margin: 4px 0 0 0;
 }
 
-.action-buttons {
+.tratamiento-actions {
   display: flex;
-  gap: 8px;
+  gap: 12px;
+  margin-top: auto;
   width: 100%;
-  margin-top: 8px;
 }
 
-.btn-edit,
-.btn-delete {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 10px 16px;
+.tratamiento-edit-button {
+  flex: 1;
+  padding: 12px 16px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  flex: 1;
-  border: none;
-}
-
-.btn-edit {
-  background: #F2C288;
-  color: white;
-}
-
-.btn-edit:hover {
-  background: #e6b074;
-}
-
-.btn-edit img {
-  width: 16px;
-  height: 16px;
-  filter: brightness(0);
-  opacity: 1;
-}
-
-.btn-delete {
-  background: white;
-  color: #374151;
-  border: 1px solid #d1d5db;
-}
-
-.btn-delete:hover {
-  background: #f9fafb;
-}
-
-.btn-delete img {
-  width: 16px;
-  height: 16px;
-  filter: none;
-  opacity: 1;
-}
-
-/* Treatment Right - Schedule */
-.treatment-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.schedule-header {
-  margin-bottom: 20px;
-  width: 100%;
-  background: transparent;
-  border: none;
-}
-
-.schedule-header h3 {
-  font-size: 18px;
-  font-weight: 600;
-  color: #111827;
-  margin: 0;
-}
-
-.edit-schedule {
-  background: white;
-  border: 1px solid #d1d5db;
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 6px;
-  transition: background-color 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
+  border: 1px solid #F2C288;
+  background: #F2C288;
+  color: #6B4423;
+}
+
+.tratamiento-delete-button {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
   font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 1px solid #d1d5db;
+  background: white;
   color: #374151;
 }
 
-.edit-schedule:hover {
-  background-color: #f3f4f6;
+.tratamiento-edit-button:hover {
+  background: #E6B575;
+  border-color: #E6B575;
 }
 
-.edit-schedule img {
+.tratamiento-delete-button:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.tratamiento-edit-button img,
+.tratamiento-delete-button img {
   width: 16px;
   height: 16px;
-  filter: brightness(0);
-  opacity: 1;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(40%) sepia(8%) saturate(750%) hue-rotate(169deg) brightness(95%) contrast(86%);
 }
 
-.schedule-items {
+/* Right Section - Schedule */
+.tratamiento-right-section {
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  width: 100%;
-  max-width: 250px;
-  margin: 0 auto;
+  padding-left: 32px;
 }
 
-.schedule-row {
+.tratamiento-schedule-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 0;
-  border-bottom: 1px solid #f3f4f6;
+  margin-bottom: 24px;
 }
 
-.schedule-row:last-child {
+.tratamiento-schedule-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.tratamiento-schedule-edit-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.tratamiento-schedule-edit-btn:hover {
+  background: #f3f4f6;
+}
+
+.tratamiento-schedule-edit-btn img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(40%) sepia(8%) saturate(750%) hue-rotate(169deg) brightness(95%) contrast(86%);
+}
+
+.tratamiento-schedule-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tratamiento-schedule-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.tratamiento-schedule-item:last-child {
   border-bottom: none;
 }
 
-.schedule-row .day {
-  font-weight: 600;
-  color: #111827;
+.tratamiento-day-label {
   font-size: 14px;
+  font-weight: 600;
+  color: #374151;
 }
 
-.schedule-row .time {
-  color: #6b7280;
+.tratamiento-time-label {
   font-size: 14px;
+  color: #6b7280;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Specialists Card */
-.specialists-card {
+.tratamiento-specialists-card {
   background: white;
   border-radius: 12px;
+  border: 1px solid #e5e7eb;
   padding: 32px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 20px;
   min-height: 400px;
-  height: 100%;
 }
 
-.specialists-card h2 {
+.tratamiento-specialists-card h2 {
   font-size: 20px;
   font-weight: 700;
-  color: #111827;
-  margin: 0 0 24px 0;
-  text-align: left;
-  align-self: flex-start;
-  width: 100%;
+  color: #1f2937;
+  margin: 0;
 }
 
-.specialists-card > .specialist-item:not(:last-child) {
-  margin-bottom: 12px;
-}
-
-.specialist-item {
+.tratamiento-specialist-item {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 8px 0;
-  cursor: pointer;
-  width: 100%;
-  justify-content: space-between;
-  border-bottom: none;
 }
 
-.specialist-item input[type="checkbox"] {
+.tratamiento-specialist-item input[type="checkbox"] {
   width: 16px;
   height: 16px;
   accent-color: #8C623E;
-  margin: 0;
 }
 
-.specialist-name {
-  font-weight: 500;
-  color: #111827;
-  font-size: 14px;
-  cursor: pointer;
-  margin: 0;
+.tratamiento-specialist-name {
   flex: 1;
-  text-align: left;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
 }
 
-.view-link {
+.tratamiento-view-link {
+  font-size: 12px;
   color: #8C623E;
   text-decoration: none;
-  font-size: 12px;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  font-weight: 600;
 }
 
-.view-link:hover {
-  color: #6b4e3a;
+.tratamiento-view-link:hover {
   text-decoration: underline;
 }
 
-.specialists-actions {
+.tratamiento-specialists-actions {
   display: flex;
   gap: 12px;
-  justify-content: center;
-  margin-top: auto;
-  padding-top: 16px;
+  margin-top: 8px;
 }
 
-.btn-remove,
-.btn-add {
-  padding: 10px 20px;
+.tratamiento-btn-remove,
+.tratamiento-btn-add {
+  flex: 1;
+  padding: 12px 16px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  border: none;
-}
-
-.btn-remove {
+  border: 1px solid #d1d5db;
   background: white;
   color: #374151;
-  border: 1px solid #d1d5db;
 }
 
-.btn-remove:hover {
-  background: #f9fafb;
-}
-
-.btn-add {
+.tratamiento-btn-add {
   background: #F2C288;
-  color: white;
-  border: 1px solid #F2C288;
+  color: #6B4423;
+  border-color: #F2C288;
 }
 
-.btn-add:hover {
-  background: #e6b074;
-  border-color: #e6b074;
+.tratamiento-btn-remove:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.tratamiento-btn-add:hover {
+  background: #E6B575;
+  border-color: #E6B575;
 }
 
 /* Appointments Card */
-.appointments-card {
+.tratamiento-appointments-card {
   background: white;
   border-radius: 12px;
+  border: 1px solid #e5e7eb;
   padding: 32px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-/* Appointments Header */
-.appointments-header {
-  display: flex;
-  align-items: center;
-}
-
-.appointments-header h2 {
+.tratamiento-appointments-header h2 {
   font-size: 20px;
   font-weight: 700;
-  color: #111827;
+  color: #1f2937;
   margin: 0;
 }
 
 /* Search Container */
-.search-container {
-  display: flex;
-  align-items: center;
+.tratamiento-search-container {
+  position: relative;
+  max-width: 400px;
+}
+
+.tratamiento-search-input {
+  width: 100%;
+  padding: 12px 16px 12px 40px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  padding: 8px 12px;
-  background: white;
-  max-width: 300px;
-  margin-bottom: 24px;
-}
-
-.search-input {
-  flex: 1;
-  border: none;
-  outline: none;
   font-size: 14px;
-  color: #111827;
-  background: transparent;
-}
-
-.search-input::placeholder {
-  color: #9ca3af;
-}
-
-.search-icon {
-  width: 16px;
-  height: 16px;
-  opacity: 0.6;
-  margin-left: 8px;
-}
-
-/* Appointments Table */
-.appointments-table {
-  flex: 1;
-}
-
-.table-container {
-  border: 1px solid #e1e5e9;
-  border-radius: 8px;
-  background: white;
-  overflow: hidden;
-}
-
-.table-header {
-  display: grid;
-  grid-template-columns: 50px 2.5fr 1.5fr 2.2fr 1.8fr 1fr 50px;
-  padding: 16px 20px;
   background: #f9fafb;
-  border-bottom: 1px solid #e1e5e9;
-  font-size: 14px;
-  font-weight: 600;
-  color: #374151;
-  align-items: center;
-  gap: 16px;
+  transition: all 0.2s ease;
 }
 
-.table-row {
-  display: grid;
-  grid-template-columns: 50px 2.5fr 1.5fr 2.2fr 1.8fr 1fr 50px;
-  padding: 16px 20px;
-  border-bottom: 1px solid #f3f4f6;
-  align-items: center;
-  font-size: 14px;
-  color: #374151;
-  gap: 16px;
+.tratamiento-search-input:focus {
+  outline: none;
+  border-color: #8C623E;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(140, 98, 62, 0.1);
 }
 
-.table-row:last-child {
-  border-bottom: none;
-}
-
-.table-row.highlighted {
-  background-color: #FFE8BC;
-}
-
-.col-checkbox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 50px;
-}
-
-.col-checkbox input {
+.tratamiento-search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 16px;
   height: 16px;
-  accent-color: #8C623E;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(40%) sepia(8%) saturate(750%) hue-rotate(169deg) brightness(95%) contrast(86%);
 }
 
-.col-patient {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  min-width: 0;
+/* Table */
+.tratamiento-appointments-table {
+  overflow-x: auto;
 }
 
-.patient-name {
+.tratamiento-table-container {
+  min-width: 800px;
+}
+
+.tratamiento-table-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 150px 200px 150px 120px 40px;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 2px solid #f0f0f0;
+  font-size: 14px;
   font-weight: 600;
-  color: #111827;
-  font-size: 14px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.patient-number {
-  font-size: 13px;
-  color: #6b7280;
-  font-weight: 400;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.col-patient img {
-  width: 12px;
-  height: 12px;
-  opacity: 0.6;
-}
-
-.col-phone {
-  font-size: 14px;
   color: #374151;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
+  align-items: center;
 }
 
-.col-email {
-  font-size: 14px;
-  color: #374151;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
+.tratamiento-header-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.col-appointment {
-  font-size: 14px;
-  color: #374151;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 0;
+.tratamiento-header-checkbox input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  appearance: none;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
 }
 
-.col-status {
+.tratamiento-header-checkbox input[type="checkbox"]:checked {
+  background: #F2C288;
+  border-color: #F2C288;
+}
+
+.tratamiento-header-checkbox input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tratamiento-header-patient {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-weight: 500;
-  white-space: nowrap;
-  min-width: 0;
+  position: relative;
 }
 
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-}
-
-.col-status.confirmed .status-dot {
-  background-color: #F2C288;
-}
-
-.col-status.pending .status-dot {
-  background-color: #8C623E;
-}
-
-.col-actions {
+.tratamiento-sort-icons {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 50px;
+  flex-direction: column;
+  gap: 1px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
 }
 
-.options-btn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  border-radius: 4px;
+.tratamiento-header-patient:hover .tratamiento-sort-icons {
+  opacity: 1;
+}
+
+.tratamiento-sort-icons svg {
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.tratamiento-sort-icons svg:hover {
+  color: #374151;
+}
+
+.tratamiento-table-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 150px 200px 150px 120px 40px;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid #f8f9fa;
+  align-items: center;
   transition: background-color 0.2s ease;
 }
 
-.options-btn:hover {
-  background-color: #f3f4f6;
+.tratamiento-table-row:hover {
+  background: #f9fafb;
 }
 
-.options-btn img {
+.tratamiento-table-row input[type="checkbox"]:checked + label + * {
+  background: #FFE8BC;
+}
+
+.tratamiento-table-row:has(input[type="checkbox"]:checked) {
+  background: #FFE8BC;
+}
+
+.tratamiento-col-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tratamiento-col-checkbox input[type="checkbox"] {
   width: 16px;
   height: 16px;
+  appearance: none;
+  border: 2px solid #d1d5db;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
 }
 
-/* Pagination Container */
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.tratamiento-col-checkbox input[type="checkbox"]:checked {
+  background: #F2C288;
+  border-color: #F2C288;
 }
 
-.pagination {
+.tratamiento-col-checkbox input[type="checkbox"]:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.tratamiento-col-patient {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tratamiento-patient-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.tratamiento-patient-number {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.tratamiento-col-phone,
+.tratamiento-col-email,
+.tratamiento-col-appointment {
+  font-size: 14px;
+  color: #374151;
+}
+
+.tratamiento-col-status {
+  display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
 }
 
-.page {
+.tratamiento-confirmed {
+  color: #059669;
+}
+
+.tratamiento-pending {
+  color: #d97706;
+}
+
+.tratamiento-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.tratamiento-col-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tratamiento-options-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.tratamiento-options-btn:hover {
+  background: #f3f4f6;
+}
+
+.tratamiento-options-btn img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%) invert(40%) sepia(8%) saturate(750%) hue-rotate(169deg) brightness(95%) contrast(86%);
+}
+
+/* Pagination */
+.tratamiento-pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.tratamiento-pagination {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.tratamiento-page {
   padding: 8px 12px;
   border-radius: 6px;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   color: #6b7280;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.page.active {
-  background-color: #8C623E;
-  color: white;
-}
-
-.page:hover:not(.active) {
-  background-color: #f3f4f6;
+.tratamiento-page:hover {
+  background: #f3f4f6;
   color: #374151;
 }
 
-.page-dots {
+.tratamiento-active {
+  background: #8C623E;
+  color: white;
+}
+
+.tratamiento-dots {
   color: #9ca3af;
   font-size: 14px;
 }
 
-/* Footer */
-.footer-section {
-  padding: 24px 32px;
-  background-color: #f9fafb;
-  border-top: 1px solid #e1e5e9;
+/* Copyright */
+.tratamiento-copyright {
   text-align: right;
-}
-
-.copyright {
-  font-size: 12px;
+  padding: 8px 24px;
+  font-size: 10px;
   color: #9ca3af;
+  margin-top: auto;
+  position: relative;
+  z-index: 1;
 }
 
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .cards-row {
+/* Responsive */
+@media (max-width: 1200px) {
+  .tratamiento-cards-row {
     grid-template-columns: 1fr;
-    gap: 24px;
   }
   
-  .main-content.sidebar-closed {
-    margin-left: 70px;
-  }
-}
-
-@media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-  }
-  
-  .header-section {
-    padding: 24px 20px;
-  }
-  
-  .content-section {
-    padding: 24px 20px;
-  }
-  
-  .cards-row {
-    gap: 16px;
-  }
-  
-  .treatment-card {
+  .tratamiento-double-card {
     flex-direction: column;
     gap: 24px;
   }
   
-  .treatment-card::after {
-    display: none;
+  .tratamiento-left-section {
+    flex: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .tratamiento-header-section {
+    padding: 24px 20px;
+    flex-direction: column;
+    gap: 16px;
   }
   
-  .table-header,
-  .table-row {
-    grid-template-columns: 30px 1fr 1fr 1fr 1fr 1fr 30px;
-    padding: 12px 16px;
-    font-size: 12px;
+  .tratamiento-content-section {
+    padding: 24px 20px;
   }
   
-  .col-email,
-  .col-phone {
-    display: none;
+  .tratamiento-double-card,
+  .tratamiento-specialists-card,
+  .tratamiento-appointments-card {
+    padding: 24px;
   }
   
-  .table-header,
-  .table-row {
-    grid-template-columns: 30px 2fr 1.5fr 1fr 30px;
+  .tratamiento-table-header,
+  .tratamiento-table-row {
+    grid-template-columns: 30px 1fr 120px 150px 120px 100px 30px;
+    gap: 12px;
   }
 }

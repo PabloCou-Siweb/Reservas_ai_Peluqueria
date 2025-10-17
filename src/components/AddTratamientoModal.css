@@ -72,11 +72,17 @@
 .form-section {
   padding: 24px 32px;
   border-bottom: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  align-items: flex-start;
 }
 
 .form-section:last-of-type {
   padding: 24px 12px;
   border-bottom: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .section-header {
@@ -84,8 +90,12 @@
   align-items: center;
   margin-bottom: 24px;
   background: #FFE8BC;
-  padding: 12px 16px;
+  padding: 12px 8px;
   border-radius: 8px;
+  width: calc(100% + 24px);
+  margin-left: -12px;
+  margin-right: -12px;
+  box-sizing: border-box;
 }
 
 .section-icon {
@@ -116,6 +126,8 @@
   display: flex;
   gap: 16px;
   margin-bottom: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 
 .form-row:last-child {
@@ -126,18 +138,28 @@
   display: block;
 }
 
+.form-row:first-child .form-group {
+  max-width: 800px;
+}
+
 .form-row:nth-child(2) {
   display: block;
 }
 
-.form-row:last-child .form-group:first-child,
+.form-row:last-child .form-group:first-child {
+  flex: 0 0 200px;
+}
+
 .form-row:last-child .form-group:nth-child(2) {
-  flex: 1;
-  max-width: 30%;
+  flex: 0 0 200px;
 }
 
 .form-group {
   margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
 }
 
 .form-group.toggle-group {
@@ -146,14 +168,24 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-end;
+  padding-top: 20px;
+}
+
+.form-group.descripcion-wide {
+  flex: 1;
+  width: 100%;
+  max-width: 800px;
 }
 
 .form-group label {
   display: block;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 500;
   color: #374151;
   margin-bottom: 8px;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .required {
@@ -166,7 +198,7 @@
 .form-group select {
   width: 100%;
   padding: 10px 12px;
-  border: none;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 14px;
   color: #111827;
@@ -186,6 +218,31 @@
 .form-group textarea {
   min-height: 80px;
   resize: vertical;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Estilos específicos para textarea de descripción */
+.form-row:nth-child(2) .form-group textarea[name="descripcion"] {
+  width: calc(100% + 64px) !important;
+  margin-left: -32px !important;
+  margin-right: -32px !important;
+  box-sizing: border-box;
+  max-width: none !important;
+}
+
+/* Solo extender el textarea de descripción, no su contenedor */
+.form-row:nth-child(2) .form-group {
+  /* Mantener el form-group normal */
+}
+
+/* Solo el textarea específico se extiende */
+.form-row:nth-child(2) .form-group textarea[name="descripcion"] {
+  width: calc(100% + 64px) !important;
+  margin-left: -32px !important;
+  margin-right: -32px !important;
+  box-sizing: border-box;
+  max-width: none !important;
 }
 
 .toggle-group label {
@@ -231,7 +288,7 @@
 }
 
 input:checked + .toggle-label {
-  background-color: #8C623E;
+  background-color: #F2C288;
 }
 
 input:checked + .toggle-label:before {
@@ -245,10 +302,11 @@ input:checked + .toggle-label:before {
 .search-input {
   display: flex;
   align-items: center;
-  border: none;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   padding: 8px 12px;
   gap: 8px;
+  background: white;
 }
 
 .search-input img {
@@ -260,6 +318,7 @@ input:checked + .toggle-label:before {
 .search-input input {
   flex: 1;
   border: none;
+  border-radius: 0;
   outline: none;
   font-size: 14px;
   color: #111827;
@@ -273,18 +332,24 @@ input:checked + .toggle-label:before {
   align-items: center;
   border: 1px solid #d1d5db;
   border-radius: 8px;
-  padding: 8px 12px;
+  padding: 16px 12px;
   margin-bottom: 24px;
   background: white;
+  width: 100%;
+  margin: 0 16px 24px 16px;
+  box-sizing: border-box;
+  min-height: 56px;
 }
 
 .search-bar input {
   flex: 1;
   border: none;
+  border-radius: 0;
   outline: none;
   font-size: 14px;
   color: #111827;
   background: transparent;
+  padding: 0;
 }
 
 .search-bar input::placeholder {
@@ -298,99 +363,97 @@ input:checked + .toggle-label:before {
   margin-left: 8px;
 }
 
-/* Specialists List */
+/* Specialists List - Tabla completamente nueva */
 .specialists-list {
   border: 1px solid #e1e5e9;
   border-radius: 8px;
   background: white;
   overflow: hidden;
+  width: 100%;
+  margin: 0 16px;
+  box-sizing: border-box;
 }
 
+/* Header de la tabla */
 .list-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px 1fr 120px;
   align-items: center;
-  padding: 12px 16px;
-  background: #f9fafb;
+  padding: 16px 20px;
+  background: #ffffff;
   border-bottom: 1px solid #e1e5e9;
   font-size: 14px;
   font-weight: 600;
   color: #374151;
-  min-height: 48px;
+  min-height: 56px;
+  gap: 0;
 }
 
 .header-checkbox {
-  width: 20px;
-  margin-right: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 8px;
 }
 
 .header-checkbox input[type="checkbox"] {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.header-checkbox label {
-  position: relative;
-  display: inline-block;
   width: 18px;
   height: 18px;
-  background-color: #fff;
-  border: none;
-  border-radius: 3px;
   cursor: pointer;
-}
-
-.header-checkbox input[type="checkbox"]:checked + label {
-  background-color: #8C623E;
-  border: none;
-}
-
-.header-checkbox label:after {
-  content: "";
-  position: absolute;
-  display: none;
-  left: 5px;
-  top: 2px;
-  width: 4px;
-  height: 8px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-.header-checkbox input[type="checkbox"]:checked + label:after {
-  display: block;
+  accent-color: #8C623E;
 }
 
 .header-name {
-  flex: 1;
   display: flex;
   align-items: center;
   gap: 8px;
+  padding-left: 16px;
+  justify-content: flex-start;
 }
 
 .header-name img {
-  width: 12px;
-  height: 12px;
-  opacity: 0.6;
+  display: none;
+}
+
+.header-name::after {
+  content: "";
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  display: inline-block;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='18,15 12,9 6,15'/%3E%3Cpolyline points='6,9 12,15 18,9'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .header-specialty {
-  width: 120px;
-  text-align: right;
-}
-
-.specialist-item {
   display: flex;
   align-items: center;
-  padding: 12px 16px;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* Filas de especialistas */
+.specialist-item {
+  display: grid;
+  grid-template-columns: 40px 1fr 120px;
+  align-items: center;
+  padding: 16px 20px;
   border-bottom: 1px solid #f3f4f6;
   background: white;
-  min-height: 64px;
+  min-height: 72px;
+  transition: background-color 0.2s ease;
+  gap: 0;
 }
 
 .specialist-item:last-child {
   border-bottom: none;
+}
+
+.specialist-item:hover {
+  background-color: #f9fafb;
 }
 
 .specialist-item.selected {
@@ -398,54 +461,26 @@ input:checked + .toggle-label:before {
 }
 
 .item-checkbox {
-  width: 20px;
-  margin-right: 12px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 8px;
 }
 
 .item-checkbox input[type="checkbox"] {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-.item-checkbox label {
-  position: relative;
-  display: inline-block;
   width: 18px;
   height: 18px;
-  background-color: #fff;
-  border: none;
-  border-radius: 3px;
   cursor: pointer;
-}
-
-.item-checkbox input[type="checkbox"]:checked + label {
-  background-color: #8C623E;
-  border: none;
-}
-
-.item-checkbox label:after {
-  content: "";
-  position: absolute;
-  display: none;
-  left: 5px;
-  top: 2px;
-  width: 4px;
-  height: 8px;
-  border: solid white;
-  border-width: 0 2px 2px 0;
-  transform: rotate(45deg);
-}
-
-.item-checkbox input[type="checkbox"]:checked + label:after {
-  display: block;
+  accent-color: #8C623E;
 }
 
 .item-info {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 2px;
+  padding-left: 16px;
+  align-items: flex-start;
+  align-self: center;
 }
 
 .item-info .name {
@@ -468,10 +503,13 @@ input:checked + .toggle-label:before {
 }
 
 .item-specialty {
-  width: 120px;
   font-size: 14px;
   color: #374151;
-  text-align: right;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 }
 
 .modal-actions {

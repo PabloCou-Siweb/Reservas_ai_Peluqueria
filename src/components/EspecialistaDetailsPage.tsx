@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
 import './EspecialistaDetailsPage.css';
+import './HeaderButtons.css';
 
 const EspecialistaDetailsPage: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -125,9 +126,7 @@ const EspecialistaDetailsPage: React.FC = () => {
         <div className="page-header">
           <div className="header-left">
             <div className="breadcrumbs">
-              <span>Especialistas</span>
-              <span className="separator">/</span>
-              <span>Ana Martínez</span>
+              <span>Especialistas / Ana Martínez</span>
             </div>
             <div className="title-row">
               <button className="back-button" onClick={() => navigateTo('especialistas')}>
@@ -140,16 +139,10 @@ const EspecialistaDetailsPage: React.FC = () => {
           </div>
           <div className="header-actions">
             <button className="notification-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-              </svg>
+              <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
             </button>
             <button className="settings-btn" onClick={() => navigateTo('configuracion')}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
+              <img src="/img/settings-icon.png" alt="Configuración" width="20" height="20" />
             </button>
           </div>
         </div>
@@ -280,62 +273,51 @@ const EspecialistaDetailsPage: React.FC = () => {
             </div>
 
             <div className="appointments-table">
-              <table>
-                <thead>
-                  <tr>
-                    <th className="checkbox-col">
+              <div className="table-header">
+                <div className="checkbox-col">
+                  <input 
+                    type="checkbox" 
+                    checked={selectAll}
+                    onChange={handleSelectAll}
+                  />
+                </div>
+                <div className="client-col">
+                  <span>Cliente</span>
+                  <img src="/img/up_down-icon.png" alt="Sort" className="sort-icon" />
+                </div>
+                <div className="phone-col">Teléfono</div>
+                <div className="email-col">Email</div>
+                <div className="appointment-col">Próxima cita</div>
+                <div className="status-col">Estado</div>
+                <div className="actions-col"></div>
+              </div>
+              <div className="table-body">
+                {specialist.citas.map((cita) => (
+                  <div key={cita.id} className={`data-row ${selectedCitas.includes(cita.id) ? 'selected' : ''}`}>
+                    <div className="checkbox-col">
                       <input 
                         type="checkbox" 
-                        checked={selectAll}
-                        onChange={handleSelectAll}
+                        checked={selectedCitas.includes(cita.id)}
+                        onChange={() => handleCitaSelect(cita.id)}
                       />
-                    </th>
-                    <th className="sortable">
-                      Cliente
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M8 9l4-4 4 4"/>
-                        <path d="M8 15l4 4 4-4"/>
-                      </svg>
-                    </th>
-                    <th>Teléfono</th>
-                    <th>Email</th>
-                    <th>Próxima cita</th>
-                    <th>Estado</th>
-                    <th className="actions-col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {specialist.citas.map((cita) => (
-                    <tr key={cita.id} className={selectedCitas.includes(cita.id) ? 'selected' : ''}>
-                      <td className="checkbox-col">
-                        <input 
-                          type="checkbox" 
-                          checked={selectedCitas.includes(cita.id)}
-                          onChange={() => handleCitaSelect(cita.id)}
-                        />
-                      </td>
-                      <td className="patient-name">{cita.cliente}</td>
-                      <td>{cita.telefono}</td>
-                      <td>{cita.email}</td>
-                      <td>{cita.proximaCita}</td>
-                      <td>
-                        <span className={`status ${cita.estado.toLowerCase()}`}>
-                          {cita.estado}
-                        </span>
-                      </td>
-                      <td className="actions-col">
-                        <button className="actions-btn">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                            <circle cx="12" cy="12" r="1"/>
-                            <circle cx="12" cy="5" r="1"/>
-                            <circle cx="12" cy="19" r="1"/>
-                          </svg>
-                        </button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                    </div>
+                    <div className="client-col patient-name">{cita.cliente}</div>
+                    <div className="phone-col">{cita.telefono}</div>
+                    <div className="email-col">{cita.email}</div>
+                    <div className="appointment-col">{cita.proximaCita}</div>
+                    <div className="status-col">
+                      <span className={`status ${cita.estado.toLowerCase()}`}>
+                        {cita.estado}
+                      </span>
+                    </div>
+                    <div className="actions-col">
+                      <button className="actions-btn">
+                        <img src="/img/3dots-icon.png" alt="Actions" width="16" height="16" />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             <div className="pagination">

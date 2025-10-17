@@ -34,8 +34,8 @@
 }
 
 .success-icon {
-  width: 40px;
-  height: 40px;
+  width: 56px;
+  height: 56px;
   background: #F2C288;
   border-radius: 50%;
   display: flex;
@@ -43,6 +43,11 @@
   justify-content: center;
   color: white;
   flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.success-icon:hover {
+  transform: scale(1.1);
 }
 
 .recordatorio-enviado-text {
@@ -102,8 +107,8 @@
   }
   
   .success-icon {
-    width: 36px;
-    height: 36px;
+    width: 52px;
+    height: 52px;
   }
   
   .recordatorio-enviado-title {
@@ -128,8 +133,8 @@
   }
   
   .success-icon {
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
   }
   
   .recordatorio-enviado-title {

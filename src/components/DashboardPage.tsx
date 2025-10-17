@@ -54,7 +54,6 @@ const DashboardPage: React.FC = () => {
                   <div className="header-actions">
                     <div className="notification-icon">
                       <img src="/img/notification-icon.png" alt="Notificaciones" />
-                      <div className="notification-dot"></div>
                     </div>
                     <div className="settings-icon" onClick={() => navigateTo('configuracion')}>
                       <img src="/img/settings-icon.png" alt="Configuración" />

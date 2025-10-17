@@ -1,0 +1,209 @@
+/* Header Buttons - Global styles for notification and settings buttons */
+
+/* Notification Button */
+.notification-btn {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+}
+
+.notification-btn:hover {
+  background: #f9fafb !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+.notification-btn img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+}
+
+/* Notification Badge/Dot */
+.notification-badge,
+.notification-dot,
+.config-notification-dot {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  width: 8px !important;
+  height: 8px !important;
+  background: #8C623E !important;
+  border-radius: 50% !important;
+  border: 2px solid white !important;
+  z-index: 10 !important;
+}
+
+/* Settings Button */
+.settings-btn {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.settings-btn:hover {
+  background: #f9fafb !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+.settings-btn img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+}
+
+/* Icon Button variants */
+.icon-button.notification-btn,
+.icon-button.settings-btn {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+}
+
+.icon-button.notification-btn:hover,
+.icon-button.settings-btn:hover {
+  background: #f9fafb !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Header Icon Button variants */
+.header-icon-btn.notification-btn,
+.header-icon-btn.settings-btn {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.header-icon-btn.notification-btn:hover,
+.header-icon-btn.settings-btn:hover {
+  background: #f9fafb !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Config page specific buttons */
+.config-notification-btn,
+.config-settings-btn {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.config-notification-btn:hover,
+.config-settings-btn:hover {
+  background: #f9fafb !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Div variants (for ComprarMinutosPage) */
+div.notification-btn,
+div.settings-btn {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+div.notification-btn:hover,
+div.settings-btn:hover {
+  background: #f9fafb !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Dashboard specific classes */
+.notification-icon,
+.settings-icon {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  width: 40px !important;
+  height: 40px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  position: relative !important;
+}
+
+.notification-icon:hover,
+.settings-icon:hover {
+  background: #f9fafb !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+.notification-icon img,
+.settings-icon img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+}

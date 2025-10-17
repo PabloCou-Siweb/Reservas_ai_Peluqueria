@@ -14,7 +14,7 @@
 }
 
 /* Sección del formulario */
-.form-section {
+.create-salon-page .form-section {
   flex: 0 0 35%;
   display: flex;
   align-items: center;
@@ -23,31 +23,31 @@
   background: white;
 }
 
-.form-wrapper {
+.create-salon-page .form-wrapper {
   width: 100%;
   max-width: 550px;
 }
 
 /* Indicador de progreso */
-.progress-indicator {
+.create-salon-page .progress-indicator {
   display: flex;
   align-items: center;
   gap: 20px;
   margin-bottom: 30px;
 }
 
-.step-text {
+.create-salon-page .step-text {
   font-size: 16px;
   font-weight: 600;
   color: #8B4513;
 }
 
-.dots {
+.create-salon-page .dots {
   display: flex;
   gap: 12px;
 }
 
-.dot {
+.create-salon-page .dot {
   width: 12px;
   height: 12px;
   border-radius: 50%;
@@ -55,12 +55,12 @@
   transition: all 0.3s ease;
 }
 
-.dot.active {
+.create-salon-page .dot.active {
   background: #8B4513;
 }
 
 /* Título de la página */
-.page-title {
+.create-salon-page .page-title {
   font-size: 32px;
   font-weight: 700;
   color: #1F2937;
@@ -69,14 +69,14 @@
 }
 
 /* Formulario */
-.salon-form {
+.create-salon-page .salon-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
   margin-top: 32px;
 }
 
-.field-group {
+.create-salon-page .field-group {
   position: relative;
   display: flex;
   align-items: center;

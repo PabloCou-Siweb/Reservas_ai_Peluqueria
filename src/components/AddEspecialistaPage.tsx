@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
 import './AddEspecialistaPage.css';
+import './HeaderButtons.css';
 
 const AddEspecialistaPage: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -30,10 +31,10 @@ const AddEspecialistaPage: React.FC = () => {
 
   // Estados para horarios
   const [schedules, setSchedules] = useState({
-    lunes: { enabled: false, start: '08:00', end: '16:00' },
+    lunes: { enabled: false, start: '09:00', end: '17:00' },
     martes: { enabled: false, start: '09:00', end: '17:00' },
     miercoles: { enabled: false, start: '10:00', end: '18:00' },
-    jueves: { enabled: false, start: '06:30', end: '16:30' },
+    jueves: { enabled: false, start: '09:00', end: '17:00' },
     viernes: { enabled: false, start: '09:00', end: '17:00' },
     sabado: { enabled: false, start: '10:00', end: '14:00' },
     domingo: { enabled: false, start: '', end: '' }
@@ -53,13 +54,25 @@ const AddEspecialistaPage: React.FC = () => {
 
   // Función para calcular horas entre dos tiempos
   const calculateHours = (start: string, end: string) => {
-    if (!start || !end) return 0;
+    if (!start || !end || start === '' || end === '') return 0;
     
-    const startTime = new Date(`2000-01-01T${start}:00`);
-    const endTime = new Date(`2000-01-01T${end}:00`);
+    // Convertir tiempo a minutos para cálculo más preciso
+    const timeToMinutes = (time: string) => {
+      const [hours, minutes] = time.split(':').map(Number);
+      return hours * 60 + minutes;
+    };
     
-    const diffMs = endTime.getTime() - startTime.getTime();
-    const diffHours = diffMs / (1000 * 60 * 60);
+    const startMinutes = timeToMinutes(start);
+    const endMinutes = timeToMinutes(end);
+    
+    // Si la hora de fin es menor que la de inicio, asumir que es al día siguiente
+    let diffMinutes = endMinutes - startMinutes;
+    if (diffMinutes < 0) {
+      diffMinutes += 24 * 60; // Añadir 24 horas en minutos
+    }
+    
+    // Convertir minutos a horas
+    const diffHours = diffMinutes / 60;
     
     return Math.max(0, diffHours);
   };
@@ -68,7 +81,7 @@ const AddEspecialistaPage: React.FC = () => {
   const calculateTotalHours = () => {
     let total = 0;
     Object.values(schedules).forEach(schedule => {
-      if (schedule.enabled && schedule.start && schedule.end) {
+      if (schedule.enabled && schedule.start && schedule.end && schedule.start !== '' && schedule.end !== '') {
         total += calculateHours(schedule.start, schedule.end);
       }
     });
@@ -124,16 +137,10 @@ const AddEspecialistaPage: React.FC = () => {
           </div>
           <div className="header-actions">
             <button className="notification-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-              </svg>
+              <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
             </button>
             <button className="settings-btn" onClick={() => navigateTo('configuracion')}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
+              <img src="/img/settings-icon.png" alt="Configuración" width="20" height="20" />
             </button>
           </div>
         </div>
@@ -176,7 +183,7 @@ const AddEspecialistaPage: React.FC = () => {
           </div>
 
           {/* Form Content */}
-          <div className="form-content">
+          <div className={`form-content ${activeTab === 'datos-personales' ? 'datos-personales' : ''}`}>
             {activeTab === 'datos-personales' && (
               <div className="form-section">
                 {/* Row 1 - Nombre y Apellidos */}
@@ -425,7 +432,8 @@ const AddEspecialistaPage: React.FC = () => {
                           </div>
                         </div>
                         <div className="hours-text">
-                          {schedules.lunes.enabled ? `${calculateHours(schedules.lunes.start, schedules.lunes.end).toFixed(1)} horas` : '0.0 horas'}
+                          {schedules.lunes.enabled && schedules.lunes.start && schedules.lunes.end ? 
+                            `${calculateHours(schedules.lunes.start, schedules.lunes.end).toFixed(1)} horas` : '0.0 horas'}
                         </div>
                       </div>
 
@@ -484,7 +492,8 @@ const AddEspecialistaPage: React.FC = () => {
                           </div>
                         </div>
                         <div className="hours-text">
-                          {schedules.martes.enabled ? `${calculateHours(schedules.martes.start, schedules.martes.end).toFixed(1)} horas` : '0.0 horas'}
+                          {schedules.martes.enabled && schedules.martes.start && schedules.martes.end ? 
+                            `${calculateHours(schedules.martes.start, schedules.martes.end).toFixed(1)} horas` : '0.0 horas'}
                         </div>
                       </div>
 
@@ -543,7 +552,8 @@ const AddEspecialistaPage: React.FC = () => {
                           </div>
                         </div>
                         <div className="hours-text">
-                          {schedules.miercoles.enabled ? `${calculateHours(schedules.miercoles.start, schedules.miercoles.end).toFixed(1)} horas` : '0.0 horas'}
+                          {schedules.miercoles.enabled && schedules.miercoles.start && schedules.miercoles.end ? 
+                            `${calculateHours(schedules.miercoles.start, schedules.miercoles.end).toFixed(1)} horas` : '0.0 horas'}
                         </div>
                       </div>
 
@@ -602,7 +612,8 @@ const AddEspecialistaPage: React.FC = () => {
                           </div>
                         </div>
                         <div className="hours-text">
-                          {schedules.jueves.enabled ? `${calculateHours(schedules.jueves.start, schedules.jueves.end).toFixed(1)} horas` : '0.0 horas'}
+                          {schedules.jueves.enabled && schedules.jueves.start && schedules.jueves.end ? 
+                            `${calculateHours(schedules.jueves.start, schedules.jueves.end).toFixed(1)} horas` : '0.0 horas'}
                         </div>
                       </div>
 
@@ -661,7 +672,8 @@ const AddEspecialistaPage: React.FC = () => {
                           </div>
                         </div>
                         <div className="hours-text">
-                          {schedules.viernes.enabled ? `${calculateHours(schedules.viernes.start, schedules.viernes.end).toFixed(1)} horas` : '0.0 horas'}
+                          {schedules.viernes.enabled && schedules.viernes.start && schedules.viernes.end ? 
+                            `${calculateHours(schedules.viernes.start, schedules.viernes.end).toFixed(1)} horas` : '0.0 horas'}
                         </div>
                       </div>
 
@@ -714,7 +726,8 @@ const AddEspecialistaPage: React.FC = () => {
                           </div>
                         </div>
                         <div className="hours-text">
-                          {schedules.sabado.enabled ? `${calculateHours(schedules.sabado.start, schedules.sabado.end).toFixed(1)} horas` : '0.0 horas'}
+                          {schedules.sabado.enabled && schedules.sabado.start && schedules.sabado.end ? 
+                            `${calculateHours(schedules.sabado.start, schedules.sabado.end).toFixed(1)} horas` : '0.0 horas'}
                         </div>
                       </div>
 
@@ -769,7 +782,8 @@ const AddEspecialistaPage: React.FC = () => {
                           </div>
                         </div>
                         <div className="hours-text">
-                          {schedules.domingo.enabled ? `${calculateHours(schedules.domingo.start, schedules.domingo.end).toFixed(1)} horas` : '0.0 horas'}
+                          {schedules.domingo.enabled && schedules.domingo.start && schedules.domingo.end && schedules.domingo.start !== '' && schedules.domingo.end !== '' ? 
+                            `${calculateHours(schedules.domingo.start, schedules.domingo.end).toFixed(1)} horas` : '0.0 horas'}
                         </div>
                       </div>
                     </div>

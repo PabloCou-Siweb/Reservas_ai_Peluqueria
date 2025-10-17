@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import ConfirmarCitaModal from './ConfirmarCitaModal';
 import CitaAgendadaModal from './CitaAgendadaModal';
 import './NuevaCitaPage.css';
+import './HeaderButtons.css';
 
 const NuevaCitaPage: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -74,7 +75,6 @@ const handleCitaAgendadaClose = () => {
               <div className="header-right-section">
                 <button className="icon-button notification-btn">
                   <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
-                  <span className="notification-badge"></span>
                 </button>
                 
                 <button className="icon-button settings-btn" onClick={() => navigateTo('configuracion')}>

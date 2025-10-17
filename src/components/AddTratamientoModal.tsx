@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './AddTratamientoModal.css';
 
 interface AddTratamientoModalProps {
@@ -18,6 +18,16 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
   const [especialistasSeleccionados, setEspecialistasSeleccionados] = useState<string[]>([]);
   const [buscarEspecialista, setBuscarEspecialista] = useState('');
   const [todosSeleccionados, setTodosSeleccionados] = useState(false);
+
+  // Actualizar el estado de "select all" basado en la selección actual
+  useEffect(() => {
+    const especialistasFiltrados = especialistas.filter(esp => 
+      esp.nombre.toLowerCase().includes(buscarEspecialista.toLowerCase())
+    );
+    const todosEstanSeleccionados = especialistasFiltrados.length > 0 && 
+      especialistasFiltrados.every(esp => especialistasSeleccionados.includes(esp.id));
+    setTodosSeleccionados(todosEstanSeleccionados);
+  }, [especialistasSeleccionados, buscarEspecialista]);
 
   const especialistas = [
     { id: 'pol-palomo', nombre: 'Pol Palomo Cortés', email: 'polpalomo@gmail', telefono: '+34 606 20 45 56', especialidad: 'Peluquero' },
@@ -100,9 +110,10 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
             </div>
 
             <div className="form-row">
-              <div className="form-group">
+              <div className="form-group descripcion-wide">
                 <label htmlFor="descripcion">Nota o descripción breve (opcional)</label>
-                <textarea
+                <input
+                  type="text"
                   id="descripcion"
                   name="descripcion"
                   value={formData.descripcion}
@@ -170,7 +181,7 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
             <div className="search-bar">
               <input
                 type="text"
-                placeholder="Buscar médico..."
+                placeholder="Buscar especialista..."
                 value={buscarEspecialista}
                 onChange={(e) => setBuscarEspecialista(e.target.value)}
               />
@@ -185,7 +196,6 @@ const AddTratamientoModal: React.FC<AddTratamientoModalProps> = ({ isOpen, onClo
                 </div>
                 <div className="header-name">
                   <span>Nombre</span>
-                  <img src="/img/sort-icon.png" alt="Sort" />
                 </div>
                 <div className="header-specialty">Especialidad</div>
               </div>

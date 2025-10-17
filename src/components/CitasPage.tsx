@@ -4,6 +4,7 @@ import Sidebar from './Sidebar';
 import ReservarCitaModal from './ReservarCitaModal';
 import AppointmentContextMenu from './AppointmentContextMenu';
 import './CitasPage.css';
+import './HeaderButtons.css';
 
 interface CitasPageProps {
   specialty?: string;
@@ -334,7 +335,6 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
               <div className="header-right-section">
                 <button className="icon-button notification-btn">
                   <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
-                  <span className="notification-badge"></span>
                 </button>
                 
                 <button className="icon-button settings-btn" onClick={() => navigateTo('configuracion')}>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
 import './AppointmentDetailsPage.css';
+import './HeaderButtons.css';
 
 const AppointmentDetailsPage: React.FC = () => {
   const { navigateTo } = useNavigation();
@@ -41,16 +42,10 @@ const AppointmentDetailsPage: React.FC = () => {
           </div>
           <div className="header-right">
             <button className="header-icon-btn notification-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
-                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
-              </svg>
+              <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
             </button>
-            <button className="header-icon-btn settings-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="12" cy="12" r="3"/>
-                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-              </svg>
+            <button className="header-icon-btn settings-btn" onClick={() => navigateTo('configuracion')}>
+              <img src="/img/settings-icon.png" alt="Configuración" width="20" height="20" />
             </button>
           </div>
         </div>
@@ -120,55 +115,55 @@ const AppointmentDetailsPage: React.FC = () => {
 
         {/* Main Content Sections */}
         <div className="main-sections">
-          {/* Treatments Section - LISTADO SIMPLE */}
+          {/* Treatments Section - Recreado según plantilla */}
           <div className="treatments-section">
             <h3>Tratamientos</h3>
-            <ul className="treatments-list">
-              <li className="treatment-item">
-                <div className="treatment-left">
-                  <div className="treatment-name">Tinte raíz + mechas balayage</div>
-                  <div className="treatment-details">Duración: 2h | Producto: linea sin amoníaco.</div>
-                  <div className="treatment-meta">Laura Gómez • 06 ene 2025</div>
+            <div className="treatments-container">
+              <div className="treatment-entry">
+                <div className="treatment-info">
+                  <div className="treatment-title">Tinte raíz + mechas balayage</div>
+                  <div className="treatment-description">Duración: 2h | Producto: línea sin amoníaco.</div>
+                  <div className="treatment-client">Laura Gómez • 06 ene 2025</div>
                 </div>
-                <div className="treatment-right">
-                  <div className="treatment-status">
+                <div className="treatment-status-container">
+                  <div className="status-badge">
                     <div className="status-dot"></div>
                     <span>Activo</span>
                   </div>
-                  <div className="treatment-time">3 meses</div>
+                  <div className="treatment-duration">3 meses</div>
                 </div>
-              </li>
+              </div>
               
-              <li className="treatment-item">
-                <div className="treatment-left">
-                  <div className="treatment-name">Corte de puntas + tratamiento hidratación profunda</div>
-                  <div className="treatment-details">Cabello muy reseco, se recomendó repetir en 4 semanas.</div>
-                  <div className="treatment-meta">Marcos Peleteiro • 06 ene 2025</div>
+              <div className="treatment-entry">
+                <div className="treatment-info">
+                  <div className="treatment-title">Corte de puntas + tratamiento hidratación profunda</div>
+                  <div className="treatment-description">Cabello muy reseco, se recomendó repetir en 4 semanas.</div>
+                  <div className="treatment-client">Márcos Peleteiro • 06 ene 2025</div>
                 </div>
-                <div className="treatment-right">
-                  <div className="treatment-status">
+                <div className="treatment-status-container">
+                  <div className="status-badge">
                     <div className="status-dot"></div>
                     <span>Activo</span>
                   </div>
-                  <div className="treatment-time">7 días</div>
+                  <div className="treatment-duration">7 días</div>
                 </div>
-              </li>
+              </div>
               
-              <li className="treatment-item">
-                <div className="treatment-left">
-                  <div className="treatment-name">Alisado de keratina</div>
-                  <div className="treatment-details">Duración: 3h</div>
-                  <div className="treatment-meta">Ana Gómez • 06 ene 2025</div>
+              <div className="treatment-entry">
+                <div className="treatment-info">
+                  <div className="treatment-title">Alisado de keratina</div>
+                  <div className="treatment-description">Duración: 3h</div>
+                  <div className="treatment-client">Ana Gómez • 06 ene 2025</div>
                 </div>
-                <div className="treatment-right">
-                  <div className="treatment-status">
+                <div className="treatment-status-container">
+                  <div className="status-badge">
                     <div className="status-dot"></div>
                     <span>Activo</span>
                   </div>
-                  <div className="treatment-time">6 meses</div>
+                  <div className="treatment-duration">6 meses</div>
                 </div>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
 
           {/* Notes Section - LISTADO SIMPLE */}

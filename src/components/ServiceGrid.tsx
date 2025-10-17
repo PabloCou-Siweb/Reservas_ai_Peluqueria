@@ -34,26 +34,28 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({ categories, onServiceClick })
   };
 
   return (
-    <div className="services-grid">
-      {categories.map((category) => (
-        <div 
-          key={category.id} 
-          className="service-card"
-          onClick={() => onServiceClick?.(category)}
-        >
-          <div className="service-icon">
-            <img 
-              src={getIconPath(category.icon)} 
-              alt={category.name}
-              className="service-icon-img"
-            />
+    <div className="service-grid-container">
+      <div className="services-grid">
+        {categories.map((category) => (
+          <div 
+            key={category.id} 
+            className="service-card"
+            onClick={() => onServiceClick?.(category)}
+          >
+            <div className="service-icon">
+              <img 
+                src={getIconPath(category.icon)} 
+                alt={category.name}
+                className="service-icon-img"
+              />
+            </div>
+            <div className="service-content">
+              <h3 className="service-name">{category.name}</h3>
+              <p className="service-specialists">{category.specialists} especialistas</p>
+            </div>
           </div>
-          <div className="service-content">
-            <h3 className="service-name">{category.name}</h3>
-            <p className="service-specialists">{category.specialists} especialistas</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

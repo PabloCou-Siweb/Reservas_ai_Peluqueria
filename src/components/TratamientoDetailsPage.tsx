@@ -1,253 +1,318 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
+import EditTratamientoModal from './EditTratamientoModal';
 import './TratamientoDetailsPage.css';
+import './HeaderButtons.css';
 
 const TratamientoDetailsPage: React.FC = () => {
   const { navigateTo } = useNavigation();
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedRows, setSelectedRows] = useState<string[]>([]);
+  const [selectAll, setSelectAll] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const handleEditTreatment = () => {
+    setShowEditModal(true);
+  };
+
+  const handleCloseEditModal = () => {
+    setShowEditModal(false);
+  };
+
+  const handleSaveTreatment = (data: any) => {
+    console.log('Datos del tratamiento guardados:', data);
+    // Aquí se puede implementar la lógica para guardar los datos
+  };
+
+  const handleSelectAll = () => {
+    if (selectAll) {
+      setSelectedRows([]);
+      setSelectAll(false);
+    } else {
+      setSelectedRows(['tratamiento-apt1', 'tratamiento-apt2']);
+      setSelectAll(true);
+    }
+  };
+
+  const handleRowSelect = (rowId: string) => {
+    if (selectedRows.includes(rowId)) {
+      const newSelection = selectedRows.filter(id => id !== rowId);
+      setSelectedRows(newSelection);
+      setSelectAll(false);
+    } else {
+      const newSelection = [...selectedRows, rowId];
+      setSelectedRows(newSelection);
+      if (newSelection.length === 2) {
+        setSelectAll(true);
+      }
+    }
+  };
+
   return (
-    <div className="page-container tratamiento-details-page">
+    <div className="tratamiento-details-page">
       <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
       
       <div className={`main-content ${!sidebarOpen ? 'sidebar-closed' : ''}`}>
         {/* Header */}
-        <header className="header-section">
-          <div className="header-left">
+        <header className="tratamiento-header-section">
+          <div className="tratamiento-header-left">
             <h1>Peluquería</h1>
             <p>Especialidad médica orientada a la atención integral del paciente, abarcando la prevención, diagnóstico y tratamiento de las enfermedades más frecuentes.</p>
           </div>
-          <div className="header-right">
-            <button className="icon-button" onClick={() => navigateTo('llamadas')}>
-              <img src="/img/bell-icon.png" alt="Notificaciones" />
+          <div className="tratamiento-header-right">
+            <button className="notification-btn" onClick={() => navigateTo('llamadas')}>
+              <img src="/img/notification-icon.png" alt="Notificaciones" width="20" height="20" />
             </button>
-            <button className="icon-button" onClick={() => navigateTo('configuracion')}>
-              <img src="/img/settings-icon.png" alt="Configuración" />
+            <button className="settings-btn" onClick={() => navigateTo('configuracion')}>
+              <img src="/img/settings-icon.png" alt="Configuración" width="20" height="20" />
             </button>
           </div>
         </header>
 
         {/* Content */}
-        <div className="content-section">
+        <div className="tratamiento-content-section">
           {/* Top Cards Row */}
-          <div className="cards-row">
-            {/* Treatment Card */}
-            <div className="treatment-card">
-              <img src="/img/pen-icon.png" alt="Editar" className="edit-treatment-icon" />
-              <div className="treatment-left">
-                <div className="service-icon">
+          <div className="tratamiento-cards-row">
+            {/* Treatment Card - Div Doble */}
+            <div className="tratamiento-double-card">
+              {/* Left Side - Service Info */}
+              <div className="tratamiento-left-section">
+                <div className="tratamiento-icon-container">
                   <img src="/img/scissor-icon.png" alt="Peluquería" />
                 </div>
-                <div className="status-badge">Activa</div>
-                <div className="duration-info">
-                  <div className="duration-value">25 min</div>
-                  <div className="duration-label">Duración estándar</div>
+                <div className="tratamiento-status">Activa</div>
+                <div className="tratamiento-duration">
+                  <div className="duration-time">25 min</div>
+                  <div className="duration-text">Duración estándar</div>
                 </div>
-                <div className="action-buttons">
-                  <button className="btn-edit">
+                <div className="tratamiento-actions">
+                  <button className="tratamiento-edit-button" onClick={handleEditTreatment}>
                     <img src="/img/rounded_pen-icon.png" alt="Editar" />
                     Editar
                   </button>
-                  <button className="btn-delete">
+                  <button className="tratamiento-delete-button">
                     <img src="/img/trash-icon.png" alt="Eliminar" />
                     Eliminar
                   </button>
                 </div>
               </div>
               
-              <div className="treatment-right">
-                <div className="schedule-header">
-                  <h3>Horarios</h3>
+              {/* Right Side - Schedule */}
+              <div className="tratamiento-right-section">
+                <div className="tratamiento-schedule-header">
+                  <h3 className="tratamiento-schedule-title">Horarios</h3>
+                  <button className="tratamiento-schedule-edit-btn">
+                    <img src="/img/pen-icon.png" alt="Editar" />
+                  </button>
                 </div>
-                <div className="schedule-items">
-                  <div className="schedule-row">
-                    <span className="day">Lunes</span>
-                    <span className="time">09:00 - 18:00</span>
+                <div className="tratamiento-schedule-content">
+                  <div className="tratamiento-schedule-item">
+                    <span className="tratamiento-day-label">Lunes</span>
+                    <span className="tratamiento-time-label">09:00 - 18:00</span>
                   </div>
-                  <div className="schedule-row">
-                    <span className="day">Martes</span>
-                    <span className="time">09:00 - 18:00</span>
+                  <div className="tratamiento-schedule-item">
+                    <span className="tratamiento-day-label">Martes</span>
+                    <span className="tratamiento-time-label">09:00 - 18:00</span>
                   </div>
-                  <div className="schedule-row">
-                    <span className="day">Miércoles</span>
-                    <span className="time">09:00 - 18:00</span>
+                  <div className="tratamiento-schedule-item">
+                    <span className="tratamiento-day-label">Miércoles</span>
+                    <span className="tratamiento-time-label">09:00 - 18:00</span>
                   </div>
-                  <div className="schedule-row">
-                    <span className="day">Jueves</span>
-                    <span className="time">09:00 - 18:00</span>
+                  <div className="tratamiento-schedule-item">
+                    <span className="tratamiento-day-label">Jueves</span>
+                    <span className="tratamiento-time-label">09:00 - 18:00</span>
                   </div>
-                  <div className="schedule-row">
-                    <span className="day">Viernes</span>
-                    <span className="time">09:00 - 18:00</span>
+                  <div className="tratamiento-schedule-item">
+                    <span className="tratamiento-day-label">Viernes</span>
+                    <span className="tratamiento-time-label">09:00 - 18:00</span>
                   </div>
-                  <div className="schedule-row">
-                    <span className="day">Sábado</span>
-                    <span className="time">No disponible</span>
+                  <div className="tratamiento-schedule-item">
+                    <span className="tratamiento-day-label">Sábado</span>
+                    <span className="tratamiento-time-label">No disponible</span>
                   </div>
-                  <div className="schedule-row">
-                    <span className="day">Domingo</span>
-                    <span className="time">No disponible</span>
+                  <div className="tratamiento-schedule-item">
+                    <span className="tratamiento-day-label">Domingo</span>
+                    <span className="tratamiento-time-label">No disponible</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Specialists Card */}
-            <div className="specialists-card">
+            <div className="tratamiento-specialists-card">
               <h2>Especialistas asignados</h2>
-              <div className="specialist-item">
-                <input type="checkbox" id="spec1" />
-                <label htmlFor="spec1" className="specialist-name">Pol Palomo Cortés</label>
-                <a href="#" className="view-link">Ver ficha</a>
+              <div className="tratamiento-specialist-item">
+                <input type="checkbox" id="tratamiento-spec1" />
+                <label htmlFor="tratamiento-spec1" className="tratamiento-specialist-name">Pol Palomo Cortés</label>
+                <a href="#" className="tratamiento-view-link">Ver ficha</a>
               </div>
-              <div className="specialist-item">
-                <input type="checkbox" id="spec2" />
-                <label htmlFor="spec2" className="specialist-name">Alberto Jiménez Rodríguez</label>
-                <a href="#" className="view-link">Ver ficha</a>
+              <div className="tratamiento-specialist-item">
+                <input type="checkbox" id="tratamiento-spec2" />
+                <label htmlFor="tratamiento-spec2" className="tratamiento-specialist-name">Alberto Jiménez Rodríguez</label>
+                <a href="#" className="tratamiento-view-link">Ver ficha</a>
               </div>
-              <div className="specialist-item">
-                <input type="checkbox" id="spec3" />
-                <label htmlFor="spec3" className="specialist-name">Raúl Iznate Cabras</label>
-                <a href="#" className="view-link">Ver ficha</a>
+              <div className="tratamiento-specialist-item">
+                <input type="checkbox" id="tratamiento-spec3" />
+                <label htmlFor="tratamiento-spec3" className="tratamiento-specialist-name">Raúl Iznate Cabras</label>
+                <a href="#" className="tratamiento-view-link">Ver ficha</a>
               </div>
-              <div className="specialist-item">
-                <input type="checkbox" id="spec4" />
-                <label htmlFor="spec4" className="specialist-name">Roberto Bloste Cañí</label>
-                <a href="#" className="view-link">Ver ficha</a>
+              <div className="tratamiento-specialist-item">
+                <input type="checkbox" id="tratamiento-spec4" />
+                <label htmlFor="tratamiento-spec4" className="tratamiento-specialist-name">Roberto Bloste Cañí</label>
+                <a href="#" className="tratamiento-view-link">Ver ficha</a>
               </div>
-              <div className="specialist-item">
-                <input type="checkbox" id="spec5" />
-                <label htmlFor="spec5" className="specialist-name">Martín Guijarro López</label>
-                <a href="#" className="view-link">Ver ficha</a>
+              <div className="tratamiento-specialist-item">
+                <input type="checkbox" id="tratamiento-spec5" />
+                <label htmlFor="tratamiento-spec5" className="tratamiento-specialist-name">Martín Guijarro López</label>
+                <a href="#" className="tratamiento-view-link">Ver ficha</a>
               </div>
-              <div className="specialists-actions">
-                <button className="btn-remove">Eliminar</button>
-                <button className="btn-add">Añadir</button>
+              <div className="tratamiento-specialists-actions">
+                <button className="tratamiento-btn-remove">Eliminar</button>
+                <button className="tratamiento-btn-add">Añadir</button>
               </div>
             </div>
           </div>
 
           {/* Appointments Card */}
-          <div className="appointments-card">
-            <div className="appointments-header">
+          <div className="tratamiento-appointments-card">
+            <div className="tratamiento-appointments-header">
               <h2>Citas programadas</h2>
             </div>
             
-            <div className="search-container">
-              <input type="text" placeholder="Buscar paciente..." className="search-input" />
-              <img src="/img/search-icon.png" alt="Buscar" className="search-icon" />
+            <div className="tratamiento-search-container">
+              <input type="text" placeholder="Buscar paciente..." className="tratamiento-search-input" />
+              <img src="/img/search-icon.png" alt="Buscar" className="tratamiento-search-icon" />
             </div>
 
-            <div className="appointments-table">
-              <div className="table-container">
-                <div className="table-header">
-                  <div className="header-checkbox">
-                    <input type="checkbox" id="select-all" />
-                    <label htmlFor="select-all"></label>
+            <div className="tratamiento-appointments-table">
+              <div className="tratamiento-table-container">
+                <div className="tratamiento-table-header">
+                  <div className="tratamiento-header-checkbox">
+                    <input 
+                      type="checkbox" 
+                      id="tratamiento-select-all"
+                      checked={selectAll}
+                      onChange={handleSelectAll}
+                    />
                   </div>
-                  <div className="header-patient">
+                  <div className="tratamiento-header-patient">
                     <span>Paciente</span>
-                    <img src="/img/sort-icon.png" alt="Sort" />
+                    <div className="tratamiento-sort-icons">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="18,15 12,9 6,15"/>
+                      </svg>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="6,9 12,15 18,9"/>
+                      </svg>
+                    </div>
                   </div>
-                  <div className="header-phone">Teléfono</div>
-                  <div className="header-email">Email</div>
-                  <div className="header-appointment">Próxima cita</div>
-                  <div className="header-status">Estado</div>
-                  <div className="header-actions"></div>
+                  <div className="tratamiento-header-phone">Teléfono</div>
+                  <div className="tratamiento-header-email">Email</div>
+                  <div className="tratamiento-header-appointment">Próxima cita</div>
+                  <div className="tratamiento-header-status">Estado</div>
+                  <div className="tratamiento-header-actions"></div>
                 </div>
 
-                  <div className="table-row highlighted">
-                    <div className="col-checkbox">
-                      <input type="checkbox" id="apt1" />
-                      <label htmlFor="apt1"></label>
-                    </div>
-                  <div className="col-patient">
-                    <div className="patient-name">Pablo Simón López</div>
-                    <div className="patient-number">555-4567</div>
+                <div className="tratamiento-table-row">
+                  <div className="tratamiento-col-checkbox">
+                    <input 
+                      type="checkbox" 
+                      id="tratamiento-apt1"
+                      checked={selectedRows.includes('tratamiento-apt1')}
+                      onChange={() => handleRowSelect('tratamiento-apt1')}
+                    />
                   </div>
-                  <div className="col-phone">+34 654 25 20 45</div>
-                  <div className="col-email">pablosimón_lopez@gmail.com</div>
-                  <div className="col-appointment">15/08/2025 - 09:00</div>
-                  <div className="col-status confirmed">
-                    <span className="status-dot"></span>
+                  <div className="tratamiento-col-patient">
+                    <div className="tratamiento-patient-name">Pablo Simón López</div>
+                    <div className="tratamiento-patient-number">555-4567</div>
+                  </div>
+                  <div className="tratamiento-col-phone">+34 654 25 20 45</div>
+                  <div className="tratamiento-col-email">pablosimón_lopez@gmail.com</div>
+                  <div className="tratamiento-col-appointment">15/08/2025 - 09:00</div>
+                  <div className="tratamiento-col-status tratamiento-confirmed">
+                    <span className="tratamiento-status-dot"></span>
                     Confirmada
                   </div>
-                  <div className="col-actions">
-                    <button className="options-btn">
+                  <div className="tratamiento-col-actions">
+                    <button className="tratamiento-options-btn">
                       <img src="/img/3dots-icon.png" alt="Opciones" />
                     </button>
                   </div>
                 </div>
 
-                  <div className="table-row highlighted">
-                    <div className="col-checkbox">
-                      <input type="checkbox" id="apt2" />
-                      <label htmlFor="apt2"></label>
-                    </div>
-                  <div className="col-patient">
-                    <div className="patient-name">Javi Correa Gómez</div>
-                    <div className="patient-number">555-4567</div>
+                <div className="tratamiento-table-row">
+                  <div className="tratamiento-col-checkbox">
+                    <input 
+                      type="checkbox" 
+                      id="tratamiento-apt2"
+                      checked={selectedRows.includes('tratamiento-apt2')}
+                      onChange={() => handleRowSelect('tratamiento-apt2')}
+                    />
                   </div>
-                  <div className="col-phone">+34 620 12 34 89</div>
-                  <div className="col-email">maria.gonzalez@yahoo.com</div>
-                  <div className="col-appointment">16/08/2025 - 10:30</div>
-                  <div className="col-status confirmed">
-                    <span className="status-dot"></span>
+                  <div className="tratamiento-col-patient">
+                    <div className="tratamiento-patient-name">Javi Correa Gómez</div>
+                    <div className="tratamiento-patient-number">555-4567</div>
+                  </div>
+                  <div className="tratamiento-col-phone">+34 620 12 34 89</div>
+                  <div className="tratamiento-col-email">maria.gonzalez@yahoo.com</div>
+                  <div className="tratamiento-col-appointment">16/08/2025 - 10:30</div>
+                  <div className="tratamiento-col-status tratamiento-confirmed">
+                    <span className="tratamiento-status-dot"></span>
                     Confirmada
                   </div>
-                  <div className="col-actions">
-                    <button className="options-btn">
+                  <div className="tratamiento-col-actions">
+                    <button className="tratamiento-options-btn">
                       <img src="/img/3dots-icon.png" alt="Opciones" />
                     </button>
                   </div>
                 </div>
 
-                <div className="table-row">
-                  <div className="col-checkbox">
-                    <input type="checkbox" id="apt3" />
-                    <label htmlFor="apt3"></label>
+                <div className="tratamiento-table-row">
+                  <div className="tratamiento-col-checkbox">
+                    <input type="checkbox" id="tratamiento-apt3" />
+                    <label htmlFor="tratamiento-apt3"></label>
                   </div>
-                  <div className="col-patient">
-                    <div className="patient-name">Ana María Jiménez</div>
-                    <div className="patient-number">555-4567</div>
+                  <div className="tratamiento-col-patient">
+                    <div className="tratamiento-patient-name">Ana María Jiménez</div>
+                    <div className="tratamiento-patient-number">555-4567</div>
                   </div>
-                  <div className="col-phone">+34 610 12 34 56</div>
-                  <div className="col-email">olivia.martinez@live.com</div>
-                  <div className="col-appointment">20/08/2025 - 15:45</div>
-                  <div className="col-status pending">
-                    <span className="status-dot"></span>
+                  <div className="tratamiento-col-phone">+34 610 12 34 56</div>
+                  <div className="tratamiento-col-email">olivia.martinez@live.com</div>
+                  <div className="tratamiento-col-appointment">20/08/2025 - 15:45</div>
+                  <div className="tratamiento-col-status tratamiento-pending">
+                    <span className="tratamiento-status-dot"></span>
                     Pendiente
                   </div>
-                  <div className="col-actions">
-                    <button className="options-btn">
+                  <div className="tratamiento-col-actions">
+                    <button className="tratamiento-options-btn">
                       <img src="/img/3dots-icon.png" alt="Opciones" />
                     </button>
                   </div>
                 </div>
 
-                <div className="table-row">
-                  <div className="col-checkbox">
-                    <input type="checkbox" id="apt4" />
-                    <label htmlFor="apt4"></label>
+                <div className="tratamiento-table-row">
+                  <div className="tratamiento-col-checkbox">
+                    <input type="checkbox" id="tratamiento-apt4" />
+                    <label htmlFor="tratamiento-apt4"></label>
                   </div>
-                  <div className="col-patient">
-                    <div className="patient-name">Pepito Jiménez Sancho</div>
-                    <div className="patient-number">555-7890</div>
+                  <div className="tratamiento-col-patient">
+                    <div className="tratamiento-patient-name">Pepito Jiménez Sancho</div>
+                    <div className="tratamiento-patient-number">555-7890</div>
                   </div>
-                  <div className="col-phone">+34 615 67 89 01</div>
-                  <div className="col-email">michael.johnson@protonmail.com</div>
-                  <div className="col-appointment">20/08/2025 - 15:45</div>
-                  <div className="col-status confirmed">
-                    <span className="status-dot"></span>
+                  <div className="tratamiento-col-phone">+34 615 67 89 01</div>
+                  <div className="tratamiento-col-email">michael.johnson@protonmail.com</div>
+                  <div className="tratamiento-col-appointment">20/08/2025 - 15:45</div>
+                  <div className="tratamiento-col-status tratamiento-confirmed">
+                    <span className="tratamiento-status-dot"></span>
                     Confirmada
                   </div>
-                  <div className="col-actions">
-                    <button className="options-btn">
+                  <div className="tratamiento-col-actions">
+                    <button className="tratamiento-options-btn">
                       <img src="/img/3dots-icon.png" alt="Opciones" />
                     </button>
                   </div>
@@ -255,25 +320,30 @@ const TratamientoDetailsPage: React.FC = () => {
               </div>
             </div>
 
-            <div className="pagination-container">
-              <div className="pagination">
-                <span className="page active">01</span>
-                <span className="page">02</span>
-                <span className="page">03</span>
-                <span className="dots">...</span>
-                <span className="page">04</span>
-                <span className="page">05</span>
-                <span className="page">06</span>
+            <div className="tratamiento-pagination-container">
+              <div className="tratamiento-pagination">
+                <span className="tratamiento-page tratamiento-active">01</span>
+                <span className="tratamiento-page">02</span>
+                <span className="tratamiento-page">03</span>
+                <span className="tratamiento-dots">...</span>
+                <span className="tratamiento-page">04</span>
+                <span className="tratamiento-page">05</span>
+                <span className="tratamiento-page">06</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Footer */}
-        <footer className="footer-section">
-          <span>© 2025 Bokifly</span>
-        </footer>
+        {/* Copyright */}
+        <div className="tratamiento-copyright">© 2025 Bokifly</div>
       </div>
+
+      {/* Edit Treatment Modal */}
+      <EditTratamientoModal
+        isOpen={showEditModal}
+        onClose={handleCloseEditModal}
+        onSave={handleSaveTreatment}
+      />
     </div>
   );
 };

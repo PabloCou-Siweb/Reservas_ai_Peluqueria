@@ -1,307 +1,582 @@
-/* Edit Especialista Page */
+/* EditEspecialistaPage - Estilos completamente propios */
 .edit-especialista-page {
   display: flex;
   min-height: 100vh;
-  background: white;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
-.main-content {
+.edit-especialista-page .main-content {
   flex: 1;
+  width: calc(100vw - 280px);
+  margin-left: 280px;
+  padding: 0;
+  background: #ffffff;
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  margin-left: 280px;
-  transition: margin-left 0.3s ease;
 }
 
-.main-content.sidebar-closed {
-  margin-left: 80px;
+.edit-especialista-page .main-content.sidebar-closed {
+  width: calc(100vw - 70px);
+  margin-left: 70px;
 }
 
 /* Header */
-.page-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 32px;
+.edit-especialista-page .edit-especialista-header {
   background: white;
-  border-bottom: 1px solid #e9ecef;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  border-bottom: none;
+  padding: 0;
 }
 
-.header-left {
+.edit-especialista-page .header-content {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 8px;
+  padding: 16px 32px;
+  max-width: 100%;
+  width: 100%;
 }
 
-.breadcrumbs {
+.edit-especialista-page .header-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.edit-especialista-page .breadcrumb-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-size: 14px;
-  color: #666;
-  margin-bottom: 4px;
+  color: #6B7280;
 }
 
-.breadcrumbs .separator {
-  margin: 0 8px;
-  color: #ccc;
+.edit-especialista-page .breadcrumb-item {
+  color: #6B7280;
 }
 
-.title-row {
+.edit-especialista-page .breadcrumb-separator {
+  color: #D1D5DB;
+}
+
+.edit-especialista-page .breadcrumb-current {
+  font-weight: 500;
+  color: #374151;
+}
+
+.edit-especialista-page .header-right-section {
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-left: -8px;
 }
 
-.back-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 8px;
-  border-radius: 6px;
-  color: #666;
-  transition: all 0.2s ease;
-}
-
-.back-button:hover {
-  background: #f8f9fa;
-  color: #333;
-}
-
-.title-row h1 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin: 0;
-}
-
-.subtitle {
-  font-size: 14px;
-  color: #666;
-  margin: 8px 0 0 0;
-  text-align: left;
-}
-
-.header-actions {
-  display: flex;
-  gap: 12px;
-}
-
-.notification-btn,
-.settings-btn {
+.edit-especialista-page .icon-button {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
   border: none;
+  border-radius: 50%;
   background: #f8f9fa;
-  color: #666;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
-.notification-btn:hover,
-.settings-btn:hover {
-  background: #F2C288;
-  color: #333;
-  box-shadow: 0 4px 8px rgba(242, 194, 136, 0.3);
+.edit-especialista-page .icon-button:hover {
+  background: #e9ecef;
+  transform: scale(1.05);
 }
 
-/* Form Container */
-.form-container {
-  flex: 1;
-  margin: 8px 32px 16px 32px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+.edit-especialista-page .notification-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  background: #8C623E;
+  border-radius: 50%;
 }
 
-/* Form Header */
-.form-header {
-  background: #FFE8BC;
-  padding: 12px 24px;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.form-header-content {
+.edit-especialista-page .title-section {
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-top: 16px;
 }
 
-.form-header-icon {
-  width: 32px;
-  height: 32px;
-  background: #6B4423;
-  border-radius: 6px;
+.edit-especialista-page .page-back-btn {
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.edit-especialista-page .page-back-btn:hover {
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+
+.edit-especialista-page .page-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.edit-especialista-page .page-description {
+  font-size: 16px;
+  color: #6B7280;
+  margin: 8px 0 0 0;
+}
+
+/* Main Content */
+.edit-especialista-page .edit-especialista-content {
+  flex: 1;
+  padding: 0 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Personal Data Header - Separado */
+.edit-especialista-page .personal-data-header {
+  background: #FFE8BC;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.edit-especialista-page .personal-data-header .section-icon {
+  width: 40px;
+  height: 40px;
+  background: #8C623E;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  transition: background-color 0.2s ease;
 }
 
-.form-header-icon:hover {
-  background: #8C623E;
-}
-
-.form-header-content span {
-  font-size: 16px;
+.edit-especialista-page .personal-data-header h3 {
+  font-size: 18px;
   font-weight: 600;
-  color: #333;
+  color: #8C623E;
+  margin: 0;
 }
 
-/* Form Content */
-.form-content {
+/* Professional Data Header - Separado */
+.edit-especialista-page .professional-data-header {
+  background: #FFE8BC;
   padding: 16px 24px;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 12px;
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 0;
+  margin-top: 24px;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
-.form-row {
-  display: grid;
-  gap: 12px;
-  align-items: end;
+.edit-especialista-page .professional-data-header .section-icon {
+  width: 40px;
+  height: 40px;
+  background: #8C623E;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
 }
 
-/* Primera fila: Nombre y Apellidos (2 columnas) */
-.form-row:first-of-type {
-  grid-template-columns: 1fr 1fr;
+.edit-especialista-page .professional-data-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #8C623E;
+  margin: 0;
 }
 
-/* Segunda fila: 5 campos (5 columnas) */
-.form-row:nth-of-type(2) {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-}
-
-/* Tercera fila: Dirección (1 columna) */
-.form-row:nth-of-type(3) {
-  grid-template-columns: 1fr;
-}
-
-/* Filas de información profesional: 3 columnas */
-.form-row:nth-of-type(4),
-.form-row:nth-of-type(5) {
-  grid-template-columns: 1fr 1fr 1fr;
-}
-
-.form-field {
+/* Personal Data Form - Recreado desde cero */
+.edit-especialista-page .personal-data-form {
+  background: white !important;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 20px;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 16px;
+  outline: none !important;
 }
 
-.form-field label {
-  font-size: 14px;
+/* Form Rows - Organización en 3 filas */
+.edit-especialista-page .form-row-first,
+.edit-especialista-page .form-row-second,
+.edit-especialista-page .form-row-third {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+/* Input Groups - Contenedores de cada campo */
+.edit-especialista-page .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* Input Labels */
+.edit-especialista-page .input-label {
+  font-size: 12px;
   font-weight: 500;
-  color: #333;
-  margin-bottom: 4px;
+  color: #374151;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
-.form-field input,
-.form-field select,
-.form-field textarea {
-  padding: 10px 14px;
-  border: 1px solid #ddd;
+/* Input Fields */
+.edit-especialista-page .input-field {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 14px;
+  color: #374151;
   background: white;
-  transition: border-color 0.2s ease;
-  min-height: 40px;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  min-height: 48px;
 }
 
-.form-field input:focus,
-.form-field select:focus,
-.form-field textarea:focus {
+.edit-especialista-page .input-field:focus {
   outline: none;
-  border-color: #F2C288;
-  box-shadow: 0 0 0 2px rgba(242, 194, 136, 0.2);
+  border-color: #8C623E;
+  box-shadow: 0 0 0 3px rgba(140, 98, 62, 0.1);
 }
 
-.form-field textarea {
-  min-height: 80px;
-  resize: vertical;
+.edit-especialista-page .input-field::placeholder {
+  color: #9ca3af;
+}
+
+/* Select Fields */
+.edit-especialista-page .select-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 12px 12px;
+  padding-right: 45px;
+}
+
+/* Date Field Container */
+.edit-especialista-page .date-field-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.edit-especialista-page .date-field {
+  padding-right: 45px;
+}
+
+.edit-especialista-page .date-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+}
+
+/* Anchos específicos para cada grupo de input - Aumentados */
+.edit-especialista-page .titulo-group {
+  flex: 0 0 140px;
+}
+
+.edit-especialista-page .nombre-group {
+  flex: 0 0 320px;
+}
+
+.edit-especialista-page .apellidos-group {
+  flex: 0 0 420px;
+}
+
+.edit-especialista-page .telefono-group {
+  flex: 0 0 150px;
+}
+
+.edit-especialista-page .email-group {
+  flex: 0 0 300px;
+}
+
+.edit-especialista-page .tipo-documento-group {
+  flex: 0 0 110px;
+}
+
+.edit-especialista-page .numero-documento-group {
+  flex: 0 0 130px;
+}
+
+.edit-especialista-page .fecha-nacimiento-group {
+  flex: 0 0 140px;
+}
+
+.edit-especialista-page .direccion-group {
+  flex: 0 0 920px;
+}
+
+/* Estilos para el segundo formulario - Información profesional */
+.edit-especialista-page .professional-form {
+  background: white !important;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 16px;
+  outline: none !important;
+}
+
+.edit-especialista-page .professional-form .form-row-first,
+.edit-especialista-page .professional-form .form-row-second {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.edit-especialista-page .professional-form .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.edit-especialista-page .professional-form .input-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.edit-especialista-page .professional-form .input-field {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #374151;
+  background: white;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+  min-height: 48px;
+}
+
+.edit-especialista-page .professional-form .input-field:focus {
+  outline: none;
+  border-color: #8C623E;
+  box-shadow: 0 0 0 3px rgba(140, 98, 62, 0.1);
+}
+
+.edit-especialista-page .professional-form .select-field {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  background-size: 12px 12px;
+  padding-right: 45px;
+}
+
+.edit-especialista-page .professional-form .date-field-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.edit-especialista-page .professional-form .date-field {
+  padding-right: 45px;
+}
+
+.edit-especialista-page .professional-form .date-icon {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
+}
+
+/* Anchos específicos para el segundo formulario - Equilibrados */
+.edit-especialista-page .professional-form .especialidad-principal-group {
+  flex: 0 0 300px;
+}
+
+.edit-especialista-page .professional-form .subespecialidad-group {
+  flex: 0 0 300px;
+}
+
+.edit-especialista-page .professional-form .tarifa-consulta-group {
+  flex: 0 0 140px;
+}
+
+.edit-especialista-page .professional-form .codigo-empleado-group {
+  flex: 0 0 200px;
+}
+
+.edit-especialista-page .professional-form .observaciones-group {
+  flex: 0 0 400px;
+}
+
+.edit-especialista-page .professional-form .fecha-incorporacion-group {
+  flex: 0 0 170px;
+}
+
+.edit-especialista-page .form-group label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.edit-especialista-page .form-input,
+.edit-especialista-page .form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #374151;
+  background: white;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.edit-especialista-page .form-input:focus,
+.edit-especialista-page .form-select:focus {
+  outline: none;
+  border-color: #8C623E;
+  box-shadow: 0 0 0 3px rgba(140, 98, 62, 0.1);
+}
+
+.edit-especialista-page .form-input::placeholder {
+  color: #9ca3af;
+}
+
+/* Date Input Container */
+.edit-especialista-page .date-input-container {
+  position: relative;
+}
+
+.edit-especialista-page .date-input {
+  padding-right: 40px;
+}
+
+.edit-especialista-page .calendar-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #6b7280;
+  pointer-events: none;
 }
 
 /* Action Buttons */
-.form-actions {
+.edit-especialista-page .action-buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid #e9ecef;
+  gap: 16px;
+  padding: 24px 32px;
+  background: white;
+  border-top: none;
 }
 
-.btn-cancel,
-.btn-save {
+.edit-especialista-page .cancel-btn {
   padding: 12px 24px;
+  background: white;
+  border: 1px solid #8C623E;
   border-radius: 8px;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
+  color: #8C623E;
   cursor: pointer;
   transition: all 0.2s ease;
-  min-width: 100px;
 }
 
-.btn-cancel {
-  background: white;
-  border: 1px solid #ddd;
-  color: #666;
-}
-
-.btn-cancel:hover {
-  background: #f8f9fa;
-  border-color: #bbb;
-}
-
-.btn-save {
-  background: #F2C288;
-  border: 1px solid #F2C288;
-  color: #333;
-}
-
-.btn-save:hover {
-  background: #e6b377;
-  border-color: #e6b377;
+.edit-especialista-page .cancel-btn:hover {
+  background: #f9fafb;
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(242, 194, 136, 0.3);
+}
+
+.edit-especialista-page .save-btn {
+  padding: 12px 24px;
+  background: #F2C288;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.edit-especialista-page .save-btn:hover {
+  background: #E6A85C;
+  transform: translateY(-1px);
 }
 
 /* Responsive */
 @media (max-width: 1200px) {
-  .form-row {
-    grid-template-columns: 1fr;
+  .edit-especialista-page .form-row {
+    flex-direction: column;
   }
 }
 
 @media (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
+  .edit-especialista-page .main-content {
+    margin-left: 80px;
   }
   
-  .form-container {
-    margin: 8px 16px 16px 16px;
+  .edit-especialista-page .edit-especialista-content {
+    padding: 0 16px 24px;
   }
   
-  .form-content {
+  .edit-especialista-page .form-container {
+    padding: 0;
+  }
+  
+  .edit-especialista-page .action-buttons {
     padding: 16px;
-  }
-  
-  .form-actions {
     flex-direction: column;
   }
   
-  .btn-cancel,
-  .btn-save {
+  .edit-especialista-page .cancel-btn,
+  .edit-especialista-page .save-btn {
     width: 100%;
   }
 }

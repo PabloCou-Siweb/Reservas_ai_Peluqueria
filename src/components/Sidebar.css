@@ -245,7 +245,7 @@
   gap: 8px;
   padding: 8px 12px;
   background: #F2C288;
-  color: white;
+  color: #000000;
   border: none;
   border-radius: 8px;
   font-size: 13px;
@@ -274,7 +274,7 @@
   width: 16px;
   height: 16px;
   object-fit: contain;
-  filter: none;
+  filter: brightness(0);
 }
 
 .sidebar.closed .sidebar-widget {

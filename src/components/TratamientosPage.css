@@ -189,7 +189,7 @@
 }
 
 
-.tratamientos-container .settings-icon {
+.tratamientos-container .card-settings-icon {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -201,7 +201,7 @@
   pointer-events: none;
 }
 
-.tratamientos-container .settings-icon img {
+.tratamientos-container .card-settings-icon img {
   width: 16px;
   height: 16px;
   display: block;

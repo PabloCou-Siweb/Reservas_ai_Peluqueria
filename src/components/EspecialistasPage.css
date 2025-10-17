@@ -1,8 +1,13 @@
-/* Especialistas Page */
+/* Especialistas Page - Estilos encapsulados */
 .especialistas-page {
   display: flex;
   min-height: 100vh;
   background: white;
+}
+
+/* Encapsulación de estilos para evitar interferencias */
+.especialistas-page * {
+  box-sizing: border-box;
 }
 
 .sidebar {
@@ -72,20 +77,40 @@
   align-items: center;
 }
 
-.header-center .search-input {
+.especialistas-page .header-center .search-input {
   padding: 10px 16px 10px 40px;
-  border: 1px solid #ddd;
+  border: 1px solid #d1d5db !important;
   border-radius: 8px;
   font-size: 14px;
   width: 300px;
   background: #f8f9fa;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.especialistas-page .header-center .search-input:focus {
+  outline: none !important;
+  border-color: #6B4423 !important;
+  background: white;
+  box-shadow: 0 0 0 3px rgba(107, 68, 35, 0.1) !important;
 }
 
 .header-center .search-icon {
   position: absolute;
   left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #666;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.header-center .search-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .header-center .filter-btn {
@@ -159,28 +184,41 @@
   align-items: center;
 }
 
-.search-input {
+.especialistas-page .search-input {
   width: 300px;
   padding: 12px 16px 12px 40px;
-  border: 1px solid #d1d5db;
+  border: 1px solid #d1d5db !important;
   border-radius: 8px;
   font-size: 14px;
   background: #f9fafb;
   transition: all 0.2s ease;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-.search-input:focus {
-  outline: none;
-  border-color: #6B4423;
+.especialistas-page .search-input:focus {
+  outline: none !important;
+  border-color: #6B4423 !important;
   background: white;
-  box-shadow: 0 0 0 3px rgba(107, 68, 35, 0.1);
+  box-shadow: 0 0 0 3px rgba(107, 68, 35, 0.1) !important;
 }
 
 .search-icon {
   position: absolute;
-  left: 8px;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   color: #6b7280;
   pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.search-icon img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 .filter-btn {
