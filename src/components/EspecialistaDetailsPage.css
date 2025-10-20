@@ -155,7 +155,7 @@
 .profile-separator {
   width: 1px;
   background-color: #e5e7eb;
-  margin: 0 20px;
+  margin: 12px 20px; /* deja un margen para no tocar bordes superior/inferior */
   align-self: stretch;
 }
 

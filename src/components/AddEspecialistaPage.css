@@ -184,30 +184,28 @@
 
 /* Tabs */
 .add-especialista-page .tabs-container {
-  display: flex;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: #FFF7E6;
-  padding: 4px 8px;
-  border-radius: 6px;
-  margin: 16px 16px 0 16px;
-  max-width: 400px;
-  flex-shrink: 0;
+  border: 1px solid #F2C28833;
+  padding: 4px;
+  border-radius: 999px;
+  margin: 16px 16px 10px 16px;
 }
 
 .add-especialista-page .tab {
-  flex: 1;
-  padding: 8px 12px;
-  background: #FFF7E6;
+  padding: 6px 10px;
+  background: transparent;
   border: none;
   cursor: pointer;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   color: #6b7280;
-  transition: all 0.2s ease;
-  border-radius: 4px;
-  margin: 0 1px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  border-radius: 999px;
   text-decoration: none !important;
-  border-bottom: none !important;
-  min-height: 32px;
+  min-height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,32 +213,14 @@
 }
 
 .add-especialista-page .tab:hover {
-  color: #374151;
-  background: #F2C288;
-  text-decoration: none !important;
-  border-bottom: none !important;
-  min-height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  color: #6B4423;
+  background: rgba(242, 194, 136, 0.25);
 }
 
 .add-especialista-page .tab.active {
   color: #6B4423;
   background: #F2C288;
-  font-weight: 600;
-  text-decoration: none !important;
-  border-bottom: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-  border: none !important;
-  position: relative;
-  min-height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  border: 1px solid #E6B377;
 }
 
 .add-especialista-page .tab.active::after {
@@ -353,6 +333,31 @@
   width: 100% !important;
   text-align: left !important;
   align-self: flex-start !important;
+}
+
+/* Quitar bordes en inputs de la pestaña Datos personales */
+/* Restaurar bordes de inputs en Datos personales */
+.add-especialista-page .form-content.datos-personales .form-field input,
+.add-especialista-page .form-content.datos-personales .form-field select,
+.add-especialista-page .form-content.datos-personales .date-input-container input {
+  border: 1px solid #d1d5db !important;
+  box-shadow: none !important;
+  background: #ffffff;
+}
+
+.add-especialista-page .form-content.datos-personales .form-field input:focus,
+.add-especialista-page .form-content.datos-personales .form-field select:focus,
+.add-especialista-page .form-content.datos-personales .date-input-container input:focus {
+  outline: none !important;
+  border: 1px solid #6B4423 !important;
+  box-shadow: 0 0 0 2px rgba(107, 68, 35, 0.1) !important;
+}
+
+/* Quitar borde del contenedor de formulario (card) */
+.add-especialista-page .form-container,
+.add-especialista-page .form-content {
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .add-especialista-page .form-content.datos-personales .form-field label {
@@ -663,6 +668,9 @@
 .add-especialista-page .date-input-container input {
   padding-right: 80px;
   width: 120%;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
 }
 
 .add-especialista-page .date-input-container input::-webkit-calendar-picker-indicator {
@@ -689,8 +697,10 @@
 
 /* Estilos específicos para inputs de fecha en sección profesional */
 .add-especialista-page .professional-field .date-input-container input {
-  font-family: 'Inter', sans-serif;
+  font-family: inherit;
   font-weight: 500;
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1;
   padding-right: 40px;
   width: 100%;
 }

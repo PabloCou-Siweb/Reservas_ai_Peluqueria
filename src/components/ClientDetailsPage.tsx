@@ -82,6 +82,61 @@ const ClientDetailsPage: React.FC = () => {
     }
   };
 
+  // Tabs state for bottom appointments section
+  type TabKey = 'proximas' | 'anteriores' | 'historial';
+  const [activeTab, setActiveTab] = useState<TabKey>('proximas');
+
+  // Data sources per tab (mocked for frontend template)
+  const upcomingAppointments = [
+    { id: 1, date: "01 Enero '25", time: '09:00h', type: 'Cita', specialist: 'Juan Luis Guerra', specialty: 'Uñas' },
+    { id: 2, date: "03 Enero '25", time: '09:00h', type: 'Mantenimiento', specialist: 'Juan Luis Guerra', specialty: 'Manicura' },
+    { id: 3, date: "05 Enero '25", time: '10:30h', type: 'Cita', specialist: 'María García', specialty: 'Peluquería' }
+  ];
+
+  const previousAppointments = [
+    { id: 4, date: "12 Dic '24", time: '11:00h', type: 'Cita', specialist: 'Ana López', specialty: 'Coloración' },
+    { id: 5, date: "20 Nov '24", time: '16:15h', type: 'Revisión', specialist: 'Roberto Leiva', specialty: 'Barbería' }
+  ];
+
+  const historyRecords = [
+    { id: 6, date: "02 Oct '24", time: '12:00h', type: 'Alta cliente', specialist: '-', specialty: '-' },
+    { id: 7, date: "10 Oct '24", time: '09:30h', type: 'Actualización de datos', specialist: '-', specialty: '-' }
+  ];
+
+  // Treatments history (third tab design)
+  const treatmentsHistory = [
+    {
+      id: 101,
+      title: 'Tinte raíz + mechas balayage',
+      meta1: 'Duración: 2h | Productos: Tinte sin amoníaco.',
+      meta2: 'Luna Gómez · 06 ene 2025',
+      status: 'Activo',
+      timeAgo: '3 meses'
+    },
+    {
+      id: 102,
+      title: 'Corte de puntas + tratamiento hidratación profunda',
+      meta1: 'Cabello muy reseco, se recomienda repetir en 4 semanas.',
+      meta2: 'Marcos Palomero · 02 ene 2025',
+      status: 'Activo',
+      timeAgo: '7 días'
+    },
+    {
+      id: 103,
+      title: 'Alisado de keratina',
+      meta1: 'Duración: 3h | Duración: 3h.',
+      meta2: 'Ana Gómez · 02 ene 2025',
+      status: 'Activo',
+      timeAgo: '0 meses'
+    }
+  ];
+
+  const getActiveList = () => {
+    if (activeTab === 'anteriores') return previousAppointments;
+    if (activeTab === 'historial') return historyRecords;
+    return upcomingAppointments;
+  };
+
   return (
     <div className="client-details-page">
       <Sidebar isOpen={sidebarOpen} onToggle={toggleSidebar} />
@@ -302,20 +357,27 @@ const ClientDetailsPage: React.FC = () => {
           {/* Appointments Section - Recreado según plantilla */}
           <div className="appointments-section">
             <div className="appointments-header">
-              <h2>Citas</h2>
               <div className="tabs-container">
                 <div className="tabs">
-                  <button className="tab active">Próximas citas</button>
-                  <button className="tab">Citas anteriores</button>
-                  <button className="tab">Historial</button>
+                  <button 
+                    className={`tab ${activeTab === 'proximas' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('proximas')}
+                  >
+                    Próximas citas
+                  </button>
+                  <button 
+                    className={`tab ${activeTab === 'anteriores' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('anteriores')}
+                  >
+                    Citas anteriores
+                  </button>
+                  <button 
+                    className={`tab ${activeTab === 'historial' ? 'active' : ''}`}
+                    onClick={() => setActiveTab('historial')}
+                  >
+                    Historial
+                  </button>
                 </div>
-                <button className="add-cita-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="12" y1="5" x2="12" y2="19"/>
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                  </svg>
-                  Añadir cita
-                </button>
               </div>
             </div>
             
@@ -326,41 +388,53 @@ const ClientDetailsPage: React.FC = () => {
                 <div className="timeline-dot"></div>
                 <div className="timeline-dot"></div>
               </div>
-              
-              <div className="appointments-list">
-                <div className="appointment-card">
-                  <div className="appointment-date-time">
-                    <span className="appointment-date">01 Enero '25</span>
-                    <span className="appointment-time">09:00h</span>
-                  </div>
-                  <div className="appointment-type">Cita</div>
-                  <div className="appointment-specialist">Juan Luis Guerra</div>
-                  <div className="appointment-specialty">Uñas</div>
-                  <button className="view-notes-btn">Ver notas</button>
+
+              {activeTab !== 'historial' && (
+                <div className="appointments-list">
+                  {getActiveList().map((item) => (
+                    <div key={item.id} className="appointment-card">
+                      <div className="appointment-date-time">
+                        <span className="appointment-date">{item.date}</span>
+                        <span className="appointment-time">{item.time}</span>
+                      </div>
+                      <div className="appointment-type">{item.type}</div>
+                      <div className="appointment-specialist">{item.specialist}</div>
+                      <div className="appointment-specialty">{item.specialty}</div>
+                      <button className="view-notes-btn" onClick={handleViewAllNotes}>Ver notas</button>
+                    </div>
+                  ))}
                 </div>
-                
-                <div className="appointment-card">
-                  <div className="appointment-date-time">
-                    <span className="appointment-date">03 Enero '25</span>
-                    <span className="appointment-time">09:00h</span>
+              )}
+
+              {activeTab === 'historial' && (
+                <div className="history-section">
+                  <div className="history-header">
+                    <div className="history-icon">
+                      <img 
+                        src="/img/@tratments-icon.png" 
+                        alt="Tratamientos" width="16" height="16"
+                        onError={(e) => { (e.currentTarget as HTMLImageElement).onerror = null; (e.currentTarget as HTMLImageElement).src = '/img/tratments-icon.png'; }}
+                      />
+                    </div>
+                    <span className="history-title">Tratamientos</span>
                   </div>
-                  <div className="appointment-type">Mantenimiento</div>
-                  <div className="appointment-specialist">Juan Luis Guerra</div>
-                  <div className="appointment-specialty">Manicura</div>
-                  <button className="view-notes-btn">Ver notas</button>
-                </div>
-                
-                <div className="appointment-card">
-                  <div className="appointment-date-time">
-                    <span className="appointment-date">05 Enero '25</span>
-                    <span className="appointment-time">10:30h</span>
+                  <div className="history-list">
+                    {treatmentsHistory.map((row) => (
+                      <div key={row.id} className="history-item">
+                        <div className="history-item-main">
+                          <div className="history-item-title">{row.title}</div>
+                          <div className="history-item-meta">{row.meta1}</div>
+                          <div className="history-item-meta secondary">{row.meta2}</div>
+                        </div>
+                        <div className="history-item-right">
+                          <span className="history-status active">{row.status}</span>
+                          <span className="history-time">{row.timeAgo}</span>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <div className="appointment-type">Cita</div>
-                  <div className="appointment-specialist">María García</div>
-                  <div className="appointment-specialty">Peluquería</div>
-                  <button className="view-notes-btn">Ver notas</button>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
@@ -373,7 +447,13 @@ const ClientDetailsPage: React.FC = () => {
             {/* Header - Orange background, integrated with modal */}
             <div className="notes-modal-header">
               <div className="notes-modal-icon">
-                <img src="/img/note-icon.png" alt="Notas" width="20" height="20" />
+                <img 
+                  src="/img/notes-icon.png" 
+                  alt="Notas" 
+                  width="20" 
+                  height="20" 
+                  onError={(e) => { (e.currentTarget as HTMLImageElement).onerror = null; (e.currentTarget as HTMLImageElement).src = '/img/note-icon.png'; }}
+                />
               </div>
               <h3 className="notes-modal-title">Notas</h3>
               <button className="notes-modal-close" onClick={handleCloseNotesModal}>

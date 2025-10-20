@@ -17,7 +17,7 @@
 }
 
 /* Fondo blanco para todos los elementos excepto los que necesitan color específico */
-.nueva-cita-container > *:not(.section-header):not(.header-icon):not(.appointment-summary):not(.summary-dot) {
+.nueva-cita-container > *:not(.section-header):not(.header-icon):not(.appointment-summary):not(.summary-dot):not(.cita-agendada-overlay):not(.cita-confirmada-overlay) {
   background: white !important;
 }
 

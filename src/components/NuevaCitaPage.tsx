@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigation } from '../contexts/NavigationContext';
 import Sidebar from './Sidebar';
-import ConfirmarCitaModal from './ConfirmarCitaModal';
 import CitaAgendadaModal from './CitaAgendadaModal';
 import './NuevaCitaPage.css';
 import './HeaderButtons.css';
@@ -9,7 +8,6 @@ import './HeaderButtons.css';
 const NuevaCitaPage: React.FC = () => {
   const { navigateTo } = useNavigation();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [isCitaAgendadaOpen, setIsCitaAgendadaOpen] = useState(false);
   const [formData, setFormData] = useState({
     nombre: '',
@@ -37,23 +35,14 @@ const NuevaCitaPage: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setIsConfirmModalOpen(true);
+    setIsCitaAgendadaOpen(true);
   };
 
   const handleCancel = () => {
     navigateTo('citas');
   };
 
-  const handleConfirmModalClose = () => {
-    setIsConfirmModalOpen(false);
-  };
-
-  const handleConfirmModalConfirm = () => {
-    setIsConfirmModalOpen(false);
-    setIsCitaAgendadaOpen(true);
-  };
-
-const handleCitaAgendadaClose = () => {
+  const handleCitaAgendadaClose = () => {
     setIsCitaAgendadaOpen(false);
     navigateTo('citas');
   };
@@ -369,25 +358,7 @@ const handleCitaAgendadaClose = () => {
         </div>
       </div>
 
-      {/* Modales */}
-      <ConfirmarCitaModal
-        isOpen={isConfirmModalOpen}
-        onClose={handleConfirmModalClose}
-        onConfirm={handleConfirmModalConfirm}
-        appointmentData={{
-          cliente: {
-            nombre: formData.nombre,
-            telefono: formData.telefono
-          },
-          especialidad: 'Peluquería',
-          especialista: formData.estilista,
-          fecha: formData.fecha,
-          hora: formData.hora,
-          duracion: formData.duracion,
-          motivo: formData.motivo
-        }}
-      />
-
+      {/* Modal de Cita Agendada */}
       <CitaAgendadaModal
         isOpen={isCitaAgendadaOpen}
         onClose={handleCitaAgendadaClose}

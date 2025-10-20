@@ -634,9 +634,9 @@
 
 .appointments-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .appointments-header h2 {
@@ -649,7 +649,15 @@
 .tabs-container {
   display: flex;
   align-items: center;
-  gap: 16px;
+}
+
+.tabs {
+  display: inline-flex;
+  gap: 6px;
+  background: #FFF7E6;
+  border: 1px solid #F2C28833;
+  border-radius: 999px;
+  padding: 4px;
 }
 
 .tabs {
@@ -658,31 +666,28 @@
 }
 
 .tab {
-  padding: 8px 16px;
-  background: none;
+  padding: 6px 14px;
+  background: transparent;
   border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
   color: #6b7280;
   cursor: pointer;
   transition: all 0.2s ease;
-  position: relative;
 }
+
+.tab:hover { color: #1f2937; }
 
 .tab.active {
-  color: #1f2937;
+  background: #F2C288;
+  color: #6B4423;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
-.tab.active::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: #F2C288;
-  border-radius: 1px;
+.tab .tab-icon {
+  margin-right: 6px;
+  filter: brightness(0) saturate(100%) invert(37%) sepia(7%) saturate(1666%) hue-rotate(352deg) brightness(92%) contrast(87%);
 }
 
 .add-cita-btn {
@@ -713,12 +718,7 @@
 
 /* Timeline */
 .timeline {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  width: 20px;
-  flex-shrink: 0;
+  display: none;
 }
 
 .timeline-line {
@@ -741,13 +741,110 @@
   z-index: 1;
 }
 
+/* History tab (third tab) */
+.history-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #FFE8BC;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 12px;
+}
+
+.history-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: #6B4423;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.history-icon img {
+  filter: brightness(0) invert(1);
+}
+
+.history-title {
+  font-weight: 700;
+  color: #6B4423;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-item {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  align-items: center;
+  padding: 14px 8px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.history-item:last-child {
+  border-bottom: none;
+}
+
+.history-item-title {
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 4px;
+}
+
+.history-item-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.history-item-meta.secondary {
+  color: #9ca3af;
+}
+
+.history-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.history-status {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 14px;
+  background: #F2C288;
+  color: #6B4423;
+  font-weight: 600;
+}
+
+.history-time {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
 /* Lista de citas */
 .appointments-list {
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 8px;
 }
+
+/* Hide scrollbar (remove orange bar on the right) */
+.appointments-list::-webkit-scrollbar { width: 0; height: 0; }
+.appointments-list { scrollbar-width: none; }
 
 /* Tarjetas de citas */
 .appointment-card {
@@ -803,21 +900,19 @@
 }
 
 .view-notes-btn {
-  padding: 8px 16px;
-  background: white;
-  border: 1px solid #d1d5db;
-  border-radius: 6px;
-  font-size: 14px;
-  color: #374151;
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #6B4423;
   cursor: pointer;
   transition: all 0.2s ease;
   justify-self: end;
 }
 
 .view-notes-btn:hover {
-  background: #f9fafb;
-  border-color: #8C623E;
-  color: #8C623E;
+  background: rgba(242, 194, 136, 0.15);
 }
 
 
@@ -941,13 +1036,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #8C623E;
+  border-radius: 6px;
+  padding: 6px;
 }
 
 .notes-modal-icon img {
   width: 20px;
   height: 20px;
   object-fit: contain;
-  filter: brightness(0) saturate(100%) invert(40%) sepia(8%) saturate(750%) hue-rotate(169deg) brightness(95%) contrast(86%);
+  filter: brightness(0) invert(1);
 }
 
 .notes-modal-title {

@@ -84,12 +84,15 @@
 }
 
 .create-account-page .field-group {
-  position: relative;
+  position: relative !important;
+  display: flex !important;
+  align-items: center !important;
 }
 
 .create-account-page .create-account-input {
-  width: 100%;
-  padding: 16px 50px 16px 0;
+  width: 100% !important;
+  padding: 16px 50px 16px 0 !important;
+  margin: 0 !important;
   border: 0 !important;
   border-top: 0 !important;
   border-left: 0 !important;
@@ -97,15 +100,18 @@
   border-bottom: 1px solid #d1d5db !important;
   border-radius: 0 !important;
   background: transparent !important;
-  font-size: 16px;
-  color: #333;
+  background-color: transparent !important;
+  font-size: 16px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  color: #333 !important;
   box-shadow: none !important;
   outline: 0 !important;
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
-  transition: border-bottom-color 0.2s ease;
-  min-height: 50px;
+  transition: border-bottom-color 0.2s ease !important;
+  min-height: 50px !important;
+  line-height: normal !important;
 }
 
 .create-account-page .create-account-input:focus {
@@ -116,222 +122,242 @@
   border-right: 0 !important;
   border-bottom: 1px solid #8B4513 !important;
   box-shadow: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+.create-account-page .create-account-input:hover {
+  border: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  border-bottom: 1px solid #d1d5db !important;
+  box-shadow: none !important;
 }
 
 .create-account-page .create-account-input::placeholder {
-  color: #999;
+  color: #999 !important;
+  opacity: 1 !important;
 }
 
 .create-account-page .field-icon {
-  position: absolute;
-  margin-right: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  pointer-events: none;
+  position: absolute !important;
+  right: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  pointer-events: none !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 20px !important;
+  height: 20px !important;
+  margin: 0 !important;
 }
 
 .create-account-page .field-icon img {
-  width: 20px;
-  height: 20px;
-  opacity: 0.7;
+  width: 20px !important;
+  height: 20px !important;
+  opacity: 0.7 !important;
+  display: block !important;
+  filter: brightness(0) saturate(100%) !important;
 }
 
 .create-account-page .toggle-password {
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 32px;
-  min-height: 32px;
-  transition: color 0.3s ease;
+  position: absolute !important;
+  right: 16px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 4px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-width: 32px !important;
+  min-height: 32px !important;
+  transition: opacity 0.3s ease !important;
+  box-shadow: none !important;
+  outline: none !important;
+  z-index: 10 !important;
 }
 
-.toggle-password:hover {
-  color: #8B4513;
+.create-account-page .toggle-password:hover {
+  opacity: 1 !important;
 }
 
-.toggle-password img {
-  width: 20px;
-  height: 20px;
-  opacity: 0.7;
+.create-account-page .toggle-password img {
+  width: 20px !important;
+  height: 20px !important;
+  opacity: 0.7 !important;
+  display: block !important;
+  filter: brightness(0) saturate(100%) !important;
 }
 
-.password-help {
-  font-size: 12px;
-  color: #999;
-  margin-top: -10px;
-  margin-bottom: 10px;
+.create-account-page .toggle-password:hover img {
+  opacity: 1 !important;
+}
+
+.create-account-page .password-help {
+  font-size: 12px !important;
+  color: #999 !important;
+  margin-top: -10px !important;
+  margin-bottom: 10px !important;
 }
 
 /* Términos */
-.terms-group {
-  margin: 10px 0;
+.create-account-page .terms-group {
+  margin: 10px 0 !important;
 }
 
-.terms-label {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 1.4;
+.create-account-page .terms-label {
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 12px !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  line-height: 1.4 !important;
 }
 
-.terms-checkbox {
-  width: 18px;
-  height: 18px;
-  accent-color: #000;
-  cursor: pointer;
-  margin: 0;
+.create-account-page .terms-checkbox {
+  width: 18px !important;
+  height: 18px !important;
+  accent-color: #000 !important;
+  cursor: pointer !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
 }
 
-.terms-text {
-  color: #666;
-  flex: 1;
+.create-account-page .terms-text {
+  color: #666 !important;
+  flex: 1 !important;
 }
 
 /* Botones de acción */
-.action-buttons {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  margin-top: 24px;
+.create-account-page .action-buttons {
+  display: flex !important;
+  gap: 16px !important;
+  align-items: center !important;
+  margin-top: 24px !important;
 }
 
-.forgot-password-back-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: #000;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-}
-
-.ack-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.creation-back-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.create-account-page .creation-back-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   width: 60px !important;
   height: 60px !important;
   background: #000 !important;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  flex-shrink: 0;
-  margin-bottom: 3px;
+  border: none !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  flex-shrink: 0 !important;
+  margin-bottom: 3px !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
-.creation-back-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+.create-account-page .creation-back-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
 }
 
-.creation-back-btn-icon {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.create-account-page .creation-back-btn-icon {
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-.creation-back-btn-icon img {
-  filter: invert(77%) sepia(27%) saturate(590%) hue-rotate(331deg) brightness(102%) contrast(93%);
-  width: 20px;
-  height: 20px;
+.create-account-page .creation-back-btn-icon img {
+  filter: invert(77%) sepia(27%) saturate(590%) hue-rotate(331deg) brightness(102%) contrast(93%) !important;
+  width: 20px !important;
+  height: 20px !important;
 }
 
-.next-btn {
-  flex: 1;
+.create-account-page .next-btn {
+  flex: 1 !important;
   height: 60px !important;
-  background: white;
-  border: 2px solid #000;
-  border-radius: 12px;
-  color: #000;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: white !important;
+  border: 2px solid #000 !important;
+  border-radius: 12px !important;
+  color: #000 !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 16px !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
-.next-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+.create-account-page .next-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
 }
 
-.next-btn:active {
-  background: #f7c59f;
+.create-account-page .next-btn:active {
+  background: #f7c59f !important;
 }
 
 /* Separador */
-.separator {
-  display: flex;
-  align-items: center;
-  margin: 30px 0;
+.create-account-page .separator {
+  display: flex !important;
+  align-items: center !important;
+  margin: 30px 0 !important;
 }
 
-.separator-line {
-  flex: 1;
-  height: 1px;
-  background: #E5E5E5;
+.create-account-page .separator-line {
+  flex: 1 !important;
+  height: 1px !important;
+  background: #E5E5E5 !important;
 }
 
-.separator-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #E5E5E5;
-  margin: 0 12px;
+.create-account-page .separator-dot {
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+  background: #E5E5E5 !important;
+  margin: 0 12px !important;
 }
 
 /* Botón de Google */
-.google-btn {
-  width: 100%;
-  height: 50px;
-  background: white;
-  border: 1px solid #e1e5e9;
-  border-radius: 12px;
-  color: #333;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
+.create-account-page .google-btn {
+  width: 100% !important;
+  height: 50px !important;
+  background: white !important;
+  border: 1px solid #e1e5e9 !important;
+  border-radius: 12px !important;
+  color: #333 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+  padding: 0 16px !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 
-.google-btn:hover {
-  border-color: #ccc;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.create-account-page .google-btn:hover {
+  border-color: #ccc !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
 }
 
-.google-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.create-account-page .google-icon {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Sección de imagen */

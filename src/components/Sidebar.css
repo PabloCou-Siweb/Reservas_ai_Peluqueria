@@ -171,7 +171,8 @@
   background: white;
   border-radius: 12px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: none; /* quitar borde/sombra del widget */
+  border: none; /* asegurar que no haya borde */
 }
 
 .widget-illustration {
@@ -186,6 +187,8 @@
   max-width: 120px;
   height: auto;
   object-fit: contain;
+  box-shadow: none; /* sin borde/sombra */
+  border: none;
 }
 
 .widget-content {
@@ -211,6 +214,8 @@
   overflow: hidden;
   box-sizing: border-box;
   width: 100%;
+  box-shadow: none; /* sin sombra alrededor del bloque */
+  border: none;
 }
 
 .sidebar-widget .clock-icon {
@@ -255,6 +260,7 @@
   text-transform: uppercase;
   letter-spacing: 0.5px;
   min-height: 36px;
+  box-shadow: none; /* sin sombra para el botón */
 }
 
 .buy-minutes-btn:hover {
@@ -289,8 +295,8 @@
   background: white;
   margin: 12px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  border: none;
+  box-shadow: none; /* eliminar sombra/borde inferior */
+  border: none; /* sin borde */
 }
 
 .profile-avatar {

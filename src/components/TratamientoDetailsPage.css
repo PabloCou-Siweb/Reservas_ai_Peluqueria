@@ -633,6 +633,7 @@
   filter: brightness(0) saturate(100%) invert(40%) sepia(8%) saturate(750%) hue-rotate(169deg) brightness(95%) contrast(86%);
 }
 
+
 /* Pagination */
 .tratamiento-pagination-container {
   display: flex;
@@ -720,4 +721,167 @@
     grid-template-columns: 30px 1fr 120px 150px 120px 100px 30px;
     gap: 12px;
   }
+}
+
+/* Horarios Modal - Sin líneas separadoras como en la plantilla */
+.horarios-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.horarios-modal {
+  background: white;
+  border-radius: 8px;
+  max-width: 450px;
+  width: 100%;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.horarios-modal-header {
+  padding: 20px 24px 16px 24px;
+}
+
+.horarios-modal-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.horarios-modal-close {
+  display: none;
+}
+
+.horarios-modal-content {
+  padding: 0 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.horarios-table {
+  width: 100%;
+}
+
+.horarios-table-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 16px 0 8px 0;
+  font-weight: 600;
+  color: #374151;
+  font-size: 14px;
+}
+
+.horarios-table-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  padding: 8px 0;
+  align-items: center;
+}
+
+.horarios-col-dia {
+  font-weight: 400;
+  color: #1f2937;
+  font-size: 14px;
+}
+
+.horarios-col-inicio,
+.horarios-col-fin {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.horarios-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.horarios-time-select {
+  width: 100%;
+  padding: 8px 20px 8px 0; /* espacio estándar para flecha nativa */
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  color: #374151;
+  outline: none;
+  appearance: auto;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  cursor: pointer;
+}
+
+.horarios-time-select:focus {
+  outline: none;
+}
+
+.horarios-select-wrapper::after { content: none; }
+
+.horarios-select-arrow { display: none; }
+
+.horarios-modal-footer {
+  padding: 16px 24px 20px 24px;
+  display: flex;
+  gap: 16px; /* separación entre botones */
+  justify-content: space-between; /* expande los botones */
+}
+
+.horarios-btn-cancel {
+  padding: 10px 32px;
+  background: white;
+  border: 2px solid #8C623E;
+  border-radius: 8px;
+  color: #8C623E;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 160px;
+  flex: 1; /* ocupa la mitad */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.horarios-btn-cancel:hover {
+  background: #f9fafb;
+  border-color: #9ca3af;
+}
+
+.horarios-btn-save {
+  padding: 8px 16px;
+  background: #8C623E;
+  border: 1px solid #8C623E;
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1; /* ocupa la otra mitad */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.horarios-btn-save:hover {
+  background: #6B4A2A;
+  border-color: #6B4A2A;
 }

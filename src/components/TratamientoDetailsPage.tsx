@@ -11,6 +11,18 @@ const TratamientoDetailsPage: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedRows, setSelectedRows] = useState<string[]>([]);
   const [selectAll, setSelectAll] = useState(false);
+  const [showHorariosModal, setShowHorariosModal] = useState(false);
+  const [horarios, setHorarios] = useState({
+    lunes: { inicio: '08:00', fin: '20:00' },
+    martes: { inicio: '08:00', fin: '20:00' },
+    miercoles: { inicio: '08:00', fin: '20:00' },
+    jueves: { inicio: '08:00', fin: '20:00' },
+    viernes: { inicio: '08:00', fin: '20:00' },
+    sabado: { inicio: '08:00', fin: '20:00' },
+    domingo: { inicio: '08:00', fin: '20:00' }
+  });
+
+  
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -29,12 +41,35 @@ const TratamientoDetailsPage: React.FC = () => {
     // Aquí se puede implementar la lógica para guardar los datos
   };
 
+  const handleOpenHorariosModal = () => {
+    setShowHorariosModal(true);
+  };
+
+  const handleCloseHorariosModal = () => {
+    setShowHorariosModal(false);
+  };
+
+  const handleSaveHorarios = () => {
+    console.log('Horarios guardados:', horarios);
+    setShowHorariosModal(false);
+  };
+
+  const handleHorarioChange = (dia: string, campo: 'inicio' | 'fin', valor: string) => {
+    setHorarios(prev => ({
+      ...prev,
+      [dia]: {
+        ...prev[dia as keyof typeof prev],
+        [campo]: valor
+      }
+    }));
+  };
+
   const handleSelectAll = () => {
     if (selectAll) {
       setSelectedRows([]);
       setSelectAll(false);
     } else {
-      setSelectedRows(['tratamiento-apt1', 'tratamiento-apt2']);
+      setSelectedRows(['tratamiento-apt1', 'tratamiento-apt2', 'tratamiento-apt3', 'tratamiento-apt4']);
       setSelectAll(true);
     }
   };
@@ -47,7 +82,7 @@ const TratamientoDetailsPage: React.FC = () => {
     } else {
       const newSelection = [...selectedRows, rowId];
       setSelectedRows(newSelection);
-      if (newSelection.length === 2) {
+      if (newSelection.length === 4) {
         setSelectAll(true);
       }
     }
@@ -106,7 +141,7 @@ const TratamientoDetailsPage: React.FC = () => {
               <div className="tratamiento-right-section">
                 <div className="tratamiento-schedule-header">
                   <h3 className="tratamiento-schedule-title">Horarios</h3>
-                  <button className="tratamiento-schedule-edit-btn">
+                  <button className="tratamiento-schedule-edit-btn" onClick={handleOpenHorariosModal}>
                     <img src="/img/pen-icon.png" alt="Editar" />
                   </button>
                 </div>
@@ -274,8 +309,12 @@ const TratamientoDetailsPage: React.FC = () => {
 
                 <div className="tratamiento-table-row">
                   <div className="tratamiento-col-checkbox">
-                    <input type="checkbox" id="tratamiento-apt3" />
-                    <label htmlFor="tratamiento-apt3"></label>
+                    <input 
+                      type="checkbox" 
+                      id="tratamiento-apt3"
+                      checked={selectedRows.includes('tratamiento-apt3')}
+                      onChange={() => handleRowSelect('tratamiento-apt3')}
+                    />
                   </div>
                   <div className="tratamiento-col-patient">
                     <div className="tratamiento-patient-name">Ana María Jiménez</div>
@@ -297,8 +336,12 @@ const TratamientoDetailsPage: React.FC = () => {
 
                 <div className="tratamiento-table-row">
                   <div className="tratamiento-col-checkbox">
-                    <input type="checkbox" id="tratamiento-apt4" />
-                    <label htmlFor="tratamiento-apt4"></label>
+                    <input 
+                      type="checkbox" 
+                      id="tratamiento-apt4"
+                      checked={selectedRows.includes('tratamiento-apt4')}
+                      onChange={() => handleRowSelect('tratamiento-apt4')}
+                    />
                   </div>
                   <div className="tratamiento-col-patient">
                     <div className="tratamiento-patient-name">Pepito Jiménez Sancho</div>
@@ -344,6 +387,70 @@ const TratamientoDetailsPage: React.FC = () => {
         onClose={handleCloseEditModal}
         onSave={handleSaveTreatment}
       />
+
+      {/* Horarios Modal */}
+      {showHorariosModal && (
+        <div className="horarios-modal-overlay" onClick={handleCloseHorariosModal}>
+          <div className="horarios-modal" onClick={(e) => e.stopPropagation()}>
+            <div className="horarios-modal-header">
+              <h3 className="horarios-modal-title">Horarios</h3>
+            </div>
+
+            <div className="horarios-modal-content">
+              <div className="horarios-table">
+                <div className="horarios-table-header">
+                  <div className="horarios-col-dia">Día</div>
+                  <div className="horarios-col-inicio">Inicio</div>
+                  <div className="horarios-col-fin">Fin</div>
+                </div>
+                
+                {Object.entries(horarios).map(([dia, horario]) => (
+                  <div key={dia} className="horarios-table-row">
+                    <div className="horarios-col-dia">
+                      {dia.charAt(0).toUpperCase() + dia.slice(1)}
+                    </div>
+                    <div className="horarios-col-inicio">
+                      <div className="horarios-select-wrapper">
+                        <select
+                          value={horario.inicio}
+                          onChange={(e) => handleHorarioChange(dia, 'inicio', e.target.value)}
+                          className="horarios-time-select"
+                        >
+                          {['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00'].map(t => (
+                            <option key={t} value={t}>{t}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                    <div className="horarios-col-fin">
+                      <div className="horarios-select-wrapper">
+                        <select
+                          value={horario.fin}
+                          onChange={(e) => handleHorarioChange(dia, 'fin', e.target.value)}
+                          className="horarios-time-select"
+                        >
+                          {['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00'].map(t => (
+                            <option key={t} value={t}>{t}</option>
+                          ))}
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="horarios-modal-footer">
+              <button className="horarios-btn-cancel" onClick={handleCloseHorariosModal}>
+                Cancelar
+              </button>
+              <button className="horarios-btn-save" onClick={handleSaveHorarios}>
+                Guardar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
