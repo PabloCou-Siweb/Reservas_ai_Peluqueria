@@ -13,8 +13,8 @@ const EditTratamientoModal: React.FC<EditTratamientoModalProps> = ({
   onSave
 }) => {
   const [formData, setFormData] = useState({
-    nombre: 'Peluquería',
-    descripcion: 'Especialidad médica orientada a la atención integral del paciente, abarcando la prevención, diagnóstico y tratamiento de las enfermedades más frecuentes.',
+    nombre: 'Depilación',
+    descripcion: '',
     duracion: '25',
     tarifa: '',
     activa: true
@@ -40,19 +40,23 @@ const EditTratamientoModal: React.FC<EditTratamientoModalProps> = ({
   return (
     <div className="edit-tratamiento-modal-overlay" onClick={onClose}>
       <div className="edit-tratamiento-modal" onClick={(e) => e.stopPropagation()}>
-        {/* Header */}
-        <div className="edit-tratamiento-modal-header">
-          <div className="edit-tratamiento-header-icon">
-            <img src="/img/scissor-icon.png" alt="Tratamiento" width="20" height="20" />
+        {/* Header separado con banner naranja */}
+        <div className="edit-tratamiento-header-banner">
+          <div className="edit-tratamiento-header-content">
+            <div className="edit-tratamiento-header-icon">
+              <img src="/img/user-icon.png" alt="Usuario" width="20" height="20" />
+            </div>
+            <h3 className="edit-tratamiento-modal-title">Editar los datos básicos del tratamiento</h3>
           </div>
-          <h3 className="edit-tratamiento-modal-title">Editar los datos básicos del tratamiento</h3>
-          <button className="edit-tratamiento-modal-close" onClick={onClose}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="6" x2="6" y2="18"></line>
-              <line x1="6" y1="6" x2="18" y2="18"></line>
-            </svg>
-          </button>
         </div>
+
+        {/* Close button fuera del header */}
+        <button className="edit-tratamiento-modal-close" onClick={onClose}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
 
         {/* Content */}
         <div className="edit-tratamiento-modal-content">
@@ -151,7 +155,6 @@ const EditTratamientoModal: React.FC<EditTratamientoModalProps> = ({
             {/* Action buttons */}
             <div className="edit-tratamiento-modal-actions">
               <button type="button" className="edit-tratamiento-btn-cancel" onClick={onClose}>
-                <img src="/img/trash-icon.png" alt="Eliminar" width="16" height="16" />
                 Eliminar
               </button>
               <button type="submit" className="edit-tratamiento-btn-save">

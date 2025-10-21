@@ -274,10 +274,7 @@ const EspecialistasPage: React.FC = () => {
                 style={{ cursor: 'pointer' }}
               >
                 <div className="especialista-avatar">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                    <circle cx="12" cy="7" r="4"/>
-                  </svg>
+                  <img src="/img/user-icon.png" alt="Usuario" width="40" height="40" />
                 </div>
                 <div className="especialista-info">
                   <h3 className="especialista-name">{especialista.nombre}</h3>

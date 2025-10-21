@@ -11,9 +11,10 @@ interface ServiceCategory {
 interface ServiceGridProps {
   categories: ServiceCategory[];
   onServiceClick?: (category: ServiceCategory) => void;
+  selectedId?: string | null; // opcional: permite marcar una card como seleccionada
 }
 
-const ServiceGrid: React.FC<ServiceGridProps> = ({ categories, onServiceClick }) => {
+const ServiceGrid: React.FC<ServiceGridProps> = ({ categories, onServiceClick, selectedId }) => {
   const getIconPath = (iconType: string) => {
     const iconMap: { [key: string]: string } = {
       'hair': '/img/tratamiento_capilar-layer.png',
@@ -39,7 +40,7 @@ const ServiceGrid: React.FC<ServiceGridProps> = ({ categories, onServiceClick })
         {categories.map((category) => (
           <div 
             key={category.id} 
-            className="service-card"
+            className={`service-card ${selectedId === category.id ? 'selected' : ''}`}
             onClick={() => onServiceClick?.(category)}
           >
             <div className="service-icon">

@@ -192,6 +192,8 @@
   padding: 4px;
   border-radius: 999px;
   margin: 16px 16px 10px 16px;
+  width: auto;              /* se ajusta al contenido */
+  max-width: fit-content;   /* evita expandirse más de lo necesario */
 }
 
 .add-especialista-page .tab {
@@ -254,6 +256,10 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  border-radius: 0 !important;
 }
 
 .add-especialista-page .form-row {
@@ -356,6 +362,12 @@
 /* Quitar borde del contenedor de formulario (card) */
 .add-especialista-page .form-container,
 .add-especialista-page .form-content {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Asegurar que el encabezado del formulario tampoco tenga sombra/borde */
+.add-especialista-page .form-header {
   border: none !important;
   box-shadow: none !important;
 }

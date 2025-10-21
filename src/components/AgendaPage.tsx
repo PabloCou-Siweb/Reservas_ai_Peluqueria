@@ -5,6 +5,7 @@ import EditAppointmentModal from './EditAppointmentModal';
 import RecordatorioEnviadoModal from './RecordatorioEnviadoModal';
 import ReprogramarCitaModal from './ReprogramarCitaModal';
 import AppointmentDetailsPage from './AppointmentDetailsPage';
+import FiltrosModal from './FiltrosModal';
 import './AgendaPage.css';
 import './HeaderButtons.css';
 
@@ -21,6 +22,7 @@ const AgendaPage: React.FC = () => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showRecordatorioModal, setShowRecordatorioModal] = useState(false);
   const [showReprogramarModal, setShowReprogramarModal] = useState(false);
+  const [showFiltrosModal, setShowFiltrosModal] = useState(false);
   const [selectedAppointmentId, setSelectedAppointmentId] = useState<number | null>(null);
 
   useEffect(() => {
@@ -54,6 +56,12 @@ const AgendaPage: React.FC = () => {
 
   const handleAddAppointment = () => {
     navigateToNuevaCita();
+  };
+
+  const handleApplyFilters = (filters: any) => {
+    console.log('Aplicando filtros:', filters);
+    // Aquí se implementaría la lógica de filtrado
+    setShowFiltrosModal(false);
   };
 
   const handleAppointmentSelect = (id: number) => {
@@ -387,7 +395,7 @@ const AgendaPage: React.FC = () => {
                   </div>
                   
                   <div className="action-buttons-group">
-                    <button className="filter-button">
+                    <button className="filter-button" onClick={() => setShowFiltrosModal(true)}>
                       <img src="/img/filter-icon.png" alt="Filtro" width="16" height="16" />
                     </button>
                     <button className="add-appointment-button" onClick={handleAddAppointment}>
@@ -651,6 +659,12 @@ const AgendaPage: React.FC = () => {
           appointmentData={appointmentsData.find(app => app.id === selectedAppointmentId)}
         />
       )}
+
+      <FiltrosModal
+        isOpen={showFiltrosModal}
+        onClose={() => setShowFiltrosModal(false)}
+        onApplyFilters={handleApplyFilters}
+      />
     </div>
   );
 };

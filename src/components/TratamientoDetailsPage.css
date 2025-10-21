@@ -78,7 +78,7 @@
   padding: 32px;
   display: flex;
   gap: 0;
-  min-height: 400px;
+  height: 500px;
   position: relative;
 }
 
@@ -88,11 +88,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* centra el bloque superior */
   text-align: center;
-  gap: 20px;
+  gap: 16px; /* menor separación interna para no empujar los botones */
   padding-right: 32px;
-  position: relative;
+  position: relative; /* contenedor flex para empujar botones con margin-top:auto */
+  min-height: 360px; /* fija una altura para facilitar el centrado vertical visual */
+}
+
+/* Desplaza sutilmente el contenido superior hacia abajo sin afectar botones */
+.tratamiento-left-section .tratamiento-icon-container,
+.tratamiento-left-section .tratamiento-status,
+.tratamiento-left-section .tratamiento-duration {
+  transform: translateY(32px);
+}
+
+/* Reduce cualquier margen inferior del bloque de duración para acercarlo a los botones sin moverlos */
+.tratamiento-left-section .tratamiento-duration {
+  margin-bottom: 0;
 }
 
 .tratamiento-left-section::after {
@@ -106,8 +119,8 @@
 }
 
 .tratamiento-icon-container {
-  width: 80px;
-  height: 80px;
+  width: 96px;
+  height: 96px;
   background: #8C623E;
   border-radius: 12px;
   display: flex;
@@ -117,8 +130,8 @@
 }
 
 .tratamiento-icon-container img {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
@@ -126,9 +139,9 @@
 .tratamiento-status {
   background: #F2C288;
   color: #6B4423;
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 14px;
+  padding: 8px 18px;
+  border-radius: 22px;
+  font-size: 15px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -139,7 +152,7 @@
 }
 
 .duration-time {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
   color: #1f2937;
   margin: 0;
@@ -155,7 +168,7 @@
 .tratamiento-actions {
   display: flex;
   gap: 12px;
-  margin-top: auto;
+  margin-top: auto; /* mantiene los botones en su sitio al fondo */
   width: 100%;
 }
 
@@ -292,7 +305,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  min-height: 400px;
+  height: 500px;
 }
 
 .tratamiento-specialists-card h2 {
@@ -336,7 +349,7 @@
 .tratamiento-specialists-actions {
   display: flex;
   gap: 12px;
-  margin-top: 8px;
+  margin-top: auto;
 }
 
 .tratamiento-btn-remove,
@@ -378,6 +391,7 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  height: 500px;
 }
 
 .tratamiento-appointments-header h2 {
@@ -585,19 +599,32 @@
 }
 
 .tratamiento-col-status {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
   font-size: 14px;
   font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 999px;
 }
 
 .tratamiento-confirmed {
-  color: #059669;
+  background: #FFF7E6; /* crema suave de la plantilla */
+  color: #8C623E;      /* marrón texto y punto */
+  border: 1px solid #F2C288;
 }
 
 .tratamiento-pending {
-  color: #d97706;
+  background: #8C623E; /* marrón */
+  color: #FFFFFF;       /* texto y punto en blanco */
+  border: 1px solid #8C623E;
+}
+
+/* estado cancelado opcional */
+.tratamiento-cancelled {
+  background: #F3F4F6;
+  color: #6B7280;
+  border: 1px solid #E5E7EB;
 }
 
 .tratamiento-status-dot {

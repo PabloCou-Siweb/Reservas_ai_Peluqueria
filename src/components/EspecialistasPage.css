@@ -326,6 +326,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.especialista-avatar img {
+  filter: brightness(0) invert(1); /* hace el icono blanco */
+}
+
 .especialista-info {
   flex: 1;
   text-align: left;

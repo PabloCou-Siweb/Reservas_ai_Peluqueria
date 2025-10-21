@@ -1,3 +1,8 @@
+/* Solo Dashboard: permite que .dashboard-container establezca selected */
+.dashboard-container .service-card.selected {
+  background: #FFE8BC;
+  border-color: #F2C288;
+}
 /* Service Grid - Recreated from template with encapsulated styles */
 .service-grid-container {
   width: 100%;
@@ -34,6 +39,13 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
   border-color: #8b4513;
+}
+
+/* Hover + selected behavior para Dashboard (fondo crema) */
+.dashboard-container .service-card:hover,
+.dashboard-container .service-card.selected {
+  background: #FFE8BC;
+  border-color: #F2C288;
 }
 
 .service-icon {

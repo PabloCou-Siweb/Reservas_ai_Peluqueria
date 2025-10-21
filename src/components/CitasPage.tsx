@@ -221,48 +221,6 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
       rol: 'Esteticista',
       consulta: 'Consulta 105',
       imagen: '/img/avatar4.jpg'
-    },
-    {
-      id: 5,
-      nombre: 'Carlos Ruiz',
-      rol: 'Barbero',
-      consulta: 'Consulta 106',
-      imagen: '/img/avatar5.jpg'
-    },
-    {
-      id: 6,
-      nombre: 'María López',
-      rol: 'Manicurista',
-      consulta: 'Consulta 107',
-      imagen: '/img/avatar6.jpg'
-    },
-    {
-      id: 7,
-      nombre: 'Pedro Sánchez',
-      rol: 'Estilista',
-      consulta: 'Consulta 108',
-      imagen: '/img/avatar7.jpg'
-    },
-    {
-      id: 8,
-      nombre: 'Isabel Torres',
-      rol: 'Colorista',
-      consulta: 'Consulta 109',
-      imagen: '/img/avatar8.jpg'
-    },
-    {
-      id: 9,
-      nombre: 'Miguel Vega',
-      rol: 'Barbero',
-      consulta: 'Consulta 110',
-      imagen: '/img/avatar9.jpg'
-    },
-    {
-      id: 10,
-      nombre: 'Sofia Rodriguez',
-      rol: 'Esteticista',
-      consulta: 'Consulta 111',
-      imagen: '/img/avatar10.jpg'
     }
   ];
 
@@ -431,6 +389,7 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
                     <div className="specialist-role">{especialista.rol}</div>
                     <div className="specialist-office">{especialista.consulta}</div>
                   </div>
+                  <div className="specialist-status"></div>
                 </div>
               ))}
             </div>

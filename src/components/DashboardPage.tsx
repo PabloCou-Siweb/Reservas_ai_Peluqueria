@@ -15,6 +15,7 @@ const DashboardPage: React.FC = () => {
   const { navigateToCitas, navigateTo } = useNavigation();
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | null>(null);
 
   const serviceCategories: ServiceCategory[] = [
     { id: '1', name: 'Tratamientos capilares', specialists: 4, icon: 'hair' },
@@ -76,9 +77,11 @@ const DashboardPage: React.FC = () => {
 
               <ServiceGrid
                 categories={filteredCategories}
+                selectedId={selectedCategoryId}
                 onServiceClick={(category) => {
                   console.log('Service clicked:', category);
                   // Navegar a la página de citas cuando se hace clic en un servicio
+                  setSelectedCategoryId(category.id);
                   navigateToCitas(category.name);
                 }}
               />

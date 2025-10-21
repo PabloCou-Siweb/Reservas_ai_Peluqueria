@@ -253,105 +253,156 @@
   gap: 32px;
   padding: 0 32px 32px 32px;
   background: #ffffff;
+  align-items: flex-start;
 }
 
-/* Specialists Section */
+/* Specialists Section - Template Style */
 .specialists-section {
-  flex: 0 0 300px;
+  flex: 0 0 320px;
+  background: #f8f9fa;
+  border-radius: 12px;
+  padding: 0;
+  height: fit-content;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .specialists-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
+  padding: 12px;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .specialist-card {
-  background: #fffbf0;
-  border: 1px solid #f3e8d0;
-  border-radius: 12px;
-  padding: 16px;
+  background: #FFE8BC;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 24px 28px;
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  position: relative;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  min-height: 120px;
+  width: 100%;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 .specialist-card:hover {
-  background: #fef3c7;
-  border-color: #f59e0b;
+  background: #FFF7E6;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .specialist-card.selected {
-  background: #f59e0b;
-  border-color: #d97706;
-  color: #ffffff;
+  background: #FFF7E6;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(242, 194, 136, 0.3);
 }
 
 .specialist-avatar {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  overflow: hidden;
+  background: #6B4423;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
   flex-shrink: 0;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .avatar-placeholder {
   width: 100%;
   height: 100%;
-  background: #f59e0b;
+  background: #6B4423;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: #ffffff;
 }
 
 .specialist-card.selected .avatar-placeholder {
-  background: #ffffff;
-  color: #f59e0b;
+  background: #6B4423;
+  color: #ffffff;
+  border-color: #F2C288;
 }
 
 .specialist-details {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 1px;
   flex: 1;
+  min-width: 0;
+  text-align: left;
 }
 
 .specialist-name {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   color: #374151;
-  line-height: 1.2;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
 }
 
 .specialist-role, .specialist-office {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 400;
   color: #6b7280;
-  line-height: 1.2;
+  line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .specialist-card.selected .specialist-name,
 .specialist-card.selected .specialist-role,
 .specialist-card.selected .specialist-office {
-  color: #ffffff;
+  color: #8B4513;
+}
+
+.specialist-status {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 3px;
+  height: 3px;
+  background: #10b981;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+}
+
+.specialist-card.selected .specialist-status {
+  background: #6B4423;
 }
 
 /* Calendar and Schedule Section */
 .calendar-schedule-section {
   flex: 1;
   display: flex;
-  gap: 32px;
+  gap: 16px;
 }
 
 .calendar-and-summary {
-  flex: 0 0 320px;
+  flex: 0 0 280px;
 }
 
 /* Calendar Widget - Based on AgendaPage */
@@ -362,7 +413,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 16px;
   height: fit-content;
-  min-width: 260px;
+  min-width: 240px;
 }
 
 .calendar-header {
@@ -659,187 +710,6 @@
 }
 
 
-/* Specialists Section */
-.specialists-section {
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  padding: 24px;
-  width: 100%;
-  height: 600px;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.specialists-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #333;
-  margin: 8px 0 20px 0;
-  text-align: left;
-}
-
-.specialists-search {
-  position: relative;
-  margin-bottom: 24px;
-  display: flex;
-  width: 100%;
-}
-
-.specialist-search-input {
-  width: 100%;
-  padding: 12px 40px 12px 16px;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  font-size: 14px;
-  background: #f8f9fa;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.specialist-search-input:focus {
-  outline: none;
-  border-color: #f7c59f;
-  background: white;
-  box-shadow: 0 4px 12px rgba(247, 197, 159, 0.2);
-}
-
-.specialists-search .search-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  z-index: 1;
-}
-
-.specialists-search .search-icon img {
-  width: 100%;
-  height: 100%;
-  opacity: 0.6;
-}
-
-.specialists-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: 380px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 8px 0;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  width: 100%;
-  min-height: 0;
-  flex: 1;
-}
-
-.specialists-list::-webkit-scrollbar {
-  width: 8px;
-}
-
-.specialists-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-.specialists-list::-webkit-scrollbar-thumb {
-  background: #8b4513;
-  border-radius: 4px;
-}
-
-.specialists-list::-webkit-scrollbar-thumb:hover {
-  background: #a0522d;
-}
-
-/* Firefox scrollbar */
-.specialists-list {
-  scrollbar-width: thin;
-  scrollbar-color: #8b4513 #f1f1f1;
-}
-
-.specialist-card {
-  background: white;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.specialist-card:hover {
-  border-color: #8b4513;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.specialist-card.selected {
-  border-color: #8b4513;
-  background: #f7c59f;
-  transform: scale(1.02);
-  box-shadow: 0 4px 16px rgba(139, 69, 19, 0.2);
-}
-
-.specialist-card .specialist-avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #f7c59f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.specialist-card .specialist-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.specialist-card .avatar-placeholder {
-  font-size: 16px;
-  font-weight: 600;
-  color: white;
-  text-align: center;
-}
-
-.specialist-card .specialist-info {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  flex: 1;
-  min-width: 0;
-}
-
-.specialist-card .specialist-name {
-  font-size: 15px;
-  font-weight: 600;
-  color: #333;
-  line-height: 1.3;
-}
-
-.specialist-card .specialist-role {
-  font-size: 13px;
-  color: #6c757d;
-  line-height: 1.3;
-}
-
-.specialist-card .specialist-consulta {
-  font-size: 12px;
-  color: #8b4513;
-  font-weight: 500;
-  line-height: 1.3;
-}
 
 /* Calendar Section */
 .calendar-section {
@@ -859,7 +729,7 @@
 .calendar-widget {
   background: white;
   border-radius: 12px;
-  border: 2px solid #9B59B6;
+  border: 1px solid #e1e5e9;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
   height: fit-content;
@@ -903,7 +773,7 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 2px;
   margin-bottom: 12px;
-  border-bottom: 2px dotted #9B59B6;
+  border-bottom: 2px dotted #e1e5e9;
   padding-bottom: 8px;
 }
 
@@ -965,17 +835,22 @@
   display: flex;
   flex-direction: column;
   min-width: 0;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #e1e5e9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 16px;
 }
 
 .appointments-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .appointments-title {
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
   color: #212529;
   margin: 0;
@@ -1488,119 +1363,6 @@
   transform: translateY(-1px);
 }
 
-/* Specialists Section */
-.specialists-section {
-  padding: 0 32px 24px 32px;
-  background: white;
-}
-
-.specialists-search {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.specialist-search-input {
-  width: 100%;
-  max-width: 400px;
-  padding: 12px 40px 12px 16px;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  font-size: 14px;
-  background: #f8f9fa;
-  transition: all 0.3s ease;
-}
-
-.specialist-search-input:focus {
-  outline: none;
-  border-color: #8b4513;
-  background: white;
-}
-
-.specialists-search .search-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 16px;
-  height: 16px;
-}
-
-.specialists-search .search-icon img {
-  width: 16px;
-  height: 16px;
-  object-fit: contain;
-}
-
-.specialists-list {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.specialist-card {
-  background: white;
-  border: 1px solid #e9ecef;
-  border-radius: 12px;
-  padding: 16px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  min-width: 280px;
-  flex: 1;
-}
-
-.specialist-card:hover {
-  border-color: #8b4513;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.specialist-card.selected {
-  border-color: #8b4513;
-  background: #f7c59f;
-}
-
-.specialist-card .specialist-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #f7c59f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-.specialist-card .avatar-placeholder {
-  font-size: 14px;
-  font-weight: 600;
-  color: #8b4513;
-}
-
-.specialist-card .specialist-info {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  flex: 1;
-}
-
-.specialist-card .specialist-name {
-  font-size: 14px;
-  font-weight: 600;
-  color: #333;
-}
-
-.specialist-card .specialist-role {
-  font-size: 12px;
-  color: #6c757d;
-}
-
-.specialist-card .specialist-consulta {
-  font-size: 11px;
-  color: #8b4513;
-  font-weight: 500;
-}
 
 /* Responsive Design */
 @media (max-width: 1400px) {

@@ -182,10 +182,17 @@
 }
 
 .tratamientos-container .tratamiento-card:hover {
-  border-color: #d1d5db;
+  border-color: #F2C288;
+  background: #FFE8BC;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   transform: translateY(-2px);
   z-index: 4;
+}
+
+/* Estado seleccionado para tarjetas de tratamientos (cuando se marque desde JS si aplica) */
+.tratamientos-container .tratamiento-card.selected {
+  background: #FFE8BC;
+  border-color: #F2C288;
 }
 
 
@@ -301,11 +308,17 @@
 }
 
 .tratamientos-container .add-treatment-card:hover {
-  border-color: #8C623E;
-  background: #f9f9f9;
+  border-color: #8C623E; /* igual al color del botón/label */
+  background: #FFE8BC;
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   z-index: 4;
+}
+
+/* Estado marcado opcional para mantener coherencia si se usa .selected */
+.tratamientos-container .add-treatment-card.selected {
+  border-color: #8C623E;
+  background: #FFE8BC;
 }
 
 .tratamientos-container .add-icon {

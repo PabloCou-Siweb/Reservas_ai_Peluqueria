@@ -179,26 +179,38 @@
 .nueva-cita-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
   width: 100%;
   box-sizing: border-box;
   max-width: 100%;
-  padding: 0 32px 40px 32px;
+  padding: 0 32px 20px 32px;
 }
 
 /* Form Section - Recreado desde cero */
 .form-section {
-  margin-bottom: 24px;
-  margin-top: 8px;
+  margin-bottom: 16px;
+  margin-top: 4px;
   width: 100%;
   box-sizing: border-box;
   position: relative;
   z-index: 1;
+  box-shadow: none !important;
+}
+
+/* Eliminar sombras de todos los containers de formularios */
+.nueva-cita-container .form-section,
+.nueva-cita-container .client-data-section,
+.nueva-cita-container .appointment-details-section,
+.nueva-cita-container .section-content,
+.nueva-cita-container .form-grid,
+.nueva-cita-container .form-group {
+  box-shadow: none !important;
 }
 
 .client-data-section {
   width: 100%;
   box-sizing: border-box;
+  box-shadow: none !important;
 }
 
 .appointment-details-section {
@@ -209,12 +221,13 @@
   box-sizing: border-box;
   clear: both;
   position: relative;
+  box-shadow: none !important;
 }
 
 .section-header {
   background: #FFE8BC;
   border: none;
-  padding: 20px 24px;
+  padding: 12px 24px;
   border-radius: 8px 8px 0 0;
   margin-bottom: 0;
   width: 100%;
@@ -222,7 +235,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: 70px;
+  min-height: 50px;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -252,7 +265,7 @@
   background: white !important;
   border: none !important;
   border-radius: 0 0 8px 8px;
-  padding: 20px;
+  padding: 12px 20px;
   margin-bottom: 0;
   box-sizing: border-box;
   width: 100%;
@@ -260,6 +273,7 @@
   display: block;
   text-align: left;
   overflow: hidden;
+  box-shadow: none !important;
 }
 
 .client-data-section .section-content {
@@ -351,12 +365,12 @@
 .form-grid {
   display: grid !important;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr !important;
-  gap: 20px !important;
+  gap: 12px !important;
   width: 100% !important;
   max-width: 100% !important;
   box-sizing: border-box !important;
   overflow: hidden !important;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
 }
 
 /* Ajustar solo el div de detalles de la cita */
@@ -551,9 +565,9 @@
   display: flex;
   justify-content: flex-start;
   gap: 12px;
-  padding: 16px 0;
+  padding: 8px 0;
   border-top: 1px solid white;
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
 /* Copyright sin footer */

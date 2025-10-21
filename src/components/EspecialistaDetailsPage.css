@@ -119,6 +119,8 @@
   gap: 24px;
   margin-bottom: 32px;
   flex-direction: row;
+  align-items: stretch; /* iguala altura de los divs */
+  min-height: 400px; /* altura mínima para forzar igualdad */
 }
 
 .profile-card {
@@ -132,16 +134,20 @@
   align-items: flex-start;
   flex: 1;
   min-width: 0;
+  height: 100%; /* ocupa toda la altura disponible */
 }
 
 .schedule-card {
   background: white;
   border: 1px solid #e9ecef;
   border-radius: 12px;
-  padding: 16px;
+  padding: 24px; /* mismo padding que profile-card */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex: 1;
   min-width: 0;
+  height: 100%; /* ocupa toda la altura disponible */
+  display: flex;
+  flex-direction: column;
 }
 
 .profile-left {
@@ -304,6 +310,8 @@
 .schedule-section {
   display: flex;
   flex-direction: column;
+  flex: 1; /* ocupa todo el espacio disponible */
+  justify-content: space-between; /* distribuye el contenido */
 }
 
 .schedule-card {
@@ -325,7 +333,7 @@
 .schedule-list {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 12px; /* mayor separación vertical entre horarios */
   margin-bottom: 12px;
 }
 
@@ -453,36 +461,113 @@
   flex-direction: column;
 }
 
+/* Header de tabla - Ajustado a la plantilla */
 .especialista-details-page .appointments-table .table-header {
-  display: grid;
-  grid-template-columns: 48px 1fr 160px 200px 160px 120px 48px;
-  padding: 16px 20px;
-  background: #f8f9fa;
-  border-bottom: 1px solid #e5e7eb;
-  gap: 16px;
-  align-items: center;
-  font-weight: 600;
-  color: #333;
-  font-size: 14px;
-  text-align: left;
-  width: 100%;
+  display: grid !important;
+  grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 60px !important;
+  gap: 0 !important;
+  padding: 14px 20px !important;
+  background: #f8f9fa !important;
+  border-bottom: 1px solid #e5e7eb !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  font-weight: 600 !important;
+  color: #333 !important;
+  font-size: 14px !important;
+  align-items: center !important;
+}
+
+.especialista-details-page .appointments-table .table-header > div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+}
+
+.especialista-details-page .appointments-table .table-header .checkbox-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .table-header .actions-col {
+  justify-content: center !important;
 }
 
 .especialista-details-page .appointments-table .table-body {
   background: white;
 }
 
+/* Filas de datos - Ajustadas a la plantilla */
 .especialista-details-page .appointments-table .data-row {
-  display: grid;
-  grid-template-columns: 48px 1fr 160px 200px 160px 120px 48px;
-  padding: 12px 20px;
-  border-bottom: 1px solid #f3f4f6;
-  transition: background-color 0.2s ease;
-  gap: 16px;
-  align-items: center;
-  font-size: 14px;
-  color: #333;
-  width: 100%;
+  display: grid !important;
+  grid-template-columns: 60px 1fr 1fr 1fr 1fr 1fr 60px !important;
+  gap: 0 !important;
+  padding: 14px 20px !important;
+  border-bottom: 1px solid #f3f4f6 !important;
+  transition: background-color 0.2s ease !important;
+  font-size: 14px !important;
+  color: #333 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  align-items: center !important;
+}
+
+.especialista-details-page .appointments-table .data-row > div {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 20px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.especialista-details-page .appointments-table .data-row .checkbox-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .data-row .client-col {
+  justify-content: flex-start !important;
+}
+
+.especialista-details-page .appointments-table .table-header .client-col {
+  justify-content: flex-start !important;
+}
+
+.especialista-details-page .appointments-table .data-row .phone-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .data-row .email-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .data-row .date-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .data-row .status-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .data-row .actions-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .table-header .checkbox-col,
+.especialista-details-page .appointments-table .data-row .checkbox-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .table-header .status-col,
+.especialista-details-page .appointments-table .data-row .status-col {
+  justify-content: center !important;
+}
+
+.especialista-details-page .appointments-table .table-header .actions-col,
+.especialista-details-page .appointments-table .data-row .actions-col {
+  justify-content: center !important;
 }
 
 .especialista-details-page .appointments-table .data-row.selected {
@@ -497,44 +582,19 @@
   border-bottom: none;
 }
 
-.especialista-details-page .checkbox-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* Estilos específicos para contenido de las filas */
+.especialista-details-page .appointments-table .data-row .client-col {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  font-weight: 500 !important;
 }
 
-.especialista-details-page .client-col {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 500;
-}
-
-.especialista-details-page .phone-col {
-  color: #666;
-  text-align: left;
-}
-
-.especialista-details-page .email-col {
-  color: #666;
-  text-align: left;
-}
-
-.especialista-details-page .appointment-col {
-  color: #666;
-  text-align: left;
-}
-
-.especialista-details-page .status-col {
-  display: flex;
-  justify-content: flex-start;
-  text-align: left;
-}
-
-.especialista-details-page .actions-col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.especialista-details-page .appointments-table .data-row .phone-col,
+.especialista-details-page .appointments-table .data-row .email-col,
+.especialista-details-page .appointments-table .data-row .appointment-col {
+  color: #666 !important;
+  text-align: left !important;
 }
 
 .especialista-details-page .sort-icon {
@@ -593,26 +653,57 @@
   font-weight: 500;
 }
 
+/* Estados con fondos de color - Ajustados a la plantilla */
 .especialista-details-page .status {
-  padding: 4px 8px;
-  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
   font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 999px;
+  position: relative;
+  white-space: nowrap;
 }
 
 .especialista-details-page .status.confirmada {
   background: #FFF7E6;
   color: #8C623E;
+  border: 1px solid #F2C288;
 }
 
 .especialista-details-page .status.pendiente {
   background: #8C623E;
   color: #ffffff;
+  border: 1px solid #8C623E;
 }
 
 .especialista-details-page .status.cancelada {
-  background: #7676801F;
-  color: #666666;
+  background: #F3F4F6;
+  color: #6B7280;
+  border: 1px solid #E5E7EB;
+}
+
+.especialista-details-page .status.atendida {
+  background: #F2CA7E;
+  color: #FFFFFF;
+  border: 1px solid #F2CA7E;
+}
+
+.especialista-details-page .status.en_espera {
+  background: #FEF0C7;
+  color: #E06900;
+  border: 1px solid #FEF0C7;
+}
+
+/* Punto indicador para estados - Ajustado a la plantilla */
+.especialista-details-page .status::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
 }
 
 .actions-col {
