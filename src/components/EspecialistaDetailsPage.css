@@ -175,16 +175,22 @@
   margin-bottom: 16px;
 }
 
-.avatar-placeholder {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: #f8f9fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  color: #666;
+.especialista-details-page .avatar-placeholder {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50% !important;
+  background: #8C623E !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+  color: #666 !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12) !important;
+}
+
+.especialista-details-page .avatar-placeholder img {
+  filter: brightness(0) invert(1) !important;
 }
 
 .specialties {

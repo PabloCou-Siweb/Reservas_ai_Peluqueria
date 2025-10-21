@@ -155,10 +155,7 @@ const EspecialistaDetailsPage: React.FC = () => {
               <div className="profile-left">
                 <div className="profile-image">
                   <div className="avatar-placeholder">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                      <circle cx="12" cy="7" r="4"/>
-                    </svg>
+                    <img src="/img/user-icon.png" alt="Usuario" width="32" height="32" />
                   </div>
                 </div>
                 <div className="specialties">

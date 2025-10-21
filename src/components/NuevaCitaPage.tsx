@@ -351,11 +351,6 @@ const NuevaCitaPage: React.FC = () => {
             </button>
           </div>
         </form>
-
-        {/* Copyright */}
-        <div className="copyright-container">
-          <span>© 2025 Bokifly</span>
-        </div>
       </div>
 
       {/* Modal de Cita Agendada */}

@@ -141,13 +141,24 @@
   border: 2px solid #e1e5e9;
 }
 
-.avatar-placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  color: #6c757d;
+.appointment-details-container .avatar-placeholder {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 100% !important;
+  height: 100% !important;
+  color: #6c757d !important;
+  background: #8C623E !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+
+.appointment-details-container .avatar-placeholder img {
+  filter: brightness(0) invert(1) !important;
+  width: 24px !important;
+  height: 24px !important;
 }
 
 .client-avatar img {
