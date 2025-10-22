@@ -363,9 +363,6 @@ const CitasPage: React.FC<CitasPageProps> = ({ specialty = 'Corte' }) => {
               onChange={(e) => setSpecialistSearch(e.target.value)}
               className="search-specialist-input"
             />
-            <div className="search-icon">
-              <img src="/img/search-icon.png" alt="Buscar" width="16" height="16" />
-            </div>
           </div>
         </div>
 

@@ -436,24 +436,41 @@
 }
 
 /* Table */
-.tratamiento-appointments-table {
-  overflow-x: auto;
+.tratamiento-details-page .tratamiento-appointments-table {
+  overflow-x: auto !important;
+  max-height: 400px !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
-.tratamiento-table-container {
-  min-width: 800px;
+.tratamiento-details-page .tratamiento-table-container {
+  min-width: 800px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
 }
 
-.tratamiento-table-header {
-  display: grid;
-  grid-template-columns: 40px 1fr 150px 200px 150px 120px 40px;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 2px solid #f0f0f0;
-  font-size: 14px;
-  font-weight: 600;
-  color: #374151;
-  align-items: center;
+.tratamiento-details-page .tratamiento-table-body {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  max-height: 300px !important;
+}
+
+.tratamiento-details-page .tratamiento-table-header {
+  display: grid !important;
+  grid-template-columns: 40px 1fr 150px 200px 150px 120px 40px !important;
+  gap: 16px !important;
+  padding: 16px 0 !important;
+  border-bottom: 2px solid #f0f0f0 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  color: #374151 !important;
+  align-items: center !important;
+  position: sticky !important;
+  top: 0 !important;
+  background: white !important;
+  z-index: 10 !important;
+  flex-shrink: 0 !important;
 }
 
 .tratamiento-header-checkbox {
@@ -518,26 +535,27 @@
   color: #374151;
 }
 
-.tratamiento-table-row {
-  display: grid;
-  grid-template-columns: 40px 1fr 150px 200px 150px 120px 40px;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid #f8f9fa;
-  align-items: center;
-  transition: background-color 0.2s ease;
+.tratamiento-details-page .tratamiento-table-row {
+  display: grid !important;
+  grid-template-columns: 40px 1fr 150px 200px 150px 120px 40px !important;
+  gap: 16px !important;
+  padding: 16px 0 !important;
+  border-bottom: 1px solid #f8f9fa !important;
+  align-items: center !important;
+  transition: background-color 0.2s ease !important;
+  flex-shrink: 0 !important;
 }
 
-.tratamiento-table-row:hover {
-  background: #f9fafb;
+.tratamiento-details-page .tratamiento-table-row:hover {
+  background: #f9fafb !important;
 }
 
-.tratamiento-table-row input[type="checkbox"]:checked + label + * {
-  background: #FFE8BC;
+.tratamiento-details-page .tratamiento-table-row input[type="checkbox"]:checked + label + * {
+  background: #FFE8BC !important;
 }
 
-.tratamiento-table-row:has(input[type="checkbox"]:checked) {
-  background: #FFE8BC;
+.tratamiento-details-page .tratamiento-table-row:has(input[type="checkbox"]:checked) {
+  background: #FFE8BC !important;
 }
 
 .tratamiento-col-checkbox {

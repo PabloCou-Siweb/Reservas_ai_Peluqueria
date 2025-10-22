@@ -200,14 +200,16 @@
 }
 
 .comprar-minutos-container .info-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  background: #8C623E;
-  border-radius: 50%;
-  cursor: pointer;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 24px !important;
+  height: 24px !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
 }
 
 .comprar-minutos-container .info-icon img {
@@ -402,8 +404,8 @@
 
 .comprar-minutos-container .footer {
   margin-top: 40px;
-  padding: 20px 0;
-  text-align: center;
+  padding: 20px 40px;
+  text-align: right;
   border-top: 1px solid #e5e7eb;
 }
 

@@ -104,19 +104,24 @@
 
 .search-field {
   width: 280px;
-  padding: 10px 40px 10px 16px;
+  padding: 10px 16px 10px 40px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
   font-size: 14px;
   background: #ffffff;
   color: #374151;
   transition: all 0.2s ease;
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 12px center;
+  background-size: 16px 16px;
 }
 
 .search-field:focus {
   outline: none;
   border-color: #8C623E;
   box-shadow: 0 0 0 3px rgba(140, 98, 62, 0.1);
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239ca3af' stroke-width='2'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='M21 21l-4.35-4.35'/%3E%3C/svg%3E");
 }
 
 .search-icon {

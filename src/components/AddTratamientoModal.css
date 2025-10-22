@@ -364,7 +364,7 @@ input:checked + .toggle-label:before {
 }
 
 /* Specialists List - Tabla completamente nueva */
-.specialists-list {
+.add-tratamiento-modal .specialists-list {
   border: 1px solid #e1e5e9;
   border-radius: 8px;
   background: white;

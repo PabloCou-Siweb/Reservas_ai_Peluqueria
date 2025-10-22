@@ -172,6 +172,10 @@
   flex-shrink: 0;
 }
 
+.card-icon img {
+  filter: brightness(0) invert(1);
+}
+
 .card-content {
   flex: 1;
 }

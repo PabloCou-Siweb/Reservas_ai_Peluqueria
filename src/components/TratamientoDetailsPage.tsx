@@ -252,8 +252,9 @@ const TratamientoDetailsPage: React.FC = () => {
                   <div className="tratamiento-header-status">Estado</div>
                   <div className="tratamiento-header-actions"></div>
                 </div>
-
-                <div className="tratamiento-table-row">
+                
+                <div className="tratamiento-table-body">
+                  <div className="tratamiento-table-row">
                   <div className="tratamiento-col-checkbox">
                     <input 
                       type="checkbox" 
@@ -358,6 +359,7 @@ const TratamientoDetailsPage: React.FC = () => {
                     <button className="tratamiento-options-btn">
                       <img src="/img/3dots-icon.png" alt="Opciones" />
                     </button>
+                  </div>
                   </div>
                 </div>
               </div>
